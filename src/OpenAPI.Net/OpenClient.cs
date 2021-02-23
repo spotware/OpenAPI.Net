@@ -20,8 +20,6 @@ namespace OpenAPI.Net
             if (port < 0 || port > 65535) throw new ArgumentOutOfRangeException(nameof(port));
 
             Port = port;
-
-            _tcpClient = new TcpClient();
         }
 
         public string Host { get; }
@@ -29,10 +27,13 @@ namespace OpenAPI.Net
 
         public async Task Connect()
         {
+            _tcpClient = new TcpClient();
+
             await _tcpClient.ConnectAsync(Host, Port).ConfigureAwait(false);
 
-            _sslStream = new SslStream(_tcpClient.GetStream(), false,
-                (sender, certificate, chain, sslPolicyErrors) => sslPolicyErrors == SslPolicyErrors.None);
+            var stream = _tcpClient.GetStream();
+
+            _sslStream = new SslStream(stream, false);
 
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
         }
