@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OpenAPI.Net
 {
-    interface IOpenClient: IDisposable
+    interface IOpenClient: IAsyncDisposable
     {
     }
 }
