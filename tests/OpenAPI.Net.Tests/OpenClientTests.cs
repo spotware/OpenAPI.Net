@@ -27,7 +27,11 @@ namespace OpenAPI.Net.Tests
 
             await client.Connect();
 
+            await Task.Delay(5000);
+
             await client.DisposeAsync();
+
+            Assert.True(_exceptionNumber == 0);
         }
 
         [Theory]
@@ -44,6 +48,7 @@ namespace OpenAPI.Net.Tests
             await Assert.ThrowsAsync<ObjectDisposedException>(client.Connect);
         }
 
-        private void OnListenerException(Exception exception) => Debug.WriteLine(exception);
+        private int _exceptionNumber;
+        private void OnListenerException(Exception exception) => _exceptionNumber++;
     }
 }
