@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OpenAPI.Net.Helpers
+﻿namespace OpenAPI.Net.Helpers
 {
-    public abstract class ApiInfo
+    public static class ApiInfo
     {
         public const string LiveHost = "live.ctraderapi.com";
         public const string DemoHost = "demo.ctraderapi.com";
