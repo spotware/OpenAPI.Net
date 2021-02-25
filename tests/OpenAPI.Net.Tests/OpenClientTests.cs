@@ -53,10 +53,20 @@ namespace OpenAPI.Net.Tests
         }
 
         [Theory]
-        [InlineData(ApiInfo.LiveHost, ApiInfo.Port, "699_9UIX3RJWkl3BwGfKi30xzfiyCaMkEA1FLKD020gy57i4e3XplL", "dfJVd3Ud1HkLcQJaLPx5fmEqR8iUkmLYeCBikQUa6J3bJH2Jce")]
-        [InlineData(ApiInfo.DemoHost, ApiInfo.Port, "699_9UIX3RJWkl3BwGfKi30xzfiyCaMkEA1FLKD020gy57i4e3XplL", "dfJVd3Ud1HkLcQJaLPx5fmEqR8iUkmLYeCBikQUa6J3bJH2Jce")]
+        [InlineData(ApiInfo.LiveHost, ApiInfo.Port, "", "")]
+        [InlineData(ApiInfo.DemoHost, ApiInfo.Port, "", "")]
         public async void AppAuthTest(string host, int port, string appId, string appSecret)
         {
+            if (string.IsNullOrWhiteSpace(appId))
+            {
+                throw new ArgumentException($"'{nameof(appId)}' cannot be null or whitespace", nameof(appId));
+            }
+
+            if (string.IsNullOrWhiteSpace(appSecret))
+            {
+                throw new ArgumentException($"'{nameof(appSecret)}' cannot be null or whitespace", nameof(appSecret));
+            }
+
             var client = new OpenClient(host, port, TimeSpan.FromSeconds(10));
 
             await client.Connect();
