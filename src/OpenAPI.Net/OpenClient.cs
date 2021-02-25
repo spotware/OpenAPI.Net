@@ -186,14 +186,14 @@ namespace OpenAPI.Net
 
             return null;
         }
-        
+
         private async void SendHeartbeat()
         {
             if (DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
 
             await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
         }
-        
+
         private async Task Write(byte[] messageByte, byte[] length)
         {
             var isSemaphoreEntered = await _streamWriteSemaphoreSlim.WaitAsync(TimeSpan.FromMinutes(1));

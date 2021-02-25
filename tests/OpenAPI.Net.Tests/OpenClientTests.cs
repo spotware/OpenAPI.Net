@@ -1,11 +1,8 @@
-using System;
-using Xunit;
 using OpenAPI.Net.Helpers;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Reactive;
+using System;
 using System.Reactive.Linq;
-using Google.Protobuf;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace OpenAPI.Net.Tests
 {
@@ -56,9 +53,9 @@ namespace OpenAPI.Net.Tests
         }
 
         [Theory]
-        [InlineData(ApiInfo.LiveHost, ApiInfo.Port)]
-        [InlineData(ApiInfo.DemoHost, ApiInfo.Port)]
-        public async void AppAuthTest(string host, int port)
+        [InlineData(ApiInfo.LiveHost, ApiInfo.Port, "", "")]
+        [InlineData(ApiInfo.DemoHost, ApiInfo.Port, "", "")]
+        public async void AppAuthTest(string host, int port, string appId, string appSecret)
         {
             var client = new OpenClient(host, port, TimeSpan.FromSeconds(10));
 
@@ -66,12 +63,15 @@ namespace OpenAPI.Net.Tests
 
             var isResponseReceived = false;
 
-            client.Where(message => message is ProtoOAApplicationAuthRes).Subscribe(message => isResponseReceived = true);
+            Exception exception = null;
+
+            client.Where(message => message is ProtoOAApplicationAuthRes)
+                .Subscribe(message => isResponseReceived = true, ex => exception = ex);
 
             var appAuhRequest = new ProtoOAApplicationAuthReq
             {
-                ClientId = "699_9UIX3RJWkl3BwGfKi30xzfiyCaMkEA1FLKD020gy57i4e3XplL",
-                ClientSecret = "dfJVd3Ud1HkLcQJaLPx5fmEqR8iUkmLYeCBikQUa6J3bJH2Jce"
+                ClientId = appId,
+                ClientSecret = appSecret
             };
 
             await client.SendMessage(appAuhRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
@@ -80,7 +80,7 @@ namespace OpenAPI.Net.Tests
 
             await client.DisposeAsync();
 
-            Assert.True(isResponseReceived);
+            Assert.True(isResponseReceived && exception is null);
         }
     }
 }
