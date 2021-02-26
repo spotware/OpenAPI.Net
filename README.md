@@ -13,6 +13,7 @@ Current version of library is based on .NET standard 2.1, you can't use it on .N
 * <a href="https://github.com/protocolbuffers/protobuf">protobuf</a>
 * <a href="https://github.com/restsharp/RestSharp">RestSharp</a>
 * <a href="https://github.com/dotnet/reactive">Reactive</a>
+* <a href="https://www.nuget.org/packages/System.Text.Json/">System.Text.Json</a>
 
 ## Licence
 
