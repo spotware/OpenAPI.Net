@@ -1,6 +1,7 @@
 # OpenAPI.Net
 
 [![NuGet version (Spotware.OpenAPI.Net)](https://buildstats.info/nuget/Spotware.OpenAPI.Net)](https://www.nuget.org/packages/Spotware.OpenAPI.Net/)
+[![Documentation Status](https://readthedocs.org/projects/openapinet/badge/?version=latest)](https://openapinet.readthedocs.io/en/latest/?badge=latest)
 
 Spotware Open API .NET Rx library
 
