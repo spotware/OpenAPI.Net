@@ -13,15 +13,15 @@ using System.Threading.Tasks;
 
 namespace OpenAPI.Net
 {
-    public sealed class OpenClient : IOpenClient
+    public class OpenClient : IOpenClient
     {
         private readonly TimeSpan _heartbeatInerval;
 
-        private readonly ProtoHeartbeatEvent _heartbeatEvent = new ProtoHeartbeatEvent();
+        private ProtoHeartbeatEvent _heartbeatEvent = new ProtoHeartbeatEvent();
 
-        private readonly SemaphoreSlim _streamWriteSemaphoreSlim = new SemaphoreSlim(1, 1);
+        private SemaphoreSlim _streamWriteSemaphoreSlim = new SemaphoreSlim(1, 1);
 
-        private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new ConcurrentDictionary<int, IObserver<IMessage>>();
+        private ConcurrentDictionary<int, IObserver<IMessage>> _observers = new ConcurrentDictionary<int, IObserver<IMessage>>();
 
         private TcpClient _tcpClient;
 
@@ -42,6 +42,8 @@ namespace OpenAPI.Net
             _heartbeatInerval = heartbeatInerval;
         }
 
+        ~OpenClient() => Dispose(false);
+
         public string Host { get; }
         public int Port { get; }
 
@@ -53,7 +55,7 @@ namespace OpenAPI.Net
         {
             if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
 
-            _tcpClient = new TcpClient();
+            _tcpClient = new TcpClient { LingerState = new LingerOption(true, 10) };
 
             await _tcpClient.ConnectAsync(Host, Port).ConfigureAwait(false);
 
@@ -98,8 +100,6 @@ namespace OpenAPI.Net
 
         public async Task SendMessage(ProtoMessage message)
         {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
-
             try
             {
                 var messageByte = message.ToByteArray();
@@ -116,32 +116,36 @@ namespace OpenAPI.Net
             }
         }
 
-        public async ValueTask DisposeAsync()
+        public void Dispose()
+        {
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             if (IsDisposed) return;
 
             IsDisposed = true;
 
+            if (disposing)
+            {
+                _heartbeatDisposable.Dispose();
+                _listenerDisposable.Dispose();
+
+                _tcpClient.Dispose();
+
+                _streamWriteSemaphoreSlim.Dispose();
+            }
+
             OnCompleted();
-
-            _observers.Clear();
-
-            _heartbeatDisposable?.Dispose();
-            _listenerDisposable?.Dispose();
-
-            await Task.Delay(1000);
-
-            _tcpClient?.Dispose();
-
-            _tcpClient = null;
-            _sslStream = null;
-
-            _heartbeatDisposable = null;
-            _listenerDisposable = null;
         }
 
         private async Task<IMessage> Read(CancellationToken cancelationToken)
         {
+            if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
+
             try
             {
                 var lengthArray = new byte[sizeof(int)];
@@ -187,15 +191,10 @@ namespace OpenAPI.Net
             return null;
         }
 
-        private async void SendHeartbeat()
-        {
-            if (DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
-
-            await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
-        }
-
         private async Task Write(byte[] messageByte, byte[] length)
         {
+            if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
+
             var isSemaphoreEntered = await _streamWriteSemaphoreSlim.WaitAsync(TimeSpan.FromMinutes(1));
 
             if (!isSemaphoreEntered) throw new TimeoutException(ErrorMessages.SemaphoreEnteryTimedOut);
@@ -218,10 +217,16 @@ namespace OpenAPI.Net
             }
         }
 
+        private async void SendHeartbeat()
+        {
+            if (DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
+
+            await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
+        }
+
         private void OnObserverDispose(IObserver<IMessage> observer)
         {
-            var (observerKey, observerToRemove) = _observers.FirstOrDefault(
-                iObserver => iObserver.Value == observer);
+            var (observerKey, observerToRemove) = _observers.FirstOrDefault(iObserver => iObserver.Value == observer);
 
             if (observerToRemove == observer)
             {

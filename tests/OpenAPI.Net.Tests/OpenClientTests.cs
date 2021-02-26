@@ -33,7 +33,7 @@ namespace OpenAPI.Net.Tests
 
             await Task.Delay(5000);
 
-            await client.DisposeAsync();
+            client.Dispose();
 
             Assert.Null(exception);
         }
@@ -47,14 +47,14 @@ namespace OpenAPI.Net.Tests
 
             await client.Connect();
 
-            await client.DisposeAsync();
+            client.Dispose();
 
             await Assert.ThrowsAsync<ObjectDisposedException>(client.Connect);
         }
 
         [Theory]
-        [InlineData(ApiInfo.LiveHost, ApiInfo.Port, "", "")]
-        [InlineData(ApiInfo.DemoHost, ApiInfo.Port, "", "")]
+        [InlineData(ApiInfo.LiveHost, ApiInfo.Port, "699_9UIX3RJWkl3BwGfKi30xzfiyCaMkEA1FLKD020gy57i4e3XplL", "dfJVd3Ud1HkLcQJaLPx5fmEqR8iUkmLYeCBikQUa6J3bJH2Jce")]
+        [InlineData(ApiInfo.DemoHost, ApiInfo.Port, "699_9UIX3RJWkl3BwGfKi30xzfiyCaMkEA1FLKD020gy57i4e3XplL", "dfJVd3Ud1HkLcQJaLPx5fmEqR8iUkmLYeCBikQUa6J3bJH2Jce")]
         public async void AppAuthTest(string host, int port, string appId, string appSecret)
         {
             if (string.IsNullOrWhiteSpace(appId))
@@ -85,9 +85,9 @@ namespace OpenAPI.Net.Tests
 
             await client.SendMessage(appAuhRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
 
-            await Task.Delay(2000);
+            await Task.Delay(3000);
 
-            await client.DisposeAsync();
+            client.Dispose();
 
             Assert.True(isResponseReceived && exception is null);
         }

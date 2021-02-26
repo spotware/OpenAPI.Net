@@ -3,7 +3,7 @@ using System;
 
 namespace OpenAPI.Net
 {
-    internal interface IOpenClient : IAsyncDisposable, IObservable<IMessage>
+    internal interface IOpenClient : IDisposable, IObservable<IMessage>
     {
     }
 }
