@@ -53,8 +53,26 @@ namespace OpenAPI.Net.Tests
         }
 
         [Theory]
-        [InlineData(ApiInfo.LiveHost, ApiInfo.Port, "699_9UIX3RJWkl3BwGfKi30xzfiyCaMkEA1FLKD020gy57i4e3XplL", "dfJVd3Ud1HkLcQJaLPx5fmEqR8iUkmLYeCBikQUa6J3bJH2Jce")]
-        [InlineData(ApiInfo.DemoHost, ApiInfo.Port, "699_9UIX3RJWkl3BwGfKi30xzfiyCaMkEA1FLKD020gy57i4e3XplL", "dfJVd3Ud1HkLcQJaLPx5fmEqR8iUkmLYeCBikQUa6J3bJH2Jce")]
+        [InlineData(ApiInfo.LiveHost, ApiInfo.Port)]
+        [InlineData(ApiInfo.DemoHost, ApiInfo.Port)]
+        public async void OnCompletedTest(string host, int port)
+        {
+            var client = new OpenClient(host, port, TimeSpan.FromSeconds(10));
+
+            bool isCompleted = false;
+
+            client.Subscribe(message => { }, exception => { }, () => isCompleted = true);
+
+            await client.Connect();
+
+            client.Dispose();
+
+            Assert.True(isCompleted);
+        }
+
+        [Theory]
+        [InlineData(ApiInfo.LiveHost, ApiInfo.Port, "", "")]
+        [InlineData(ApiInfo.DemoHost, ApiInfo.Port, "", "")]
         public async void AppAuthTest(string host, int port, string appId, string appSecret)
         {
             if (string.IsNullOrWhiteSpace(appId))

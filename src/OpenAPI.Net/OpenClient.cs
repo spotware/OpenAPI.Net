@@ -49,11 +49,15 @@ namespace OpenAPI.Net
 
         public bool IsDisposed { get; private set; }
 
+        public bool IsCompleted { get; private set; }
+
+        public bool IsTerminated { get; private set; }
+
         public DateTimeOffset LastSentMessageTime { get; private set; }
 
         public async Task Connect()
         {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
+            ThrowObjectDisposedExceptionIfDisposed();
 
             _tcpClient = new TcpClient { LingerState = new LingerOption(true, 10) };
 
@@ -74,6 +78,8 @@ namespace OpenAPI.Net
 
         public IDisposable Subscribe(IObserver<IMessage> observer)
         {
+            ThrowObjectDisposedExceptionIfDisposed();
+
             if (!_observers.Values.Contains(observer))
             {
                 _observers.TryAdd(_observers.Count, observer);
@@ -139,13 +145,11 @@ namespace OpenAPI.Net
                 _streamWriteSemaphoreSlim.Dispose();
             }
 
-            OnCompleted();
+            if (!IsTerminated) OnCompleted();
         }
 
-        private async Task<IMessage> Read(CancellationToken cancelationToken)
+        private async Task<IMessage> Read()
         {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
-
             try
             {
                 var lengthArray = new byte[sizeof(int)];
@@ -178,9 +182,6 @@ namespace OpenAPI.Net
 
                 return MessageFactory.GetMessage(data);
             }
-            catch (OperationCanceledException)
-            {
-            }
             catch (Exception ex)
             {
                 var readException = new ReadException(ex);
@@ -193,14 +194,16 @@ namespace OpenAPI.Net
 
         private async Task Write(byte[] messageByte, byte[] length)
         {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
+            ThrowObjectDisposedExceptionIfDisposed();
 
-            var isSemaphoreEntered = await _streamWriteSemaphoreSlim.WaitAsync(TimeSpan.FromMinutes(1));
-
-            if (!isSemaphoreEntered) throw new TimeoutException(ErrorMessages.SemaphoreEnteryTimedOut);
+            bool isSemaphoreEntered = false;
 
             try
             {
+                isSemaphoreEntered = await _streamWriteSemaphoreSlim.WaitAsync(TimeSpan.FromMinutes(1));
+
+                if (!isSemaphoreEntered) throw new TimeoutException(ErrorMessages.SemaphoreEnteryTimedOut);
+
                 await _sslStream.WriteAsync(length, 0, length.Length).ConfigureAwait(false);
 
                 await _sslStream.WriteAsync(messageByte, 0, messageByte.Length).ConfigureAwait(false);
@@ -213,7 +216,7 @@ namespace OpenAPI.Net
             }
             finally
             {
-                _streamWriteSemaphoreSlim.Release();
+                if (isSemaphoreEntered) _streamWriteSemaphoreSlim.Release();
             }
         }
 
@@ -238,13 +241,24 @@ namespace OpenAPI.Net
         {
             foreach (var (_, observer) in _observers)
             {
-                observer.OnNext(message);
+                try
+                {
+                    observer.OnNext(message);
+                }
+                catch (Exception ex)
+                {
+                    var observerException = new ObserverException(ex, observer);
+
+                    OnError(observerException);
+                }
             }
         }
 
         private void OnError(Exception exception)
         {
-            if (_observers.Count == 0) throw exception;
+            IsTerminated = true;
+
+            Dispose();
 
             foreach (var (_, observer) in _observers)
             {
@@ -254,10 +268,17 @@ namespace OpenAPI.Net
 
         private void OnCompleted()
         {
+            IsCompleted = true;
+
             foreach (var (_, observer) in _observers)
             {
                 observer.OnCompleted();
             }
+        }
+
+        private void ThrowObjectDisposedExceptionIfDisposed()
+        {
+            if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);
         }
     }
 }

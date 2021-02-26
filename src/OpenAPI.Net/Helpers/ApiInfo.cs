@@ -11,6 +11,6 @@ namespace OpenAPI.Net.Helpers
 
         public const string AuthUrl = "https://connect.spotware.com/apps/";
 
-        public static string GetBaseUrl(Mode mode) => mode == Mode.Live ? LiveHost : DemoHost;
+        public static string GetHost(Mode mode) => mode == Mode.Live ? LiveHost : DemoHost;
     }
 }
