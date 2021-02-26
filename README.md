@@ -19,4 +19,4 @@ Current version of library is based on .NET standard 2.1, you can't use it on .N
 
 ## Licence
 
-Connect is licenced under the [MIT licence](licence.md).
+Licenced under the [MIT licence](licence.md).
