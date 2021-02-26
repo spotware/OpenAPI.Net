@@ -40,10 +40,13 @@ namespace OpenAPI.Net.Auth
             {
                 var token = JsonSerializer.Deserialize<Token>(response.Content);
 
-                if (string.IsNullOrWhiteSpace(token.AccessToken))
-                    throw new JsonException("Access token is not deserialized and is null");
-                if (string.IsNullOrWhiteSpace(token.RefreshToken))
-                    throw new JsonException("Refresh token is not deserialized and is null");
+                if (string.IsNullOrWhiteSpace(token.ErrorCode))
+                {
+                    if (string.IsNullOrWhiteSpace(token.AccessToken))
+                        throw new JsonException("Access token is not deserialized and is null");
+                    if (string.IsNullOrWhiteSpace(token.RefreshToken))
+                        throw new JsonException("Refresh token is not deserialized and is null");
+                }
 
                 return token;
             }

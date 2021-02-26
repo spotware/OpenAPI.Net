@@ -16,7 +16,7 @@ namespace OpenAPI.Net.Auth
         public string Secret { get; }
         public string RedirectUri { get; }
 
-        public Uri GetAuthUri(Scope scope = Scope.Trading, Mode mode = Mode.Live, string authUrl = ApiInfo.AuthUrl)
+        public Uri GetAuthUri(Scope scope = Scope.Trading, string authUrl = ApiInfo.AuthUrl)
         {
             var authURIBuilder = new UriBuilder(authUrl);
 

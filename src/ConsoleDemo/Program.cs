@@ -48,7 +48,7 @@ namespace ConsoleDemo
 
             var scope = (Scope)Enum.Parse(typeof(Scope), scopeString, true);
 
-            var authUri = _app.GetAuthUri(mode: mode);
+            var authUri = _app.GetAuthUri();
 
             System.Diagnostics.Process.Start("explorer.exe", $"\"{authUri}\"");
 

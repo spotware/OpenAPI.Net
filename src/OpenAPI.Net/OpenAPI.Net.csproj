@@ -9,6 +9,7 @@
     <PackageTags>cTrader, Open API, Spotware</PackageTags>
     <Description>A .NET RX library for Spotware Open API</Description>
     <PackageId>Spotware.OpenAPI.Net</PackageId>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

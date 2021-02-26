@@ -1,0 +1,9 @@
+site_name: OpenAPI.Net
+theme: readthedocs
+
+pages:
+- Getting Started:
+    - 'Overview': 'index.md'
+    - 'Authentication': 'authentication.md' 
+    - 'Open Client': 'open-client.md' 
+    - 'More': 'more.md' 
