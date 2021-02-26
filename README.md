@@ -1,5 +1,7 @@
 # OpenAPI.Net
 
+[![NuGet version (Spotware.OpenAPI.Net)](https://buildstats.info/nuget/Spotware.OpenAPI.Net)](https://www.nuget.org/packages/Spotware.OpenAPI.Net/)
+
 Spotware Open API .NET Rx library
 
 This library allows you to easily use and integrate Spotware Open API on your .NET applications.
