@@ -19,4 +19,4 @@ Current version of library is based on .NET standard 2.1, you can't use it on .N
 
 ## Licence
 
-Licenced under the [MIT licence](licence).
+Licenced under the [MIT licence](LICENSE).
