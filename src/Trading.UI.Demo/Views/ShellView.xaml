@@ -54,7 +54,8 @@
                 BorderThickness="0"
                 ItemTemplate="{StaticResource AccountTemplate}"
                 ItemsSource="{Binding Path=Accounts}"
-                SelectedItem="{Binding Path=SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                SelectedItem="{Binding Path=SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ToolTip="Select Trading Account">
                 <ComboBox.GroupStyle>
                     <GroupStyle HeaderTemplate="{StaticResource AccountsGroupHeader}" />
                 </ComboBox.GroupStyle>
@@ -62,23 +63,5 @@
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.OrdersViewRegion}" />
-
-        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.CreateOrderViewRegion}" />
-
-        <GridSplitter
-            Grid.Column="1"
-            Width="3"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Stretch"
-            Background="{DynamicResource MahApps.Brushes.Accent}"
-            ShowsPreview="True"
-            ToolTip="Resize" />
-    </Grid>
+    <ContentControl prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.OrdersViewRegion}" />
 </controls:MetroWindow>
