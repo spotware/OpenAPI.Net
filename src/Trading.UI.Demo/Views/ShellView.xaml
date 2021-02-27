@@ -1,0 +1,84 @@
+﻿<controls:MetroWindow
+    x:Class="Trading.UI.Demo.Views.ShellView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:regions="clr-namespace:Trading.UI.Demo.Regions"
+    Title="{Binding Title}"
+    Width="525"
+    Height="350"
+    MinWidth="50"
+    MinHeight="50"
+    dialog:DialogParticipation.Register="{Binding}"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    BorderThickness="0"
+    GlowBrush="Black"
+    RenderOptions.BitmapScalingMode="NearestNeighbor"
+    RenderOptions.ClearTypeHint="Enabled"
+    RenderOptions.EdgeMode="Aliased"
+    ResizeMode="CanResizeWithGrip"
+    SaveWindowPosition="True"
+    ShowIconOnTitleBar="False"
+    TextOptions.TextHintingMode="Fixed"
+    TextOptions.TextRenderingMode="Grayscale"
+    TitleAlignment="Stretch"
+    TitleCharacterCasing="Normal"
+    WindowTransitionsEnabled="False">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=LoadedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding Path=UnloadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/ShellViewResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </controls:MetroWindow.Resources>
+
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands ShowSeparators="True">
+            <ComboBox
+                MinWidth="200"
+                Background="{DynamicResource MahApps.Brushes.Button.AccentedSquare.Background.MouseOver}"
+                BorderThickness="0"
+                ItemTemplate="{StaticResource AccountTemplate}"
+                ItemsSource="{Binding Path=Accounts}"
+                SelectedItem="{Binding Path=SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.GroupStyle>
+                    <GroupStyle HeaderTemplate="{StaticResource AccountsGroupHeader}" />
+                </ComboBox.GroupStyle>
+            </ComboBox>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.OrdersViewRegion}" />
+
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.CreateOrderViewRegion}" />
+
+        <GridSplitter
+            Grid.Column="1"
+            Width="3"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            Background="{DynamicResource MahApps.Brushes.Accent}"
+            ShowsPreview="True"
+            ToolTip="Resize" />
+    </Grid>
+</controls:MetroWindow>

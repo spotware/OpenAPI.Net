@@ -1,0 +1,43 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+
+    <DataTemplate x:Key="OrderLastColumnCellTemplate">
+        <WrapPanel>
+            <Button
+                Margin="5"
+                Command="{Binding Path=DataContext.CancelOrderCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                CommandParameter="{Binding}"
+                ToolTip="Cancel">
+                <iconPacks:Material Kind="Close" />
+            </Button>
+        </WrapPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PositionLastColumnCellTemplate">
+        <WrapPanel>
+            <Button
+                Margin="5"
+                Command="{Binding Path=DataContext.ClosePositionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                CommandParameter="{Binding}"
+                ToolTip="Close">
+                <iconPacks:Material Kind="Close" />
+            </Button>
+        </WrapPanel>
+    </DataTemplate>
+
+    <Style BasedOn="{StaticResource MahApps.Styles.DataGrid}" TargetType="DataGrid">
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="EnableColumnVirtualization" Value="True" />
+        <Setter Property="EnableRowVirtualization" Value="True" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True" />
+        <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True" />
+        <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+    </Style>
+</ResourceDictionary>

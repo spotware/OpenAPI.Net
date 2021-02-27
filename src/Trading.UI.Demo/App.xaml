@@ -1,0 +1,37 @@
+﻿<prism:PrismApplication
+    x:Class="Trading.UI.Demo.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:valueConverters="clr-namespace:Trading.UI.Demo.ValueConverters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="DialogStyle" TargetType="mah:MetroWindow">
+                <Setter Property="BorderThickness" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.BorderThickness}" />
+                <Setter Property="GlowBrush" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.GlowBrush}" />
+                <Setter Property="Height" Value="350" />
+                <Setter Property="Icon" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.Icon}" />
+                <Setter Property="ResizeMode" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.ResizeMode}" />
+                <Setter Property="SaveWindowPosition" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.SaveWindowPosition}" />
+                <Setter Property="ShowIconOnTitleBar" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.ShowIconOnTitleBar}" />
+                <Setter Property="ShowInTaskbar" Value="False" />
+                <Setter Property="Title" Value="{Binding Path=Title}" />
+                <Setter Property="TitleAlignment" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.TitleAlignment}" />
+                <Setter Property="TitleCharacterCasing" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.TitleCharacterCasing}" />
+                <Setter Property="Width" Value="450" />
+                <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />
+            </Style>
+
+            <valueConverters:MonetaryConverter x:Key="MonetaryConverter" />
+            <valueConverters:NullableToStringConverter x:Key="NullableToStringConverter" />
+            <valueConverters:NullableDoubleConverter x:Key="NullableDoubleConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>
