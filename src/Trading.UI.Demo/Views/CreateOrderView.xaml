@@ -5,15 +5,19 @@
     xmlns:behaviors="clr-namespace:Trading.UI.Demo.Behaviors"
     xmlns:controls="clr-namespace:Trading.UI.Demo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:enums="clr-namespace:Trading.UI.Demo.Enums"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:markupExtensions="clr-namespace:Trading.UI.Demo.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    dialog:DialogParticipation.Register="{Binding}"
+    prism:Dialog.WindowStyle="{StaticResource DialogStyle}"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

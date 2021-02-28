@@ -7,7 +7,7 @@ namespace OpenAPI.Net.Tests.Auth
     {
         [Theory]
         [InlineData("", "", "", "")]
-        public async void GetTokenTest(string appId, string appSecret, string redirectUri, string code)
+        public async void GetTokenTest(string appId, string appSecret, string redirectUri, string authCode)
         {
             if (string.IsNullOrWhiteSpace(appId))
             {
@@ -24,16 +24,14 @@ namespace OpenAPI.Net.Tests.Auth
                 throw new System.ArgumentException($"'{nameof(redirectUri)}' cannot be null or whitespace", nameof(redirectUri));
             }
 
-            if (string.IsNullOrWhiteSpace(code))
+            if (string.IsNullOrWhiteSpace(authCode))
             {
-                throw new System.ArgumentException($"'{nameof(code)}' cannot be null or whitespace", nameof(code));
+                throw new System.ArgumentException($"'{nameof(authCode)}' cannot be null or whitespace", nameof(authCode));
             }
 
             var app = new App(appId, appSecret, redirectUri);
 
-            var authCode = new AuthCode(code, app, Scope.Trading, Mode.Demo);
-
-            var token = await TokenFactory.GetToken(authCode);
+            var token = await TokenFactory.GetToken(authCode, app);
 
             Assert.NotNull(token);
         }

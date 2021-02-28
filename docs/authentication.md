@@ -51,11 +51,8 @@ To generate an access token via OpenAPI.NET use the following code:
 
 ```C#
 	// The classes used in this code snippet are located at OpenAPI.Net.Auth
-	// You can pass the redirect URI to AuthCode instead of authentication code
-	// and it will extract the code
-    var authCode = new AuthCode(code, _app, scope, mode);
 	// Use TokenFactory to get the token
-    var token = await TokenFactory.GetToken(authCode);
+    var token = await TokenFactory.GetToken(authCode, app);
 ```
 
 Now you have a token object, it has these properties:

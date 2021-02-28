@@ -46,6 +46,15 @@
                         behaviors:ToolBarTraySettingsBehavior.SaveBand="True"
                         behaviors:ToolBarTraySettingsBehavior.SaveBandIndex="True"
                         behaviors:ToolBarTraySettingsBehavior.SaveWidth="True">
+                        <ToolBar Name="PositionCreateNewOrderToolBar">
+                            <Button
+                                MinWidth="80"
+                                Margin="5"
+                                mah:ControlsHelper.ContentCharacterCasing="Normal"
+                                Command="{Binding Path=CreateNewPositionCommand}"
+                                Content="Create New Order"
+                                Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+                        </ToolBar>
                         <ToolBar Name="PositionCloseToolBar">
                             <WrapPanel Margin="5" Orientation="Horizontal">
                                 <controls:DropDownMultiSelect
@@ -201,6 +210,15 @@
                         behaviors:ToolBarTraySettingsBehavior.SaveBand="True"
                         behaviors:ToolBarTraySettingsBehavior.SaveBandIndex="True"
                         behaviors:ToolBarTraySettingsBehavior.SaveWidth="True">
+                        <ToolBar Name="OrderCreateNewOrderToolBar">
+                            <Button
+                                MinWidth="80"
+                                Margin="5"
+                                mah:ControlsHelper.ContentCharacterCasing="Normal"
+                                Command="{Binding Path=CreateNewOrderCommand}"
+                                Content="Create New Order"
+                                Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+                        </ToolBar>
                         <ToolBar Name="OrderCancelToolBar">
                             <WrapPanel Margin="5" Orientation="Horizontal">
                                 <controls:DropDownMultiSelect

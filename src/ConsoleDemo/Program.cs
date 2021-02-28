@@ -1,12 +1,12 @@
-﻿using OpenAPI.Net;
+﻿using Google.Protobuf;
+using OpenAPI.Net;
 using OpenAPI.Net.Auth;
 using OpenAPI.Net.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Reactive.Linq;
 using System.Linq;
-using Google.Protobuf;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace ConsoleDemo
 {
@@ -63,11 +63,9 @@ namespace ConsoleDemo
 
             Console.Write("Enter Authentication Code: ");
 
-            var code = Console.ReadLine();
+            var authCode = Console.ReadLine();
 
-            var authCode = new AuthCode(code, _app, scope, mode);
-
-            _token = await TokenFactory.GetToken(authCode);
+            _token = await TokenFactory.GetToken(authCode, _app);
 
             Console.WriteLine("Access token generated");
 
@@ -76,8 +74,8 @@ namespace ConsoleDemo
             var host = ApiInfo.GetHost(mode);
 
             _client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10));
-        
-            _disposables.Add(_client.Where(iMessage =>  iMessage is not ProtoHeartbeatEvent).Subscribe(OnMessageReceived, OnException));
+
+            _disposables.Add(_client.Where(iMessage => iMessage is not ProtoHeartbeatEvent).Subscribe(OnMessageReceived, OnException));
             _disposables.Add(_client.OfType<ProtoOAErrorRes>().Subscribe(OnError));
             _disposables.Add(_client.OfType<ProtoOARefreshTokenRes>().Subscribe(OnRefreshTokenResponse));
 

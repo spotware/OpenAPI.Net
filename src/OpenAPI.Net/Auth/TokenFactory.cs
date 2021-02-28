@@ -8,11 +8,11 @@ namespace OpenAPI.Net.Auth
 {
     public static class TokenFactory
     {
-        public static async Task<Token> GetToken(AuthCode authCode, string authUri = ApiInfo.AuthUrl)
+        public static async Task<Token> GetToken(string authCode, App app, string authUri = ApiInfo.AuthUrl)
         {
             var client = new RestClient(authUri);
 
-            var request = GetTokenRequest(authCode);
+            var request = GetTokenRequest(authCode, app);
 
             var response = await client.ExecuteGetAsync(request).ConfigureAwait(false);
 
@@ -21,15 +21,15 @@ namespace OpenAPI.Net.Auth
             return token;
         }
 
-        private static RestRequest GetTokenRequest(AuthCode authCode)
+        private static RestRequest GetTokenRequest(string authCode, App app)
         {
             var request = new RestRequest("token");
 
             request.AddParameter("grant_type", "authorization_code");
-            request.AddParameter("code", authCode.Code);
-            request.AddParameter("redirect_uri", authCode.App.RedirectUri);
-            request.AddParameter("client_id", authCode.App.ClientId);
-            request.AddParameter("client_secret", authCode.App.Secret);
+            request.AddParameter("code", authCode);
+            request.AddParameter("redirect_uri", app.RedirectUri);
+            request.AddParameter("client_id", app.ClientId);
+            request.AddParameter("client_secret", app.Secret);
 
             return request;
         }

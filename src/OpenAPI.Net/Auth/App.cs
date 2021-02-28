@@ -29,4 +29,10 @@ namespace OpenAPI.Net.Auth
             return authURIBuilder.Uri;
         }
     }
+
+    public enum Scope
+    {
+        Trading,
+        Accounts
+    }
 }

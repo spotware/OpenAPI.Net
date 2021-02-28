@@ -1,5 +1,11 @@
-﻿using Prism.Ioc;
+﻿using MahApps.Metro.Controls.Dialogs;
+using OpenAPI.Net;
+using OpenAPI.Net.Helpers;
+using Prism.Ioc;
+using System;
 using System.Windows;
+using Trading.UI.Demo.Helpers;
+using Trading.UI.Demo.Services;
 using Trading.UI.Demo.Views;
 
 namespace Trading.UI.Demo
@@ -16,8 +22,21 @@ namespace Trading.UI.Demo
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IDialogCoordinator, DialogCoordinator>();
+
             containerRegistry.RegisterForNavigation<OrdersView>();
             containerRegistry.RegisterForNavigation<CreateOrderView>();
+
+            containerRegistry.RegisterDialog<ApiConfigurationView>();
+
+            containerRegistry.RegisterDialogWindow<DialogWindow>();
+
+            var liveClient = new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            var demoClient = new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+
+            var apiService = new ApiService(liveClient, demoClient);
+
+            containerRegistry.RegisterInstance<IApiService>(apiService);
         }
     }
 }

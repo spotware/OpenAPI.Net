@@ -1,6 +1,4 @@
-﻿using OpenAPI.Net.Auth;
-
-namespace OpenAPI.Net.Helpers
+﻿namespace OpenAPI.Net.Helpers
 {
     public static class ApiInfo
     {
@@ -12,5 +10,11 @@ namespace OpenAPI.Net.Helpers
         public const string AuthUrl = "https://connect.spotware.com/apps/";
 
         public static string GetHost(Mode mode) => mode == Mode.Live ? LiveHost : DemoHost;
+    }
+
+    public enum Mode
+    {
+        Live,
+        Demo
     }
 }
