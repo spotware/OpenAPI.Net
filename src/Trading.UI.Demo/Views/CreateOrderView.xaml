@@ -12,13 +12,19 @@
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:markupExtensions="clr-namespace:Trading.UI.Demo.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:openApi="clr-namespace:;assembly=OpenAPI.Net"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="450"
     d:DesignWidth="800"
     dialog:DialogParticipation.Register="{Binding}"
-    prism:Dialog.WindowStyle="{StaticResource DialogStyle}"
     mc:Ignorable="d">
+    <prism:Dialog.WindowStyle>
+        <Style BasedOn="{StaticResource DialogStyle}" TargetType="mah:MetroWindow">
+            <Setter Property="Height" Value="450" />
+            <Setter Property="Width" Value="500" />
+        </Style>
+    </prism:Dialog.WindowStyle>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Path=LoadedCommand}" />
@@ -36,575 +42,172 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <TabControl>
-        <TabItem Header="Positions">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-                <Border BorderBrush="{StaticResource MahApps.Brushes.Control.Border}" BorderThickness="0,0,0,3">
-                    <ToolBarTray
-                        Name="AccountPositionsViewToolBarTray"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBand="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBandIndex="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveWidth="True">
-                        <ToolBar Name="PositionCloseToolBar">
-                            <WrapPanel Margin="5" Orientation="Horizontal">
-                                <controls:DropDownMultiSelect
-                                    Height="{Binding Path=ActualHeight, ElementName=ClosePositionsButton}"
-                                    MinWidth="200"
-                                    ItemsSource="{Binding Source={markupExtensions:EnumBindingMarkup {x:Type enums:PositionCloseType}}}"
-                                    SelectedItems="{Binding Path=SelectedClosePositionTypes, UpdateSourceTrigger=PropertyChanged}" />
+        <TabControl Grid.Row="0" TabStripPlacement="Left">
+            <TabItem DataContext="{Binding Path=MarketOrderModel}" Header="Market">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
 
-                                <Button
-                                    x:Name="ClosePositionsButton"
-                                    MinWidth="80"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=ClosePositionsCommand}"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <iconPacks:PackIconFontAwesome
-                                            Width="10"
-                                            Height="10"
-                                            Margin="0,0,5,0"
-                                            VerticalAlignment="Center"
-                                            Kind="WindowCloseSolid" />
-                                        <TextBlock Text="Close Positions" ToolTip="Based on selected position close types" />
-                                    </StackPanel>
-                                </Button>
+                    </Grid.RowDefinitions>
 
-                                <Button
-                                    MinWidth="80"
-                                    MaxHeight="{Binding Path=ActualHeight, ElementName=ClosePositionsButton}"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=CloseSelectedPositionsCommand}"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <iconPacks:PackIconFontAwesome
-                                            Width="12"
-                                            Height="12"
-                                            Margin="0,0,5,0"
-                                            VerticalAlignment="Center"
-                                            Kind="WindowCloseSolid" />
-                                        <TextBlock Text="Close Selected Positions" />
-                                    </StackPanel>
-                                </Button>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                            </WrapPanel>
-                        </ToolBar>
-                        <ToolBar Name="PositionSearchToolBar">
-                            <TextBox
-                                MinWidth="150"
-                                Margin="5"
-                                mah:TextBoxHelper.Watermark="Search..."
-                                Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
-                        </ToolBar>
-                    </ToolBarTray>
-                </Border>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                <DataGrid
-                    Name="TradingAccountPositionsDataGrid"
-                    Grid.Row="1"
-                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedPositions, UpdateSourceTrigger=PropertyChanged}"
-                    behaviors:DataGridColumnSettingsBehavior.EnableColumnsVisibilityMenu="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
-                    ItemsSource="{Binding Path=Positions, IsAsync=True}"
-                    SelectionMode="Extended">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Id}"
-                            Header="ID"
-                            SortMemberPath="Id"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Symbol.Name}"
-                            Header="Symbol"
-                            SortMemberPath="Symbol.Name" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=VolumeInLots}"
-                            Header="Volume (Lots)"
-                            SortMemberPath="VolumeInLots" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=TradeData.TradeSide}"
-                            Header="Direction"
-                            SortMemberPath="TradeData.TradeSide" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Price}"
-                            Header="Price"
-                            SortMemberPath="Price" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=TakeProfit, Converter={StaticResource NullableDoubleConverter}}"
-                            Header="TP"
-                            SortMemberPath="TakeProfit" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=StopLoss, Converter={StaticResource NullableDoubleConverter}}"
-                            Header="SL"
-                            SortMemberPath="StopLoss" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Commission, Converter={StaticResource MonetaryConverter}}"
-                            Header="Commission"
-                            SortMemberPath="Commission"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=OpenTime}"
-                            Header="Created"
-                            SortMemberPath="OpenTime" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=LastUpdateTime}"
-                            Header="Last Modified"
-                            SortMemberPath="LastUpdateTime"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=MarginRate}"
-                            Header="Margin Rate"
-                            SortMemberPath="MarginRate"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Swap}"
-                            Header="Swap"
-                            SortMemberPath="Swap"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Channel}"
-                            Header="Channel"
-                            SortMemberPath="Channel"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=TradeData.Label}"
-                            Header="Label"
-                            SortMemberPath="TradeData.Label"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Comment}"
-                            Header="Comment"
-                            SortMemberPath="Comment"
-                            Visibility="Collapsed" />
-                        <DataGridTemplateColumn Width="*" CellTemplate="{StaticResource PositionLastColumnCellTemplate}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </TabItem>
+                        <mah:MetroHeader
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            MinWidth="120"
+                            Margin="5"
+                            Header="Symbols">
+                            <ComboBox ItemsSource="{Binding Path=Symbols, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=Symbol, Mode=TwoWay}" />
+                        </mah:MetroHeader>
 
-        <TabItem Header="Orders">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                        <mah:MetroHeader
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            MinWidth="100"
+                            Margin="5"
+                            Header="Trade Side">
+                            <ComboBox ItemsSource="{Binding Source={markupExtensions:EnumBindingMarkup {x:Type openApi:ProtoOATradeSide}}}" SelectedItem="{Binding Path=TradeSide, Mode=TwoWay}" />
+                        </mah:MetroHeader>
 
-                <Border BorderBrush="{StaticResource MahApps.Brushes.Control.Border}" BorderThickness="0,0,0,3">
-                    <ToolBarTray
-                        Name="AccountOrdersViewToolBarTray"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBand="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBandIndex="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveWidth="True">
-                        <ToolBar Name="OrderCancelToolBar">
-                            <WrapPanel Margin="5" Orientation="Horizontal">
-                                <controls:DropDownMultiSelect
-                                    Height="{Binding Path=ActualHeight, ElementName=CancelOrdersButton}"
-                                    MinWidth="200"
-                                    ItemsSource="{Binding Source={markupExtensions:EnumBindingMarkup {x:Type enums:OrderCancelType}}}"
-                                    SelectedItems="{Binding Path=SelectedCancelOrderTypes, UpdateSourceTrigger=PropertyChanged}" />
+                        <mah:MetroHeader
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            MinWidth="100"
+                            Margin="5">
+                            <mah:MetroHeader.Header>
+                                <TextBlock Margin="0,5" Text="Volume (Lots)" />
+                            </mah:MetroHeader.Header>
+                            <mah:NumericUpDown
+                                Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
+                                Maximum="{Binding Path=MaxVolumeInLots}"
+                                Minimum="{Binding Path=MinVolumeInLots}"
+                                NumericInputMode="Decimal"
+                                Value="{Binding Path=VolumeInLots, Mode=TwoWay}" />
+                        </mah:MetroHeader>
 
-                                <Button
-                                    x:Name="CancelOrdersButton"
-                                    MinWidth="80"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=CancelOrdersCommand}"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <iconPacks:PackIconFontAwesome
-                                            Width="10"
-                                            Height="10"
-                                            Margin="0,0,5,0"
-                                            VerticalAlignment="Center"
-                                            Kind="WindowCloseSolid" />
-                                        <TextBlock Text="Cancel Orders" ToolTip="Based on selected order cancel types" />
-                                    </StackPanel>
-                                </Button>
+                        <mah:MetroHeader
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            MinWidth="100"
+                            Margin="5">
+                            <mah:MetroHeader.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="0,5" IsChecked="{Binding Path=IsMarketRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Margin="5" Text="Market Range" />
+                                </StackPanel>
+                            </mah:MetroHeader.Header>
+                            <mah:NumericUpDown
+                                x:Name="MarketRangeNumericUpDown"
+                                HideUpDownButtons="True"
+                                IsEnabled="{Binding Path=IsMarketRange, UpdateSourceTrigger=PropertyChanged}"
+                                NumericInputMode="Decimal"
+                                ParsingNumberStyle="AllowDecimalPoint"
+                                Value="{Binding Path=MarketRange, Mode=TwoWay}" />
+                        </mah:MetroHeader>
 
-                                <Button
-                                    MinWidth="80"
-                                    MaxHeight="{Binding Path=ActualHeight, ElementName=CancelOrdersButton}"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=CancelSelectedOrdersCommand}"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <iconPacks:PackIconFontAwesome
-                                            Width="12"
-                                            Height="12"
-                                            Margin="0,0,5,0"
-                                            VerticalAlignment="Center"
-                                            Kind="WindowCloseSolid" />
-                                        <TextBlock Text="Cancel Selected Orders" />
-                                    </StackPanel>
-                                </Button>
-                            </WrapPanel>
-                        </ToolBar>
-                        <ToolBar Name="OrderSearchToolBar">
-                            <TextBox
-                                MinWidth="150"
-                                Margin="5"
-                                mah:TextBoxHelper.Watermark="Search..."
-                                Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
-                        </ToolBar>
-                    </ToolBarTray>
-                </Border>
+                        <mah:MetroHeader
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="5">
+                            <mah:MetroHeader.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="0,5" IsChecked="{Binding Path=IsStopLossEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Margin="5" Text="Stop Loss (Pips)" />
+                                </StackPanel>
+                            </mah:MetroHeader.Header>
+                            <StackPanel IsEnabled="{Binding Path=IsStopLossEnabled, UpdateSourceTrigger=PropertyChanged}" Orientation="Vertical">
+                                <mah:NumericUpDown
+                                    x:Name="StopLossInPipsNumericUpDown"
+                                    HideUpDownButtons="True"
+                                    NumericInputMode="Decimal"
+                                    ParsingNumberStyle="AllowDecimalPoint"
+                                    Value="{Binding Path=StopLossInPips, Mode=TwoWay}" />
 
-                <DataGrid
-                    Name="TradingAccountOrdersDataGrid"
-                    Grid.Row="1"
-                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedOrders, UpdateSourceTrigger=PropertyChanged}"
-                    behaviors:DataGridColumnSettingsBehavior.EnableColumnsVisibilityMenu="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
-                    ItemsSource="{Binding Path=Orders, IsAsync=True}"
-                    SelectionMode="Extended">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Id}"
-                            Header="ID"
-                            SortMemberPath="Id"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Symbol.Name}"
-                            Header="Symbol"
-                            SortMemberPath="Symbol.Name" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=VolumeInLots}"
-                            Header="Volume (Lots)"
-                            SortMemberPath="VolumeInLots" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=TradeData.TradeSide}"
-                            Header="Direction"
-                            SortMemberPath="TradeData.TradeSide" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Price}"
-                            Header="Price"
-                            SortMemberPath="Price" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Type}"
-                            Header="Type"
-                            SortMemberPath="Type" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=LastUpdateTime}"
-                            Header="Last Modified"
-                            SortMemberPath="LastUpdateTime"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=ExpirationTime, Converter={StaticResource NullableToStringConverter}}"
-                            Header="Expiration"
-                            SortMemberPath="ExpirationTime" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=TradeData.Label}"
-                            Header="Label"
-                            SortMemberPath="TradeData.Label"
-                            Visibility="Collapsed" />
-                        <DataGridTemplateColumn Width="*" CellTemplate="{StaticResource OrderLastColumnCellTemplate}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </TabItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="0,5" IsChecked="{Binding Path=IsTrailingStopLossEnabled, Mode=TwoWay}" />
+                                    <TextBlock Margin="5" Text="Trailing Stop" />
+                                </StackPanel>
+                            </StackPanel>
+                        </mah:MetroHeader>
 
-        <TabItem Header="History">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                        <mah:MetroHeader
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="5">
+                            <mah:MetroHeader.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="0,5" IsChecked="{Binding Path=IsTakeProfitEnabled, Mode=TwoWay}" />
+                                    <TextBlock Margin="5" Text="Take Profit (Pips)" />
+                                </StackPanel>
+                            </mah:MetroHeader.Header>
+                            <mah:NumericUpDown
+                                Height="{Binding Path=ActualHeight, ElementName=StopLossInPipsNumericUpDown}"
+                                VerticalAlignment="Top"
+                                HideUpDownButtons="True"
+                                IsEnabled="{Binding Path=IsTakeProfitEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                NumericInputMode="Decimal"
+                                ParsingNumberStyle="AllowDecimalPoint"
+                                Value="{Binding Path=TakeProfitInPips, Mode=TwoWay}" />
+                        </mah:MetroHeader>
+                    </Grid>
 
-                <Border BorderBrush="{StaticResource MahApps.Brushes.Control.Border}" BorderThickness="0,0,0,3">
-                    <ToolBarTray
-                        Name="AccountHistoryViewToolBarTray"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBand="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBandIndex="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveWidth="True">
-                        <ToolBar Name="HistoryLoadToolBar">
-                            <WrapPanel Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Text="Period:" />
+                    <mah:MetroHeader
+                        Grid.Row="1"
+                        Margin="5"
+                        Header="Comment">
+                        <TextBox Text="{Binding Path=Comment, Mode=TwoWay}" />
+                    </mah:MetroHeader>
 
-                                <DatePicker
-                                    Margin="5"
-                                    DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=StartDate}" />
+                    <mah:MetroHeader
+                        Grid.Row="2"
+                        Margin="5"
+                        Header="Label">
+                        <TextBox Text="{Binding Path=Label, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+                </Grid>
+            </TabItem>
 
-                                <TextBlock
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Text="—" />
+            <TabItem Header="Limit" />
 
-                                <DatePicker
-                                    Margin="5"
-                                    DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=EndDate}" />
+            <TabItem Header="Stop" />
 
-                                <Button
-                                    MinWidth="80"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=LoadHistoryCommand}"
-                                    Content="Load"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-                            </WrapPanel>
-                        </ToolBar>
-                        <ToolBar Name="HistoryCleanToolBar">
-                            <WrapPanel Orientation="Horizontal">
-                                <Button
-                                    MinWidth="80"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=CleanHistoryCommand}"
-                                    Content="Clean"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                                    ToolTip="Removes the cached history data of this account from database" />
-                            </WrapPanel>
-                        </ToolBar>
+            <TabItem Header="Stop Limit" />
+        </TabControl>
 
-                        <ToolBar Name="HistorySearchToolBar">
-                            <TextBox
-                                MinWidth="150"
-                                Margin="5"
-                                mah:TextBoxHelper.Watermark="Search..."
-                                Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
-                        </ToolBar>
-                    </ToolBarTray>
-                </Border>
-
-                <DataGrid
-                    Name="TradingAccountHistoricalTradesDataGrid"
-                    Grid.Row="1"
-                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedHistoricalTrades, UpdateSourceTrigger=PropertyChanged}"
-                    behaviors:DataGridColumnSettingsBehavior.EnableColumnsVisibilityMenu="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
-                    ItemsSource="{Binding Path=HistoricalTrades, IsAsync=True}"
-                    SelectionMode="Extended">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Id}"
-                            Header="ID"
-                            SortMemberPath="Id"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=OrderId}"
-                            Header="Order Id"
-                            SortMemberPath="OrderId"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=PositionId}"
-                            Header="Position Id"
-                            SortMemberPath="PositionId"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Symbol.Name}"
-                            Header="Symbol"
-                            SortMemberPath="Symbol.Name" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Volume}"
-                            Header="Volume (Lots)"
-                            SortMemberPath="Volume" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=FilledVolume}"
-                            Header="Filled Volume (Lots)"
-                            SortMemberPath="FilledVolume"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=ClosedVolume}"
-                            Header="Closed Volume (Lots)"
-                            SortMemberPath="ClosedVolume"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=TradeSide}"
-                            Header="Direction"
-                            SortMemberPath="TradeSide" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Status}"
-                            Header="Status"
-                            SortMemberPath="Status"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=GrossProfit}"
-                            Header="Gross Profit"
-                            SortMemberPath="GrossProfit" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Swap, Converter={StaticResource MonetaryConverter}}"
-                            Header="Swap"
-                            SortMemberPath="Swap"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=ClosedBalance}"
-                            Header="Closed Balance"
-                            SortMemberPath="ClosedBalance"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Commission}"
-                            Header="Commission"
-                            SortMemberPath="Commission"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=ExecutionPrice}"
-                            Header="Execution Price"
-                            SortMemberPath="ExecutionPrice" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=MarginRate}"
-                            Header="Margin Rate"
-                            SortMemberPath="MarginRate"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=BaseToUsdConversionRate}"
-                            Header="Base To Usd"
-                            SortMemberPath="BaseToUsdConversionRate"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=QuoteToDepositConversionRate}"
-                            Header="Quote To Deposit"
-                            SortMemberPath="QuoteToDepositConversionRate"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=CreationTime}"
-                            Header="Created"
-                            SortMemberPath="CreationTime" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=ExecutionTime}"
-                            Header="Executed"
-                            SortMemberPath="ExecutionTime"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=LastUpdateTime}"
-                            Header="Last Modified"
-                            SortMemberPath="LastUpdateTime"
-                            Visibility="Collapsed" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </TabItem>
-
-        <TabItem Header="Transactions">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Border BorderBrush="{StaticResource MahApps.Brushes.Control.Border}" BorderThickness="0,0,0,3">
-                    <ToolBarTray
-                        Name="AccountTransactionsViewToolBarTray"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBand="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveBandIndex="True"
-                        behaviors:ToolBarTraySettingsBehavior.SaveWidth="True">
-                        <ToolBar Name="LoadToolBar">
-                            <WrapPanel Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Text="Period:" />
-
-                                <DatePicker
-                                    Margin="5"
-                                    DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=StartDate}" />
-
-                                <TextBlock
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    FontWeight="Bold"
-                                    Text="—" />
-
-                                <DatePicker
-                                    Margin="5"
-                                    DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=EndDate}" />
-
-                                <Button
-                                    MinWidth="80"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=LoadTransactionsCommand}"
-                                    Content="Load"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-                            </WrapPanel>
-                        </ToolBar>
-                        <ToolBar Name="TransactionSearchToolBar">
-                            <TextBox
-                                MinWidth="150"
-                                Margin="5"
-                                mah:TextBoxHelper.Watermark="Search..."
-                                Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
-                        </ToolBar>
-                    </ToolBarTray>
-                </Border>
-
-                <DataGrid
-                    Name="TradingAccountTransactionsDataGrid"
-                    Grid.Row="1"
-                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedTransactions, UpdateSourceTrigger=PropertyChanged}"
-                    behaviors:DataGridColumnSettingsBehavior.EnableColumnsVisibilityMenu="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
-                    behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
-                    ItemsSource="{Binding Path=Transactions, IsAsync=True}"
-                    SelectionMode="Extended">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Id}"
-                            Header="ID"
-                            SortMemberPath="Id"
-                            Visibility="Collapsed" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Type}"
-                            Header="Type"
-                            SortMemberPath="Type" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Delta, Converter={StaticResource MonetaryConverter}}"
-                            Header="Amount"
-                            SortMemberPath="Delta" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Balance, Converter={StaticResource MonetaryConverter}}"
-                            Header="Balance"
-                            SortMemberPath="Balance" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Equity}"
-                            Header="Equity"
-                            SortMemberPath="Equity" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=BalanceVersion}"
-                            Header="Version"
-                            SortMemberPath="Version" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Note}"
-                            Header="Note"
-                            SortMemberPath="Note" />
-                        <DataGridTextColumn
-                            Binding="{Binding Path=Time}"
-                            Header="Time"
-                            SortMemberPath="Time" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </TabItem>
-    </TabControl>
+        <StackPanel
+            Grid.Row="1"
+            Margin="5"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Margin="3"
+                Command="{Binding Path=PlaceOrderCommand}"
+                Content="Place Order"
+                Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}" />
+            <Button
+                Margin="3"
+                Command="{Binding Path=ModifyOrderCommand}"
+                Content="Modify Order"
+                Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}" />
+        </StackPanel>
+    </Grid>
 </UserControl>

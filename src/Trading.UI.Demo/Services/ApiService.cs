@@ -19,8 +19,9 @@ namespace Trading.UI.Demo.Services
     {
         public ApiService(IOpenClient liveClient, IOpenClient demoClient)
         {
-            LiveClient = liveClient;
-            DemoClient = demoClient;
+            LiveClient = liveClient ?? throw new ArgumentNullException(nameof(liveClient));
+
+            DemoClient = demoClient ?? throw new ArgumentNullException(nameof(demoClient));
         }
 
         public IOpenClient LiveClient { get; }

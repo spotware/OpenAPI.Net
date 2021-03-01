@@ -31,7 +31,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
     <TabControl>
         <TabItem Header="Positions">
             <Grid>
@@ -621,4 +620,5 @@
             </Grid>
         </TabItem>
     </TabControl>
+
 </UserControl>

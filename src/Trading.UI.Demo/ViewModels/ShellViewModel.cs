@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
+using OpenAPI.Net;
 using Prism.Events;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -61,6 +62,9 @@ namespace Trading.UI.Demo.ViewModels
 
             await _apiService.LiveClient.Connect();
             await _apiService.DemoClient.Connect();
+
+            SubscribeToErrors(_apiService.LiveClient);
+            SubscribeToErrors(_apiService.DemoClient);
 
             await Application.Current.Dispatcher.InvokeAsync(ShowApiConfigurationDialog);
         }
@@ -177,6 +181,36 @@ namespace Trading.UI.Demo.ViewModels
             {
                 Application.Current.Shutdown();
             }
+        }
+
+        private void SubscribeToErrors(IOpenClient client)
+        {
+            client.ObserveOn(SynchronizationContext.Current).Subscribe(_ => { }, OnError);
+            client.OfType<ProtoErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnErrorRes);
+            client.OfType<ProtoOAErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOaErrorRes);
+            client.OfType<ProtoOAOrderErrorEvent>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOrderErrorRes);
+        }
+
+        private async void OnError(Exception exception)
+        {
+            await _dialogCordinator.ShowMessageAsync(this, "Error", exception.ToString());
+
+            Application.Current.Shutdown();
+        }
+
+        private async void OnOrderErrorRes(ProtoOAOrderErrorEvent error)
+        {
+            await _dialogCordinator.ShowMessageAsync(this, "Error", error.Description);
+        }
+
+        private async void OnOaErrorRes(ProtoOAErrorRes error)
+        {
+            await _dialogCordinator.ShowMessageAsync(this, "Error", error.Description);
+        }
+
+        private async void OnErrorRes(ProtoErrorRes error)
+        {
+            await _dialogCordinator.ShowMessageAsync(this, "Error", error.Description);
         }
     }
 }
