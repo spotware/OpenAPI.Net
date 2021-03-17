@@ -57,18 +57,18 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        protected async override void Loaded()
+        protected override void Loaded()
         {
             _regionManager.RequestNavigate(ShellViewRegions.OrdersViewRegion, nameof(OrdersView));
 
-            await _dispatcher.InvokeAsync(ShowApiConfigurationDialog);
+            //ShowApiConfigurationDialog();
         }
 
         private void ShowApiConfigurationDialog()
         {
             _apiConfiguration = new ApiConfigurationModel();
 
-            _dialogService.ShowDialog(nameof(ApiConfigurationView), new DialogParameters
+            _dialogService.Show(nameof(ApiConfigurationView), new DialogParameters
             {
                 {"Model", _apiConfiguration }
             }, ApiConfigurationDialogCallback);

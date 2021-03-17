@@ -34,6 +34,7 @@
             <valueConverters:NullableDoubleConverter x:Key="NullableDoubleConverter" />
             <valueConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <valueConverters:BoolToOppositeVisibilityConverter x:Key="BoolToOppositeVisibilityConverter" />
+            <valueConverters:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

@@ -22,7 +22,9 @@ namespace Trading.UI.Demo.ViewModels
 
         private void CreateNewPosition()
         {
-            _dialogService.ShowDialog(nameof(CreateOrderView));
+            _dialogService.ShowDialog(nameof(CreateOrderView), args =>
+            {
+            });
         }
 
         private void CreateNewOrder()

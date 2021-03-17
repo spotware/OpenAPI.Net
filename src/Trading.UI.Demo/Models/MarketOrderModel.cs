@@ -2,8 +2,11 @@
 {
     public class MarketOrderModel : OrderModel
     {
-        public double MarketRangeInPips { get; set; }
+        private double _marketRangeInPips;
+        private bool _isMarketRange;
 
-        public bool IsMarketRange { get; set; }
+        public double MarketRangeInPips { get => _marketRangeInPips; set => SetProperty(ref _marketRangeInPips, value); }
+
+        public bool IsMarketRange { get => _isMarketRange; set => SetProperty(ref _isMarketRange, value); }
     }
 }
