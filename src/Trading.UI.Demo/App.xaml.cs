@@ -37,6 +37,8 @@ namespace Trading.UI.Demo
             var apiService = new ApiService(liveClientFactory, demoClientFactory);
 
             containerRegistry.RegisterInstance<IApiService>(apiService);
+
+            containerRegistry.RegisterInstance<IAppDispatcher>(new AppDispatcher(Current.Dispatcher));
         }
     }
 }

@@ -186,11 +186,9 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Limit" />
+            <TabItem Header="Pending" />
 
-            <TabItem Header="Stop" />
 
-            <TabItem Header="Stop Limit" />
         </TabControl>
 
         <StackPanel
@@ -202,12 +200,14 @@
                 Margin="3"
                 Command="{Binding Path=PlaceOrderCommand}"
                 Content="Place Order"
-                Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}" />
+                Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                Visibility="{Binding Path=IsModifying, Converter={StaticResource BoolToOppositeVisibilityConverter}}" />
             <Button
                 Margin="3"
                 Command="{Binding Path=ModifyOrderCommand}"
                 Content="Modify Order"
-                Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}" />
+                Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                Visibility="{Binding Path=IsModifying, Converter={StaticResource BoolToVisibilityConverter}}" />
         </StackPanel>
     </Grid>
 </UserControl>

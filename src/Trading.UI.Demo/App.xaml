@@ -1,9 +1,9 @@
 ﻿<prism:PrismApplication
     x:Class="Trading.UI.Demo.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:valueConverters="clr-namespace:Trading.UI.Demo.ValueConverters">
     <Application.Resources>
         <ResourceDictionary>
@@ -32,6 +32,8 @@
             <valueConverters:MonetaryConverter x:Key="MonetaryConverter" />
             <valueConverters:NullableToStringConverter x:Key="NullableToStringConverter" />
             <valueConverters:NullableDoubleConverter x:Key="NullableDoubleConverter" />
+            <valueConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <valueConverters:BoolToOppositeVisibilityConverter x:Key="BoolToOppositeVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

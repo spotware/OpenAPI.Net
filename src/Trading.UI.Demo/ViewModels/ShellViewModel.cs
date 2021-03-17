@@ -9,7 +9,6 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using Trading.UI.Demo.Events;
 using Trading.UI.Demo.Models;
 using Trading.UI.Demo.Regions;
@@ -26,18 +25,20 @@ namespace Trading.UI.Demo.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IDialogCoordinator _dialogCordinator;
         private readonly IApiService _apiService;
+        private readonly IAppDispatcher _dispatcher;
         private ApiConfigurationModel _apiConfiguration;
         private auth.Token _token;
         private ProtoOACtidTraderAccount _selectedAccount;
 
         public ShellViewModel(IRegionManager regionManager, IDialogService dialogService, IEventAggregator eventAggregator,
-            IDialogCoordinator dialogCordinator, IApiService apiService)
+            IDialogCoordinator dialogCordinator, IApiService apiService, IAppDispatcher dispatcher)
         {
             _regionManager = regionManager;
             _dialogService = dialogService;
             _eventAggregator = eventAggregator;
             _dialogCordinator = dialogCordinator;
             _apiService = apiService;
+            _dispatcher = dispatcher;
         }
 
         public string Title { get; } = "Trading UI Demo";
@@ -60,7 +61,7 @@ namespace Trading.UI.Demo.ViewModels
         {
             _regionManager.RequestNavigate(ShellViewRegions.OrdersViewRegion, nameof(OrdersView));
 
-            await Application.Current.Dispatcher.InvokeAsync(ShowApiConfigurationDialog);
+            await _dispatcher.InvokeAsync(ShowApiConfigurationDialog);
         }
 
         private void ShowApiConfigurationDialog()
@@ -178,7 +179,7 @@ namespace Trading.UI.Demo.ViewModels
             }
             else
             {
-                Application.Current.Shutdown();
+                _dispatcher.InvokeShutdown();
             }
         }
 
@@ -196,7 +197,7 @@ namespace Trading.UI.Demo.ViewModels
         {
             await _dialogCordinator.ShowMessageAsync(this, "Error", exception.ToString());
 
-            Application.Current.Shutdown();
+            _dispatcher.InvokeShutdown();
         }
 
         private async void OnOrderErrorRes(ProtoOAOrderErrorEvent error)

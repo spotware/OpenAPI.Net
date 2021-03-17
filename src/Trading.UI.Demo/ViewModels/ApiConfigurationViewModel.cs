@@ -2,27 +2,26 @@
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
-using System.Windows;
 using Trading.UI.Demo.Models;
+using Trading.UI.Demo.Services;
 
 namespace Trading.UI.Demo.ViewModels
 {
     public class ApiConfigurationViewModel : ViewModelBase, IDialogAware
     {
         private readonly IDialogCoordinator _dialogCordinator;
+        private readonly IAppDispatcher _dispatcher;
         private ApiConfigurationModel _model;
 
-        public ApiConfigurationViewModel(IDialogCoordinator dialogCordinator)
+        public ApiConfigurationViewModel(IDialogCoordinator dialogCordinator, IAppDispatcher dispatcher)
         {
             _dialogCordinator = dialogCordinator;
+            _dispatcher = dispatcher;
 
             DoneCommand = new DelegateCommand(Done);
-            ExitCommand = new DelegateCommand(Exit);
         }
 
         public DelegateCommand DoneCommand { get; }
-
-        public DelegateCommand ExitCommand { get; }
 
         public ApiConfigurationModel Model
         {
@@ -38,23 +37,17 @@ namespace Trading.UI.Demo.ViewModels
 
         public void OnDialogClosed()
         {
+            if (IsModelValid() is false) _dispatcher.InvokeShutdown();
         }
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            if (parameters.TryGetValue("Model", out ApiConfigurationModel model))
-            {
-                Model = model;
-            }
+            if (parameters.TryGetValue("Model", out ApiConfigurationModel model)) Model = model;
         }
-
-        private void Exit() => Application.Current.Shutdown();
 
         private async void Done()
         {
-            if (!string.IsNullOrWhiteSpace(Model.ClientId)
-                && !string.IsNullOrWhiteSpace(Model.Secret)
-                && !string.IsNullOrWhiteSpace(Model.RedirectUri))
+            if (IsModelValid())
             {
                 RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
             }
@@ -64,5 +57,9 @@ namespace Trading.UI.Demo.ViewModels
                     "Please provide your Open API applicaiton data, some fields doesn't contain valid data");
             }
         }
+
+        private bool IsModelValid() => !string.IsNullOrWhiteSpace(Model.ClientId)
+                && !string.IsNullOrWhiteSpace(Model.Secret)
+                && !string.IsNullOrWhiteSpace(Model.RedirectUri);
     }
 }
