@@ -7,28 +7,69 @@ using auth = OpenAPI.Net.Auth;
 
 namespace Trading.UI.Demo.Services
 {
-    public interface IApiService
+    public interface IApiService : IDisposable
     {
-        IOpenClient LiveClient { get; }
-        IOpenClient DemoClient { get; }
+        bool IsConnected { get; }
+
+        public IOpenClient LiveClient { get; }
+
+        public IOpenClient DemoClient { get; }
+
+        Task Connect();
 
         Task AuthorizeApp(auth.App app);
     }
 
-    public class ApiService : IApiService
+    public sealed class ApiService : IApiService
     {
-        public ApiService(IOpenClient liveClient, IOpenClient demoClient)
-        {
-            LiveClient = liveClient ?? throw new ArgumentNullException(nameof(liveClient));
+        private readonly Func<IOpenClient> _liveClientFactory;
+        private readonly Func<IOpenClient> _demoClientFactory;
 
-            DemoClient = demoClient ?? throw new ArgumentNullException(nameof(demoClient));
+        public ApiService(Func<IOpenClient> liveClientFactory, Func<IOpenClient> demoClientFactory)
+        {
+            _liveClientFactory = liveClientFactory ?? throw new ArgumentNullException(nameof(liveClientFactory));
+            _demoClientFactory = demoClientFactory ?? throw new ArgumentNullException(nameof(demoClientFactory));
         }
 
-        public IOpenClient LiveClient { get; }
-        public IOpenClient DemoClient { get; }
+        public bool IsConnected { get; private set; }
+
+        public IOpenClient LiveClient { get; private set; }
+
+        public IOpenClient DemoClient { get; private set; }
+
+        public async Task Connect()
+        {
+            IOpenClient liveClient = null;
+            IOpenClient demoClient = null;
+
+            try
+            {
+                liveClient = _liveClientFactory();
+
+                await liveClient.Connect();
+
+                demoClient = _demoClientFactory();
+
+                await demoClient.Connect();
+            }
+            catch
+            {
+                if (liveClient is not null) liveClient.Dispose();
+                if (demoClient is not null) demoClient.Dispose();
+
+                throw;
+            }
+
+            LiveClient = liveClient;
+            DemoClient = demoClient;
+
+            IsConnected = true;
+        }
 
         public async Task AuthorizeApp(auth.App app)
         {
+            VerifyConnection();
+
             var authRequest = new ProtoOAApplicationAuthReq
             {
                 ClientId = app.ClientId,
@@ -40,7 +81,7 @@ namespace Trading.UI.Demo.Services
 
             using var liveDisposable = LiveClient.OfType<ProtoOAApplicationAuthRes>()
                 .Subscribe(response => isLiveClientAppAuthorized = true);
-            using var demoDisposable = LiveClient.OfType<ProtoOAApplicationAuthRes>()
+            using var demoDisposable = DemoClient.OfType<ProtoOAApplicationAuthRes>()
                 .Subscribe(response => isDemoClientAppAuthorized = true);
 
             await LiveClient.SendMessage(authRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
@@ -57,6 +98,17 @@ namespace Trading.UI.Demo.Services
             {
                 throw new TimeoutException();
             }
+        }
+
+        public void Dispose()
+        {
+            if (LiveClient is not null) LiveClient.Dispose();
+            if (DemoClient is not null) DemoClient.Dispose();
+        }
+
+        private void VerifyConnection()
+        {
+            if (IsConnected is not true) throw new InvalidOperationException("The API service is not connected yet, please connect the service before calling this method");
         }
     }
 }

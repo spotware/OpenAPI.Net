@@ -31,10 +31,10 @@ namespace Trading.UI.Demo
 
             containerRegistry.RegisterDialogWindow<DialogWindow>();
 
-            var liveClient = new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
-            var demoClient = new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            IOpenClient liveClientFactory() => new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            IOpenClient demoClientFactory() => new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
 
-            var apiService = new ApiService(liveClient, demoClient);
+            var apiService = new ApiService(liveClientFactory, demoClientFactory);
 
             containerRegistry.RegisterInstance<IApiService>(apiService);
         }

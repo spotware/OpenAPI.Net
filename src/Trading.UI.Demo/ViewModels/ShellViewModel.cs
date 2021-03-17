@@ -60,12 +60,6 @@ namespace Trading.UI.Demo.ViewModels
         {
             _regionManager.RequestNavigate(ShellViewRegions.OrdersViewRegion, nameof(OrdersView));
 
-            await _apiService.LiveClient.Connect();
-            await _apiService.DemoClient.Connect();
-
-            SubscribeToErrors(_apiService.LiveClient);
-            SubscribeToErrors(_apiService.DemoClient);
-
             await Application.Current.Dispatcher.InvokeAsync(ShowApiConfigurationDialog);
         }
 
@@ -94,6 +88,11 @@ namespace Trading.UI.Demo.ViewModels
 
             try
             {
+                await _apiService.Connect();
+
+                SubscribeToErrors(_apiService.LiveClient);
+                SubscribeToErrors(_apiService.DemoClient);
+
                 await _apiService.AuthorizeApp(app);
             }
             catch (TimeoutException)
@@ -185,6 +184,8 @@ namespace Trading.UI.Demo.ViewModels
 
         private void SubscribeToErrors(IOpenClient client)
         {
+            if (client is null) throw new ArgumentNullException(nameof(client));
+
             client.ObserveOn(SynchronizationContext.Current).Subscribe(_ => { }, OnError);
             client.OfType<ProtoErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnErrorRes);
             client.OfType<ProtoOAErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOaErrorRes);
