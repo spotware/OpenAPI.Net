@@ -50,28 +50,25 @@ namespace Trading.UI.Demo.ViewModels
             get => _selectedAccount;
             set
             {
-                if (SetProperty(ref _selectedAccount, value))
-                {
-                    _eventAggregator.GetEvent<AccountChangedEvent>().Publish(value);
-                }
+                if (SetProperty(ref _selectedAccount, value) && value is not null) OnAccountChanged();
             }
         }
 
         protected override void Loaded()
         {
-            _regionManager.RequestNavigate(ShellViewRegions.OrdersViewRegion, nameof(OrdersView));
+            _regionManager.RequestNavigate(ShellViewRegions.AccountDataViewRegion, nameof(AccountDataView));
 
-            //ShowApiConfigurationDialog();
+            ShowApiConfigurationDialog();
         }
 
         private void ShowApiConfigurationDialog()
         {
             _apiConfiguration = new ApiConfigurationModel();
 
-            _dialogService.Show(nameof(ApiConfigurationView), new DialogParameters
+            _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(ApiConfigurationView), new DialogParameters
             {
                 {"Model", _apiConfiguration }
-            }, ApiConfigurationDialogCallback);
+            }, ApiConfigurationDialogCallback));
         }
 
         private async void ApiConfigurationDialogCallback(IDialogResult dialogResult)
@@ -128,40 +125,33 @@ namespace Trading.UI.Demo.ViewModels
                 return;
             }
 
-            var accountListRequest = new ProtoOAGetAccountListByAccessTokenReq
+            var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Getting Accounts", "Please wait...");
+
+            ProtoOACtidTraderAccount[] accounts = null;
+
+            try
             {
-                AccessToken = _token.AccessToken
-            };
+                accounts = await _apiService.GetAccountsList(_token.AccessToken);
 
-            bool isResponseReceived = false;
-
-            using var disposable = _apiService.LiveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>()
-                .ObserveOn(SynchronizationContext.Current)
-                .Subscribe(async response =>
+                foreach (var account in accounts)
                 {
-                    isResponseReceived = true;
-
-                    Accounts.Clear();
-
-                    Accounts.AddRange(response.CtidTraderAccount);
-
-                    await _dialogCordinator.ShowMessageAsync(this, "Accounts Loaded",
-                        "Please select one of your authorized accounts from accounts list in title bar");
-                });
-
-            await _apiService.LiveClient.SendMessage(accountListRequest, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
-
-            var waitStartTime = DateTime.Now;
-
-            while (!isResponseReceived && DateTime.Now - waitStartTime < TimeSpan.FromSeconds(5))
-            {
-                await Task.Delay(1000);
+                    await _apiService.AuthorizeAccount(account, _token.AccessToken);
+                }
             }
-
-            if (!isResponseReceived)
+            catch (TimeoutException)
             {
                 await ShowInvalidApiConfigurationDialog();
             }
+            finally
+            {
+                if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
+            }
+
+            Accounts.Clear();
+
+            if (accounts is not null) Accounts.AddRange(accounts);
+
+            await _dialogCordinator.ShowMessageAsync(this, "Accounts Loaded", "Please select one of your authorized accounts from accounts list in title bar");
         }
 
         private async Task ShowInvalidApiConfigurationDialog()
@@ -213,6 +203,27 @@ namespace Trading.UI.Demo.ViewModels
         private async void OnErrorRes(ProtoErrorRes error)
         {
             await _dialogCordinator.ShowMessageAsync(this, "Error", error.Description);
+        }
+
+        private async void OnAccountChanged()
+        {
+            var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Changing Account", "Please wait...");
+
+            try
+            {
+                var accountModel = new AccountModel
+                {
+                    Id = (long)SelectedAccount.CtidTraderAccountId,
+                    IsLive = SelectedAccount.IsLive,
+                    Symbols = await _apiService.GetSymbolModels(SelectedAccount)
+                };
+
+                _eventAggregator.GetEvent<AccountChangedEvent>().Publish(accountModel);
+            }
+            finally
+            {
+                if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
+            }
         }
     }
 }

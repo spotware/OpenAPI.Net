@@ -60,5 +60,5 @@
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
-    <ContentControl prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.OrdersViewRegion}" />
+    <ContentControl prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.AccountDataViewRegion}" />
 </controls:MetroWindow>

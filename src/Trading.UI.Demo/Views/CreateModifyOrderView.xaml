@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Trading.UI.Demo.Views.CreateOrderView"
+    x:Class="Trading.UI.Demo.Views.CreateModifyOrderView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behaviors="clr-namespace:Trading.UI.Demo.Behaviors"
@@ -37,7 +37,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/CreateOrderViewResources.xaml" />
+                <ResourceDictionary Source="../Resources/CreateModifyOrderViewResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -71,6 +71,7 @@
                         Margin="5"
                         Header="Symbols">
                         <ComboBox
+                            DisplayMemberPath="Name"
                             IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}"
                             ItemsSource="{Binding Path=Symbols, UpdateSourceTrigger=PropertyChanged}"
                             SelectedItem="{Binding Path=MarketOrderModel.Symbol, Mode=TwoWay}" />
@@ -91,14 +92,15 @@
                         MinWidth="100"
                         Margin="5">
                         <mah:MetroHeader.Header>
-                            <TextBlock Margin="0,5" Text="Volume (Lots)" />
+                            <TextBlock Margin="0,5" Text="Volume (Units)" />
                         </mah:MetroHeader.Header>
                         <mah:NumericUpDown
                             Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
-                            Maximum="{Binding Path=MarketOrderModel.Symbol.MaxVolumeInLots}"
-                            Minimum="{Binding Path=MarketOrderModel.Symbol.MinVolumeInLots}"
-                            NumericInputMode="Decimal"
-                            Value="{Binding Path=MarketOrderModel.VolumeInLots, Mode=TwoWay}" />
+                            Interval="{Binding Path=MarketOrderModel.Symbol.Data.StepVolume, Converter={StaticResource MonetaryConverter}}"
+                            Maximum="{Binding Path=MarketOrderModel.Symbol.Data.MaxVolume, Converter={StaticResource MonetaryConverter}}"
+                            Minimum="{Binding Path=MarketOrderModel.Symbol.Data.MinVolume, Converter={StaticResource MonetaryConverter}}"
+                            NumericInputMode="Numbers"
+                            Value="{Binding Path=MarketOrderModel.Volume, Mode=TwoWay, Converter={StaticResource MonetaryConverter}}" />
                     </mah:MetroHeader>
 
                     <mah:MetroHeader
@@ -217,6 +219,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -231,6 +234,7 @@
                         Margin="5"
                         Header="Symbols">
                         <ComboBox
+                            DisplayMemberPath="Name"
                             IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}"
                             ItemsSource="{Binding Path=Symbols, UpdateSourceTrigger=PropertyChanged}"
                             SelectedItem="{Binding Path=PendingOrderModel.Symbol, Mode=TwoWay}" />
@@ -254,19 +258,20 @@
                         MinWidth="100"
                         Margin="5">
                         <mah:MetroHeader.Header>
-                            <TextBlock Margin="0,5" Text="Volume (Lots)" />
+                            <TextBlock Margin="0,5" Text="Volume (Units)" />
                         </mah:MetroHeader.Header>
                         <mah:NumericUpDown
                             Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
-                            Maximum="{Binding Path=PendingOrderModel.Symbol.MaxVolumeInLots}"
-                            Minimum="{Binding Path=PendingOrderModel.Symbol.MinVolumeInLots}"
-                            NumericInputMode="Decimal"
-                            Value="{Binding Path=PendingOrderModel.VolumeInLots, Mode=TwoWay}" />
+                            Interval="{Binding Path=PendingOrderModel.Symbol.Data.StepVolume, Converter={StaticResource MonetaryConverter}}"
+                            Maximum="{Binding Path=PendingOrderModel.Symbol.Data.MaxVolume, Converter={StaticResource MonetaryConverter}}"
+                            Minimum="{Binding Path=PendingOrderModel.Symbol.Data.MinVolume, Converter={StaticResource MonetaryConverter}}"
+                            NumericInputMode="Numbers"
+                            Value="{Binding Path=PendingOrderModel.Volume, Mode=TwoWay, Converter={StaticResource MonetaryConverter}}" />
                     </mah:MetroHeader>
 
                     <mah:MetroHeader
-                        Grid.Row="1"
-                        Grid.Column="1"
+                        Grid.Row="2"
+                        Grid.Column="0"
                         MinWidth="100"
                         Margin="5">
                         <mah:MetroHeader.Header>
@@ -281,6 +286,22 @@
 
                     <mah:MetroHeader
                         Grid.Row="2"
+                        Grid.Column="1"
+                        MinWidth="100"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <TextBlock Margin="0,5" Text="Price" />
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
+                            Interval="{Binding Path=PendingOrderModel.Symbol.PipSize}"
+                            Minimum="0"
+                            NumericInputMode="All"
+                            Value="{Binding Path=PendingOrderModel.Price, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="3"
                         Grid.Column="0"
                         MinWidth="100"
                         Margin="5"
@@ -307,7 +328,7 @@
                     </mah:MetroHeader>
 
                     <mah:MetroHeader
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Grid.Column="1"
                         Margin="5">
                         <mah:MetroHeader.Header>

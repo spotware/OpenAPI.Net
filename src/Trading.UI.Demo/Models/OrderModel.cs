@@ -5,21 +5,30 @@ namespace Trading.UI.Demo.Models
     public abstract class OrderModel : BindableBase
     {
         private SymbolModel _symbol;
-        private ProtoOATradeSide _tradeSide;
-        private double _volumeInLots;
+        private ProtoOATradeSide _tradeSide = ProtoOATradeSide.Buy;
+        private long _volume;
         private bool _isStopLossEnabled;
-        private double _stopLossInPips;
+        private double _stopLossInPips = 10;
         private bool _isTrailingStopLossEnabled;
         private bool _isTakeProfitEnabled;
-        private double _takeProfitInPips;
+        private double _takeProfitInPips = 10;
         private string _comment;
         private string _label;
 
-        public SymbolModel Symbol { get => _symbol; set => SetProperty(ref _symbol, value); }
+        public SymbolModel Symbol
+        {
+            get => _symbol;
+            set
+            {
+                SetProperty(ref _symbol, value);
+
+                Volume = _symbol.NormalizeVolume(Volume);
+            }
+        }
 
         public ProtoOATradeSide TradeSide { get => _tradeSide; set => SetProperty(ref _tradeSide, value); }
 
-        public double VolumeInLots { get => _volumeInLots; set => SetProperty(ref _volumeInLots, value); }
+        public long Volume { get => _volume; set => SetProperty(ref _volume, value); }
 
         public bool IsStopLossEnabled { get => _isStopLossEnabled; set => SetProperty(ref _isStopLossEnabled, value); }
 
@@ -36,5 +45,9 @@ namespace Trading.UI.Demo.Models
         public string Label { get => _label; set => SetProperty(ref _label, value); }
 
         public long Id { get; set; }
+
+        public long RelativeStopLoss => Symbol.GetRelativeFromPips(StopLossInPips);
+
+        public long RelativeTakeProfit => Symbol.GetRelativeFromPips(TakeProfitInPips);
     }
 }

@@ -2,20 +2,23 @@
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using Trading.UI.Demo.Models;
+using Trading.UI.Demo.Services;
 
 namespace Trading.UI.Demo.ViewModels
 {
-    public class CreateOrderViewModel : DialogAwareViewBase
+    public class CreateModifyOrderViewModel : DialogAwareViewBase
     {
         private bool _isModifyingMarketOrder;
         private bool _isModifyingPendingOrder;
         private MarketOrderModel _marketOrderModel;
         private PendingOrderModel _pendingOrderModel;
         private List<SymbolModel> _symbols;
+        private readonly IApiService _apiService;
+        private AccountModel _account;
 
-        public CreateOrderViewModel()
+        public CreateModifyOrderViewModel(IApiService apiService)
         {
-            Title = "Create New Order";
+            _apiService = apiService;
 
             PlaceMarketOrderCommand = new DelegateCommand(PlaceMarketOrder);
 
@@ -53,64 +56,74 @@ namespace Trading.UI.Demo.ViewModels
             IsModifyingPendingOrder = false;
 
             Symbols = null;
+
+            _account = null;
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
-            if (parameters.TryGetValue<IEnumerable<SymbolModel>>("Symbols", out var symbols))
+            if (parameters.TryGetValue("Account", out _account))
             {
-                Symbols = new List<SymbolModel>(symbols);
+                Symbols = new List<SymbolModel>(_account.Symbols);
             }
 
             if (parameters.TryGetValue<MarketOrderModel>("MarketOrder", out var marketOrderModel))
             {
+                Title = "Modify Market Order";
+
                 MarketOrderModel = marketOrderModel;
 
                 IsModifyingMarketOrder = true;
             }
             else if (parameters.TryGetValue<PendingOrderModel>("PendingOrder", out var pendingOrderModel))
             {
+                Title = "Modify Pending Order";
+
                 PendingOrderModel = pendingOrderModel;
 
                 IsModifyingPendingOrder = true;
             }
             else
             {
+                Title = "Create New Order";
+
                 MarketOrderModel = new MarketOrderModel();
                 PendingOrderModel = new PendingOrderModel();
             }
         }
 
-        private void PlaceMarketOrder()
+        private async void PlaceMarketOrder()
         {
-            OnRequestClose(new DialogResult(ButtonResult.OK, new DialogParameters
+            try
             {
-                { "MarketOrder", MarketOrderModel }
-            }));
+                await _apiService.CreateNewOrder(MarketOrderModel, _account.Id, _account.IsLive);
+            }
+            finally
+            {
+                OnRequestClose(new DialogResult(ButtonResult.OK));
+            }
         }
 
         private void ModifyMarketOrder()
         {
-            OnRequestClose(new DialogResult(ButtonResult.OK, new DialogParameters
-            {
-                { "MarketOrder", MarketOrderModel }
-            }));
+            OnRequestClose(new DialogResult(ButtonResult.OK));
         }
 
         private void ModifyPendingOrder()
         {
-            OnRequestClose(new DialogResult(ButtonResult.OK, new DialogParameters
-            {
-                { "PendingOrder", PendingOrderModel }
-            }));
+            OnRequestClose(new DialogResult(ButtonResult.OK));
         }
 
-        private void PlacePendingOrder()
+        private async void PlacePendingOrder()
         {
-            OnRequestClose(new DialogResult(ButtonResult.OK, new DialogParameters
+            try
             {
-                { "PendingOrder", PendingOrderModel }
-            }));
+                await _apiService.CreateNewOrder(PendingOrderModel, _account.Id, _account.IsLive);
+            }
+            finally
+            {
+                OnRequestClose(new DialogResult(ButtonResult.OK));
+            }
         }
     }
 }
