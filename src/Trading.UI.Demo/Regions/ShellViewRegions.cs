@@ -2,8 +2,6 @@
 {
     public static class ShellViewRegions
     {
-        public const string CreateOrderViewRegion = "ShellViewRegions.CreateOrderViewRegion";
-
-        public const string OrdersViewRegion = "ShellViewRegions.OrdersViewRegion";
+        public const string AccountDataViewRegion = "ShellViewRegions.AccountDataViewRegion";
     }
 }

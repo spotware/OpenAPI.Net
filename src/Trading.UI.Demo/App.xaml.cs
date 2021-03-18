@@ -24,19 +24,24 @@ namespace Trading.UI.Demo
         {
             containerRegistry.RegisterSingleton<IDialogCoordinator, DialogCoordinator>();
 
-            containerRegistry.RegisterForNavigation<OrdersView>();
-            containerRegistry.RegisterForNavigation<CreateOrderView>();
+            // Views
+            containerRegistry.RegisterForNavigation<AccountDataView>();
 
-            containerRegistry.RegisterDialog<ApiConfigurationView>();
-
+            // Dialogs
             containerRegistry.RegisterDialogWindow<DialogWindow>();
 
-            var liveClient = new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
-            var demoClient = new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            containerRegistry.RegisterDialog<ApiConfigurationView>();
+            containerRegistry.RegisterDialog<CreateModifyOrderView>();
 
-            var apiService = new ApiService(liveClient, demoClient);
+            // Services
+            IOpenClient liveClientFactory() => new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            IOpenClient demoClientFactory() => new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+
+            var apiService = new ApiService(liveClientFactory, demoClientFactory);
 
             containerRegistry.RegisterInstance<IApiService>(apiService);
+
+            containerRegistry.RegisterInstance<IAppDispatcher>(new AppDispatcher(Current.Dispatcher));
         }
     }
 }

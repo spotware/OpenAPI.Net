@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Trading.UI.Demo.ValueConverters
 {
-    [ValueConversion(typeof(long), typeof(double))]
+    [ValueConversion(typeof(long), typeof(long))]
     public class MonetaryConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -14,14 +14,14 @@ namespace Trading.UI.Demo.ValueConverters
                 return 0;
             }
 
-            var monetary = System.Convert.ToDouble(value);
+            var monetary = System.Convert.ToInt64(value);
 
             return monetary / 100;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value == null ? 0 : System.Convert.ToDouble(value) * 100;
+            return value == null ? 0 : System.Convert.ToInt64(value) * 100;
         }
     }
 }

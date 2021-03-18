@@ -3,11 +3,12 @@
 namespace Trading.UI.Demo.Views
 {
     /// <summary>
-    /// Interaction logic for CreateOrderView.xaml
+    /// Interaction logic for CreateModifyOrderView.xaml
     /// </summary>
-    public partial class CreateOrderView : UserControl
+    public partial class CreateModifyOrderView : UserControl
+
     {
-        public CreateOrderView()
+        public CreateModifyOrderView()
         {
             InitializeComponent();
         }
