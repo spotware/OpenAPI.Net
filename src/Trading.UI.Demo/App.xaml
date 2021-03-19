@@ -19,7 +19,6 @@
                 <Setter Property="Height" Value="350" />
                 <Setter Property="Icon" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.Icon}" />
                 <Setter Property="ResizeMode" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.ResizeMode}" />
-                <Setter Property="SaveWindowPosition" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.SaveWindowPosition}" />
                 <Setter Property="ShowIconOnTitleBar" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.ShowIconOnTitleBar}" />
                 <Setter Property="ShowInTaskbar" Value="False" />
                 <Setter Property="Title" Value="{Binding Path=Title}" />

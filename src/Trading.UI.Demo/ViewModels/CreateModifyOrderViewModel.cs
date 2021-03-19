@@ -15,6 +15,7 @@ namespace Trading.UI.Demo.ViewModels
         private List<SymbolModel> _symbols;
         private readonly IApiService _apiService;
         private AccountModel _account;
+        private PositionModel _position;
 
         public CreateModifyOrderViewModel(IApiService apiService)
         {
@@ -57,6 +58,8 @@ namespace Trading.UI.Demo.ViewModels
 
             Symbols = null;
 
+            _position = null;
+
             _account = null;
         }
 
@@ -67,11 +70,13 @@ namespace Trading.UI.Demo.ViewModels
                 Symbols = new List<SymbolModel>(_account.Symbols);
             }
 
-            if (parameters.TryGetValue<MarketOrderModel>("MarketOrder", out var marketOrderModel))
+            if (parameters.TryGetValue<PositionModel>("Position", out var position))
             {
                 Title = "Modify Market Order";
 
-                MarketOrderModel = marketOrderModel;
+                _position = position;
+
+                MarketOrderModel = new MarketOrderModel(position);
 
                 IsModifyingMarketOrder = true;
             }
@@ -104,9 +109,16 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private void ModifyMarketOrder()
+        private async void ModifyMarketOrder()
         {
-            OnRequestClose(new DialogResult(ButtonResult.OK));
+            try
+            {
+                await _apiService.ModifyPosition(_position, MarketOrderModel, _account.Id, _account.IsLive);
+            }
+            finally
+            {
+                OnRequestClose(new DialogResult(ButtonResult.OK));
+            }
         }
 
         private void ModifyPendingOrder()

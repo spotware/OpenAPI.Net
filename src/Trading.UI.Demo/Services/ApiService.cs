@@ -1,10 +1,10 @@
-﻿using OpenAPI.Net;
+﻿using Google.Protobuf;
+using OpenAPI.Net;
 using System;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Trading.UI.Demo.Helpers;
 using Trading.UI.Demo.Models;
 using auth = OpenAPI.Net.Auth;
 
@@ -14,9 +14,9 @@ namespace Trading.UI.Demo.Services
     {
         bool IsConnected { get; }
 
-        public IOpenClient LiveClient { get; }
+        IObservable<IMessage> LiveObservable { get; }
 
-        public IOpenClient DemoClient { get; }
+        IObservable<IMessage> DemoObservable { get; }
 
         Task Connect();
 
@@ -34,13 +34,20 @@ namespace Trading.UI.Demo.Services
 
         Task CreateNewOrder(OrderModel marketOrder, long accountId, bool isLive);
 
-        IOpenClient GetClient(bool isLive);
+        Task ClosePosition(long positionId, long volume, long accountId, bool isLive);
+
+        Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive);
+
+        Task ModifyPosition(PositionModel position, MarketOrderModel marketOrderModel, long accountId, bool isLive);
     }
 
     public sealed class ApiService : IApiService
     {
         private readonly Func<IOpenClient> _liveClientFactory;
         private readonly Func<IOpenClient> _demoClientFactory;
+
+        private IOpenClient _liveClient;
+        private IOpenClient _demoClient;
 
         public ApiService(Func<IOpenClient> liveClientFactory, Func<IOpenClient> demoClientFactory)
         {
@@ -50,9 +57,9 @@ namespace Trading.UI.Demo.Services
 
         public bool IsConnected { get; private set; }
 
-        public IOpenClient LiveClient { get; private set; }
+        public IObservable<IMessage> LiveObservable => _liveClient;
 
-        public IOpenClient DemoClient { get; private set; }
+        public IObservable<IMessage> DemoObservable => _demoClient;
 
         public async Task Connect()
         {
@@ -77,8 +84,8 @@ namespace Trading.UI.Demo.Services
                 throw;
             }
 
-            LiveClient = liveClient;
-            DemoClient = demoClient;
+            _liveClient = liveClient;
+            _demoClient = demoClient;
 
             IsConnected = true;
         }
@@ -96,13 +103,13 @@ namespace Trading.UI.Demo.Services
             bool isLiveClientAppAuthorized = false;
             bool isDemoClientAppAuthorized = false;
 
-            using var liveDisposable = LiveClient.OfType<ProtoOAApplicationAuthRes>()
+            using var liveDisposable = _liveClient.OfType<ProtoOAApplicationAuthRes>()
                 .Subscribe(response => isLiveClientAppAuthorized = true);
-            using var demoDisposable = DemoClient.OfType<ProtoOAApplicationAuthRes>()
+            using var demoDisposable = _demoClient.OfType<ProtoOAApplicationAuthRes>()
                 .Subscribe(response => isDemoClientAppAuthorized = true);
 
-            await LiveClient.SendMessage(authRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
-            await DemoClient.SendMessage(authRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
+            await _liveClient.SendMessage(authRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
+            await _demoClient.SendMessage(authRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
 
             var waitStartTime = DateTime.Now;
 
@@ -122,7 +129,7 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(account.IsLive);
 
-            var cancelationTokenSource = new CancellationTokenSource();
+            using var cancelationTokenSource = new CancellationTokenSource();
 
             ProtoOAAccountAuthRes result = null;
 
@@ -142,7 +149,7 @@ namespace Trading.UI.Demo.Services
 
             await client.SendMessage(message, ProtoOAPayloadType.ProtoOaAccountAuthReq);
 
-            await cancelationTokenSource.Wait(TimeSpan.FromMinutes(1));
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
 
             if (result is null) throw new TimeoutException("The API didn't responded");
 
@@ -157,7 +164,7 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(account.IsLive);
 
-            var cancelationTokenSource = new CancellationTokenSource();
+            using var cancelationTokenSource = new CancellationTokenSource();
 
             ProtoOALightSymbol[] result = null;
 
@@ -177,7 +184,7 @@ namespace Trading.UI.Demo.Services
 
             await client.SendMessage(symbolsMessage, ProtoOAPayloadType.ProtoOaSymbolsListReq);
 
-            await cancelationTokenSource.Wait(TimeSpan.FromMinutes(1));
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
 
             if (result is null) throw new TimeoutException("The API didn't responded");
 
@@ -192,7 +199,7 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(account.IsLive);
 
-            var cancelationTokenSource = new CancellationTokenSource();
+            using var cancelationTokenSource = new CancellationTokenSource();
 
             ProtoOASymbol[] result = null;
 
@@ -213,7 +220,7 @@ namespace Trading.UI.Demo.Services
 
             await client.SendMessage(symbolsMessage, ProtoOAPayloadType.ProtoOaSymbolByIdReq);
 
-            await cancelationTokenSource.Wait(TimeSpan.FromMinutes(1));
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
 
             if (result is null) throw new TimeoutException("The API didn't responded");
 
@@ -244,11 +251,11 @@ namespace Trading.UI.Demo.Services
                 AccessToken = accessToken
             };
 
-            var cancelationTokenSource = new CancellationTokenSource();
+            using var cancelationTokenSource = new CancellationTokenSource();
 
             ProtoOACtidTraderAccount[] result = null;
 
-            using var disposable = LiveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>()
+            using var disposable = _liveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>()
                 .Subscribe(response =>
                 {
                     result = response.CtidTraderAccount.ToArray();
@@ -256,9 +263,9 @@ namespace Trading.UI.Demo.Services
                     cancelationTokenSource.Cancel();
                 });
 
-            await LiveClient.SendMessage(accountListRequest, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+            await _liveClient.SendMessage(accountListRequest, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
 
-            await cancelationTokenSource.Wait(TimeSpan.FromMinutes(1));
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
 
             if (result is null) throw new TimeoutException("The API didn't responded");
 
@@ -280,6 +287,11 @@ namespace Trading.UI.Demo.Services
             if (orderModel is MarketOrderModel marketOrder)
             {
                 newOrderReq.OrderType = marketOrder.IsMarketRange ? ProtoOAOrderType.MarketRange : ProtoOAOrderType.Market;
+
+                if (marketOrder.Id != default)
+                {
+                    newOrderReq.PositionId = marketOrder.Id;
+                }
             }
             else if (orderModel is PendingOrderModel pendingOrder)
             {
@@ -334,17 +346,132 @@ namespace Trading.UI.Demo.Services
             await client.SendMessage(newOrderReq, ProtoOAPayloadType.ProtoOaNewOrderReq);
         }
 
-        public IOpenClient GetClient(bool isLive) => isLive ? LiveClient : DemoClient;
+        public Task ClosePosition(long positionId, long volume, long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            var requestMessage = new ProtoOAClosePositionReq
+            {
+                CtidTraderAccountId = accountId,
+                PositionId = positionId,
+                Volume = volume
+            };
+
+            return client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaClosePositionReq);
+        }
+
+        public async Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            using var cancelationTokenSource = new CancellationTokenSource();
+
+            ProtoOAReconcileRes result = null;
+
+            using var disposable = client.OfType<ProtoOAReconcileRes>().Where(response => response.CtidTraderAccountId == accountId)
+                .Subscribe(response =>
+            {
+                result = response;
+
+                cancelationTokenSource.Cancel();
+            });
+
+            var requestMessage = new ProtoOAReconcileReq
+            {
+                CtidTraderAccountId = accountId
+            };
+
+            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaReconcileReq);
+
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
+
+            if (result is null) throw new TimeoutException("The API didn't responded");
+
+            return result;
+        }
+
+        public async Task ModifyPosition(PositionModel position, MarketOrderModel marketOrderModel, long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            if (position.TradeData.TradeSide != marketOrderModel.TradeSide)
+            {
+                await ClosePosition(position.Id, position.Volume, accountId, isLive);
+
+                marketOrderModel.Id = default;
+
+                await CreateNewOrder(marketOrderModel, accountId, isLive);
+            }
+            else
+            {
+                if (marketOrderModel.Volume > position.Volume)
+                {
+                    marketOrderModel.Volume = marketOrderModel.Volume - position.Volume;
+
+                    await CreateNewOrder(marketOrderModel, accountId, isLive);
+                }
+                else
+                {
+                    if (marketOrderModel.StopLossInPips != position.StopLossInPips.GetValueOrDefault() || marketOrderModel.TakeProfitInPips != position.TakeProfitInPips.GetValueOrDefault())
+                    {
+                        var amendPositionRequestMessage = new ProtoOAAmendPositionSLTPReq
+                        {
+                            PositionId = position.Id,
+                            CtidTraderAccountId = accountId,
+                            GuaranteedStopLoss = position.GuaranteedStopLoss,
+                        };
+
+                        if (marketOrderModel.IsStopLossEnabled)
+                        {
+                            amendPositionRequestMessage.StopLoss = marketOrderModel.StopLossInPrice;
+                            amendPositionRequestMessage.StopLossTriggerMethod = position.StopTriggerMethod;
+                            amendPositionRequestMessage.TrailingStopLoss = marketOrderModel.IsTrailingStopLossEnabled;
+                        }
+
+                        if (marketOrderModel.IsTakeProfitEnabled)
+                        {
+                            amendPositionRequestMessage.TakeProfit = marketOrderModel.TakeProfitInPrice;
+                        }
+
+                        var client = GetClient(isLive);
+
+                        await client.SendMessage(amendPositionRequestMessage, ProtoOAPayloadType.ProtoOaAmendPositionSltpReq);
+                    }
+
+                    if (marketOrderModel.Volume < position.Volume)
+                    {
+                        await ClosePosition(position.Id, position.Volume - marketOrderModel.Volume, accountId, isLive);
+                    }
+                }
+            }
+        }
+
+        private IOpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
 
         public void Dispose()
         {
-            if (LiveClient is not null) LiveClient.Dispose();
-            if (DemoClient is not null) DemoClient.Dispose();
+            if (_liveClient is not null) _liveClient.Dispose();
+            if (_demoClient is not null) _demoClient.Dispose();
         }
 
         private void VerifyConnection()
         {
             if (IsConnected is not true) throw new InvalidOperationException("The API service is not connected yet, please connect the service before calling this method");
+        }
+
+        private async Task DelayUntilCanceled(TimeSpan timeSpan, CancellationToken token)
+        {
+            try
+            {
+                await Task.Delay(timeSpan, token);
+            }
+            catch (TaskCanceledException)
+            {
+            }
         }
     }
 }

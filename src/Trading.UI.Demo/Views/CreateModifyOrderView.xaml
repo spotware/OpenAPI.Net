@@ -21,7 +21,7 @@
     mc:Ignorable="d">
     <prism:Dialog.WindowStyle>
         <Style BasedOn="{StaticResource DialogStyle}" TargetType="mah:MetroWindow">
-            <Setter Property="Height" Value="450" />
+            <Setter Property="Height" Value="530" />
             <Setter Property="Width" Value="500" />
         </Style>
     </prism:Dialog.WindowStyle>
@@ -42,7 +42,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <TabControl Grid.Row="0" TabStripPlacement="Left">
+    <TabControl TabStripPlacement="Left">
         <TabItem Header="Market" IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -142,7 +142,7 @@
                                 ParsingNumberStyle="AllowDecimalPoint"
                                 Value="{Binding Path=MarketOrderModel.StopLossInPips, Mode=TwoWay}" />
 
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Orientation="Horizontal">
                                 <CheckBox Margin="0,5" IsChecked="{Binding Path=MarketOrderModel.IsTrailingStopLossEnabled, Mode=TwoWay}" />
                                 <TextBlock Margin="5" Text="Trailing Stop" />
                             </StackPanel>

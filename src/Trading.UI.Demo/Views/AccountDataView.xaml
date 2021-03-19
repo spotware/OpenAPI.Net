@@ -134,9 +134,9 @@
                             Header="Symbol"
                             SortMemberPath="Symbol.Name" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=VolumeInLots}"
-                            Header="Volume (Lots)"
-                            SortMemberPath="VolumeInLots" />
+                            Binding="{Binding Path=Volume, Converter={StaticResource MonetaryConverter}}"
+                            Header="Volume (Units)"
+                            SortMemberPath="Volume" />
                         <DataGridTextColumn
                             Binding="{Binding Path=TradeData.TradeSide}"
                             Header="Direction"
@@ -297,9 +297,9 @@
                             Header="Symbol"
                             SortMemberPath="Symbol.Name" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=VolumeInLots}"
-                            Header="Volume (Lots)"
-                            SortMemberPath="VolumeInLots" />
+                            Binding="{Binding Path=Volume, Converter={StaticResource MonetaryConverter}}"
+                            Header="Volume (Units)"
+                            SortMemberPath="Volume" />
                         <DataGridTextColumn
                             Binding="{Binding Path=TradeData.TradeSide}"
                             Header="Direction"
@@ -435,17 +435,17 @@
                             Header="Symbol"
                             SortMemberPath="Symbol.Name" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=Volume}"
-                            Header="Volume (Lots)"
+                            Binding="{Binding Path=Volume, Converter={StaticResource MonetaryConverter}}"
+                            Header="Volume (Units)"
                             SortMemberPath="Volume" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=FilledVolume}"
-                            Header="Filled Volume (Lots)"
+                            Binding="{Binding Path=FilledVolume, Converter={StaticResource MonetaryConverter}}"
+                            Header="Filled Volume (Units)"
                             SortMemberPath="FilledVolume"
                             Visibility="Collapsed" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=ClosedVolume}"
-                            Header="Closed Volume (Lots)"
+                            Binding="{Binding Path=ClosedVolume, Converter={StaticResource MonetaryConverter}}"
+                            Header="Closed Volume (Units)"
                             SortMemberPath="ClosedVolume"
                             Visibility="Collapsed" />
                         <DataGridTextColumn

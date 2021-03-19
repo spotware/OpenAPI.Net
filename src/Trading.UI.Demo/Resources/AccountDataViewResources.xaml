@@ -19,6 +19,13 @@
         <WrapPanel>
             <Button
                 Margin="5"
+                Command="{Binding Path=DataContext.ModifyPositionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                CommandParameter="{Binding}"
+                ToolTip="Modify">
+                <iconPacks:Material Kind="ClipboardEdit" />
+            </Button>
+            <Button
+                Margin="5"
                 Command="{Binding Path=DataContext.ClosePositionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                 CommandParameter="{Binding}"
                 ToolTip="Close">

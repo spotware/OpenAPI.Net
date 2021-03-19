@@ -1,5 +1,5 @@
-﻿using MahApps.Metro.Controls.Dialogs;
-using OpenAPI.Net;
+﻿using Google.Protobuf;
+using MahApps.Metro.Controls.Dialogs;
 using Prism.Events;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -88,8 +88,8 @@ namespace Trading.UI.Demo.ViewModels
             {
                 await _apiService.Connect();
 
-                SubscribeToErrors(_apiService.LiveClient);
-                SubscribeToErrors(_apiService.DemoClient);
+                SubscribeToErrors(_apiService.LiveObservable);
+                SubscribeToErrors(_apiService.DemoObservable);
 
                 await _apiService.AuthorizeApp(app);
             }
@@ -173,36 +173,36 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private void SubscribeToErrors(IOpenClient client)
+        private void SubscribeToErrors(IObservable<IMessage> observable)
         {
-            if (client is null) throw new ArgumentNullException(nameof(client));
+            if (observable is null) throw new ArgumentNullException(nameof(observable));
 
-            client.ObserveOn(SynchronizationContext.Current).Subscribe(_ => { }, OnError);
-            client.OfType<ProtoErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnErrorRes);
-            client.OfType<ProtoOAErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOaErrorRes);
-            client.OfType<ProtoOAOrderErrorEvent>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOrderErrorRes);
+            observable.ObserveOn(SynchronizationContext.Current).Subscribe(_ => { }, OnError);
+            observable.OfType<ProtoErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnErrorRes);
+            observable.OfType<ProtoOAErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOaErrorRes);
+            observable.OfType<ProtoOAOrderErrorEvent>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOrderErrorRes);
         }
 
         private async void OnError(Exception exception)
         {
-            await _dialogCordinator.ShowMessageAsync(this, "Error", exception.ToString());
+            await _dialogCordinator.ShowMessageAsync(this, $"Error {exception.GetType().Name}", exception.ToString());
 
             _dispatcher.InvokeShutdown();
         }
 
         private async void OnOrderErrorRes(ProtoOAOrderErrorEvent error)
         {
-            await _dialogCordinator.ShowMessageAsync(this, "Error", error.Description);
+            await _dialogCordinator.ShowMessageAsync(this, $"Error {error.ErrorCode}", error.Description);
         }
 
         private async void OnOaErrorRes(ProtoOAErrorRes error)
         {
-            await _dialogCordinator.ShowMessageAsync(this, "Error", error.Description);
+            await _dialogCordinator.ShowMessageAsync(this, $"Error {error.ErrorCode}", error.Description);
         }
 
         private async void OnErrorRes(ProtoErrorRes error)
         {
-            await _dialogCordinator.ShowMessageAsync(this, "Error", error.Description);
+            await _dialogCordinator.ShowMessageAsync(this, $"Error {error.ErrorCode}", error.Description);
         }
 
         private async void OnAccountChanged()
