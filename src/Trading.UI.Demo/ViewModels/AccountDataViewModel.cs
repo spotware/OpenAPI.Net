@@ -26,6 +26,7 @@ namespace Trading.UI.Demo.ViewModels
         private readonly IDialogCoordinator _dialogCordinator;
         private readonly IApiService _apiService;
         private readonly ICollectionView _positionsCollectionView;
+        private readonly ICollectionView _pendingOrdersCollectionView;
 
         private AccountModel _account;
         private IDisposable _reconcileSenderDisposable;
@@ -38,40 +39,65 @@ namespace Trading.UI.Demo.ViewModels
             _dialogCordinator = dialogCordinator;
             _apiService = apiService;
 
-            Positions = new ObservableCollection<PositionModel>();
+            Positions = new ObservableCollection<MarketOrderModel>();
 
             _positionsCollectionView = CollectionViewSource.GetDefaultView(Positions);
 
-            _positionsCollectionView.Filter = FilterPositions;
+            _positionsCollectionView.Filter = FilterOrders;
 
-            SelectedPositions = new ObservableCollection<PositionModel>();
+            PendingOrders = new ObservableCollection<PendingOrderModel>();
+
+            _pendingOrdersCollectionView = CollectionViewSource.GetDefaultView(PendingOrders);
+
+            _pendingOrdersCollectionView.Filter = FilterOrders;
+
+            SelectedPositions = new ObservableCollection<MarketOrderModel>();
 
             SelectedPositions.CollectionChanged += (sender, args) => RaisePropertyChanged(nameof(SelectedPositions));
 
+            SelectedPendingOrders = new ObservableCollection<PendingOrderModel>();
+
+            SelectedPendingOrders.CollectionChanged += (sender, args) => RaisePropertyChanged(nameof(SelectedPendingOrders));
+
             SelectedClosePositionTypes = new ObservableCollection<PositionCloseType>();
+
+            SelectedCancelOrderTypes = new ObservableCollection<OrderCancelType>();
 
             CreateNewOrderCommand = new DelegateCommand(ShowCreateModifyOrderDialog);
 
-            ClosePositionCommand = new DelegateCommand<PositionModel>(ClosePosition);
+            ClosePositionCommand = new DelegateCommand<MarketOrderModel>(ClosePosition);
 
             ClosePositionsCommand = new DelegateCommand(ClosePositions);
 
             CloseSelectedPositionsCommand = new DelegateCommand(CloseSelectedPositions, () => SelectedPositions != null && SelectedPositions.Any()).ObservesProperty(() => SelectedPositions);
 
-            ModifyPositionCommand = new DelegateCommand<PositionModel>(ModifyPosition);
+            ModifyPositionCommand = new DelegateCommand<MarketOrderModel>(ModifyPosition);
+
+            CancelOrderCommand = new DelegateCommand<PendingOrderModel>(CancelOrder);
+
+            CancelOrdersCommand = new DelegateCommand(CancelOrders);
+
+            CancelSelectedOrdersCommand = new DelegateCommand(CancelSelectedOrders, () => SelectedPendingOrders != null && SelectedPendingOrders.Any()).ObservesProperty(() => SelectedPendingOrders);
+
+            ModifyOrderCommand = new DelegateCommand<PendingOrderModel>(ModifyOrder);
         }
 
         public DelegateCommand CreateNewOrderCommand { get; }
-        public DelegateCommand<PositionModel> ClosePositionCommand { get; }
+        public DelegateCommand<MarketOrderModel> ClosePositionCommand { get; }
+        public DelegateCommand CancelOrdersCommand { get; }
+        public DelegateCommand CancelSelectedOrdersCommand { get; }
+        public DelegateCommand<PendingOrderModel> ModifyOrderCommand { get; }
         public DelegateCommand ClosePositionsCommand { get; }
         public DelegateCommand CloseSelectedPositionsCommand { get; }
+        public DelegateCommand<MarketOrderModel> ModifyPositionCommand { get; }
+        public DelegateCommand<PendingOrderModel> CancelOrderCommand { get; }
 
-        public DelegateCommand<PositionModel> ModifyPositionCommand { get; }
-
-        public ObservableCollection<PositionModel> SelectedPositions { get; }
-        public ObservableCollection<PositionModel> Positions { get; }
-
+        public ObservableCollection<MarketOrderModel> SelectedPositions { get; }
+        public ObservableCollection<MarketOrderModel> Positions { get; }
+        public ObservableCollection<PendingOrderModel> SelectedPendingOrders { get; }
+        public ObservableCollection<PendingOrderModel> PendingOrders { get; }
         public ObservableCollection<PositionCloseType> SelectedClosePositionTypes { get; }
+        public ObservableCollection<OrderCancelType> SelectedCancelOrderTypes { get; }
 
         public string SearchText
         {
@@ -91,13 +117,18 @@ namespace Trading.UI.Demo.ViewModels
 
         protected override void Unloaded()
         {
+            Cleanup();
+
+            _account = null;
+        }
+
+        private void Cleanup()
+        {
+            _reconcileSenderDisposable?.Dispose();
+
             Positions.Clear();
             SelectedPositions.Clear();
             SelectedClosePositionTypes.Clear();
-
-            _reconcileSenderDisposable?.Dispose();
-
-            _account = null;
         }
 
         private async void ShowCreateModifyOrderDialog()
@@ -114,9 +145,9 @@ namespace Trading.UI.Demo.ViewModels
 
         private void OnAccountChanged(AccountModel account)
         {
-            _account = account;
+            Cleanup();
 
-            _reconcileSenderDisposable?.Dispose();
+            _account = account;
 
             _reconcileSenderDisposable = Observable.Interval(TimeSpan.FromSeconds(1)).ObserveOn(SynchronizationContext.Current).Subscribe(async x =>
             {
@@ -125,6 +156,10 @@ namespace Trading.UI.Demo.ViewModels
                 var response = await _apiService.GetAccountOrders(_account.Id, _account.IsLive);
 
                 UpdatePositions(response.Position);
+
+                var pendingOrders = response.Order.Where(iOrder => iOrder.OrderType is ProtoOAOrderType.Limit or ProtoOAOrderType.Stop or ProtoOAOrderType.StopLimit);
+
+                UpdatePendingOrders(pendingOrders);
             });
         }
 
@@ -143,34 +178,63 @@ namespace Trading.UI.Demo.ViewModels
                     continue;
                 }
 
-                var positionSymbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedPosition.TradeData.SymbolId);
+                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedPosition.TradeData.SymbolId);
 
-                position.Update(updatedPosition, positionSymbol);
+                position.Update(updatedPosition, symbol);
             }
 
             foreach (var position in positions)
             {
                 if (currentPositions.Any(iPosition => iPosition.Id == position.PositionId)) continue;
 
-                var positionSymbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == position.TradeData.SymbolId);
+                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == position.TradeData.SymbolId);
 
-                Positions.Add(new PositionModel(position, positionSymbol));
+                Positions.Add(new MarketOrderModel(position, symbol));
             }
         }
 
-        private bool FilterPositions(object obj)
+        private void UpdatePendingOrders(IEnumerable<ProtoOAOrder> orders)
         {
-            if (string.IsNullOrEmpty(SearchText) || !(obj is PositionModel position)) return true;
+            var currentOrders = PendingOrders.ToArray();
+
+            foreach (var order in currentOrders)
+            {
+                var updatedOrder = orders.FirstOrDefault(iOrder => iOrder.OrderId == order.Id);
+
+                if (updatedOrder is null)
+                {
+                    PendingOrders.Remove(order);
+
+                    continue;
+                }
+
+                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedOrder.TradeData.SymbolId);
+
+                order.Update(updatedOrder, symbol);
+            }
+
+            foreach (var order in orders)
+            {
+                if (currentOrders.Any(iOrder => iOrder.Id == order.OrderId)) continue;
+
+                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == order.TradeData.SymbolId);
+
+                PendingOrders.Add(new PendingOrderModel(order, symbol));
+            }
+        }
+
+        private bool FilterOrders(object obj)
+        {
+            if (string.IsNullOrEmpty(SearchText) || obj is not OrderModel order) return true;
 
             var comparison = StringComparison.OrdinalIgnoreCase;
 
-            return _account.Symbols.First(symbol => symbol.Id == position.TradeData.SymbolId).Name
-                       .IndexOf(SearchText, comparison) >= 0 ||
-                   position.TradeData.Label.IndexOf(SearchText, comparison) >= 0 ||
-                   position.TradeData.TradeSide.ToString().IndexOf(SearchText, comparison) >= 0;
+            return _account.Symbols.First(symbol => symbol.Id == order.TradeData.SymbolId).Name.Contains(SearchText, comparison)
+                || order.TradeData.Label.Contains(SearchText, comparison)
+                || order.TradeData.TradeSide.ToString().Contains(SearchText, comparison);
         }
 
-        private async Task RequestPositionsClose(PositionModel[] positions)
+        private async Task SendPositionsCloseRequest(MarketOrderModel[] positions)
         {
             if (!positions.Any()) return;
 
@@ -199,6 +263,35 @@ namespace Trading.UI.Demo.ViewModels
             await _dialogCordinator.ShowMessageAsync(this, "Positions Close Result", "Closing request for position(s) have been sent");
         }
 
+        private async Task SendOrdersCancelRequest(PendingOrderModel[] orders)
+        {
+            if (!orders.Any()) return;
+
+            var progressStep = 1.0 / orders.Length;
+
+            double currentProgress = 0;
+
+            var dialogController = await _dialogCordinator.ShowProgressAsync(this, "Canceling Order(s)", "Please wait...");
+
+            try
+            {
+                foreach (var order in orders)
+                {
+                    await _apiService.CancelOrder(order.Id, _account.Id, _account.IsLive);
+
+                    currentProgress += progressStep;
+
+                    dialogController.SetProgress(currentProgress);
+                }
+            }
+            finally
+            {
+                if (dialogController.IsOpen) await dialogController.CloseAsync();
+            }
+
+            await _dialogCordinator.ShowMessageAsync(this, "Order(s) Cancel Result", "Canceling request for order(s) have been sent");
+        }
+
         private async void CloseSelectedPositions()
         {
             var positionsToClose = SelectedPositions.ToArray();
@@ -207,22 +300,32 @@ namespace Trading.UI.Demo.ViewModels
 
             if (!userConfirmation) return;
 
-            await RequestPositionsClose(positionsToClose);
+            await SendPositionsCloseRequest(positionsToClose);
         }
 
-        private async void ClosePosition(PositionModel position)
+        private async void ClosePosition(MarketOrderModel position)
         {
             var userConfirmation = await GetUserConfirmationForClosingPositions();
 
             if (!userConfirmation) return;
 
-            await RequestPositionsClose(new[] { position });
+            await SendPositionsCloseRequest(new[] { position });
         }
 
         private async Task<bool> GetUserConfirmationForClosingPositions()
         {
             var result = await _dialogCordinator.ShowMessageAsync(this, "Confirm",
                 "Are you sure about closing the selected position(s)?",
+                MessageDialogStyle.AffirmativeAndNegative,
+                new MetroDialogSettings { AffirmativeButtonText = "Yes", NegativeButtonText = "No" });
+
+            return result == MessageDialogResult.Affirmative;
+        }
+
+        private async Task<bool> GetUserConfirmationForCancelingOrders()
+        {
+            var result = await _dialogCordinator.ShowMessageAsync(this, "Confirm",
+                "Are you sure about canceling the selected order(s)?",
                 MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Yes", NegativeButtonText = "No" });
 
@@ -242,25 +345,25 @@ namespace Trading.UI.Demo.ViewModels
 
             if (!userConfirmation) return;
 
-            var positionsToClose = new List<PositionModel>();
+            var positionsToClose = new List<MarketOrderModel>();
 
             var positionsCopy = Positions.ToList();
 
             foreach (var position in positionsCopy)
             {
-                var shouldClose = DoesPositionMeetCloseTypes(position);
+                var shouldClose = DoesPositionMatchCloseTypes(position);
 
                 if (shouldClose) positionsToClose.Add(position);
             }
 
             if (positionsToClose.Any())
-                await RequestPositionsClose(positionsToClose.ToArray());
+                await SendPositionsCloseRequest(positionsToClose.ToArray());
             else
                 await _dialogCordinator.ShowMessageAsync(this, "Positions Not Found",
-                    "Couldn't find any matching order to cancel");
+                    "Couldn't find any matching position to close");
         }
 
-        private bool DoesPositionMeetCloseTypes(PositionModel position)
+        private bool DoesPositionMatchCloseTypes(MarketOrderModel position)
         {
             if (position.TradeData.TradeSide == ProtoOATradeSide.Buy &&
                 SelectedClosePositionTypes.Contains(PositionCloseType.Buy) ||
@@ -271,13 +374,93 @@ namespace Trading.UI.Demo.ViewModels
             return false;
         }
 
-        private void ModifyPosition(PositionModel position)
+        private void ModifyPosition(MarketOrderModel position)
         {
             _dialogService.ShowDialog(nameof(CreateModifyOrderView), new DialogParameters
             {
                 { "Account", _account },
                 { "Position", position }
             }, null);
+        }
+
+        private void ModifyOrder(PendingOrderModel order)
+        {
+            _dialogService.ShowDialog(nameof(CreateModifyOrderView), new DialogParameters
+            {
+                { "Account", _account },
+                { "PendingOrder", order }
+            }, null);
+        }
+
+        private async void CancelSelectedOrders()
+        {
+            var ordersToCancel = SelectedPendingOrders.ToArray();
+
+            var userConfirmation = await GetUserConfirmationForCancelingOrders();
+
+            if (!userConfirmation) return;
+
+            await SendOrdersCancelRequest(ordersToCancel);
+        }
+
+        private async void CancelOrders()
+        {
+            if (!SelectedCancelOrderTypes.Any())
+            {
+                await _dialogCordinator.ShowMessageAsync(this, "Error", "Please select order cancel type(s)");
+
+                return;
+            }
+
+            var userConfirmation = await GetUserConfirmationForCancelingOrders();
+
+            if (!userConfirmation) return;
+
+            var ordersToCancel = new List<PendingOrderModel>();
+
+            var ordersCopy = PendingOrders.ToList();
+
+            foreach (var order in ordersCopy)
+            {
+                if (DoesOrderMatchCancelTypes(order)) ordersToCancel.Add(order);
+            }
+
+            if (ordersToCancel.Any())
+                await SendOrdersCancelRequest(ordersToCancel.ToArray());
+            else
+                await _dialogCordinator.ShowMessageAsync(this, "Orders Not Found",
+                    "Couldn't find any matching order to cancel");
+        }
+
+        private bool DoesOrderMatchCancelTypes(PendingOrderModel order)
+        {
+            if (
+                (order.TradeData.TradeSide == ProtoOATradeSide.Buy &&
+                 SelectedCancelOrderTypes.Contains(OrderCancelType.Buy) ||
+                 order.TradeData.TradeSide == ProtoOATradeSide.Sell &&
+                 SelectedCancelOrderTypes.Contains(OrderCancelType.Sell) ||
+                 !SelectedCancelOrderTypes.Contains(OrderCancelType.Buy) &&
+                 !SelectedCancelOrderTypes.Contains(OrderCancelType.Sell))
+                &&
+                (order.Type == PendingOrderType.Limit && SelectedCancelOrderTypes.Contains(OrderCancelType.Limit) ||
+                 order.Type == PendingOrderType.Stop && SelectedCancelOrderTypes.Contains(OrderCancelType.Stop) ||
+                 order.Type == PendingOrderType.StopLimit &&
+                 SelectedCancelOrderTypes.Contains(OrderCancelType.StopLimit) ||
+                 !SelectedCancelOrderTypes.Contains(OrderCancelType.Limit) &&
+                 !SelectedCancelOrderTypes.Contains(OrderCancelType.Stop) &&
+                 !SelectedCancelOrderTypes.Contains(OrderCancelType.StopLimit)))
+                return true;
+
+            return false;
+        }
+
+        private async void CancelOrder(PendingOrderModel order)
+        {
+            var userConfirmation = await GetUserConfirmationForCancelingOrders();
+
+            if (!userConfirmation) return;
+
+            await SendOrdersCancelRequest(new[] { order });
         }
     }
 }

@@ -7,6 +7,13 @@
         <WrapPanel>
             <Button
                 Margin="5"
+                Command="{Binding Path=DataContext.ModifyOrderCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                CommandParameter="{Binding}"
+                ToolTip="Modify">
+                <iconPacks:Material Kind="ClipboardEdit" />
+            </Button>
+            <Button
+                Margin="5"
                 Command="{Binding Path=DataContext.CancelOrderCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                 CommandParameter="{Binding}"
                 ToolTip="Cancel">

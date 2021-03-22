@@ -15,7 +15,8 @@ namespace Trading.UI.Demo.ViewModels
         private List<SymbolModel> _symbols;
         private readonly IApiService _apiService;
         private AccountModel _account;
-        private PositionModel _position;
+        private OrderModel _orderUnderModification;
+        private int _selectedTabIndex;
 
         public CreateModifyOrderViewModel(IApiService apiService)
         {
@@ -48,6 +49,8 @@ namespace Trading.UI.Demo.ViewModels
 
         public List<SymbolModel> Symbols { get => _symbols; set => SetProperty(ref _symbols, value); }
 
+        public int SelectedTabIndex { get => _selectedTabIndex; set => SetProperty(ref _selectedTabIndex, value); }
+
         public override void OnDialogClosed()
         {
             MarketOrderModel = null;
@@ -58,7 +61,7 @@ namespace Trading.UI.Demo.ViewModels
 
             Symbols = null;
 
-            _position = null;
+            _orderUnderModification = null;
 
             _account = null;
         }
@@ -70,13 +73,13 @@ namespace Trading.UI.Demo.ViewModels
                 Symbols = new List<SymbolModel>(_account.Symbols);
             }
 
-            if (parameters.TryGetValue<PositionModel>("Position", out var position))
+            if (parameters.TryGetValue<MarketOrderModel>("Position", out var position))
             {
                 Title = "Modify Market Order";
 
-                _position = position;
+                _orderUnderModification = position;
 
-                MarketOrderModel = new MarketOrderModel(position);
+                MarketOrderModel = position.Clone();
 
                 IsModifyingMarketOrder = true;
             }
@@ -84,9 +87,13 @@ namespace Trading.UI.Demo.ViewModels
             {
                 Title = "Modify Pending Order";
 
-                PendingOrderModel = pendingOrderModel;
+                _orderUnderModification = pendingOrderModel;
+
+                PendingOrderModel = pendingOrderModel.Clone();
 
                 IsModifyingPendingOrder = true;
+
+                SelectedTabIndex = 1;
             }
             else
             {
@@ -113,7 +120,7 @@ namespace Trading.UI.Demo.ViewModels
         {
             try
             {
-                await _apiService.ModifyPosition(_position, MarketOrderModel, _account.Id, _account.IsLive);
+                await _apiService.ModifyPosition(_orderUnderModification as MarketOrderModel, MarketOrderModel, _account.Id, _account.IsLive);
             }
             finally
             {
@@ -121,9 +128,16 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private void ModifyPendingOrder()
+        private async void ModifyPendingOrder()
         {
-            OnRequestClose(new DialogResult(ButtonResult.OK));
+            try
+            {
+                await _apiService.ModifyOrder(_orderUnderModification as PendingOrderModel, PendingOrderModel, _account.Id, _account.IsLive);
+            }
+            finally
+            {
+                OnRequestClose(new DialogResult(ButtonResult.OK));
+            }
         }
 
         private async void PlacePendingOrder()

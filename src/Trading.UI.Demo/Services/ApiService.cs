@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Trading.UI.Demo.Enums;
 using Trading.UI.Demo.Models;
 using auth = OpenAPI.Net.Auth;
 
@@ -38,7 +39,11 @@ namespace Trading.UI.Demo.Services
 
         Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive);
 
-        Task ModifyPosition(PositionModel position, MarketOrderModel marketOrderModel, long accountId, bool isLive);
+        Task ModifyPosition(MarketOrderModel oldOrder, MarketOrderModel newOrder, long accountId, bool isLive);
+
+        Task CancelOrder(long orderId, long accountId, bool isLive);
+
+        Task ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId, bool isLive);
     }
 
     public sealed class ApiService : IApiService
@@ -307,7 +312,7 @@ namespace Trading.UI.Demo.Services
 
                     if (newOrderReq.OrderType == ProtoOAOrderType.StopLimit)
                     {
-                        var slippageinPoint = pendingOrder.Symbol.GetRelativeFromPips(pendingOrder.LimitRangeInPips);
+                        var slippageinPoint = pendingOrder.Symbol.GetPointsFromPips(pendingOrder.LimitRangeInPips);
 
                         if (slippageinPoint < int.MaxValue) newOrderReq.SlippageInPoints = (int)slippageinPoint;
                     }
@@ -362,6 +367,21 @@ namespace Trading.UI.Demo.Services
             return client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaClosePositionReq);
         }
 
+        public Task CancelOrder(long orderId, long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            var requestMessage = new ProtoOACancelOrderReq
+            {
+                CtidTraderAccountId = accountId,
+                OrderId = orderId
+            };
+
+            return client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaCancelOrderReq);
+        }
+
         public async Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive)
         {
             VerifyConnection();
@@ -394,47 +414,47 @@ namespace Trading.UI.Demo.Services
             return result;
         }
 
-        public async Task ModifyPosition(PositionModel position, MarketOrderModel marketOrderModel, long accountId, bool isLive)
+        public async Task ModifyPosition(MarketOrderModel oldOrder, MarketOrderModel newOrder, long accountId, bool isLive)
         {
             VerifyConnection();
 
-            if (position.TradeData.TradeSide != marketOrderModel.TradeSide)
+            if (oldOrder.TradeData.TradeSide != newOrder.TradeSide)
             {
-                await ClosePosition(position.Id, position.Volume, accountId, isLive);
+                await ClosePosition(oldOrder.Id, oldOrder.Volume, accountId, isLive);
 
-                marketOrderModel.Id = default;
+                newOrder.Id = default;
 
-                await CreateNewOrder(marketOrderModel, accountId, isLive);
+                await CreateNewOrder(newOrder, accountId, isLive);
             }
             else
             {
-                if (marketOrderModel.Volume > position.Volume)
+                if (newOrder.Volume > oldOrder.Volume)
                 {
-                    marketOrderModel.Volume = marketOrderModel.Volume - position.Volume;
+                    newOrder.Volume = newOrder.Volume - oldOrder.Volume;
 
-                    await CreateNewOrder(marketOrderModel, accountId, isLive);
+                    await CreateNewOrder(newOrder, accountId, isLive);
                 }
                 else
                 {
-                    if (marketOrderModel.StopLossInPips != position.StopLossInPips.GetValueOrDefault() || marketOrderModel.TakeProfitInPips != position.TakeProfitInPips.GetValueOrDefault())
+                    if (newOrder.StopLossInPips != oldOrder.StopLossInPips || newOrder.TakeProfitInPips != oldOrder.TakeProfitInPips)
                     {
                         var amendPositionRequestMessage = new ProtoOAAmendPositionSLTPReq
                         {
-                            PositionId = position.Id,
+                            PositionId = oldOrder.Id,
                             CtidTraderAccountId = accountId,
-                            GuaranteedStopLoss = position.GuaranteedStopLoss,
+                            GuaranteedStopLoss = oldOrder.GuaranteedStopLoss,
                         };
 
-                        if (marketOrderModel.IsStopLossEnabled)
+                        if (newOrder.IsStopLossEnabled)
                         {
-                            amendPositionRequestMessage.StopLoss = marketOrderModel.StopLossInPrice;
-                            amendPositionRequestMessage.StopLossTriggerMethod = position.StopTriggerMethod;
-                            amendPositionRequestMessage.TrailingStopLoss = marketOrderModel.IsTrailingStopLossEnabled;
+                            amendPositionRequestMessage.StopLoss = newOrder.StopLossInPrice;
+                            amendPositionRequestMessage.StopLossTriggerMethod = oldOrder.StopTriggerMethod;
+                            amendPositionRequestMessage.TrailingStopLoss = newOrder.IsTrailingStopLossEnabled;
                         }
 
-                        if (marketOrderModel.IsTakeProfitEnabled)
+                        if (newOrder.IsTakeProfitEnabled)
                         {
-                            amendPositionRequestMessage.TakeProfit = marketOrderModel.TakeProfitInPrice;
+                            amendPositionRequestMessage.TakeProfit = newOrder.TakeProfitInPrice;
                         }
 
                         var client = GetClient(isLive);
@@ -442,9 +462,9 @@ namespace Trading.UI.Demo.Services
                         await client.SendMessage(amendPositionRequestMessage, ProtoOAPayloadType.ProtoOaAmendPositionSltpReq);
                     }
 
-                    if (marketOrderModel.Volume < position.Volume)
+                    if (newOrder.Volume < oldOrder.Volume)
                     {
-                        await ClosePosition(position.Id, position.Volume - marketOrderModel.Volume, accountId, isLive);
+                        await ClosePosition(oldOrder.Id, oldOrder.Volume - newOrder.Volume, accountId, isLive);
                     }
                 }
             }
@@ -472,6 +492,54 @@ namespace Trading.UI.Demo.Services
             catch (TaskCanceledException)
             {
             }
+        }
+
+        public async Task ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            var requestMessage = new ProtoOAAmendOrderReq
+            {
+                OrderId = oldOrder.Id,
+                CtidTraderAccountId = accountId,
+                Volume = newOrder.Volume,
+            };
+
+            if (newOrder.IsStopLossEnabled)
+            {
+                requestMessage.StopLoss = newOrder.StopLossInPrice;
+                requestMessage.TrailingStopLoss = newOrder.IsTrailingStopLossEnabled;
+            }
+
+            if (newOrder.IsTakeProfitEnabled)
+            {
+                requestMessage.TakeProfit = newOrder.TakeProfitInPrice;
+            }
+
+            if (newOrder.IsExpiryEnabled)
+            {
+                requestMessage.ExpirationTimestamp = new DateTimeOffset(newOrder.ExpiryTime).ToUnixTimeMilliseconds();
+            }
+
+            if (newOrder.Type == PendingOrderType.Limit)
+            {
+                requestMessage.LimitPrice = newOrder.Price;
+            }
+            else
+            {
+                requestMessage.StopPrice = newOrder.Price;
+
+                if (newOrder.Type == PendingOrderType.StopLimit)
+                {
+                    var slippageinPoint = newOrder.Symbol.GetPointsFromPips(newOrder.LimitRangeInPips);
+
+                    if (slippageinPoint < int.MaxValue) requestMessage.SlippageInPoints = (int)slippageinPoint;
+                }
+            }
+
+            var client = GetClient(isLive);
+
+            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAmendOrderReq);
         }
     }
 }

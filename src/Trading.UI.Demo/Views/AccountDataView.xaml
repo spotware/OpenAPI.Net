@@ -146,13 +146,13 @@
                             Header="Price"
                             SortMemberPath="Price" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=TakeProfit, Converter={StaticResource NullableDoubleConverter}}"
+                            Binding="{Binding Path=TakeProfitInPrice, Converter={StaticResource NullableDoubleConverter}}"
                             Header="TP"
-                            SortMemberPath="TakeProfit" />
+                            SortMemberPath="TakeProfitInPrice" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=StopLoss, Converter={StaticResource NullableDoubleConverter}}"
+                            Binding="{Binding Path=StopLossInPrice, Converter={StaticResource NullableDoubleConverter}}"
                             Header="SL"
-                            SortMemberPath="StopLoss" />
+                            SortMemberPath="StopLossInPrice" />
                         <DataGridTextColumn
                             Binding="{Binding Path=Commission, Converter={StaticResource MonetaryConverter}}"
                             Header="Commission"
@@ -279,12 +279,12 @@
                 <DataGrid
                     Name="TradingAccountOrdersDataGrid"
                     Grid.Row="1"
-                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedOrders, UpdateSourceTrigger=PropertyChanged}"
+                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedPendingOrders, UpdateSourceTrigger=PropertyChanged}"
                     behaviors:DataGridColumnSettingsBehavior.EnableColumnsVisibilityMenu="True"
                     behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
                     behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
                     behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
-                    ItemsSource="{Binding Path=Orders, IsAsync=True}"
+                    ItemsSource="{Binding Path=PendingOrders, IsAsync=True}"
                     SelectionMode="Extended">
                     <DataGrid.Columns>
                         <DataGridTextColumn
@@ -309,6 +309,14 @@
                             Header="Price"
                             SortMemberPath="Price" />
                         <DataGridTextColumn
+                            Binding="{Binding Path=TakeProfitInPrice, Converter={StaticResource NullableDoubleConverter}}"
+                            Header="TP"
+                            SortMemberPath="TakeProfitInPrice" />
+                        <DataGridTextColumn
+                            Binding="{Binding Path=StopLossInPrice, Converter={StaticResource NullableDoubleConverter}}"
+                            Header="SL"
+                            SortMemberPath="StopLossInPrice" />
+                        <DataGridTextColumn
                             Binding="{Binding Path=Type}"
                             Header="Type"
                             SortMemberPath="Type" />
@@ -318,9 +326,9 @@
                             SortMemberPath="LastUpdateTime"
                             Visibility="Collapsed" />
                         <DataGridTextColumn
-                            Binding="{Binding Path=ExpirationTime, Converter={StaticResource NullableToStringConverter}}"
+                            Binding="{Binding Path=ExpiryTime, Converter={StaticResource DateTimeToStringConverter}}"
                             Header="Expiration"
-                            SortMemberPath="ExpirationTime" />
+                            SortMemberPath="ExpiryTime" />
                         <DataGridTextColumn
                             Binding="{Binding Path=TradeData.Label}"
                             Header="Label"

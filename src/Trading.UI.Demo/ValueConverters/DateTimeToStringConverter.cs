@@ -4,12 +4,12 @@ using System.Windows.Data;
 
 namespace Trading.UI.Demo.ValueConverters
 {
-    [ValueConversion(typeof(double?), typeof(string))]
-    public class NullableToStringConverter : IValueConverter
+    [ValueConversion(typeof(DateTime), typeof(string))]
+    public class DateTimeToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null ? value.ToString() : string.Empty;
+            return value is null || value is not DateTime time || time == default ? string.Empty : value.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

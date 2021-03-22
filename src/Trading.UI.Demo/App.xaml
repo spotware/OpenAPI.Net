@@ -29,7 +29,7 @@
             </Style>
 
             <valueConverters:MonetaryConverter x:Key="MonetaryConverter" />
-            <valueConverters:NullableToStringConverter x:Key="NullableToStringConverter" />
+            <valueConverters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
             <valueConverters:NullableDoubleConverter x:Key="NullableDoubleConverter" />
             <valueConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <valueConverters:BoolToOppositeVisibilityConverter x:Key="BoolToOppositeVisibilityConverter" />

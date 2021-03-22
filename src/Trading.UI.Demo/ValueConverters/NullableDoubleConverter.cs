@@ -11,7 +11,7 @@ namespace Trading.UI.Demo.ValueConverters
         {
             double? doubleValue = (double?)value;
 
-            return !doubleValue.HasValue || doubleValue.Value == 0 ? string.Empty : doubleValue.ToString();
+            return !doubleValue.HasValue || doubleValue.Value == default ? string.Empty : doubleValue.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -23,6 +23,12 @@ namespace Trading.UI.Demo.Models
             return (long)Math.Round(pipsInPrice * 100000, Data.Digits);
         }
 
+        public double GetPipsFromRelative(long relative) => Math.Round((relative / 100000.0) / PipSize, Data.Digits - Data.PipPosition);
+
+        public double GetPipsFromPoints(long points) => GetPipsFromPrice(points * TickSize);
+
+        public long GetPointsFromPips(double pips) => Convert.ToInt64(pips * Math.Pow(10, Data.Digits - Data.PipPosition));
+
         public double GetPipsFromPrice(double price) => Math.Round(price * Math.Pow(10, Data.PipPosition), Data.Digits - Data.PipPosition);
 
         public long NormalizeVolume(long volumeInUnits)

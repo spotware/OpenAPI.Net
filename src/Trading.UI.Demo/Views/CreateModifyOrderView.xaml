@@ -42,7 +42,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <TabControl TabStripPlacement="Left">
+    <TabControl SelectedIndex="{Binding Path=SelectedTabIndex, UpdateSourceTrigger=PropertyChanged}" TabStripPlacement="Left">
         <TabItem Header="Market" IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -142,7 +142,7 @@
                                 ParsingNumberStyle="AllowDecimalPoint"
                                 Value="{Binding Path=MarketOrderModel.StopLossInPips, Mode=TwoWay}" />
 
-                            <StackPanel IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
                                 <CheckBox Margin="0,5" IsChecked="{Binding Path=MarketOrderModel.IsTrailingStopLossEnabled, Mode=TwoWay}" />
                                 <TextBlock Margin="5" Text="Trailing Stop" />
                             </StackPanel>
@@ -393,14 +393,14 @@
                     Grid.Row="1"
                     Margin="5"
                     Header="Comment">
-                    <TextBox Text="{Binding Path=PendingOrderModel.Comment, Mode=TwoWay}" />
+                    <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Comment, Mode=TwoWay}" />
                 </mah:MetroHeader>
 
                 <mah:MetroHeader
                     Grid.Row="2"
                     Margin="5"
                     Header="Label">
-                    <TextBox Text="{Binding Path=PendingOrderModel.Label, Mode=TwoWay}" />
+                    <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Label, Mode=TwoWay}" />
                 </mah:MetroHeader>
 
                 <StackPanel

@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System;
 
 namespace Trading.UI.Demo.Models
 {
@@ -15,6 +16,11 @@ namespace Trading.UI.Demo.Models
         private string _comment;
         private string _label;
         private double _price;
+        private double _stopLossInPrice;
+        private double _takeProfitInPrice;
+        private ProtoOATradeData _tradeData;
+        private DateTimeOffset _openTime;
+        private DateTimeOffset _lastUpdateTime;
 
         public SymbolModel Symbol
         {
@@ -85,24 +91,34 @@ namespace Trading.UI.Demo.Models
 
         public double StopLossInPrice
         {
-            get
-            {
-                if (!IsStopLossEnabled) return default;
-
-                return TradeSide == ProtoOATradeSide.Sell ? Symbol.AddPipsToPrice(Price, StopLossInPips) : Symbol.SubtractPipsFromPrice(Price, StopLossInPips);
-            }
+            get => _stopLossInPrice;
+            set => SetProperty(ref _stopLossInPrice, value);
         }
 
         public double TakeProfitInPrice
         {
-            get
-            {
-                if (!IsTakeProfitEnabled) return default;
-
-                return TradeSide == ProtoOATradeSide.Sell ? Symbol.SubtractPipsFromPrice(Price, TakeProfitInPips) : Symbol.AddPipsToPrice(Price, TakeProfitInPips);
-            }
+            get => _takeProfitInPrice;
+            set => SetProperty(ref _takeProfitInPrice, value);
         }
 
         public double Price { get => _price; set => SetProperty(ref _price, value); }
+
+        public ProtoOATradeData TradeData
+        {
+            get => _tradeData;
+            set => SetProperty(ref _tradeData, value);
+        }
+
+        public DateTimeOffset OpenTime
+        {
+            get => _openTime;
+            set => SetProperty(ref _openTime, value);
+        }
+
+        public DateTimeOffset LastUpdateTime
+        {
+            get => _lastUpdateTime;
+            set => SetProperty(ref _lastUpdateTime, value);
+        }
     }
 }
