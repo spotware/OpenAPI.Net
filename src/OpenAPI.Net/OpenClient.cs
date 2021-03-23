@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace OpenAPI.Net
 {
-    public class OpenClient : IOpenClient
+    public sealed class OpenClient : IDisposable, IObservable<IMessage>
     {
         private readonly TimeSpan _heartbeatInerval;
 
@@ -41,8 +41,6 @@ namespace OpenAPI.Net
 
             _heartbeatInerval = heartbeatInerval;
         }
-
-        ~OpenClient() => Dispose(false);
 
         public string Host { get; }
         public int Port { get; }
@@ -124,26 +122,16 @@ namespace OpenAPI.Net
 
         public void Dispose()
         {
-            Dispose(true);
-
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
             if (IsDisposed) return;
 
             IsDisposed = true;
 
-            if (disposing)
-            {
-                _heartbeatDisposable.Dispose();
-                _listenerDisposable.Dispose();
+            _heartbeatDisposable?.Dispose();
+            _listenerDisposable?.Dispose();
 
-                _tcpClient.Dispose();
+            _tcpClient?.Dispose();
 
-                _streamWriteSemaphoreSlim.Dispose();
-            }
+            _streamWriteSemaphoreSlim?.Dispose();
 
             if (!IsTerminated) OnCompleted();
         }

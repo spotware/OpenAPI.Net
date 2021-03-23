@@ -48,13 +48,13 @@ namespace Trading.UI.Demo.Services
 
     public sealed class ApiService : IApiService
     {
-        private readonly Func<IOpenClient> _liveClientFactory;
-        private readonly Func<IOpenClient> _demoClientFactory;
+        private readonly Func<OpenClient> _liveClientFactory;
+        private readonly Func<OpenClient> _demoClientFactory;
 
-        private IOpenClient _liveClient;
-        private IOpenClient _demoClient;
+        private OpenClient _liveClient;
+        private OpenClient _demoClient;
 
-        public ApiService(Func<IOpenClient> liveClientFactory, Func<IOpenClient> demoClientFactory)
+        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory)
         {
             _liveClientFactory = liveClientFactory ?? throw new ArgumentNullException(nameof(liveClientFactory));
             _demoClientFactory = demoClientFactory ?? throw new ArgumentNullException(nameof(demoClientFactory));
@@ -68,8 +68,8 @@ namespace Trading.UI.Demo.Services
 
         public async Task Connect()
         {
-            IOpenClient liveClient = null;
-            IOpenClient demoClient = null;
+            OpenClient liveClient = null;
+            OpenClient demoClient = null;
 
             try
             {
@@ -470,12 +470,12 @@ namespace Trading.UI.Demo.Services
             }
         }
 
-        private IOpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
+        private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
 
         public void Dispose()
         {
-            if (_liveClient is not null) _liveClient.Dispose();
-            if (_demoClient is not null) _demoClient.Dispose();
+            _liveClient?.Dispose();
+            _demoClient?.Dispose();
         }
 
         private void VerifyConnection()

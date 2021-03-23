@@ -34,8 +34,8 @@ namespace Trading.UI.Demo
             containerRegistry.RegisterDialog<CreateModifyOrderView>();
 
             // Services
-            IOpenClient liveClientFactory() => new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
-            IOpenClient demoClientFactory() => new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            OpenClient liveClientFactory() => new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            OpenClient demoClientFactory() => new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
 
             var apiService = new ApiService(liveClientFactory, demoClientFactory);
 

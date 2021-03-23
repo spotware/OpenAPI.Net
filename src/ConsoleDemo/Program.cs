@@ -16,7 +16,7 @@ namespace ConsoleDemo
 
         private static Token _token;
 
-        private static IOpenClient _client;
+        private static OpenClient _client;
 
         private static readonly List<IDisposable> _disposables = new List<IDisposable>();
 
