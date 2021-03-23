@@ -27,10 +27,23 @@ namespace Trading.UI.Demo.ViewModels
         private readonly IApiService _apiService;
         private readonly ICollectionView _positionsCollectionView;
         private readonly ICollectionView _pendingOrdersCollectionView;
+        private readonly ICollectionView _historicalTradesCollectionView;
+        private readonly ICollectionView _transactionsCollectionView;
 
         private AccountModel _account;
         private IDisposable _reconcileSenderDisposable;
-        private string _searchText;
+        private DateTime _historyStartTime;
+        private DateTime _historyEndTime;
+        private DateTime _accountRegistrationTime;
+        private ProtoOATrader _trader;
+        private bool _reconcile = true;
+        private string _positionsSearchText;
+        private string _ordersSearchText;
+        private string _historySearchText;
+        private string _transactionsSearchText;
+        private bool _isAccountSelected;
+        private DateTime _transactionsStartTime;
+        private DateTime _transactionsEndTime;
 
         public AccountDataViewModel(IDialogService dialogService, IEventAggregator eventAggregator, IDialogCoordinator dialogCordinator, IApiService apiService)
         {
@@ -43,13 +56,25 @@ namespace Trading.UI.Demo.ViewModels
 
             _positionsCollectionView = CollectionViewSource.GetDefaultView(Positions);
 
-            _positionsCollectionView.Filter = FilterOrders;
+            _positionsCollectionView.Filter = obj => FilterOrders(obj, PositionsSearchText);
 
             PendingOrders = new ObservableCollection<PendingOrderModel>();
 
             _pendingOrdersCollectionView = CollectionViewSource.GetDefaultView(PendingOrders);
 
-            _pendingOrdersCollectionView.Filter = FilterOrders;
+            _pendingOrdersCollectionView.Filter = obj => FilterOrders(obj, OrdersSearchText);
+
+            HistoricalTrades = new ObservableCollection<HistoricalTradeModel>();
+
+            _historicalTradesCollectionView = CollectionViewSource.GetDefaultView(HistoricalTrades);
+
+            _historicalTradesCollectionView.Filter = FilterHistoricalTrades;
+
+            Transactions = new ObservableCollection<TransactionModel>();
+
+            _transactionsCollectionView = CollectionViewSource.GetDefaultView(Transactions);
+
+            _transactionsCollectionView.Filter = FilterTransactions;
 
             SelectedPositions = new ObservableCollection<MarketOrderModel>();
 
@@ -80,6 +105,10 @@ namespace Trading.UI.Demo.ViewModels
             CancelSelectedOrdersCommand = new DelegateCommand(CancelSelectedOrders, () => SelectedPendingOrders != null && SelectedPendingOrders.Any()).ObservesProperty(() => SelectedPendingOrders);
 
             ModifyOrderCommand = new DelegateCommand<PendingOrderModel>(ModifyOrder);
+
+            LoadHistoryCommand = new DelegateCommand(LoadHistory);
+
+            LoadTransactionsCommand = new DelegateCommand(LoadTransactions);
         }
 
         public DelegateCommand CreateNewOrderCommand { get; }
@@ -91,6 +120,8 @@ namespace Trading.UI.Demo.ViewModels
         public DelegateCommand CloseSelectedPositionsCommand { get; }
         public DelegateCommand<MarketOrderModel> ModifyPositionCommand { get; }
         public DelegateCommand<PendingOrderModel> CancelOrderCommand { get; }
+        public DelegateCommand LoadHistoryCommand { get; }
+        public DelegateCommand LoadTransactionsCommand { get; }
 
         public ObservableCollection<MarketOrderModel> SelectedPositions { get; }
         public ObservableCollection<MarketOrderModel> Positions { get; }
@@ -99,16 +130,65 @@ namespace Trading.UI.Demo.ViewModels
         public ObservableCollection<PositionCloseType> SelectedClosePositionTypes { get; }
         public ObservableCollection<OrderCancelType> SelectedCancelOrderTypes { get; }
 
-        public string SearchText
+        public ObservableCollection<HistoricalTradeModel> HistoricalTrades { get; }
+
+        public ObservableCollection<TransactionModel> Transactions { get; }
+
+        public string PositionsSearchText
         {
-            get => _searchText;
+            get => _positionsSearchText;
             set
             {
-                SetProperty(ref _searchText, value);
+                SetProperty(ref _positionsSearchText, value);
 
                 _positionsCollectionView.Refresh();
             }
         }
+
+        public string OrdersSearchText
+        {
+            get => _ordersSearchText;
+            set
+            {
+                SetProperty(ref _ordersSearchText, value);
+
+                _pendingOrdersCollectionView.Refresh();
+            }
+        }
+
+        public string HistorySearchText
+        {
+            get => _historySearchText;
+            set
+            {
+                SetProperty(ref _historySearchText, value);
+
+                _historicalTradesCollectionView.Refresh();
+            }
+        }
+
+        public string TransactionsSearchText
+        {
+            get => _transactionsSearchText;
+            set
+            {
+                SetProperty(ref _transactionsSearchText, value);
+
+                _transactionsCollectionView.Refresh();
+            }
+        }
+
+        public DateTime HistoryStartTime { get => _historyStartTime; set => SetProperty(ref _historyStartTime, value); }
+
+        public DateTime HistoryEndTime { get => _historyEndTime; set => SetProperty(ref _historyEndTime, value); }
+
+        public DateTime AccountRegistrationTime { get => _accountRegistrationTime; set => SetProperty(ref _accountRegistrationTime, value); }
+
+        public bool IsAccountSelected { get => _isAccountSelected; set => SetProperty(ref _isAccountSelected, value); }
+
+        public DateTime TransactionsStartTime { get => _transactionsStartTime; set => SetProperty(ref _transactionsStartTime, value); }
+
+        public DateTime TransactionsEndTime { get => _transactionsEndTime; set => SetProperty(ref _transactionsEndTime, value); }
 
         protected override void Loaded()
         {
@@ -124,11 +204,17 @@ namespace Trading.UI.Demo.ViewModels
 
         private void Cleanup()
         {
+            IsAccountSelected = false;
+
+            _trader = null;
+
             _reconcileSenderDisposable?.Dispose();
 
             Positions.Clear();
             SelectedPositions.Clear();
             SelectedClosePositionTypes.Clear();
+            HistoricalTrades.Clear();
+            Transactions.Clear();
         }
 
         private async void ShowCreateModifyOrderDialog()
@@ -143,15 +229,31 @@ namespace Trading.UI.Demo.ViewModels
             _dialogService.ShowDialog(nameof(CreateModifyOrderView), new DialogParameters { { "Account", _account } }, null);
         }
 
-        private void OnAccountChanged(AccountModel account)
+        private async void OnAccountChanged(AccountModel account)
         {
             Cleanup();
 
+            if (account is null) return;
+
+            IsAccountSelected = true;
+
             _account = account;
+
+            var traderResponse = await _apiService.GetTrader(_account.Id, _account.IsLive);
+
+            _trader = traderResponse.Trader;
+
+            AccountRegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(_trader.RegistrationTimestamp).LocalDateTime;
+
+            HistoryStartTime = AccountRegistrationTime;
+            HistoryEndTime = DateTime.Now;
+
+            TransactionsStartTime = AccountRegistrationTime;
+            TransactionsEndTime = DateTime.Now;
 
             _reconcileSenderDisposable = Observable.Interval(TimeSpan.FromSeconds(1)).ObserveOn(SynchronizationContext.Current).Subscribe(async x =>
             {
-                if (_account is null) return;
+                if (_account is null || _reconcile is false) return;
 
                 var response = await _apiService.GetAccountOrders(_account.Id, _account.IsLive);
 
@@ -223,15 +325,15 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private bool FilterOrders(object obj)
+        private bool FilterOrders(object obj, string searchText)
         {
-            if (string.IsNullOrEmpty(SearchText) || obj is not OrderModel order) return true;
+            if (string.IsNullOrEmpty(searchText) || obj is not OrderModel order) return true;
 
             var comparison = StringComparison.OrdinalIgnoreCase;
 
-            return _account.Symbols.First(symbol => symbol.Id == order.TradeData.SymbolId).Name.Contains(SearchText, comparison)
-                || order.TradeData.Label.Contains(SearchText, comparison)
-                || order.TradeData.TradeSide.ToString().Contains(SearchText, comparison);
+            return _account.Symbols.First(symbol => symbol.Id == order.TradeData.SymbolId).Name.Contains(searchText, comparison)
+                || order.TradeData.Label.Contains(searchText, comparison)
+                || order.TradeData.TradeSide.ToString().Contains(searchText, comparison);
         }
 
         private async Task SendPositionsCloseRequest(MarketOrderModel[] positions)
@@ -461,6 +563,98 @@ namespace Trading.UI.Demo.ViewModels
             if (!userConfirmation) return;
 
             await SendOrdersCancelRequest(new[] { order });
+        }
+
+        private async void LoadHistory()
+        {
+            if (HistoryStartTime >= HistoryEndTime)
+            {
+                await _dialogCordinator.ShowMessageAsync(this, "Error", "The start time must be before the end time of history");
+
+                return;
+            }
+
+            _reconcile = false;
+
+            var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Loading History", "Please wait...");
+
+            try
+            {
+                var historicalTrades = await _apiService.GetHistoricalTrades(_account.Id, _account.IsLive, HistoryStartTime, HistoryEndTime);
+
+                var closingTrades = new List<HistoricalTradeModel>();
+
+                foreach (var trade in historicalTrades)
+                {
+                    if (trade.IsClosing is false || trade.ClosedVolume == 0) continue;
+
+                    trade.Symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == trade.SymbolId);
+
+                    if (trade.Symbol is not null) closingTrades.Add(trade);
+                }
+
+                HistoricalTrades.Clear();
+
+                HistoricalTrades.AddRange(closingTrades);
+            }
+            finally
+            {
+                _reconcile = true;
+
+                if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
+            }
+        }
+
+        private bool FilterHistoricalTrades(object obj)
+        {
+            if (string.IsNullOrEmpty(HistorySearchText) || obj is not HistoricalTradeModel trade) return true;
+
+            var comparison = StringComparison.OrdinalIgnoreCase;
+
+            return trade.Symbol.Name.Contains(HistorySearchText, comparison)
+                || trade.TradeSide.ToString().Contains(HistorySearchText, comparison)
+                || trade.Id.ToString().Contains(HistorySearchText, comparison)
+                || trade.OrderId.ToString().Contains(HistorySearchText, comparison)
+                || trade.PositionId.ToString().Contains(HistorySearchText, comparison);
+        }
+
+        private bool FilterTransactions(object obj)
+        {
+            if (string.IsNullOrEmpty(TransactionsSearchText) || !(obj is TransactionModel transaction)) return true;
+
+            var comparison = StringComparison.OrdinalIgnoreCase;
+
+            return transaction.Note.Contains(TransactionsSearchText, comparison) ||
+                   transaction.Type.ToString().Contains(TransactionsSearchText, comparison);
+        }
+
+        private async void LoadTransactions()
+        {
+            if (TransactionsStartTime >= TransactionsEndTime)
+            {
+                await _dialogCordinator.ShowMessageAsync(this, "Error", "The start time must be before the end time of transactions");
+
+                return;
+            }
+
+            _reconcile = false;
+
+            var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Loading Transactions", "Please wait...");
+
+            try
+            {
+                var transactions = await _apiService.GetTransactions(_account.Id, _account.IsLive, TransactionsStartTime, TransactionsEndTime);
+
+                Transactions.Clear();
+
+                Transactions.AddRange(transactions);
+            }
+            finally
+            {
+                _reconcile = true;
+
+                if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
+            }
         }
     }
 }

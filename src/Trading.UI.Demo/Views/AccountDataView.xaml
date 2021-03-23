@@ -33,7 +33,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <TabControl>
+    <TabControl IsEnabled="{Binding Path=IsAccountSelected, UpdateSourceTrigger=PropertyChanged}">
         <TabItem Header="Positions">
             <Grid>
                 <Grid.RowDefinitions>
@@ -108,7 +108,7 @@
                                 Margin="5"
                                 mah:TextBoxHelper.Watermark="Search..."
                                 Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding Path=PositionsSearchText, UpdateSourceTrigger=PropertyChanged}" />
                         </ToolBar>
                     </ToolBarTray>
                 </Border>
@@ -271,7 +271,7 @@
                                 Margin="5"
                                 mah:TextBoxHelper.Watermark="Search..."
                                 Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding Path=OrdersSearchText, UpdateSourceTrigger=PropertyChanged}" />
                         </ToolBar>
                     </ToolBarTray>
                 </Border>
@@ -364,8 +364,8 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=StartDate}" />
+                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedDate="{Binding Path=HistoryStartTime}" />
 
                                 <TextBlock
                                     Margin="5"
@@ -376,8 +376,8 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=EndDate}" />
+                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedDate="{Binding Path=HistoryEndTime}" />
 
                                 <Button
                                     MinWidth="80"
@@ -388,18 +388,6 @@
                                     Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
                             </WrapPanel>
                         </ToolBar>
-                        <ToolBar Name="HistoryCleanToolBar">
-                            <WrapPanel Orientation="Horizontal">
-                                <Button
-                                    MinWidth="80"
-                                    Margin="5"
-                                    mah:ControlsHelper.ContentCharacterCasing="Normal"
-                                    Command="{Binding Path=CleanHistoryCommand}"
-                                    Content="Clean"
-                                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
-                                    ToolTip="Removes the cached history data of this account from database" />
-                            </WrapPanel>
-                        </ToolBar>
 
                         <ToolBar Name="HistorySearchToolBar">
                             <TextBox
@@ -407,7 +395,7 @@
                                 Margin="5"
                                 mah:TextBoxHelper.Watermark="Search..."
                                 Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding Path=HistorySearchText, UpdateSourceTrigger=PropertyChanged}" />
                         </ToolBar>
                     </ToolBarTray>
                 </Border>
@@ -415,7 +403,6 @@
                 <DataGrid
                     Name="TradingAccountHistoricalTradesDataGrid"
                     Grid.Row="1"
-                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedHistoricalTrades, UpdateSourceTrigger=PropertyChanged}"
                     behaviors:DataGridColumnSettingsBehavior.EnableColumnsVisibilityMenu="True"
                     behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
                     behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
@@ -546,8 +533,8 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=StartDate}" />
+                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedDate="{Binding Path=TransactionsStartTime}" />
 
                                 <TextBlock
                                     Margin="5"
@@ -558,8 +545,8 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.DateTime, Mode=OneWay}"
-                                    SelectedDate="{Binding Path=EndDate}" />
+                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedDate="{Binding Path=TransactionsEndTime}" />
 
                                 <Button
                                     MinWidth="80"
@@ -576,7 +563,7 @@
                                 Margin="5"
                                 mah:TextBoxHelper.Watermark="Search..."
                                 Style="{StaticResource MahApps.Styles.TextBox.Search}"
-                                Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding Path=TransactionsSearchText, UpdateSourceTrigger=PropertyChanged}" />
                         </ToolBar>
                     </ToolBarTray>
                 </Border>
@@ -584,7 +571,6 @@
                 <DataGrid
                     Name="TradingAccountTransactionsDataGrid"
                     Grid.Row="1"
-                    behaviors:BindableSelectedItemsBehavior.SelectedItems="{Binding Path=SelectedTransactions, UpdateSourceTrigger=PropertyChanged}"
                     behaviors:DataGridColumnSettingsBehavior.EnableColumnsVisibilityMenu="True"
                     behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
                     behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
