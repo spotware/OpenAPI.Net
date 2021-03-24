@@ -55,6 +55,8 @@ namespace Trading.UI.Demo.Services
         Task SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds);
 
         Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds);
+
+        Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive);
     }
 
     public sealed class ApiService : IApiService
@@ -783,13 +785,44 @@ namespace Trading.UI.Demo.Services
             if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
         }
 
-        private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
+        public async Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            using var cancelationTokenSource = new CancellationTokenSource();
+
+            ProtoOAAsset[] result = null;
+
+            using var disposable = client.OfType<ProtoOAAssetListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            {
+                result = response.Asset.ToArray();
+
+                cancelationTokenSource.Cancel();
+            });
+
+            var requestMeessage = new ProtoOAAssetListReq
+            {
+                CtidTraderAccountId = accountId,
+            };
+
+            await client.SendMessage(requestMeessage, ProtoOAPayloadType.ProtoOaAssetListReq);
+
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
+
+            if (result is null) throw new TimeoutException("The API didn't responded");
+
+            return result;
+        }
 
         public void Dispose()
         {
             _liveClient?.Dispose();
             _demoClient?.Dispose();
         }
+
+        private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
 
         private void VerifyConnection()
         {

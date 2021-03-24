@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using Trading.UI.Demo.Helpers;
 
 namespace Trading.UI.Demo.ValueConverters
 {
-    [ValueConversion(typeof(long), typeof(long))]
-    public class MonetaryConverter : IValueConverter
+    [ValueConversion(typeof(long), typeof(double))]
+    public class MonetaryValueConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -16,12 +17,12 @@ namespace Trading.UI.Demo.ValueConverters
 
             var monetary = System.Convert.ToInt64(value);
 
-            return monetary / 100;
+            return MonetaryConverter.FromMonetary(monetary);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value == null ? 0 : System.Convert.ToInt64(value) * 100;
+            return value == null ? 0 : MonetaryConverter.ToMonetary(System.Convert.ToInt64(value));
         }
     }
 }

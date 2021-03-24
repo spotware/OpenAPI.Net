@@ -28,7 +28,7 @@
                 <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />
             </Style>
 
-            <valueConverters:MonetaryConverter x:Key="MonetaryConverter" />
+            <valueConverters:MonetaryValueConverter x:Key="MonetaryConverter" />
             <valueConverters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
             <valueConverters:NullableDoubleConverter x:Key="NullableDoubleConverter" />
             <valueConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />

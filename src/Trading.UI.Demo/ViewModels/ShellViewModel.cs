@@ -10,6 +10,7 @@ using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Trading.UI.Demo.Events;
+using Trading.UI.Demo.Helpers;
 using Trading.UI.Demo.Models;
 using Trading.UI.Demo.Regions;
 using Trading.UI.Demo.Services;
@@ -238,6 +239,7 @@ namespace Trading.UI.Demo.ViewModels
 
                 var accountId = (long)SelectedAccount.CtidTraderAccountId;
                 var trader = await _apiService.GetTrader(accountId, SelectedAccount.IsLive);
+                var assets = await _apiService.GetAssets(accountId, SelectedAccount.IsLive);
 
                 _accountModel = new AccountModel
                 {
@@ -245,7 +247,10 @@ namespace Trading.UI.Demo.ViewModels
                     IsLive = SelectedAccount.IsLive,
                     Symbols = await _apiService.GetSymbolModels(accountId, SelectedAccount.IsLive),
                     Trader = trader,
-                    RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp)
+                    RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp),
+                    Balance = MonetaryConverter.FromMonetary(trader.Balance),
+                    Assets = new ReadOnlyCollection<ProtoOAAsset>(assets),
+                    Currency = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId).Name
                 };
 
                 var symbolIds = _accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();

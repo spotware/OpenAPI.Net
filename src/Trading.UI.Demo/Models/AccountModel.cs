@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Trading.UI.Demo.Models
 {
@@ -13,5 +14,23 @@ namespace Trading.UI.Demo.Models
         public ProtoOATrader Trader { get; init; }
 
         public DateTimeOffset RegistrationTime { get; init; }
+
+        public string Currency { get; init; }
+
+        public IReadOnlyCollection<ProtoOAAsset> Assets { get; init; }
+
+        public double Balance { get; set; }
+
+        public double Equity { get; set; }
+
+        public double MarginUsed { get; set; }
+
+        public double FreeMargin { get; set; }
+
+        public double MarginLevel { get; set; }
+
+        public double UnrealizedGrossProfit { get; set; }
+
+        public double UnrealizedNetProfit { get; set; }
     }
 }
