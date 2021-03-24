@@ -231,9 +231,9 @@ namespace OpenAPI.Net
             {
                 try
                 {
-                    observer.OnNext(protoMessage);
-
                     var message = MessageFactory.GetMessage(protoMessage);
+
+                    if (protoMessage.HasClientMsgId || message == null) observer.OnNext(protoMessage);
 
                     if (message != null) observer.OnNext(message);
                 }

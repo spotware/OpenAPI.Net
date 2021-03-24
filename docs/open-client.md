@@ -108,6 +108,21 @@ To subscribe for an specific message type use Linq OfType extension method:
 
 You can use any of the Open API response or event messages to subscribe like above code snippet.
 
+If you want to receive a message with a client message ID (clientMsgId) then you have to subscribe to "ProtoMessage" and then use the MessageFactory class to get the actual message:
+
+```C#
+	var disposable = client.OfType<ProtoMessage>().Subscribe(OnProtoMessage);
+	
+	private void OnProtoMessage(ProtoMessage protoMessage)
+	{
+		var clientMsgId = protoMessage.ClientMsgId;
+		// Message factory can return null
+		var message = MessageFactory.GetMessage(protoMessage);
+	}
+```
+
+Client only stream a ProtoMessage if its ClientMsgId is set or it couldn't parse the actual message, otherwise it will not stream it.
+
 # Handling Exceptions
 
 If something went wrong or client lost connection to API you can get the thrown exception by subscribing to client stream OnError:
