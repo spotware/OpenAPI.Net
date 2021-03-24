@@ -68,7 +68,7 @@ namespace OpenAPI.Net
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
 
             _listenerDisposable = Observable.DoWhile(Observable.FromAsync(Read), () => !IsDisposed)
-                .Where(iMessage => iMessage != null)
+                .Where(message => message != null)
                 .Subscribe(OnNext);
             _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
                 .Subscribe(x => SendHeartbeat());
@@ -136,7 +136,7 @@ namespace OpenAPI.Net
             if (!IsTerminated) OnCompleted();
         }
 
-        private async Task<IMessage> Read()
+        private async Task<ProtoMessage> Read()
         {
             try
             {
@@ -168,7 +168,7 @@ namespace OpenAPI.Net
                 }
                 while (readBytes < length);
 
-                return MessageFactory.GetMessage(data);
+                return ProtoMessage.Parser.ParseFrom(data);
             }
             catch (Exception ex)
             {
@@ -225,13 +225,17 @@ namespace OpenAPI.Net
             }
         }
 
-        private void OnNext(IMessage message)
+        private void OnNext(ProtoMessage protoMessage)
         {
             foreach (var (_, observer) in _observers)
             {
                 try
                 {
-                    observer.OnNext(message);
+                    observer.OnNext(protoMessage);
+
+                    var message = MessageFactory.GetMessage(protoMessage);
+
+                    if (message != null) observer.OnNext(message);
                 }
                 catch (Exception ex)
                 {

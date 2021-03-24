@@ -16,10 +16,8 @@ namespace OpenAPI.Net.Helpers
             return GetMessage((uint)payloadType, message.ToByteString(), clientMessageId);
         }
 
-        public static IMessage GetMessage(byte[] data)
+        public static IMessage GetMessage(ProtoMessage protoMessage)
         {
-            var protoMessage = ProtoMessage.Parser.ParseFrom(data);
-
             var payload = protoMessage.Payload;
 
             return protoMessage.PayloadType switch
@@ -65,7 +63,7 @@ namespace OpenAPI.Net.Helpers
                 (int)ProtoOAPayloadType.ProtoOaMarginCallUpdateRes => ProtoOAMarginCallUpdateRes.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaMarginCallUpdateEvent => ProtoOAMarginCallUpdateEvent.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaMarginCallTriggerEvent => ProtoOAMarginCallTriggerEvent.Parser.ParseFrom(payload),
-                _ => protoMessage,
+                _ => null
             };
         }
 
