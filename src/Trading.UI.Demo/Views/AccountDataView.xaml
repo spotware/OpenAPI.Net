@@ -364,7 +364,7 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.LocalDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                     SelectedDate="{Binding Path=HistoryStartTime}" />
 
                                 <TextBlock
@@ -376,7 +376,7 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.LocalDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                     SelectedDate="{Binding Path=HistoryEndTime}" />
 
                                 <Button
@@ -533,7 +533,7 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.LocalDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                     SelectedDate="{Binding Path=TransactionsStartTime}" />
 
                                 <TextBlock
@@ -545,7 +545,7 @@
                                 <DatePicker
                                     Margin="5"
                                     DisplayDateEnd="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
-                                    DisplayDateStart="{Binding Path=AccountRegistrationTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    DisplayDateStart="{Binding Path=Account.RegistrationTime.LocalDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                     SelectedDate="{Binding Path=TransactionsEndTime}" />
 
                                 <Button

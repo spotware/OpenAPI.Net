@@ -34,8 +34,6 @@ namespace Trading.UI.Demo.ViewModels
         private IDisposable _reconcileSenderDisposable;
         private DateTime _historyStartTime;
         private DateTime _historyEndTime;
-        private DateTime _accountRegistrationTime;
-        private ProtoOATrader _trader;
         private bool _reconcile = true;
         private string _positionsSearchText;
         private string _ordersSearchText;
@@ -182,13 +180,13 @@ namespace Trading.UI.Demo.ViewModels
 
         public DateTime HistoryEndTime { get => _historyEndTime; set => SetProperty(ref _historyEndTime, value); }
 
-        public DateTime AccountRegistrationTime { get => _accountRegistrationTime; set => SetProperty(ref _accountRegistrationTime, value); }
-
         public bool IsAccountSelected { get => _isAccountSelected; set => SetProperty(ref _isAccountSelected, value); }
 
         public DateTime TransactionsStartTime { get => _transactionsStartTime; set => SetProperty(ref _transactionsStartTime, value); }
 
         public DateTime TransactionsEndTime { get => _transactionsEndTime; set => SetProperty(ref _transactionsEndTime, value); }
+
+        public AccountModel Account { get => _account; set => SetProperty(ref _account, value); }
 
         protected override void Loaded()
         {
@@ -199,14 +197,12 @@ namespace Trading.UI.Demo.ViewModels
         {
             Cleanup();
 
-            _account = null;
+            Account = null;
         }
 
         private void Cleanup()
         {
             IsAccountSelected = false;
-
-            _trader = null;
 
             _reconcileSenderDisposable?.Dispose();
 
@@ -219,17 +215,17 @@ namespace Trading.UI.Demo.ViewModels
 
         private async void ShowCreateModifyOrderDialog()
         {
-            if (_account is null)
+            if (Account is null)
             {
                 await _dialogCordinator.ShowMessageAsync(this, "Error", "Trading account is not selected yet");
 
                 return;
             }
 
-            _dialogService.ShowDialog(nameof(CreateModifyOrderView), new DialogParameters { { "Account", _account } }, null);
+            _dialogService.ShowDialog(nameof(CreateModifyOrderView), new DialogParameters { { "Account", Account } }, null);
         }
 
-        private async void OnAccountChanged(AccountModel account)
+        private void OnAccountChanged(AccountModel account)
         {
             Cleanup();
 
@@ -237,25 +233,19 @@ namespace Trading.UI.Demo.ViewModels
 
             IsAccountSelected = true;
 
-            _account = account;
+            Account = account;
 
-            var traderResponse = await _apiService.GetTrader(_account.Id, _account.IsLive);
-
-            _trader = traderResponse.Trader;
-
-            AccountRegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(_trader.RegistrationTimestamp).LocalDateTime;
-
-            HistoryStartTime = AccountRegistrationTime;
+            HistoryStartTime = Account.RegistrationTime.LocalDateTime;
             HistoryEndTime = DateTime.Now;
 
-            TransactionsStartTime = AccountRegistrationTime;
+            TransactionsStartTime = Account.RegistrationTime.LocalDateTime;
             TransactionsEndTime = DateTime.Now;
 
             _reconcileSenderDisposable = Observable.Interval(TimeSpan.FromSeconds(1)).ObserveOn(SynchronizationContext.Current).Subscribe(async x =>
             {
-                if (_account is null || _reconcile is false) return;
+                if (Account is null || _reconcile is false) return;
 
-                var response = await _apiService.GetAccountOrders(_account.Id, _account.IsLive);
+                var response = await _apiService.GetAccountOrders(Account.Id, Account.IsLive);
 
                 UpdatePositions(response.Position);
 
@@ -280,7 +270,7 @@ namespace Trading.UI.Demo.ViewModels
                     continue;
                 }
 
-                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedPosition.TradeData.SymbolId);
+                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedPosition.TradeData.SymbolId);
 
                 position.Update(updatedPosition, symbol);
             }
@@ -289,7 +279,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 if (currentPositions.Any(iPosition => iPosition.Id == position.PositionId)) continue;
 
-                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == position.TradeData.SymbolId);
+                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == position.TradeData.SymbolId);
 
                 Positions.Add(new MarketOrderModel(position, symbol));
             }
@@ -310,7 +300,7 @@ namespace Trading.UI.Demo.ViewModels
                     continue;
                 }
 
-                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedOrder.TradeData.SymbolId);
+                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedOrder.TradeData.SymbolId);
 
                 order.Update(updatedOrder, symbol);
             }
@@ -319,7 +309,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 if (currentOrders.Any(iOrder => iOrder.Id == order.OrderId)) continue;
 
-                var symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == order.TradeData.SymbolId);
+                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == order.TradeData.SymbolId);
 
                 PendingOrders.Add(new PendingOrderModel(order, symbol));
             }
@@ -331,7 +321,7 @@ namespace Trading.UI.Demo.ViewModels
 
             var comparison = StringComparison.OrdinalIgnoreCase;
 
-            return _account.Symbols.First(symbol => symbol.Id == order.TradeData.SymbolId).Name.Contains(searchText, comparison)
+            return Account.Symbols.First(symbol => symbol.Id == order.TradeData.SymbolId).Name.Contains(searchText, comparison)
                 || order.TradeData.Label.Contains(searchText, comparison)
                 || order.TradeData.TradeSide.ToString().Contains(searchText, comparison);
         }
@@ -350,7 +340,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 foreach (var position in positions)
                 {
-                    await _apiService.ClosePosition(position.Id, position.TradeData.Volume, _account.Id, _account.IsLive);
+                    await _apiService.ClosePosition(position.Id, position.TradeData.Volume, Account.Id, Account.IsLive);
 
                     currentProgress += progressStep;
 
@@ -379,7 +369,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 foreach (var order in orders)
                 {
-                    await _apiService.CancelOrder(order.Id, _account.Id, _account.IsLive);
+                    await _apiService.CancelOrder(order.Id, Account.Id, Account.IsLive);
 
                     currentProgress += progressStep;
 
@@ -480,7 +470,7 @@ namespace Trading.UI.Demo.ViewModels
         {
             _dialogService.ShowDialog(nameof(CreateModifyOrderView), new DialogParameters
             {
-                { "Account", _account },
+                { "Account", Account },
                 { "Position", position }
             }, null);
         }
@@ -489,7 +479,7 @@ namespace Trading.UI.Demo.ViewModels
         {
             _dialogService.ShowDialog(nameof(CreateModifyOrderView), new DialogParameters
             {
-                { "Account", _account },
+                { "Account", Account },
                 { "PendingOrder", order }
             }, null);
         }
@@ -580,7 +570,7 @@ namespace Trading.UI.Demo.ViewModels
 
             try
             {
-                var historicalTrades = await _apiService.GetHistoricalTrades(_account.Id, _account.IsLive, HistoryStartTime, HistoryEndTime);
+                var historicalTrades = await _apiService.GetHistoricalTrades(Account.Id, Account.IsLive, HistoryStartTime, HistoryEndTime);
 
                 var closingTrades = new List<HistoricalTradeModel>();
 
@@ -588,7 +578,7 @@ namespace Trading.UI.Demo.ViewModels
                 {
                     if (trade.IsClosing is false || trade.ClosedVolume == 0) continue;
 
-                    trade.Symbol = _account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == trade.SymbolId);
+                    trade.Symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == trade.SymbolId);
 
                     if (trade.Symbol is not null) closingTrades.Add(trade);
                 }
@@ -643,7 +633,7 @@ namespace Trading.UI.Demo.ViewModels
 
             try
             {
-                var transactions = await _apiService.GetTransactions(_account.Id, _account.IsLive, TransactionsStartTime, TransactionsEndTime);
+                var transactions = await _apiService.GetTransactions(Account.Id, Account.IsLive, TransactionsStartTime, TransactionsEndTime);
 
                 Transactions.Clear();
 

@@ -211,11 +211,16 @@ namespace Trading.UI.Demo.ViewModels
 
             try
             {
+                var accountId = (long)SelectedAccount.CtidTraderAccountId;
+                var trader = await _apiService.GetTrader(accountId, SelectedAccount.IsLive);
+
                 var accountModel = new AccountModel
                 {
-                    Id = (long)SelectedAccount.CtidTraderAccountId,
+                    Id = accountId,
                     IsLive = SelectedAccount.IsLive,
-                    Symbols = await _apiService.GetSymbolModels(SelectedAccount)
+                    Symbols = await _apiService.GetSymbolModels(SelectedAccount),
+                    Trader = trader,
+                    RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp)
                 };
 
                 _eventAggregator.GetEvent<AccountChangedEvent>().Publish(accountModel);

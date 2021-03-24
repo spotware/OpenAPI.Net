@@ -46,7 +46,7 @@ namespace Trading.UI.Demo.Services
 
         Task ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId, bool isLive);
 
-        Task<ProtoOATraderRes> GetTrader(long accountId, bool isLive);
+        Task<ProtoOATrader> GetTrader(long accountId, bool isLive);
 
         Task<HistoricalTradeModel[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
 
@@ -477,7 +477,7 @@ namespace Trading.UI.Demo.Services
             }
         }
 
-        public async Task<ProtoOATraderRes> GetTrader(long accountId, bool isLive)
+        public async Task<ProtoOATrader> GetTrader(long accountId, bool isLive)
         {
             VerifyConnection();
 
@@ -485,12 +485,12 @@ namespace Trading.UI.Demo.Services
 
             using var cancelationTokenSource = new CancellationTokenSource();
 
-            ProtoOATraderRes result = null;
+            ProtoOATrader result = null;
 
             using var disposable = client.OfType<ProtoOATraderRes>().Where(response => response.CtidTraderAccountId == accountId)
                 .Subscribe(response =>
             {
-                result = response;
+                result = response.Trader;
 
                 cancelationTokenSource.Cancel();
             });

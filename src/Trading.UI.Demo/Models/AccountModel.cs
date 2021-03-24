@@ -1,11 +1,17 @@
-﻿namespace Trading.UI.Demo.Models
+﻿using System;
+
+namespace Trading.UI.Demo.Models
 {
     public class AccountModel
     {
-        public long Id { init; get; }
+        public long Id { get; init; }
 
-        public bool IsLive { init; get; }
+        public bool IsLive { get; init; }
 
-        public SymbolModel[] Symbols { init; get; }
+        public SymbolModel[] Symbols { get; init; }
+
+        public ProtoOATrader Trader { get; init; }
+
+        public DateTimeOffset RegistrationTime { get; init; }
     }
 }
