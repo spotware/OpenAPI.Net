@@ -24,13 +24,13 @@ namespace Trading.UI.Demo.Services
 
         Task AuthorizeApp(auth.App app);
 
-        Task<ProtoOAAccountAuthRes> AuthorizeAccount(ProtoOACtidTraderAccount account, string accessToken);
+        Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken);
 
-        Task<ProtoOALightSymbol[]> GetLightSymbols(ProtoOACtidTraderAccount account);
+        Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive);
 
-        Task<ProtoOASymbol[]> GetSymbols(ProtoOACtidTraderAccount account, long[] symbolIds);
+        Task<ProtoOASymbol[]> GetSymbols(long accountId, bool isLive, long[] symbolIds);
 
-        Task<SymbolModel[]> GetSymbolModels(ProtoOACtidTraderAccount account);
+        Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive);
 
         Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken);
 
@@ -133,13 +133,11 @@ namespace Trading.UI.Demo.Services
             if (!isLiveClientAppAuthorized || !isDemoClientAppAuthorized) throw new TimeoutException("The API didn't responded");
         }
 
-        public async Task<ProtoOAAccountAuthRes> AuthorizeAccount(ProtoOACtidTraderAccount account, string accessToken)
+        public async Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken)
         {
             VerifyConnection();
 
-            var accountId = (long)account.CtidTraderAccountId;
-
-            var client = GetClient(account.IsLive);
+            var client = GetClient(isLive);
 
             using var cancelationTokenSource = new CancellationTokenSource();
 
@@ -155,7 +153,7 @@ namespace Trading.UI.Demo.Services
 
             var message = new ProtoOAAccountAuthReq
             {
-                CtidTraderAccountId = (long)account.CtidTraderAccountId,
+                CtidTraderAccountId = accountId,
                 AccessToken = accessToken,
             };
 
@@ -168,13 +166,11 @@ namespace Trading.UI.Demo.Services
             return result;
         }
 
-        public async Task<ProtoOALightSymbol[]> GetLightSymbols(ProtoOACtidTraderAccount account)
+        public async Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive)
         {
             VerifyConnection();
 
-            var accountId = (long)account.CtidTraderAccountId;
-
-            var client = GetClient(account.IsLive);
+            var client = GetClient(isLive);
 
             using var cancelationTokenSource = new CancellationTokenSource();
 
@@ -190,7 +186,7 @@ namespace Trading.UI.Demo.Services
 
             var symbolsMessage = new ProtoOASymbolsListReq
             {
-                CtidTraderAccountId = (long)account.CtidTraderAccountId,
+                CtidTraderAccountId = accountId,
                 IncludeArchivedSymbols = false
             };
 
@@ -203,13 +199,11 @@ namespace Trading.UI.Demo.Services
             return result;
         }
 
-        public async Task<ProtoOASymbol[]> GetSymbols(ProtoOACtidTraderAccount account, long[] symbolIds)
+        public async Task<ProtoOASymbol[]> GetSymbols(long accountId, bool isLive, long[] symbolIds)
         {
             VerifyConnection();
 
-            var accountId = (long)account.CtidTraderAccountId;
-
-            var client = GetClient(account.IsLive);
+            var client = GetClient(isLive);
 
             using var cancelationTokenSource = new CancellationTokenSource();
 
@@ -225,7 +219,7 @@ namespace Trading.UI.Demo.Services
 
             var symbolsMessage = new ProtoOASymbolByIdReq
             {
-                CtidTraderAccountId = (long)account.CtidTraderAccountId,
+                CtidTraderAccountId = accountId,
             };
 
             symbolsMessage.SymbolId.AddRange(symbolIds);
@@ -239,15 +233,15 @@ namespace Trading.UI.Demo.Services
             return result;
         }
 
-        public async Task<SymbolModel[]> GetSymbolModels(ProtoOACtidTraderAccount account)
+        public async Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive)
         {
             VerifyConnection();
 
-            var lightSymbols = await GetLightSymbols(account);
+            var lightSymbols = await GetLightSymbols(accountId, isLive);
 
             var symbolIds = lightSymbols.Select(iSymbol => iSymbol.SymbolId).ToArray();
 
-            var symbols = await GetSymbols(account, symbolIds);
+            var symbols = await GetSymbols(accountId, isLive, symbolIds);
 
             return lightSymbols.Where(lightSymbol => symbols.Any(symbol => lightSymbol.SymbolId == symbol.SymbolId)).Select(lightSymbol => new SymbolModel
             {

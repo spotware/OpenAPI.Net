@@ -135,7 +135,7 @@ namespace Trading.UI.Demo.ViewModels
 
                 foreach (var account in accounts)
                 {
-                    await _apiService.AuthorizeAccount(account, _token.AccessToken);
+                    await _apiService.AuthorizeAccount((long)account.CtidTraderAccountId, account.IsLive, _token.AccessToken);
                 }
             }
             catch (TimeoutException)
@@ -218,7 +218,7 @@ namespace Trading.UI.Demo.ViewModels
                 {
                     Id = accountId,
                     IsLive = SelectedAccount.IsLive,
-                    Symbols = await _apiService.GetSymbolModels(SelectedAccount),
+                    Symbols = await _apiService.GetSymbolModels(accountId, SelectedAccount.IsLive),
                     Trader = trader,
                     RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp)
                 };
