@@ -237,7 +237,7 @@
                             DisplayMemberPath="Name"
                             IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}"
                             ItemsSource="{Binding Path=Symbols, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedItem="{Binding Path=PendingOrderModel.Symbol, Mode=TwoWay}" />
+                            SelectedItem="{Binding Path=PendingOrderSelectedSymbol, Mode=TwoWay}" />
                     </mah:MetroHeader>
 
                     <mah:MetroHeader

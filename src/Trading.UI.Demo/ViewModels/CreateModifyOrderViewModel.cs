@@ -17,6 +17,7 @@ namespace Trading.UI.Demo.ViewModels
         private AccountModel _account;
         private OrderModel _orderUnderModification;
         private int _selectedTabIndex;
+        private SymbolModel _pendingOrderSelectedSymbol;
 
         public CreateModifyOrderViewModel(IApiService apiService)
         {
@@ -50,6 +51,21 @@ namespace Trading.UI.Demo.ViewModels
         public List<SymbolModel> Symbols { get => _symbols; set => SetProperty(ref _symbols, value); }
 
         public int SelectedTabIndex { get => _selectedTabIndex; set => SetProperty(ref _selectedTabIndex, value); }
+
+        public SymbolModel PendingOrderSelectedSymbol
+        {
+            get => _pendingOrderSelectedSymbol;
+            set
+            {
+                var pendingOrderModel = PendingOrderModel;
+
+                if (SetProperty(ref _pendingOrderSelectedSymbol, value) is false || pendingOrderModel is null || IsModifyingPendingOrder is true) return;
+
+                pendingOrderModel.Symbol = value;
+
+                pendingOrderModel.Price = pendingOrderModel.TradeSide == ProtoOATradeSide.Buy ? value.Ask : value.Bid;
+            }
+        }
 
         public override void OnDialogClosed()
         {

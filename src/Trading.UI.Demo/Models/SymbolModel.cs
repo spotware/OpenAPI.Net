@@ -4,6 +4,9 @@ namespace Trading.UI.Demo.Models
 {
     public class SymbolModel
     {
+        public double Bid { get; set; }
+
+        public double Ask { get; set; }
         public ProtoOALightSymbol LightSymbol { init; get; }
 
         public ProtoOASymbol Data { init; get; }
@@ -22,6 +25,8 @@ namespace Trading.UI.Demo.Models
 
             return (long)Math.Round(pipsInPrice * 100000, Data.Digits);
         }
+
+        public double GetPriceFromRelative(long relative) => Math.Round(relative / 100000.0, Data.Digits);
 
         public double GetPipsFromRelative(long relative) => Math.Round((relative / 100000.0) / PipSize, Data.Digits - Data.PipPosition);
 

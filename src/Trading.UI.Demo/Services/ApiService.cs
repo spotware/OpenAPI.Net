@@ -51,6 +51,10 @@ namespace Trading.UI.Demo.Services
         Task<HistoricalTradeModel[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
 
         Task<TransactionModel[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
+
+        Task SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds);
+
+        Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds);
     }
 
     public sealed class ApiService : IApiService
@@ -713,6 +717,70 @@ namespace Trading.UI.Demo.Services
             } while (time < to);
 
             return result.ToArray();
+        }
+
+        public async Task SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            using var cancelationTokenSource = new CancellationTokenSource();
+
+            ProtoOASubscribeSpotsRes receivedResponse = null;
+
+            using var disposable = client.OfType<ProtoOASubscribeSpotsRes>().Where(response => response.CtidTraderAccountId == accountId)
+                .Subscribe(response =>
+            {
+                receivedResponse = response;
+
+                cancelationTokenSource.Cancel();
+            });
+
+            var requestMessage = new ProtoOASubscribeSpotsReq
+            {
+                CtidTraderAccountId = accountId,
+            };
+
+            requestMessage.SymbolId.AddRange(symbolIds);
+
+            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq);
+
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
+
+            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+        }
+
+        public async Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            using var cancelationTokenSource = new CancellationTokenSource();
+
+            ProtoOAUnsubscribeSpotsRes receivedResponse = null;
+
+            using var disposable = client.OfType<ProtoOAUnsubscribeSpotsRes>().Where(response => response.CtidTraderAccountId == accountId)
+                .Subscribe(response =>
+            {
+                receivedResponse = response;
+
+                cancelationTokenSource.Cancel();
+            });
+
+            var requestMessage = new ProtoOAUnsubscribeSpotsReq
+            {
+                CtidTraderAccountId = accountId,
+            };
+
+            requestMessage.SymbolId.AddRange(symbolIds);
+
+            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq);
+
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
+
+            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
         }
 
         private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;

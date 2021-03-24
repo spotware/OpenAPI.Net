@@ -29,6 +29,7 @@ namespace Trading.UI.Demo.ViewModels
         private ApiConfigurationModel _apiConfiguration;
         private auth.Token _token;
         private ProtoOACtidTraderAccount _selectedAccount;
+        private AccountModel _accountModel;
 
         public ShellViewModel(IRegionManager regionManager, IDialogService dialogService, IEventAggregator eventAggregator,
             IDialogCoordinator dialogCordinator, IApiService apiService, IAppDispatcher dispatcher)
@@ -50,7 +51,7 @@ namespace Trading.UI.Demo.ViewModels
             get => _selectedAccount;
             set
             {
-                if (SetProperty(ref _selectedAccount, value) && value is not null) OnAccountChanged();
+                if (SetProperty(ref _selectedAccount, value)) OnAccountChanged();
             }
         }
 
@@ -181,6 +182,21 @@ namespace Trading.UI.Demo.ViewModels
             observable.OfType<ProtoErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnErrorRes);
             observable.OfType<ProtoOAErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOaErrorRes);
             observable.OfType<ProtoOAOrderErrorEvent>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOrderErrorRes);
+            observable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
+        }
+
+        private void OnSpotEvent(ProtoOASpotEvent spotEvent)
+        {
+            var accountModel = _accountModel;
+
+            if (accountModel is null || spotEvent.CtidTraderAccountId != accountModel.Id) return;
+
+            var symbol = accountModel.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == spotEvent.SymbolId);
+
+            if (symbol is null) return;
+
+            if (spotEvent.HasBid) symbol.Bid = symbol.GetPriceFromRelative((long)spotEvent.Bid);
+            if (spotEvent.HasAsk) symbol.Ask = symbol.GetPriceFromRelative((long)spotEvent.Ask);
         }
 
         private async void OnError(Exception exception)
@@ -211,10 +227,19 @@ namespace Trading.UI.Demo.ViewModels
 
             try
             {
+                if (_accountModel is not null)
+                {
+                    var oldAccountSymbolIds = _accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();
+
+                    await _apiService.UnsubscribeFromSpots(_accountModel.Id, _accountModel.IsLive, oldAccountSymbolIds);
+                }
+
+                if (SelectedAccount is null) return;
+
                 var accountId = (long)SelectedAccount.CtidTraderAccountId;
                 var trader = await _apiService.GetTrader(accountId, SelectedAccount.IsLive);
 
-                var accountModel = new AccountModel
+                _accountModel = new AccountModel
                 {
                     Id = accountId,
                     IsLive = SelectedAccount.IsLive,
@@ -223,7 +248,11 @@ namespace Trading.UI.Demo.ViewModels
                     RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp)
                 };
 
-                _eventAggregator.GetEvent<AccountChangedEvent>().Publish(accountModel);
+                var symbolIds = _accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();
+
+                await _apiService.SubscribeToSpots(accountId, _accountModel.IsLive, symbolIds);
+
+                _eventAggregator.GetEvent<AccountChangedEvent>().Publish(_accountModel);
             }
             finally
             {
