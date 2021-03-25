@@ -46,10 +46,8 @@
         <TabItem Header="Market" IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
@@ -170,47 +168,49 @@
                     </mah:MetroHeader>
                 </Grid>
 
-                <mah:MetroHeader
-                    Grid.Row="1"
-                    Margin="5"
-                    Header="Comment">
-                    <TextBox IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=MarketOrderModel.Comment, Mode=TwoWay}" />
-                </mah:MetroHeader>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <mah:MetroHeader
-                    Grid.Row="2"
-                    Margin="5"
-                    Header="Label">
-                    <TextBox IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=MarketOrderModel.Label, Mode=TwoWay}" />
-                </mah:MetroHeader>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <mah:MetroHeader Margin="5" Header="Comment">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=MarketOrderModel.Comment, Mode=TwoWay}" />
+                        </mah:MetroHeader>
 
-                <StackPanel
-                    Grid.Row="3"
-                    HorizontalAlignment="Left"
-                    Orientation="Horizontal">
-                    <Button
-                        Margin="5"
-                        Command="{Binding Path=PlaceMarketOrderCommand}"
-                        Content="Place Order"
-                        Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
-                        Visibility="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeVisibilityConverter}}" />
-                    <Button
-                        Margin="5"
-                        Command="{Binding Path=ModifyMarketOrderCommand}"
-                        Content="Modify Order"
-                        Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
-                        Visibility="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToVisibilityConverter}}" />
-                </StackPanel>
+                        <mah:MetroHeader Margin="5" Header="Label">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=MarketOrderModel.Label, Mode=TwoWay}" />
+                        </mah:MetroHeader>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=PlaceMarketOrderCommand}"
+                            Content="Place Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeVisibilityConverter}}" />
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=ModifyMarketOrderCommand}"
+                            Content="Modify Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </StackPanel>
+                </Grid>
             </Grid>
         </TabItem>
 
         <TabItem Header="Pending" IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
@@ -389,37 +389,41 @@
                     </mah:MetroHeader>
                 </Grid>
 
-                <mah:MetroHeader
-                    Grid.Row="1"
-                    Margin="5"
-                    Header="Comment">
-                    <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Comment, Mode=TwoWay}" />
-                </mah:MetroHeader>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <mah:MetroHeader
-                    Grid.Row="2"
-                    Margin="5"
-                    Header="Label">
-                    <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Label, Mode=TwoWay}" />
-                </mah:MetroHeader>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <mah:MetroHeader Margin="5" Header="Comment">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Comment, Mode=TwoWay}" />
+                        </mah:MetroHeader>
 
-                <StackPanel
-                    Grid.Row="3"
-                    HorizontalAlignment="Left"
-                    Orientation="Horizontal">
-                    <Button
-                        Margin="5"
-                        Command="{Binding Path=PlacePendingOrderCommand}"
-                        Content="Place Order"
-                        Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
-                        Visibility="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeVisibilityConverter}}" />
-                    <Button
-                        Margin="5"
-                        Command="{Binding Path=ModifyPendingOrderCommand}"
-                        Content="Modify Order"
-                        Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
-                        Visibility="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToVisibilityConverter}}" />
-                </StackPanel>
+                        <mah:MetroHeader Margin="5" Header="Label">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Label, Mode=TwoWay}" />
+                        </mah:MetroHeader>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=PlacePendingOrderCommand}"
+                            Content="Place Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeVisibilityConverter}}" />
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=ModifyPendingOrderCommand}"
+                            Content="Modify Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </StackPanel>
+                </Grid>
             </Grid>
         </TabItem>
     </TabControl>

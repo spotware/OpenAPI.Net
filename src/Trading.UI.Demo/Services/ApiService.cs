@@ -30,7 +30,7 @@ namespace Trading.UI.Demo.Services
 
         Task<ProtoOASymbol[]> GetSymbols(long accountId, bool isLive, long[] symbolIds);
 
-        Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive);
+        Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive, ProtoOALightSymbol[] lightSymbols, ProtoOAAsset[] assets);
 
         Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken);
 
@@ -239,11 +239,9 @@ namespace Trading.UI.Demo.Services
             return result;
         }
 
-        public async Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive)
+        public async Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive, ProtoOALightSymbol[] lightSymbols, ProtoOAAsset[] assets)
         {
             VerifyConnection();
-
-            var lightSymbols = await GetLightSymbols(accountId, isLive);
 
             var symbolIds = lightSymbols.Select(iSymbol => iSymbol.SymbolId).ToArray();
 
@@ -252,7 +250,9 @@ namespace Trading.UI.Demo.Services
             return lightSymbols.Where(lightSymbol => symbols.Any(symbol => lightSymbol.SymbolId == symbol.SymbolId)).Select(lightSymbol => new SymbolModel
             {
                 LightSymbol = lightSymbol,
-                Data = symbols.First(symbol => symbol.SymbolId == lightSymbol.SymbolId)
+                Data = symbols.First(symbol => symbol.SymbolId == lightSymbol.SymbolId),
+                BaseAsset = assets.First(iAsset => iAsset.AssetId == lightSymbol.BaseAssetId),
+                QuoteAsset = assets.First(iAsset => iAsset.AssetId == lightSymbol.QuoteAssetId)
             }).ToArray();
         }
 

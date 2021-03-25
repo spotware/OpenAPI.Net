@@ -658,7 +658,7 @@
                 Grid.Column="0"
                 Text="Balance" />
             <TextBlock Grid.Row="1" Grid.Column="0">
-                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ '}" />
+                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ ', Mode=OneWay}" />
                 <Run Text="{Binding Path=Account.Balance}" />
             </TextBlock>
 
@@ -669,7 +669,7 @@
                 Grid.Column="2"
                 Text="Equity" />
             <TextBlock Grid.Row="1" Grid.Column="2">
-                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ '}" />
+                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ ', Mode=OneWay}" />
                 <Run Text="{Binding Path=Account.Equity}" />
             </TextBlock>
 
@@ -680,7 +680,7 @@
                 Grid.Column="4"
                 Text="Margin Used" />
             <TextBlock Grid.Row="1" Grid.Column="4">
-                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ '}" />
+                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ ', Mode=OneWay}" />
                 <Run Text="{Binding Path=Account.MarginUsed}" />
             </TextBlock>
 
@@ -691,7 +691,7 @@
                 Grid.Column="6"
                 Text="Free Margin" />
             <TextBlock Grid.Row="1" Grid.Column="6">
-                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ '}" />
+                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ ', Mode=OneWay}" />
                 <Run Text="{Binding Path=Account.FreeMargin}" />
             </TextBlock>
 
@@ -713,7 +713,7 @@
                 Grid.Column="10"
                 Text="Unr. Gross" />
             <TextBlock Grid.Row="1" Grid.Column="10">
-                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ '}" />
+                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ ', Mode=OneWay}" />
                 <Run Text="{Binding Path=Account.UnrealizedGrossProfit}" />
             </TextBlock>
 
@@ -724,7 +724,7 @@
                 Grid.Column="12"
                 Text="Unr. Net" />
             <TextBlock Grid.Row="1" Grid.Column="12">
-                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ '}" />
+                <Run Text="{Binding Path=Account.Currency, StringFormat='{}{0}\ ', Mode=OneWay}" />
                 <Run Text="{Binding Path=Account.UnrealizedNetProfit}" />
             </TextBlock>
         </Grid>

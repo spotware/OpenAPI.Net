@@ -15,7 +15,9 @@ namespace Trading.UI.Demo.Models
 
         public DateTimeOffset RegistrationTime { get; init; }
 
-        public string Currency { get; init; }
+        public ProtoOAAsset DepositAsset { get; init; }
+
+        public string Currency => DepositAsset.Name;
 
         public IReadOnlyCollection<ProtoOAAsset> Assets { get; init; }
 

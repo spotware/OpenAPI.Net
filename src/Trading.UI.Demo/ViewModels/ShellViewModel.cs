@@ -198,6 +198,25 @@ namespace Trading.UI.Demo.ViewModels
 
             if (spotEvent.HasBid) symbol.Bid = symbol.GetPriceFromRelative((long)spotEvent.Bid);
             if (spotEvent.HasAsk) symbol.Ask = symbol.GetPriceFromRelative((long)spotEvent.Ask);
+
+            if (symbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId && symbol.TickValue is 0)
+            {
+                symbol.TickValue = symbol.TickSize;
+            }
+            else
+            {
+                var conversionSymbol = accountModel.Symbols.FirstOrDefault(iSymbol => (iSymbol.BaseAsset.AssetId == symbol.QuoteAsset.AssetId
+                    || iSymbol.QuoteAsset.AssetId == symbol.QuoteAsset.AssetId)
+                    && (iSymbol.BaseAsset.AssetId == accountModel.DepositAsset.AssetId
+                    || iSymbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId));
+
+                if (conversionSymbol is not null && conversionSymbol.Bid is not 0)
+                {
+                    symbol.TickValue = conversionSymbol.BaseAsset.AssetId == accountModel.DepositAsset.AssetId
+                        ? symbol.TickSize / conversionSymbol.Bid
+                        : symbol.TickSize * conversionSymbol.Bid;
+                }
+            }
         }
 
         private async void OnError(Exception exception)
@@ -240,17 +259,18 @@ namespace Trading.UI.Demo.ViewModels
                 var accountId = (long)SelectedAccount.CtidTraderAccountId;
                 var trader = await _apiService.GetTrader(accountId, SelectedAccount.IsLive);
                 var assets = await _apiService.GetAssets(accountId, SelectedAccount.IsLive);
+                var lightSymbols = await _apiService.GetLightSymbols(accountId, SelectedAccount.IsLive);
 
                 _accountModel = new AccountModel
                 {
                     Id = accountId,
                     IsLive = SelectedAccount.IsLive,
-                    Symbols = await _apiService.GetSymbolModels(accountId, SelectedAccount.IsLive),
+                    Symbols = await _apiService.GetSymbolModels(accountId, SelectedAccount.IsLive, lightSymbols, assets),
                     Trader = trader,
                     RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp),
                     Balance = MonetaryConverter.FromMonetary(trader.Balance),
                     Assets = new ReadOnlyCollection<ProtoOAAsset>(assets),
-                    Currency = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId).Name
+                    DepositAsset = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId)
                 };
 
                 var symbolIds = _accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();

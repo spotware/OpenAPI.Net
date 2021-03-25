@@ -7,9 +7,13 @@ namespace Trading.UI.Demo.Models
         public double Bid { get; set; }
 
         public double Ask { get; set; }
-        public ProtoOALightSymbol LightSymbol { init; get; }
+        public ProtoOALightSymbol LightSymbol { get; init; }
 
-        public ProtoOASymbol Data { init; get; }
+        public ProtoOASymbol Data { get; init; }
+
+        public ProtoOAAsset BaseAsset { get; init; }
+
+        public ProtoOAAsset QuoteAsset { get; init; }
 
         public string Name => LightSymbol.SymbolName;
 
@@ -18,6 +22,10 @@ namespace Trading.UI.Demo.Models
         public double TickSize => 1 / Math.Pow(10, Data.Digits);
 
         public double PipSize => 1 / Math.Pow(10, Data.PipPosition);
+
+        public double PipValue => TickValue * (PipSize / TickSize);
+
+        public double TickValue { get; set; }
 
         public long GetRelativeFromPips(double pips)
         {
