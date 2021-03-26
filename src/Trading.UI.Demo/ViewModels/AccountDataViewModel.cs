@@ -33,7 +33,6 @@ namespace Trading.UI.Demo.ViewModels
         private AccountModel _account;
         private DateTime _historyStartTime;
         private DateTime _historyEndTime;
-        private bool _reconcile = true;
         private string _positionsSearchText;
         private string _ordersSearchText;
         private string _historySearchText;
@@ -484,8 +483,6 @@ namespace Trading.UI.Demo.ViewModels
                 return;
             }
 
-            _reconcile = false;
-
             var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Loading History", "Please wait...");
 
             try
@@ -509,8 +506,6 @@ namespace Trading.UI.Demo.ViewModels
             }
             finally
             {
-                _reconcile = true;
-
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
             }
         }
@@ -547,8 +542,6 @@ namespace Trading.UI.Demo.ViewModels
                 return;
             }
 
-            _reconcile = false;
-
             var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Loading Transactions", "Please wait...");
 
             try
@@ -561,8 +554,6 @@ namespace Trading.UI.Demo.ViewModels
             }
             finally
             {
-                _reconcile = true;
-
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
             }
         }

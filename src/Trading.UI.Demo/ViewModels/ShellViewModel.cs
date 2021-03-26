@@ -196,7 +196,9 @@ namespace Trading.UI.Demo.ViewModels
             var position = accountModel.Positions.FirstOrDefault(iPoisition => iPoisition.Id == executionEvent.Order.PositionId);
             var order = accountModel.PendingOrders.FirstOrDefault(iOrder => iOrder.Id == executionEvent.Order.OrderId);
 
-            var symbol = accountModel.Symbols.First(iSymbol => iSymbol.Id == executionEvent.Order.TradeData.SymbolId);
+            var symbol = accountModel.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == executionEvent.Order.TradeData.SymbolId);
+
+            if (symbol is null) return;
 
             switch (executionEvent.ExecutionType)
             {
