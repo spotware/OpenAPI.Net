@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Trading.UI.Demo.Enums;
@@ -25,13 +24,13 @@ namespace Trading.UI.Demo.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IDialogCoordinator _dialogCordinator;
         private readonly IApiService _apiService;
-        private readonly ICollectionView _positionsCollectionView;
-        private readonly ICollectionView _pendingOrdersCollectionView;
         private readonly ICollectionView _historicalTradesCollectionView;
         private readonly ICollectionView _transactionsCollectionView;
 
+        private ICollectionView _positionsCollectionView;
+        private ICollectionView _pendingOrdersCollectionView;
+
         private AccountModel _account;
-        private IDisposable _reconcileSenderDisposable;
         private DateTime _historyStartTime;
         private DateTime _historyEndTime;
         private bool _reconcile = true;
@@ -49,18 +48,6 @@ namespace Trading.UI.Demo.ViewModels
             _eventAggregator = eventAggregator;
             _dialogCordinator = dialogCordinator;
             _apiService = apiService;
-
-            Positions = new ObservableCollection<MarketOrderModel>();
-
-            _positionsCollectionView = CollectionViewSource.GetDefaultView(Positions);
-
-            _positionsCollectionView.Filter = obj => FilterOrders(obj, PositionsSearchText);
-
-            PendingOrders = new ObservableCollection<PendingOrderModel>();
-
-            _pendingOrdersCollectionView = CollectionViewSource.GetDefaultView(PendingOrders);
-
-            _pendingOrdersCollectionView.Filter = obj => FilterOrders(obj, OrdersSearchText);
 
             HistoricalTrades = new ObservableCollection<HistoricalTradeModel>();
 
@@ -122,9 +109,7 @@ namespace Trading.UI.Demo.ViewModels
         public DelegateCommand LoadTransactionsCommand { get; }
 
         public ObservableCollection<MarketOrderModel> SelectedPositions { get; }
-        public ObservableCollection<MarketOrderModel> Positions { get; }
         public ObservableCollection<PendingOrderModel> SelectedPendingOrders { get; }
-        public ObservableCollection<PendingOrderModel> PendingOrders { get; }
         public ObservableCollection<PositionCloseType> SelectedClosePositionTypes { get; }
         public ObservableCollection<OrderCancelType> SelectedCancelOrderTypes { get; }
 
@@ -139,7 +124,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 SetProperty(ref _positionsSearchText, value);
 
-                _positionsCollectionView.Refresh();
+                _positionsCollectionView?.Refresh();
             }
         }
 
@@ -150,7 +135,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 SetProperty(ref _ordersSearchText, value);
 
-                _pendingOrdersCollectionView.Refresh();
+                _pendingOrdersCollectionView?.Refresh();
             }
         }
 
@@ -204,13 +189,13 @@ namespace Trading.UI.Demo.ViewModels
         {
             IsAccountSelected = false;
 
-            _reconcileSenderDisposable?.Dispose();
-
-            Positions.Clear();
             SelectedPositions.Clear();
             SelectedClosePositionTypes.Clear();
             HistoricalTrades.Clear();
             Transactions.Clear();
+
+            _positionsCollectionView = null;
+            _pendingOrdersCollectionView = null;
         }
 
         private async void ShowCreateModifyOrderDialog()
@@ -235,84 +220,19 @@ namespace Trading.UI.Demo.ViewModels
 
             Account = account;
 
+            _positionsCollectionView = CollectionViewSource.GetDefaultView(Account.Positions);
+
+            _positionsCollectionView.Filter = obj => FilterOrders(obj, PositionsSearchText);
+
+            _pendingOrdersCollectionView = CollectionViewSource.GetDefaultView(Account.PendingOrders);
+
+            _pendingOrdersCollectionView.Filter = obj => FilterOrders(obj, OrdersSearchText);
+
             HistoryStartTime = Account.RegistrationTime.LocalDateTime;
             HistoryEndTime = DateTime.Now;
 
             TransactionsStartTime = Account.RegistrationTime.LocalDateTime;
             TransactionsEndTime = DateTime.Now;
-
-            _reconcileSenderDisposable = Observable.Interval(TimeSpan.FromSeconds(1)).ObserveOn(SynchronizationContext.Current).Subscribe(async x =>
-            {
-                if (Account is null || _reconcile is false) return;
-
-                var response = await _apiService.GetAccountOrders(Account.Id, Account.IsLive);
-
-                UpdatePositions(response.Position);
-
-                var pendingOrders = response.Order.Where(iOrder => iOrder.OrderType is ProtoOAOrderType.Limit or ProtoOAOrderType.Stop or ProtoOAOrderType.StopLimit);
-
-                UpdatePendingOrders(pendingOrders);
-            });
-        }
-
-        private void UpdatePositions(IEnumerable<ProtoOAPosition> positions)
-        {
-            var currentPositions = Positions.ToArray();
-
-            foreach (var position in currentPositions)
-            {
-                var updatedPosition = positions.FirstOrDefault(iPosition => iPosition.PositionId == position.Id);
-
-                if (updatedPosition is null)
-                {
-                    Positions.Remove(position);
-
-                    continue;
-                }
-
-                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedPosition.TradeData.SymbolId);
-
-                position.Update(updatedPosition, symbol);
-            }
-
-            foreach (var position in positions)
-            {
-                if (currentPositions.Any(iPosition => iPosition.Id == position.PositionId)) continue;
-
-                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == position.TradeData.SymbolId);
-
-                Positions.Add(new MarketOrderModel(position, symbol));
-            }
-        }
-
-        private void UpdatePendingOrders(IEnumerable<ProtoOAOrder> orders)
-        {
-            var currentOrders = PendingOrders.ToArray();
-
-            foreach (var order in currentOrders)
-            {
-                var updatedOrder = orders.FirstOrDefault(iOrder => iOrder.OrderId == order.Id);
-
-                if (updatedOrder is null)
-                {
-                    PendingOrders.Remove(order);
-
-                    continue;
-                }
-
-                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == updatedOrder.TradeData.SymbolId);
-
-                order.Update(updatedOrder, symbol);
-            }
-
-            foreach (var order in orders)
-            {
-                if (currentOrders.Any(iOrder => iOrder.Id == order.OrderId)) continue;
-
-                var symbol = Account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == order.TradeData.SymbolId);
-
-                PendingOrders.Add(new PendingOrderModel(order, symbol));
-            }
         }
 
         private bool FilterOrders(object obj, string searchText)
@@ -439,9 +359,9 @@ namespace Trading.UI.Demo.ViewModels
 
             var positionsToClose = new List<MarketOrderModel>();
 
-            var positionsCopy = Positions.ToList();
+            var positions = Account.Positions.ToArray();
 
-            foreach (var position in positionsCopy)
+            foreach (var position in positions)
             {
                 var shouldClose = DoesPositionMatchCloseTypes(position);
 
@@ -510,9 +430,9 @@ namespace Trading.UI.Demo.ViewModels
 
             var ordersToCancel = new List<PendingOrderModel>();
 
-            var ordersCopy = PendingOrders.ToList();
+            var orders = Account.PendingOrders.ToArray();
 
-            foreach (var order in ordersCopy)
+            foreach (var order in orders)
             {
                 if (DoesOrderMatchCancelTypes(order)) ordersToCancel.Add(order);
             }
@@ -610,7 +530,7 @@ namespace Trading.UI.Demo.ViewModels
 
         private bool FilterTransactions(object obj)
         {
-            if (string.IsNullOrEmpty(TransactionsSearchText) || !(obj is TransactionModel transaction)) return true;
+            if (string.IsNullOrEmpty(TransactionsSearchText) || obj is not TransactionModel transaction) return true;
 
             var comparison = StringComparison.OrdinalIgnoreCase;
 

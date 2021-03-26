@@ -184,6 +184,66 @@ namespace Trading.UI.Demo.ViewModels
             observable.OfType<ProtoOAErrorRes>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOaErrorRes);
             observable.OfType<ProtoOAOrderErrorEvent>().ObserveOn(SynchronizationContext.Current).Subscribe(OnOrderErrorRes);
             observable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
+            observable.OfType<ProtoOAExecutionEvent>().ObserveOn(SynchronizationContext.Current).Subscribe(OnExecutionEvent);
+        }
+
+        private void OnExecutionEvent(ProtoOAExecutionEvent executionEvent)
+        {
+            var accountModel = _accountModel;
+
+            if (accountModel is null || executionEvent.CtidTraderAccountId != accountModel.Id) return;
+
+            var position = accountModel.Positions.FirstOrDefault(iPoisition => iPoisition.Id == executionEvent.Order.PositionId);
+            var order = accountModel.PendingOrders.FirstOrDefault(iOrder => iOrder.Id == executionEvent.Order.OrderId);
+
+            var symbol = accountModel.Symbols.First(iSymbol => iSymbol.Id == executionEvent.Order.TradeData.SymbolId);
+
+            switch (executionEvent.ExecutionType)
+            {
+                case ProtoOAExecutionType.OrderFilled or ProtoOAExecutionType.OrderPartialFill:
+                    if (position is not null)
+                    {
+                        position.Update(executionEvent.Position, position.Symbol);
+
+                        if (position.Volume is 0) _accountModel.Positions.Remove(position);
+                    }
+                    else
+                    {
+                        accountModel.Positions.Add(new MarketOrderModel(executionEvent.Position, symbol));
+                    }
+
+                    if (order is not null) accountModel.PendingOrders.Remove(order);
+
+                    break;
+
+                case ProtoOAExecutionType.OrderCancelled:
+                    if (order is not null) accountModel.PendingOrders.Remove(order);
+                    if (position is not null && executionEvent.Order.OrderType == ProtoOAOrderType.StopLossTakeProfit) position.Update(executionEvent.Position, position.Symbol);
+                    break;
+
+                case ProtoOAExecutionType.OrderAccepted when (executionEvent.Order.OrderType == ProtoOAOrderType.StopLossTakeProfit):
+                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
+                    if (order is not null) order.Update(executionEvent.Order, symbol);
+
+                    break;
+
+                case ProtoOAExecutionType.OrderAccepted when (executionEvent.Order.OrderStatus != ProtoOAOrderStatus.OrderStatusFilled
+                    && executionEvent.Order.OrderType == ProtoOAOrderType.Limit
+                    || executionEvent.Order.OrderType == ProtoOAOrderType.Stop
+                    || executionEvent.Order.OrderType == ProtoOAOrderType.StopLimit):
+                    accountModel.PendingOrders.Add(new PendingOrderModel(executionEvent.Order, symbol));
+
+                    break;
+
+                case ProtoOAExecutionType.OrderReplaced:
+                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
+                    if (order is not null) order.Update(executionEvent.Order, symbol);
+                    break;
+
+                case ProtoOAExecutionType.Swap:
+                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
+                    break;
+            }
         }
 
         private void OnSpotEvent(ProtoOASpotEvent spotEvent)
@@ -216,6 +276,20 @@ namespace Trading.UI.Demo.ViewModels
                         ? symbol.TickSize / conversionSymbol.Bid
                         : symbol.TickSize * conversionSymbol.Bid;
                 }
+            }
+
+            if (symbol.TickValue is not 0)
+            {
+                var positions = accountModel.Positions.ToArray();
+
+                foreach (var position in positions)
+                {
+                    if (position.Symbol != symbol) continue;
+
+                    position.OnSymbolTick();
+                }
+
+                _accountModel.UpdateStatus();
             }
         }
 
@@ -273,6 +347,8 @@ namespace Trading.UI.Demo.ViewModels
                     DepositAsset = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId)
                 };
 
+                await FillAccountOrders(_accountModel);
+
                 var symbolIds = _accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();
 
                 await _apiService.SubscribeToSpots(accountId, _accountModel.IsLive, symbolIds);
@@ -283,6 +359,26 @@ namespace Trading.UI.Demo.ViewModels
             {
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
             }
+        }
+
+        private async Task FillAccountOrders(AccountModel account)
+        {
+            var response = await _apiService.GetAccountOrders(account.Id, account.IsLive);
+
+            var positions = from poisiton in response.Position
+                            let positionSymbol = account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == poisiton.TradeData.SymbolId)
+                            select new MarketOrderModel(poisiton, positionSymbol);
+
+            var pendingOrders = from order in response.Order
+                                where order.OrderType is ProtoOAOrderType.Limit or ProtoOAOrderType.Stop or ProtoOAOrderType.StopLimit
+                                let orderSymbol = account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == order.TradeData.SymbolId)
+                                select new PendingOrderModel(order, orderSymbol);
+
+            await _dispatcher.InvokeAsync(() =>
+            {
+                account.Positions.AddRange(positions);
+                account.PendingOrders.AddRange(pendingOrders);
+            });
         }
     }
 }

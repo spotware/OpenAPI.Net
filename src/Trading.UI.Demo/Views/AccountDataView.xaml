@@ -128,7 +128,7 @@
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
-                        ItemsSource="{Binding Path=Positions, IsAsync=True}"
+                        ItemsSource="{Binding Path=Account.Positions}"
                         SelectionMode="Extended">
                         <DataGrid.Columns>
                             <DataGridTextColumn
@@ -145,9 +145,9 @@
                                 Header="Volume (Units)"
                                 SortMemberPath="Volume" />
                             <DataGridTextColumn
-                                Binding="{Binding Path=TradeData.TradeSide}"
+                                Binding="{Binding Path=TradeSide}"
                                 Header="Direction"
-                                SortMemberPath="TradeData.TradeSide" />
+                                SortMemberPath="TradeSide" />
                             <DataGridTextColumn
                                 Binding="{Binding Path=Price}"
                                 Header="Price"
@@ -161,9 +161,22 @@
                                 Header="SL"
                                 SortMemberPath="StopLossInPrice" />
                             <DataGridTextColumn
-                                Binding="{Binding Path=Commission, Converter={StaticResource MonetaryConverter}}"
+                                Binding="{Binding Path=CommissionMonetary}"
                                 Header="Commission"
-                                SortMemberPath="Commission"
+                                SortMemberPath="CommissionMonetary"
+                                Visibility="Collapsed" />
+                            <DataGridTextColumn
+                                Binding="{Binding Path=NetProfit}"
+                                Header="Net Profit"
+                                SortMemberPath="NetProfit" />
+                            <DataGridTextColumn
+                                Binding="{Binding Path=GrossProfit}"
+                                Header="Gross Profit"
+                                SortMemberPath="GrossProfit" />
+                            <DataGridTextColumn
+                                Binding="{Binding Path=Pips}"
+                                Header="Pips"
+                                SortMemberPath="Pips"
                                 Visibility="Collapsed" />
                             <DataGridTextColumn
                                 Binding="{Binding Path=OpenTime}"
@@ -180,9 +193,9 @@
                                 SortMemberPath="MarginRate"
                                 Visibility="Collapsed" />
                             <DataGridTextColumn
-                                Binding="{Binding Path=Swap}"
+                                Binding="{Binding Path=SwapMonetary}"
                                 Header="Swap"
-                                SortMemberPath="Swap"
+                                SortMemberPath="SwapMonetary"
                                 Visibility="Collapsed" />
                             <DataGridTextColumn
                                 Binding="{Binding Path=Channel}"
@@ -291,7 +304,7 @@
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsIndex="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
-                        ItemsSource="{Binding Path=PendingOrders, IsAsync=True}"
+                        ItemsSource="{Binding Path=Account.PendingOrders}"
                         SelectionMode="Extended">
                         <DataGrid.Columns>
                             <DataGridTextColumn
@@ -308,9 +321,9 @@
                                 Header="Volume (Units)"
                                 SortMemberPath="Volume" />
                             <DataGridTextColumn
-                                Binding="{Binding Path=TradeData.TradeSide}"
+                                Binding="{Binding Path=TradeSide}"
                                 Header="Direction"
-                                SortMemberPath="TradeData.TradeSide" />
+                                SortMemberPath="TradeSide" />
                             <DataGridTextColumn
                                 Binding="{Binding Path=Price}"
                                 Header="Price"
@@ -704,7 +717,7 @@
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="8"
-                Text="{Binding Path=Account.MarginLevel, StringFormat={}{0}%}" />
+                Text="{Binding Path=Account.MarginLevel, StringFormat='{}{0}\ %'}" />
 
             <Rectangle Grid.Column="9" />
 

@@ -92,16 +92,20 @@ namespace Trading.UI.Demo.Models
         public double StopLossInPrice
         {
             get => _stopLossInPrice;
-            set => SetProperty(ref _stopLossInPrice, value);
+            set => SetProperty(ref _stopLossInPrice, Symbol is not null ? Math.Round(value, Symbol.Data.Digits) : value);
         }
 
         public double TakeProfitInPrice
         {
             get => _takeProfitInPrice;
-            set => SetProperty(ref _takeProfitInPrice, value);
+            set => SetProperty(ref _takeProfitInPrice, Symbol is not null ? Math.Round(value, Symbol.Data.Digits) : value);
         }
 
-        public double Price { get => _price; set => SetProperty(ref _price, value); }
+        public double Price
+        {
+            get => _price;
+            set => SetProperty(ref _price, Symbol is not null ? Math.Round(value, Symbol.Data.Digits) : value);
+        }
 
         public ProtoOATradeData TradeData
         {

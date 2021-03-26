@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Trading.UI.Demo.Helpers;
 
 namespace Trading.UI.Demo.Models
 {
@@ -18,6 +19,12 @@ namespace Trading.UI.Demo.Models
         private ProtoOAPositionStatus _status;
 
         private ProtoOAOrderTriggerMethod _stopTriggerMethod;
+        private double _pips;
+        private double _netProfit;
+        private double _grossProfit;
+        private double _commissionMonetary;
+        private double _swapMonetary;
+        private double _usedMarginMonetary;
 
         public MarketOrderModel()
         {
@@ -50,20 +57,46 @@ namespace Trading.UI.Demo.Models
         public long Swap
         {
             get => _swap;
-            set => SetProperty(ref _swap, value);
+            set
+            {
+                SetProperty(ref _swap, value);
+
+                SwapMonetary = Swap / Math.Pow(10, MoneyDigits);
+            }
         }
+
+        public double SwapMonetary { get => _swapMonetary; set => SetProperty(ref _swapMonetary, value); }
 
         public long UsedMargin
         {
             get => _usedMargin;
-            set => SetProperty(ref _usedMargin, value);
+            set
+            {
+                SetProperty(ref _usedMargin, value);
+
+                UsedMarginMonetary = UsedMargin / Math.Pow(10, MoneyDigits);
+            }
         }
+
+        public double UsedMarginMonetary { get => _usedMarginMonetary; set => SetProperty(ref _usedMarginMonetary, value); }
+
+        public int MoneyDigits { get; set; }
 
         public long Commission
         {
             get => _commission;
-            set => SetProperty(ref _commission, value);
+            set
+            {
+                SetProperty(ref _commission, value);
+
+                CommissionMonetary = Commission / Math.Pow(10, MoneyDigits);
+
+                DoubleCommissionMonetary = CommissionMonetary * 2;
+            }
         }
+
+        public double CommissionMonetary { get => _commissionMonetary; private set => SetProperty(ref _commissionMonetary, value); }
+        public double DoubleCommissionMonetary { get; private set; }
 
         public ProtoOAPositionStatus Status
         {
@@ -77,23 +110,31 @@ namespace Trading.UI.Demo.Models
             set => SetProperty(ref _stopTriggerMethod, value);
         }
 
+        public double Pips { get => _pips; set => SetProperty(ref _pips, value); }
+
+        public double NetProfit { get => _netProfit; set => SetProperty(ref _netProfit, value); }
+
+        public double GrossProfit { get => _grossProfit; set => SetProperty(ref _grossProfit, value); }
+
         public void Update(ProtoOAPosition position, SymbolModel symbol)
         {
             Symbol = symbol;
+            TradeSide = position.TradeData.TradeSide;
+            Volume = position.TradeData.Volume;
+            MoneyDigits = (int)position.MoneyDigits;
+            Id = position.PositionId;
             GuaranteedStopLoss = position.GuaranteedStopLoss;
             LastUpdateTime = DateTimeOffset.FromUnixTimeMilliseconds(position.UtcLastUpdateTimestamp);
             MarginRate = position.MarginRate;
             MirroringCommission = position.MirroringCommission;
             Price = position.Price;
             Status = position.PositionStatus;
-            Swap = position.Swap;
             UsedMargin = (long)position.UsedMargin;
             TradeData = position.TradeData;
             StopTriggerMethod = position.StopLossTriggerMethod;
+            Swap = position.Swap;
             Commission = position.Commission;
-            Volume = position.TradeData.Volume;
             OpenTime = DateTimeOffset.FromUnixTimeMilliseconds(position.TradeData.OpenTimestamp);
-            Id = position.PositionId;
             Comment = position.TradeData.Comment;
             Label = position.TradeData.Label;
 
@@ -127,6 +168,21 @@ namespace Trading.UI.Demo.Models
                 TakeProfitInPrice = default;
                 TakeProfitInPips = default;
             }
+        }
+
+        public void OnSymbolTick()
+        {
+            if (TradeSide == ProtoOATradeSide.Buy)
+            {
+                Pips = Symbol.GetPipsFromPrice(Symbol.Bid - Price);
+            }
+            else
+            {
+                Pips = Symbol.GetPipsFromPrice(Price - Symbol.Ask);
+            }
+
+            GrossProfit = Math.Round(Pips * Symbol.PipValue * MonetaryConverter.FromMonetary(Volume), 2);
+            NetProfit = Math.Round(GrossProfit + DoubleCommissionMonetary + SwapMonetary, 2);
         }
 
         public MarketOrderModel Clone() => MemberwiseClone() as MarketOrderModel;

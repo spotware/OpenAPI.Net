@@ -55,15 +55,16 @@ namespace Trading.UI.Demo.Models
         public void Update(ProtoOAOrder order, SymbolModel symbol)
         {
             Symbol = symbol;
+            Volume = order.TradeData.Volume;
+            TradeSide = order.TradeData.TradeSide;
+            Id = order.OrderId;
+            TradeData = order.TradeData;
             LastUpdateTime = DateTimeOffset.FromUnixTimeMilliseconds(order.UtcLastUpdateTimestamp);
             Status = order.OrderStatus;
             StopLossInPrice = order.StopLoss;
             TakeProfitInPrice = order.TakeProfit;
-            TradeData = order.TradeData;
             ProtoType = order.OrderType;
-            Volume = order.TradeData.Volume;
             OpenTime = DateTimeOffset.FromUnixTimeMilliseconds(order.TradeData.OpenTimestamp);
-            Id = order.OrderId;
             Comment = order.TradeData.Comment;
             Label = order.TradeData.Label;
 
