@@ -1,9 +1,12 @@
-﻿using MahApps.Metro.Controls.Dialogs;
+﻿using ControlzEx.Theming;
+using MahApps.Metro.Controls.Dialogs;
 using OpenAPI.Net;
 using OpenAPI.Net.Helpers;
+using Prism.Events;
 using Prism.Ioc;
 using System;
 using System.Windows;
+using Trading.UI.Demo.Events;
 using Trading.UI.Demo.Helpers;
 using Trading.UI.Demo.Services;
 using Trading.UI.Demo.Views;
@@ -15,9 +18,24 @@ namespace Trading.UI.Demo
     /// </summary>
     public partial class App
     {
-        protected override Window CreateShell()
+        protected override Window CreateShell() => Container.Resolve<ShellView>();
+
+        protected override void InitializeShell(Window window)
         {
-            return Container.Resolve<ShellView>();
+            var eventAggregator = Container.Resolve<IEventAggregator>();
+
+            eventAggregator.GetEvent<ChangeThemeEvent>().Subscribe(ChangeThemeEvent_Handler, ThreadOption.UIThread);
+
+            window.Show();
+        }
+
+        private void ChangeThemeEvent_Handler()
+        {
+            var currentTheme = ThemeManager.Current.DetectTheme(this)?.Name.Split('.')[0];
+
+            string newTheme = string.Equals(currentTheme, "Dark", StringComparison.OrdinalIgnoreCase) ? "Light" : "Dark";
+
+            ThemeManager.Current.ChangeTheme(this, $"{newTheme}.Steel");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

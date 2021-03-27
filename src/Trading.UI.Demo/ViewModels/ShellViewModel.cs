@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf;
 using MahApps.Metro.Controls.Dialogs;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -41,7 +42,11 @@ namespace Trading.UI.Demo.ViewModels
             _dialogCordinator = dialogCordinator;
             _apiService = apiService;
             _dispatcher = dispatcher;
+
+            ChangeThemeCommand = new DelegateCommand(ChangeTheme);
         }
+
+        public DelegateCommand ChangeThemeCommand { get; }
 
         public string Title { get; } = "Trading UI Demo";
 
@@ -382,5 +387,7 @@ namespace Trading.UI.Demo.ViewModels
                 account.PendingOrders.AddRange(pendingOrders);
             });
         }
+
+        private void ChangeTheme() => _eventAggregator.GetEvent<ChangeThemeEvent>().Publish();
     }
 }

@@ -54,6 +54,13 @@
                 ItemsSource="{Binding Path=Accounts}"
                 SelectedItem="{Binding Path=SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 ToolTip="Select Trading Account" />
+
+            <Button Command="{Binding Path=ChangeThemeCommand}">
+                <iconPacks:PackIconMaterial
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Kind="ThemeLightDark" />
+            </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
