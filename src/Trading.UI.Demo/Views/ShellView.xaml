@@ -22,7 +22,7 @@
     ShowIconOnTitleBar="False"
     TextOptions.TextHintingMode="Fixed"
     TextOptions.TextRenderingMode="Grayscale"
-    TitleAlignment="Stretch"
+    TitleAlignment="Center"
     TitleCharacterCasing="Normal"
     WindowTransitionsEnabled="False">
 
@@ -64,5 +64,17 @@
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
-    <ContentControl prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.AccountDataViewRegion}" />
+    <Grid IsEnabled="{Binding Path=IsAccountSelected, UpdateSourceTrigger=PropertyChanged}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.ChartViewRegion}" />
+
+        <ContentControl Grid.Row="2" prism:RegionManager.RegionName="{x:Static regions:ShellViewRegions.AccountDataViewRegion}" />
+
+        <GridSplitter Grid.Row="1" Height="5" />
+    </Grid>
 </controls:MetroWindow>

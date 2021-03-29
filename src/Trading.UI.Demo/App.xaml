@@ -22,7 +22,7 @@
                 <Setter Property="ShowIconOnTitleBar" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.ShowIconOnTitleBar}" />
                 <Setter Property="ShowInTaskbar" Value="False" />
                 <Setter Property="Title" Value="{Binding Path=Title}" />
-                <Setter Property="TitleAlignment" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.TitleAlignment}" />
+                <Setter Property="TitleAlignment" Value="Stretch" />
                 <Setter Property="TitleCharacterCasing" Value="{Binding Source={x:Static Application.Current}, Path=MainWindow.TitleCharacterCasing}" />
                 <Setter Property="Width" Value="450" />
                 <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />

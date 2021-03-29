@@ -164,8 +164,6 @@ namespace Trading.UI.Demo.ViewModels
 
         public DateTime HistoryEndTime { get => _historyEndTime; set => SetProperty(ref _historyEndTime, value); }
 
-        public bool IsAccountSelected { get => _isAccountSelected; set => SetProperty(ref _isAccountSelected, value); }
-
         public DateTime TransactionsStartTime { get => _transactionsStartTime; set => SetProperty(ref _transactionsStartTime, value); }
 
         public DateTime TransactionsEndTime { get => _transactionsEndTime; set => SetProperty(ref _transactionsEndTime, value); }
@@ -186,8 +184,6 @@ namespace Trading.UI.Demo.ViewModels
 
         private void Cleanup()
         {
-            IsAccountSelected = false;
-
             SelectedPositions.Clear();
             SelectedClosePositionTypes.Clear();
             HistoricalTrades.Clear();
@@ -214,8 +210,6 @@ namespace Trading.UI.Demo.ViewModels
             Cleanup();
 
             if (account is null) return;
-
-            IsAccountSelected = true;
 
             Account = account;
 

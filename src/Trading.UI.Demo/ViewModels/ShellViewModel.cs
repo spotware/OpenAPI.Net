@@ -61,6 +61,8 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
+        public bool IsAccountSelected => SelectedAccount is not null;
+
         protected override void Loaded()
         {
             _regionManager.RequestNavigate(ShellViewRegions.AccountDataViewRegion, nameof(AccountDataView));
@@ -324,6 +326,8 @@ namespace Trading.UI.Demo.ViewModels
 
         private async void OnAccountChanged()
         {
+            RaisePropertyChanged(nameof(IsAccountSelected));
+
             var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Changing Account", "Please wait...");
 
             try

@@ -33,14 +33,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid IsEnabled="{Binding Path=IsAccountSelected, UpdateSourceTrigger=PropertyChanged}">
-
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0">
+        <mah:MetroTabControl Grid.Row="0">
             <TabItem Header="Positions">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -635,7 +634,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-        </TabControl>
+        </mah:MetroTabControl>
 
         <Grid
             Grid.Row="1"
