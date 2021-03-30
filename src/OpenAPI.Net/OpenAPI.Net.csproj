@@ -10,6 +10,7 @@
     <Description>A .NET RX library for Spotware Open API</Description>
     <PackageId>Spotware.OpenAPI.Net</PackageId>
     <Version>1.0.4</Version>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

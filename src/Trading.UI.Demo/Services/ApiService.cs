@@ -59,6 +59,10 @@ namespace Trading.UI.Demo.Services
         Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive);
 
         Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId);
+
+        Task SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
+
+        Task UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
     }
 
     public sealed class ApiService : IApiService
@@ -781,6 +785,70 @@ namespace Trading.UI.Demo.Services
             requestMessage.SymbolId.AddRange(symbolIds);
 
             await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq);
+
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
+
+            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+        }
+
+        public async Task SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            using var cancelationTokenSource = new CancellationTokenSource();
+
+            ProtoOASubscribeLiveTrendbarRes receivedResponse = null;
+
+            using var disposable = client.OfType<ProtoOASubscribeLiveTrendbarRes>().Where(response => response.CtidTraderAccountId == accountId)
+                .Subscribe(response =>
+            {
+                receivedResponse = response;
+
+                cancelationTokenSource.Cancel();
+            });
+
+            var requestMessage = new ProtoOASubscribeLiveTrendbarReq
+            {
+                CtidTraderAccountId = accountId,
+                Period = period,
+                SymbolId = symbolId
+            };
+
+            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq);
+
+            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
+
+            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+        }
+
+        public async Task UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            using var cancelationTokenSource = new CancellationTokenSource();
+
+            ProtoOAUnsubscribeLiveTrendbarRes receivedResponse = null;
+
+            using var disposable = client.OfType<ProtoOAUnsubscribeLiveTrendbarRes>().Where(response => response.CtidTraderAccountId == accountId)
+                .Subscribe(response =>
+            {
+                receivedResponse = response;
+
+                cancelationTokenSource.Cancel();
+            });
+
+            var requestMessage = new ProtoOAUnsubscribeLiveTrendbarReq
+            {
+                CtidTraderAccountId = accountId,
+                Period = period,
+                SymbolId = symbolId
+            };
+
+            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq);
 
             await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
 
