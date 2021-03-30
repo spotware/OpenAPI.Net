@@ -57,6 +57,8 @@ namespace Trading.UI.Demo.Services
         Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds);
 
         Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive);
+
+        Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId);
     }
 
     public sealed class ApiService : IApiService
@@ -783,6 +785,65 @@ namespace Trading.UI.Demo.Services
             await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
 
             if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+        }
+
+        public async Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId)
+        {
+            var timeDiff = to - from;
+
+            bool isTimeValid = period switch
+            {
+                ProtoOATrendbarPeriod.M1 or ProtoOATrendbarPeriod.M2 or ProtoOATrendbarPeriod.M3 or ProtoOATrendbarPeriod.M4 or ProtoOATrendbarPeriod.M5 => timeDiff.TotalMilliseconds <= 302400000,
+                ProtoOATrendbarPeriod.M10 or ProtoOATrendbarPeriod.M15 or ProtoOATrendbarPeriod.M30 or ProtoOATrendbarPeriod.H1 => timeDiff.TotalMilliseconds <= 21168000000,
+                ProtoOATrendbarPeriod.H4 or ProtoOATrendbarPeriod.H12 or ProtoOATrendbarPeriod.D1 => timeDiff.TotalMilliseconds <= 31622400000,
+                ProtoOATrendbarPeriod.W1 or ProtoOATrendbarPeriod.Mn1 => timeDiff.TotalMilliseconds <= 158112000000,
+                _ => throw new ArgumentOutOfRangeException(nameof(period))
+            };
+
+            if (isTimeValid is false) throw new ArgumentOutOfRangeException(nameof(to), "The time range is not valid");
+
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            List<ProtoOATrendbar> result = new List<ProtoOATrendbar>();
+
+            CancellationTokenSource cancelationTokenSource = null;
+
+            using var disposable = client.OfType<ProtoOAGetTrendbarsRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            {
+                result.AddRange(response.Trendbar);
+
+                if (cancelationTokenSource is not null) cancelationTokenSource.Cancel();
+            });
+
+            var requestMessage = new ProtoOAGetTrendbarsReq
+            {
+                FromTimestamp = from.ToUnixTimeMilliseconds(),
+                ToTimestamp = to.ToUnixTimeMilliseconds(),
+                CtidTraderAccountId = accountId,
+                Period = period,
+                SymbolId = symbolId
+            };
+
+            cancelationTokenSource = new CancellationTokenSource();
+
+            try
+            {
+                await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetTrendbarsReq);
+
+                await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
+            }
+            finally
+            {
+                var isResponseReceived = cancelationTokenSource.IsCancellationRequested;
+
+                cancelationTokenSource.Dispose();
+
+                if (isResponseReceived is false) throw new TimeoutException("The API didn't responded");
+            }
+
+            return result.ToArray();
         }
 
         public async Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive)

@@ -65,6 +65,7 @@ namespace Trading.UI.Demo.ViewModels
 
         protected override void Loaded()
         {
+            _regionManager.RequestNavigate(ShellViewRegions.ChartViewRegion, nameof(ChartView));
             _regionManager.RequestNavigate(ShellViewRegions.AccountDataViewRegion, nameof(AccountDataView));
 
             ShowApiConfigurationDialog();
@@ -265,8 +266,13 @@ namespace Trading.UI.Demo.ViewModels
 
             if (symbol is null) return;
 
-            if (spotEvent.HasBid) symbol.Bid = symbol.GetPriceFromRelative((long)spotEvent.Bid);
-            if (spotEvent.HasAsk) symbol.Ask = symbol.GetPriceFromRelative((long)spotEvent.Ask);
+            double bid = symbol.Bid;
+            double ask = symbol.Ask;
+
+            if (spotEvent.HasBid) bid = symbol.GetPriceFromRelative((long)spotEvent.Bid);
+            if (spotEvent.HasAsk) ask = symbol.GetPriceFromRelative((long)spotEvent.Ask);
+
+            symbol.OnTick(bid, ask);
 
             if (symbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId && symbol.TickValue is 0)
             {

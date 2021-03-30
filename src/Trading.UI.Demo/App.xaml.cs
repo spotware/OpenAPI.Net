@@ -44,6 +44,7 @@ namespace Trading.UI.Demo
 
             // Views
             containerRegistry.RegisterForNavigation<AccountDataView>();
+            containerRegistry.RegisterForNavigation<ChartView>();
 
             // Dialogs
             containerRegistry.RegisterDialogWindow<DialogWindow>();

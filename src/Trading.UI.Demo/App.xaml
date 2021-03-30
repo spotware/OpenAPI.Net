@@ -28,6 +28,23 @@
                 <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />
             </Style>
 
+            <Style
+                x:Key="ReadOnlyDataGrid"
+                BasedOn="{StaticResource MahApps.Styles.DataGrid}"
+                TargetType="DataGrid">
+                <Setter Property="AutoGenerateColumns" Value="False" />
+                <Setter Property="CanUserAddRows" Value="False" />
+                <Setter Property="EnableColumnVirtualization" Value="True" />
+                <Setter Property="EnableRowVirtualization" Value="True" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+                <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True" />
+                <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True" />
+                <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
+                <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+                <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+            </Style>
+
             <valueConverters:MonetaryValueConverter x:Key="MonetaryConverter" />
             <valueConverters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
             <valueConverters:NullableDoubleConverter x:Key="NullableDoubleConverter" />

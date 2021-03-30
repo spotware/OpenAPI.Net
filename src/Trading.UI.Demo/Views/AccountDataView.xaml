@@ -128,7 +128,8 @@
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
                         ItemsSource="{Binding Path=Account.Positions}"
-                        SelectionMode="Extended">
+                        SelectionMode="Extended"
+                        Style="{StaticResource ReadOnlyDataGrid}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Binding="{Binding Path=Id}"
@@ -304,7 +305,8 @@
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
                         ItemsSource="{Binding Path=Account.PendingOrders}"
-                        SelectionMode="Extended">
+                        SelectionMode="Extended"
+                        Style="{StaticResource ReadOnlyDataGrid}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Binding="{Binding Path=Id}"
@@ -427,7 +429,8 @@
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
                         ItemsSource="{Binding Path=HistoricalTrades, IsAsync=True}"
-                        SelectionMode="Extended">
+                        SelectionMode="Extended"
+                        Style="{StaticResource ReadOnlyDataGrid}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Binding="{Binding Path=Id}"
@@ -595,7 +598,8 @@
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsSorting="True"
                         behaviors:DataGridColumnSettingsBehavior.SaveColumnsWidth="True"
                         ItemsSource="{Binding Path=Transactions, IsAsync=True}"
-                        SelectionMode="Extended">
+                        SelectionMode="Extended"
+                        Style="{StaticResource ReadOnlyDataGrid}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Binding="{Binding Path=Id}"

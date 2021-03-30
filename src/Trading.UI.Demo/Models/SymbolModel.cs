@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Prism.Mvvm;
+using System;
 
 namespace Trading.UI.Demo.Models
 {
-    public class SymbolModel
+    public class SymbolModel : BindableBase
     {
-        public double Bid { get; set; }
+        public double Bid { get; private set; }
 
-        public double Ask { get; set; }
+        public double Ask { get; private set; }
+
         public ProtoOALightSymbol LightSymbol { get; init; }
 
         public ProtoOASymbol Data { get; init; }
@@ -26,6 +28,8 @@ namespace Trading.UI.Demo.Models
         public double PipValue => TickValue * (PipSize / TickSize);
 
         public double TickValue { get; set; }
+
+        public event Action<SymbolModel> Tick;
 
         public long GetRelativeFromPips(double pips)
         {
@@ -66,6 +70,25 @@ namespace Trading.UI.Demo.Models
             var pipsInPrice = pips * PipSize;
 
             return Math.Round(price - pipsInPrice, Data.Digits);
+        }
+
+        public void OnTick(double bid, double ask)
+        {
+            if (bid != Bid)
+            {
+                Bid = bid;
+
+                RaisePropertyChanged(nameof(Bid));
+            }
+
+            if (ask != Ask)
+            {
+                Ask = ask;
+
+                RaisePropertyChanged(nameof(Ask));
+            }
+
+            Tick?.Invoke(this);
         }
     }
 }
