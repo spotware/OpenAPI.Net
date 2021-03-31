@@ -61,6 +61,7 @@ namespace Trading.UI.Demo
             containerRegistry.RegisterInstance<IApiService>(apiService);
 
             containerRegistry.RegisterInstance<IAppDispatcher>(new AppDispatcher(Current.Dispatcher));
+            containerRegistry.RegisterSingleton<IChartManager, ChartManager>();
         }
     }
 }

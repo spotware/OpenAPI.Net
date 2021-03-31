@@ -1,11 +1,10 @@
-﻿using LiveCharts;
-using LiveCharts.Defaults;
-using LiveCharts.Wpf;
-using MahApps.Metro.Controls.Dialogs;
+﻿using MahApps.Metro.Controls.Dialogs;
 using Prism.Events;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using Trading.UI.Demo.Events;
 using Trading.UI.Demo.Models;
@@ -19,29 +18,27 @@ namespace Trading.UI.Demo.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IDialogCoordinator _dialogCordinator;
         private readonly IApiService _apiService;
-
         private SymbolModel _selectedSymbol;
 
         private AccountModel _account;
         private ProtoOATrendbarPeriod _selectedPeriod = ProtoOATrendbarPeriod.H1;
+        private string _browserAddress;
 
-        public ChartViewModel(IDialogService dialogService, IEventAggregator eventAggregator, IDialogCoordinator dialogCordinator, IApiService apiService)
+        public ChartViewModel(IDialogService dialogService, IEventAggregator eventAggregator, IDialogCoordinator dialogCordinator, IApiService apiService, IChartManager chartManager)
         {
             _dialogService = dialogService;
             _eventAggregator = eventAggregator;
             _dialogCordinator = dialogCordinator;
             _apiService = apiService;
-
+            ChartManager = chartManager;
             Symbols = new ObservableCollection<SymbolModel>();
-
-            ChartData = new SeriesCollection();
-
-            TimeLabels = new ObservableCollection<string>();
         }
+
+        public IChartManager ChartManager { get; }
 
         public ObservableCollection<SymbolModel> Symbols { get; }
 
-        public ObservableCollection<string> TimeLabels { get; }
+        public string BrowserAddress { get => _browserAddress; set => SetProperty(ref _browserAddress, value); }
 
         public SymbolModel SelectedSymbol
         {
@@ -54,13 +51,13 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        public SeriesCollection ChartData { get; }
-
         public ProtoOATrendbarPeriod SelectedPeriod { get => _selectedPeriod; set => SetProperty(ref _selectedPeriod, value); }
 
         protected override void Loaded()
         {
             _eventAggregator.GetEvent<AccountChangedEvent>().Subscribe(OnAccountChanged);
+
+            BrowserAddress = Path.Combine(Environment.CurrentDirectory, "Chart.js", "chart.html");
         }
 
         protected override void Unloaded()
@@ -70,10 +67,6 @@ namespace Trading.UI.Demo.ViewModels
             SelectedSymbol = null;
 
             Symbols.Clear();
-
-            ChartData.Clear();
-
-            TimeLabels.Clear();
 
             _account = null;
         }
@@ -97,40 +90,27 @@ namespace Trading.UI.Demo.ViewModels
         {
             if (oldSymbol is not null) oldSymbol.Tick -= SelectedSymbol_Tick;
 
-            ChartData.Clear();
-            TimeLabels.Clear();
-
             if (newSymbol is null) return;
 
             newSymbol.Tick += SelectedSymbol_Tick;
 
             var trendbars = await _apiService.GetTrendbars(_account.Id, _account.IsLive, DateTimeOffset.Now.AddDays(-10), DateTimeOffset.Now, SelectedPeriod, newSymbol.Id);
 
-            var ohlcSeries = new OhlcSeries { Values = new ChartValues<OhlcPoint>() };
+            var data = new List<Ohlc>();
 
             foreach (var trendbar in trendbars)
             {
-                var low = trendbar.Low;
-                var high = low + (long)trendbar.DeltaHigh;
-                var open = low + (long)trendbar.DeltaOpen;
-                var close = low + (long)trendbar.DeltaClose;
-
-                var ohlcPoint = new OhlcPoint
+                data.Add(new Ohlc
                 {
-                    Low = newSymbol.GetPriceFromRelative(low),
-                    High = newSymbol.GetPriceFromRelative(high),
-                    Open = newSymbol.GetPriceFromRelative(open),
-                    Close = newSymbol.GetPriceFromRelative(close)
-                };
-
-                ohlcSeries.Values.Add(ohlcPoint);
-
-                TimeLabels.Add(DateTimeOffset.FromUnixTimeSeconds(trendbar.UtcTimestampInMinutes * 60).ToString("s"));
+                    Low = newSymbol.GetPriceFromRelative(trendbar.Low),
+                    High = newSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaHigh),
+                    Open = newSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaOpen),
+                    Close = newSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaClose),
+                    Time = DateTimeOffset.FromUnixTimeSeconds(trendbar.UtcTimestampInMinutes * 60)
+                });
             }
 
-            ChartData.Add(ohlcSeries);
-
-            RaisePropertyChanged(nameof(TimeLabels));
+            ChartManager.CreateChart(newSymbol.Name, data);
         }
 
         private void SelectedSymbol_Tick(SymbolModel obj)

@@ -62,6 +62,7 @@ namespace Trading.UI.Demo.ViewModels
         }
 
         public bool IsAccountSelected => SelectedAccount is not null;
+        //public bool IsAccountSelected => true;
 
         protected override void Loaded()
         {

@@ -8,7 +8,7 @@
     <Platforms>x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="LiveCharts.Wpf.NetCore3" Version="0.9.7" />
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="88.2.90" />
     <PackageReference Include="MahApps.Metro" Version="2.4.4" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
@@ -52,5 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenAPI.Net\OpenAPI.Net.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Chart.js\chart.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Chart.js\chartjs-chart-financial.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
