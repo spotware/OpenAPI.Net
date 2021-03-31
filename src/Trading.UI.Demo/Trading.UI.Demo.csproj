@@ -14,6 +14,9 @@
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\AccountAuthView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ChartView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +37,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\ShellViewResources.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AccountAuthView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

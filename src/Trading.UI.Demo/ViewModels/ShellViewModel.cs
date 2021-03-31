@@ -32,6 +32,7 @@ namespace Trading.UI.Demo.ViewModels
         private auth.Token _token;
         private ProtoOACtidTraderAccount _selectedAccount;
         private AccountModel _accountModel;
+        private auth.App _app;
 
         public ShellViewModel(IRegionManager regionManager, IDialogService dialogService, IEventAggregator eventAggregator,
             IDialogCoordinator dialogCordinator, IApiService apiService, IAppDispatcher dispatcher)
@@ -71,11 +72,11 @@ namespace Trading.UI.Demo.ViewModels
             ShowApiConfigurationDialog();
         }
 
-        private void ShowApiConfigurationDialog()
+        private async void ShowApiConfigurationDialog()
         {
             _apiConfiguration = new ApiConfigurationModel();
 
-            _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(ApiConfigurationView), new DialogParameters
+            await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(ApiConfigurationView), new DialogParameters
             {
                 {"Model", _apiConfiguration }
             }, ApiConfigurationDialogCallback));
@@ -90,7 +91,7 @@ namespace Trading.UI.Demo.ViewModels
                 return;
             }
 
-            var app = new auth.App(_apiConfiguration.ClientId, _apiConfiguration.Secret, _apiConfiguration.RedirectUri);
+            _app = new auth.App(_apiConfiguration.ClientId, _apiConfiguration.Secret, _apiConfiguration.RedirectUri);
 
             var progressDialogController = await _dialogCordinator.ShowProgressAsync(this, "Connecting", "Please wait...");
 
@@ -101,7 +102,7 @@ namespace Trading.UI.Demo.ViewModels
                 SubscribeToErrors(_apiService.LiveObservable);
                 SubscribeToErrors(_apiService.DemoObservable);
 
-                await _apiService.AuthorizeApp(app);
+                await _apiService.AuthorizeApp(_app);
             }
             catch (TimeoutException)
             {
@@ -114,19 +115,21 @@ namespace Trading.UI.Demo.ViewModels
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
             }
 
-            var authUri = app.GetAuthUri();
-
-            System.Diagnostics.Process.Start("explorer.exe", $"\"{authUri}\"");
-
-            var authCode = await _dialogCordinator.ShowInputAsync(this, "Authentication Code",
-                "Please enter your authentication code, to get it continue the authentication on your opened web browser");
-
-            _token = await auth.TokenFactory.GetToken(authCode, app);
-
-            ShowAccounts();
+            await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(AccountAuthView), new DialogParameters
+            {
+                {"App", _app },
+                { "CodeCallback", new Action<string>(OnCodeReceived)}
+            }, null));
         }
 
-        private async void ShowAccounts()
+        private async void OnCodeReceived(string code)
+        {
+            _token = await auth.TokenFactory.GetToken(code, _app);
+
+            await ShowAccounts();
+        }
+
+        private async Task ShowAccounts()
         {
             if (_token is null || string.IsNullOrWhiteSpace(_token.AccessToken))
             {

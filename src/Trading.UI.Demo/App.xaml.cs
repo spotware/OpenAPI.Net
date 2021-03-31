@@ -51,6 +51,7 @@ namespace Trading.UI.Demo
 
             containerRegistry.RegisterDialog<ApiConfigurationView>();
             containerRegistry.RegisterDialog<CreateModifyOrderView>();
+            containerRegistry.RegisterDialog<AccountAuthView>();
 
             // Services
             OpenClient liveClientFactory() => new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
