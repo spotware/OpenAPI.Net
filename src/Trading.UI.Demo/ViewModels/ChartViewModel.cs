@@ -24,17 +24,18 @@ namespace Trading.UI.Demo.ViewModels
         private ProtoOATrendbarPeriod _selectedPeriod = ProtoOATrendbarPeriod.H1;
         private string _browserAddress;
 
-        public ChartViewModel(IDialogService dialogService, IEventAggregator eventAggregator, IDialogCoordinator dialogCordinator, IApiService apiService, IChartManager chartManager)
+        public ChartViewModel(IDialogService dialogService, IEventAggregator eventAggregator, IDialogCoordinator dialogCordinator, IApiService apiService, IChartingService chartingService)
         {
             _dialogService = dialogService;
             _eventAggregator = eventAggregator;
             _dialogCordinator = dialogCordinator;
             _apiService = apiService;
-            ChartManager = chartManager;
             Symbols = new ObservableCollection<SymbolModel>();
+
+            Chart = chartingService.GetChart();
         }
 
-        public IChartManager ChartManager { get; }
+        public IChart Chart { get; }
 
         public ObservableCollection<SymbolModel> Symbols { get; }
 
@@ -110,7 +111,7 @@ namespace Trading.UI.Demo.ViewModels
                 });
             }
 
-            ChartManager.CreateChart(newSymbol.Name, data);
+            Chart.LoadData(newSymbol.Name, data);
         }
 
         private void SelectedSymbol_Tick(SymbolModel obj)

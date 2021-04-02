@@ -42,7 +42,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <ContentPresenter Grid.Column="0" Content="{Binding Path=ChartManager.Chart}" />
+        <ContentPresenter Grid.Column="0" Content="{Binding Path=Chart}" />
 
         <DataGrid
             Name="SymbolsDataGrid"
