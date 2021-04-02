@@ -857,18 +857,11 @@ namespace Trading.UI.Demo.Services
 
         public async Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId)
         {
-            var timeDiff = to - from;
+            var periodMaximum = GetMaximumTrendBarTime(period);
 
-            bool isTimeValid = period switch
-            {
-                ProtoOATrendbarPeriod.M1 or ProtoOATrendbarPeriod.M2 or ProtoOATrendbarPeriod.M3 or ProtoOATrendbarPeriod.M4 or ProtoOATrendbarPeriod.M5 => timeDiff.TotalMilliseconds <= 302400000,
-                ProtoOATrendbarPeriod.M10 or ProtoOATrendbarPeriod.M15 or ProtoOATrendbarPeriod.M30 or ProtoOATrendbarPeriod.H1 => timeDiff.TotalMilliseconds <= 21168000000,
-                ProtoOATrendbarPeriod.H4 or ProtoOATrendbarPeriod.H12 or ProtoOATrendbarPeriod.D1 => timeDiff.TotalMilliseconds <= 31622400000,
-                ProtoOATrendbarPeriod.W1 or ProtoOATrendbarPeriod.Mn1 => timeDiff.TotalMilliseconds <= 158112000000,
-                _ => throw new ArgumentOutOfRangeException(nameof(period))
-            };
+            if (from == default) from = to.Add(-periodMaximum);
 
-            if (isTimeValid is false) throw new ArgumentOutOfRangeException(nameof(to), "The time range is not valid");
+            if (to - from > periodMaximum) throw new ArgumentOutOfRangeException(nameof(to), "The time range is not valid");
 
             VerifyConnection();
 
@@ -968,5 +961,14 @@ namespace Trading.UI.Demo.Services
             {
             }
         }
+
+        private TimeSpan GetMaximumTrendBarTime(ProtoOATrendbarPeriod period) => period switch
+        {
+            ProtoOATrendbarPeriod.M1 or ProtoOATrendbarPeriod.M2 or ProtoOATrendbarPeriod.M3 or ProtoOATrendbarPeriod.M4 or ProtoOATrendbarPeriod.M5 => TimeSpan.FromMilliseconds(302400000),
+            ProtoOATrendbarPeriod.M10 or ProtoOATrendbarPeriod.M15 or ProtoOATrendbarPeriod.M30 or ProtoOATrendbarPeriod.H1 => TimeSpan.FromMilliseconds(21168000000),
+            ProtoOATrendbarPeriod.H4 or ProtoOATrendbarPeriod.H12 or ProtoOATrendbarPeriod.D1 => TimeSpan.FromMilliseconds(31622400000),
+            ProtoOATrendbarPeriod.W1 or ProtoOATrendbarPeriod.Mn1 => TimeSpan.FromMilliseconds(158112000000),
+            _ => throw new ArgumentOutOfRangeException(nameof(period))
+        };
     }
 }

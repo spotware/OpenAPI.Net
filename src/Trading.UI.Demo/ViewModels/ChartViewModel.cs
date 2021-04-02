@@ -4,8 +4,8 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Trading.UI.Demo.Events;
 using Trading.UI.Demo.Models;
 using Trading.UI.Demo.Services;
@@ -21,8 +21,8 @@ namespace Trading.UI.Demo.ViewModels
         private SymbolModel _selectedSymbol;
 
         private AccountModel _account;
-        private ProtoOATrendbarPeriod _selectedPeriod = ProtoOATrendbarPeriod.H1;
-        private string _browserAddress;
+        private ProtoOATrendbarPeriod _selectedTimeFrame = ProtoOATrendbarPeriod.H1;
+        private bool _isLoadingData;
 
         public ChartViewModel(IDialogService dialogService, IEventAggregator eventAggregator, IDialogCoordinator dialogCordinator, IApiService apiService, IChartingService chartingService)
         {
@@ -39,7 +39,7 @@ namespace Trading.UI.Demo.ViewModels
 
         public ObservableCollection<SymbolModel> Symbols { get; }
 
-        public string BrowserAddress { get => _browserAddress; set => SetProperty(ref _browserAddress, value); }
+        public bool IsLoadingData { get => _isLoadingData; set => SetProperty(ref _isLoadingData, value); }
 
         public SymbolModel SelectedSymbol
         {
@@ -52,13 +52,17 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        public ProtoOATrendbarPeriod SelectedPeriod { get => _selectedPeriod; set => SetProperty(ref _selectedPeriod, value); }
+        public ProtoOATrendbarPeriod SelectedTimeFrame
+        {
+            get => _selectedTimeFrame; set
+            {
+                if (SetProperty(ref _selectedTimeFrame, value)) OnTimeFrameChanged();
+            }
+        }
 
         protected override void Loaded()
         {
             _eventAggregator.GetEvent<AccountChangedEvent>().Subscribe(OnAccountChanged);
-
-            BrowserAddress = Path.Combine(Environment.CurrentDirectory, "Chart.js", "chart.html");
         }
 
         protected override void Unloaded()
@@ -95,27 +99,44 @@ namespace Trading.UI.Demo.ViewModels
 
             newSymbol.Tick += SelectedSymbol_Tick;
 
-            var trendbars = await _apiService.GetTrendbars(_account.Id, _account.IsLive, DateTimeOffset.Now.AddDays(-10), DateTimeOffset.Now, SelectedPeriod, newSymbol.Id);
-
-            var data = new List<Ohlc>();
-
-            foreach (var trendbar in trendbars)
-            {
-                data.Add(new Ohlc
-                {
-                    Low = newSymbol.GetPriceFromRelative(trendbar.Low),
-                    High = newSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaHigh),
-                    Open = newSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaOpen),
-                    Close = newSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaClose),
-                    Time = DateTimeOffset.FromUnixTimeSeconds(trendbar.UtcTimestampInMinutes * 60)
-                });
-            }
-
-            Chart.LoadData(newSymbol.Name, data);
+            await LoadSymbolDataOnChart();
         }
+
+        private async void OnTimeFrameChanged() => await LoadSymbolDataOnChart();
 
         private void SelectedSymbol_Tick(SymbolModel obj)
         {
+            if (obj != SelectedSymbol) return;
+        }
+
+        private async Task LoadSymbolDataOnChart()
+        {
+            IsLoadingData = true;
+
+            try
+            {
+                var trendbars = await _apiService.GetTrendbars(_account.Id, _account.IsLive, default, DateTimeOffset.Now, SelectedTimeFrame, SelectedSymbol.Id);
+
+                var data = new List<Ohlc>();
+
+                foreach (var trendbar in trendbars)
+                {
+                    data.Add(new Ohlc
+                    {
+                        Low = SelectedSymbol.GetPriceFromRelative(trendbar.Low),
+                        High = SelectedSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaHigh),
+                        Open = SelectedSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaOpen),
+                        Close = SelectedSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaClose),
+                        Time = DateTimeOffset.FromUnixTimeSeconds(trendbar.UtcTimestampInMinutes * 60)
+                    });
+                }
+
+                Chart.LoadData(SelectedSymbol.Name, data);
+            }
+            finally
+            {
+                IsLoadingData = false;
+            }
         }
     }
 }

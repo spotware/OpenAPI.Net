@@ -13,6 +13,7 @@
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:markupExtensions="clr-namespace:Trading.UI.Demo.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:openApi="clr-namespace:;assembly=OpenAPI.Net"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -42,7 +43,32 @@
         </Grid.ColumnDefinitions>
 
 
-        <ContentPresenter Grid.Column="0" Content="{Binding Path=Chart}" />
+        <Grid Grid.Column="0" IsEnabled="{Binding Path=IsLoadingData, Converter={StaticResource BoolToOppositeBoolConverter}, UpdateSourceTrigger=PropertyChanged}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border
+                Grid.Row="0"
+                BorderBrush="{StaticResource MahApps.Brushes.Control.Border}"
+                BorderThickness="0,0,0,3">
+                <ToolBarTray
+                    Name="ChartViewToolBarTray"
+                    behaviors:ToolBarTraySettingsBehavior.SaveBand="True"
+                    behaviors:ToolBarTraySettingsBehavior.SaveBandIndex="True"
+                    behaviors:ToolBarTraySettingsBehavior.SaveWidth="True">
+                    <ToolBar Name="TimeFrameToolBar">
+                        <ComboBox
+                            Width="80"
+                            ItemsSource="{Binding Source={markupExtensions:EnumBindingMarkup {x:Type openApi:ProtoOATrendbarPeriod}}}"
+                            SelectedItem="{Binding Path=SelectedTimeFrame, UpdateSourceTrigger=PropertyChanged}" />
+                    </ToolBar>
+                </ToolBarTray>
+            </Border>
+
+            <ContentPresenter Grid.Row="1" Content="{Binding Path=Chart}" />
+        </Grid>
 
         <DataGrid
             Name="SymbolsDataGrid"
