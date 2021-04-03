@@ -61,10 +61,19 @@
     <ProjectReference Include="..\OpenAPI.Net\OpenAPI.Net.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Chart.js\chart-3.0.0-beta.9.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Chart.js\chart.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Chart.js\chartjs-adapter-luxon-0.2.1.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Chart.js\chartjs-chart-financial.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Chart.js\luxon-1.24.1.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
