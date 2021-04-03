@@ -103,6 +103,14 @@ namespace Trading.UI.Demo.ViewModels
                 SubscribeToErrors(_apiService.DemoObservable);
 
                 await _apiService.AuthorizeApp(_app);
+
+                if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
+
+                await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(AccountAuthView), new DialogParameters
+                {
+                    {"App", _app },
+                    { "CodeCallback", new Action<string>(OnCodeReceived)}
+                }, null));
             }
             catch (TimeoutException)
             {
@@ -114,12 +122,6 @@ namespace Trading.UI.Demo.ViewModels
             {
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
             }
-
-            await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(AccountAuthView), new DialogParameters
-            {
-                {"App", _app },
-                { "CodeCallback", new Action<string>(OnCodeReceived)}
-            }, null));
         }
 
         private async void OnCodeReceived(string code)
