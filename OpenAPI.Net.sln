@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trading.UI.Demo", "src\Trading.UI.Demo\Trading.UI.Demo.csproj", "{842C8FED-4CAC-4676-9922-D59F88CEADC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms.Demo", "src\WinForms.Demo\WinForms.Demo.csproj", "{7027B55B-5C8E-484A-986F-F7F909DD80E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{842C8FED-4CAC-4676-9922-D59F88CEADC5}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{842C8FED-4CAC-4676-9922-D59F88CEADC5}.Debug|Any CPU.Build.0 = Debug|x86
 		{842C8FED-4CAC-4676-9922-D59F88CEADC5}.Release|Any CPU.ActiveCfg = Release|x86
+		{7027B55B-5C8E-484A-986F-F7F909DD80E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7027B55B-5C8E-484A-986F-F7F909DD80E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7027B55B-5C8E-484A-986F-F7F909DD80E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7027B55B-5C8E-484A-986F-F7F909DD80E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{B9BC1937-94E5-4F3B-883D-15EDCE72C5AB} = {053D14F1-732A-4E35-8E55-6AE538E8119C}
 		{A79298DA-2F57-4ABA-83FA-B051A51CEFCD} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 		{842C8FED-4CAC-4676-9922-D59F88CEADC5} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
+		{7027B55B-5C8E-484A-986F-F7F909DD80E3} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E05B0FF6-48DB-46F1-BD20-0D3980D5D6E4}
