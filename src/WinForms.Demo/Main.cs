@@ -15,9 +15,9 @@ namespace WinForms.Demo
 {
     public partial class Main : Form
     {
-        private string _clientId = "166_96AukotiQzRU4Qcp9lG89waxMx9ssKQi3n30kCYLP0qTQ86pMh";
-        private string _clientSecret = "DZYQJ7aJ7Cpy0R6cD4pljjWReXyFdePmwdNqIsXbm9uKpt7MGN";
-        private string _token = "m4iBbS7UjI-W8pJ36KVyCOqaIQcgW9_cBcoFtcch7FM";
+        private string _clientId = "";
+        private string _clientSecret = "";
+        private string _token = "";
         private string _apiHost = "demo.ctraderapi.com";
 
         private int _apiPort = 5035;
