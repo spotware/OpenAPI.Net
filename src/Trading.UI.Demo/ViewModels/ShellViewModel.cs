@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
@@ -106,11 +107,9 @@ namespace Trading.UI.Demo.ViewModels
 
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
 
-                await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(AccountAuthView), new DialogParameters
-                {
-                    {"App", _app },
-                    { "CodeCallback", new Action<string>(OnCodeReceived)}
-                }, null));
+                if (_apiConfiguration.IsLoaded is false) await SaveApiConfiguration();
+
+                await ShowAccountAuthDialog();
             }
             catch (TimeoutException)
             {
@@ -122,6 +121,40 @@ namespace Trading.UI.Demo.ViewModels
             {
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
             }
+        }
+
+        private async Task SaveApiConfiguration()
+        {
+            var dialogResult = await _dialogCordinator.ShowMessageAsync(this, "Save API Credentials", "Do you want to save your API credentials and load it next time?", MessageDialogStyle.AffirmativeAndNegative,
+                new MetroDialogSettings
+                {
+                    AffirmativeButtonText = "Yes, I wannt to save",
+                    NegativeButtonText = "No"
+                });
+
+            if (dialogResult == MessageDialogResult.Negative) return;
+
+            var saveFileDialog = new SaveFileDialog
+            {
+                DefaultExt = ".xml",
+                Filter = "(.XML)|*.xml",
+                CheckPathExists = true,
+                ValidateNames = true,
+                Title = "Save API Configuration"
+            };
+
+            if (saveFileDialog.ShowDialog() is false) return;
+
+            _apiConfiguration.SaveToFile(saveFileDialog.FileName);
+        }
+
+        private async Task ShowAccountAuthDialog()
+        {
+            await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(AccountAuthView), new DialogParameters
+                {
+                    {"App", _app },
+                    { "CodeCallback", new Action<string>(OnCodeReceived)}
+                }, null));
         }
 
         private async void OnCodeReceived(string code)
