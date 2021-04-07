@@ -37,7 +37,6 @@ namespace Trading.UI.Demo.ViewModels
         private string _ordersSearchText;
         private string _historySearchText;
         private string _transactionsSearchText;
-        private bool _isAccountSelected;
         private DateTime _transactionsStartTime;
         private DateTime _transactionsEndTime;
 

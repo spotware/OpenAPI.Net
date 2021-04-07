@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf;
 using OpenAPI.Net;
+using OpenAPI.Net.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -325,7 +326,7 @@ namespace Trading.UI.Demo.Services
 
                     if (newOrderReq.OrderType == ProtoOAOrderType.StopLimit)
                     {
-                        var slippageinPoint = pendingOrder.Symbol.GetPointsFromPips(pendingOrder.LimitRangeInPips);
+                        var slippageinPoint = pendingOrder.Symbol.Data.GetPointsFromPips(pendingOrder.LimitRangeInPips);
 
                         if (slippageinPoint < int.MaxValue) newOrderReq.SlippageInPoints = (int)slippageinPoint;
                     }
@@ -552,7 +553,7 @@ namespace Trading.UI.Demo.Services
 
                 if (newOrder.Type == PendingOrderType.StopLimit)
                 {
-                    var slippageinPoint = newOrder.Symbol.GetPointsFromPips(newOrder.LimitRangeInPips);
+                    var slippageinPoint = newOrder.Symbol.Data.GetPointsFromPips(newOrder.LimitRangeInPips);
 
                     if (slippageinPoint < int.MaxValue) requestMessage.SlippageInPoints = (int)slippageinPoint;
                 }

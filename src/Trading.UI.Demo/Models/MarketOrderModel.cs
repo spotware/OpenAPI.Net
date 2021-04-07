@@ -145,7 +145,7 @@ namespace Trading.UI.Demo.Models
             {
                 IsStopLossEnabled = true;
                 StopLossInPrice = position.StopLoss;
-                StopLossInPips = Symbol.GetPipsFromPrice(Math.Abs(StopLossInPrice - Price));
+                StopLossInPips = Symbol.Data.GetPipsFromPrice(Math.Abs(StopLossInPrice - Price));
             }
             else
             {
@@ -160,7 +160,7 @@ namespace Trading.UI.Demo.Models
             {
                 IsTakeProfitEnabled = true;
                 TakeProfitInPrice = position.TakeProfit;
-                TakeProfitInPips = Symbol.GetPipsFromPrice(Math.Abs(TakeProfitInPrice - Price));
+                TakeProfitInPips = Symbol.Data.GetPipsFromPrice(Math.Abs(TakeProfitInPrice - Price));
             }
             else
             {
@@ -174,11 +174,11 @@ namespace Trading.UI.Demo.Models
         {
             if (TradeSide == ProtoOATradeSide.Buy)
             {
-                Pips = Symbol.GetPipsFromPrice(Symbol.Bid - Price);
+                Pips = Symbol.Data.GetPipsFromPrice(Symbol.Bid - Price);
             }
             else
             {
-                Pips = Symbol.GetPipsFromPrice(Price - Symbol.Ask);
+                Pips = Symbol.Data.GetPipsFromPrice(Price - Symbol.Ask);
             }
 
             GrossProfit = Math.Round(Pips * Symbol.PipValue * MonetaryConverter.FromMonetary(Volume), 2);

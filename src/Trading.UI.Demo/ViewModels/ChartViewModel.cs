@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
+using OpenAPI.Net.Helpers;
 using Prism.Events;
 using Prism.Services.Dialogs;
 using System;
@@ -123,10 +124,10 @@ namespace Trading.UI.Demo.ViewModels
                 {
                     data.Add(new Ohlc
                     {
-                        Low = SelectedSymbol.GetPriceFromRelative(trendbar.Low),
-                        High = SelectedSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaHigh),
-                        Open = SelectedSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaOpen),
-                        Close = SelectedSymbol.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaClose),
+                        Low = SelectedSymbol.Data.GetPriceFromRelative(trendbar.Low),
+                        High = SelectedSymbol.Data.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaHigh),
+                        Open = SelectedSymbol.Data.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaOpen),
+                        Close = SelectedSymbol.Data.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaClose),
                         Time = DateTimeOffset.FromUnixTimeSeconds(trendbar.UtcTimestampInMinutes * 60)
                     });
                 }

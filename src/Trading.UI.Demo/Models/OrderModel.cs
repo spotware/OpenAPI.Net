@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using OpenAPI.Net.Helpers;
+using Prism.Mvvm;
 using System;
 
 namespace Trading.UI.Demo.Models
@@ -29,7 +30,7 @@ namespace Trading.UI.Demo.Models
             {
                 SetProperty(ref _symbol, value);
 
-                Volume = _symbol.NormalizeVolume(Volume);
+                Volume = _symbol.Data.NormalizeVolume(Volume);
             }
         }
 
@@ -85,9 +86,9 @@ namespace Trading.UI.Demo.Models
 
         public long Id { get; set; }
 
-        public long RelativeStopLoss => Symbol.GetRelativeFromPips(StopLossInPips);
+        public long RelativeStopLoss => Symbol.Data.GetRelativeFromPips(StopLossInPips);
 
-        public long RelativeTakeProfit => Symbol.GetRelativeFromPips(TakeProfitInPips);
+        public long RelativeTakeProfit => Symbol.Data.GetRelativeFromPips(TakeProfitInPips);
 
         public double StopLossInPrice
         {

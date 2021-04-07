@@ -304,8 +304,8 @@ namespace Trading.UI.Demo.ViewModels
             double bid = symbol.Bid;
             double ask = symbol.Ask;
 
-            if (spotEvent.HasBid) bid = symbol.GetPriceFromRelative((long)spotEvent.Bid);
-            if (spotEvent.HasAsk) ask = symbol.GetPriceFromRelative((long)spotEvent.Ask);
+            if (spotEvent.HasBid) bid = symbol.Data.GetPriceFromRelative((long)spotEvent.Bid);
+            if (spotEvent.HasAsk) ask = symbol.Data.GetPriceFromRelative((long)spotEvent.Ask);
 
             symbol.OnTick(bid, ask);
 

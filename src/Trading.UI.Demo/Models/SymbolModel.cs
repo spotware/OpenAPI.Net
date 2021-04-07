@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using OpenAPI.Net.Helpers;
+using Prism.Mvvm;
 using System;
 
 namespace Trading.UI.Demo.Models
@@ -21,56 +22,15 @@ namespace Trading.UI.Demo.Models
 
         public long Id => LightSymbol.SymbolId;
 
-        public double TickSize => 1 / Math.Pow(10, Data.Digits);
+        public double TickSize => Data.GetTickSize();
 
-        public double PipSize => 1 / Math.Pow(10, Data.PipPosition);
+        public double PipSize => Data.GetPipSize();
 
-        public double PipValue => TickValue * (PipSize / TickSize);
+        public double PipValue => Data.GetPipValue(TickValue);
 
         public double TickValue { get; set; }
 
         public event Action<SymbolModel> Tick;
-
-        public long GetRelativeFromPips(double pips)
-        {
-            var pipsInPrice = pips * PipSize;
-
-            return (long)Math.Round(pipsInPrice * 100000, Data.Digits);
-        }
-
-        public double GetPriceFromRelative(long relative) => Math.Round(relative / 100000.0, Data.Digits);
-
-        public double GetPipsFromRelative(long relative) => Math.Round((relative / 100000.0) / PipSize, Data.Digits - Data.PipPosition);
-
-        public double GetPipsFromPoints(long points) => GetPipsFromPrice(points * TickSize);
-
-        public long GetPointsFromPips(double pips) => Convert.ToInt64(pips * Math.Pow(10, Data.Digits - Data.PipPosition));
-
-        public double GetPipsFromPrice(double price) => Math.Round(price * Math.Pow(10, Data.PipPosition), Data.Digits - Data.PipPosition);
-
-        public long NormalizeVolume(long volumeInUnits)
-        {
-            var normalizedVolume = volumeInUnits - (volumeInUnits % Data.StepVolume);
-
-            if (normalizedVolume > Data.MaxVolume) normalizedVolume = Data.MaxVolume;
-            if (normalizedVolume < Data.MinVolume) normalizedVolume = Data.MinVolume;
-
-            return normalizedVolume;
-        }
-
-        public double AddPipsToPrice(double price, double pips)
-        {
-            var pipsInPrice = pips * PipSize;
-
-            return Math.Round(price + pipsInPrice, Data.Digits);
-        }
-
-        public double SubtractPipsFromPrice(double price, double pips)
-        {
-            var pipsInPrice = pips * PipSize;
-
-            return Math.Round(price - pipsInPrice, Data.Digits);
-        }
 
         public void OnTick(double bid, double ask)
         {

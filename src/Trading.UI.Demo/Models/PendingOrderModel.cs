@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenAPI.Net.Helpers;
+using System;
 using System.Collections.Generic;
 using Trading.UI.Demo.Enums;
 
@@ -89,8 +90,8 @@ namespace Trading.UI.Demo.Models
             if (order.HasRelativeStopLoss)
             {
                 IsStopLossEnabled = true;
-                StopLossInPips = Symbol.GetPipsFromRelative(order.RelativeStopLoss);
-                StopLossInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.AddPipsToPrice(Price, StopLossInPips) : Symbol.SubtractPipsFromPrice(Price, StopLossInPips);
+                StopLossInPips = Symbol.Data.GetPipsFromRelative(order.RelativeStopLoss);
+                StopLossInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.Data.AddPipsToPrice(Price, StopLossInPips) : Symbol.Data.SubtractPipsFromPrice(Price, StopLossInPips);
 
                 IsTrailingStopLossEnabled = order.TrailingStopLoss;
             }
@@ -106,8 +107,8 @@ namespace Trading.UI.Demo.Models
             if (order.HasRelativeTakeProfit)
             {
                 IsTakeProfitEnabled = true;
-                TakeProfitInPips = Symbol.GetPipsFromRelative(order.RelativeTakeProfit);
-                TakeProfitInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.SubtractPipsFromPrice(Price, TakeProfitInPips) : Symbol.AddPipsToPrice(Price, TakeProfitInPips);
+                TakeProfitInPips = Symbol.Data.GetPipsFromRelative(order.RelativeTakeProfit);
+                TakeProfitInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.Data.SubtractPipsFromPrice(Price, TakeProfitInPips) : Symbol.Data.AddPipsToPrice(Price, TakeProfitInPips);
             }
             else
             {
@@ -118,7 +119,7 @@ namespace Trading.UI.Demo.Models
 
             if (Type == PendingOrderType.StopLimit)
             {
-                LimitRangeInPips = symbol.GetPipsFromPoints(order.SlippageInPoints);
+                LimitRangeInPips = Symbol.Data.GetPipsFromPoints(order.SlippageInPoints);
             }
         }
 
