@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenAPI.Net.Helpers;
+using System;
 using System.Globalization;
 using System.Windows.Data;
-using Trading.UI.Demo.Helpers;
 
 namespace Trading.UI.Demo.ValueConverters
 {

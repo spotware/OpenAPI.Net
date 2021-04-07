@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenAPI.Net.Helpers;
+using System;
 using System.Collections.Generic;
-using Trading.UI.Demo.Helpers;
 
 namespace Trading.UI.Demo.Models
 {

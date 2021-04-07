@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
+using OpenAPI.Net.Helpers;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
@@ -12,7 +13,6 @@ using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Trading.UI.Demo.Events;
-using Trading.UI.Demo.Helpers;
 using Trading.UI.Demo.Models;
 using Trading.UI.Demo.Regions;
 using Trading.UI.Demo.Services;

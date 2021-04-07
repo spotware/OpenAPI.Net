@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Trading.UI.Demo.Helpers
+namespace OpenAPI.Net.Helpers
 {
     public static class MonetaryConverter
     {
