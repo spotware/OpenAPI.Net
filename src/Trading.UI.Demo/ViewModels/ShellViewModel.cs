@@ -311,7 +311,7 @@ namespace Trading.UI.Demo.ViewModels
 
             if (symbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId && symbol.TickValue is 0)
             {
-                symbol.TickValue = symbol.TickSize;
+                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, null, default);
             }
             else
             {
@@ -322,9 +322,7 @@ namespace Trading.UI.Demo.ViewModels
 
                 if (conversionSymbol is not null && conversionSymbol.Bid is not 0)
                 {
-                    symbol.TickValue = conversionSymbol.BaseAsset.AssetId == accountModel.DepositAsset.AssetId
-                        ? symbol.TickSize / conversionSymbol.Bid
-                        : symbol.TickSize * conversionSymbol.Bid;
+                    symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, conversionSymbol.BaseAsset, conversionSymbol.Bid);
                 }
             }
 

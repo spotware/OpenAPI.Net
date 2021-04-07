@@ -8,6 +8,34 @@ namespace OpenAPI.Net.Helpers
 
         public static double GetTickSize(this ProtoOASymbol symbol) => 1 / Math.Pow(10, symbol.Digits);
 
+        public static double GetTickValue(this ProtoOASymbol symbol, ProtoOAAsset symbolQuoteAsset, ProtoOAAsset accountDepositAsset, ProtoOAAsset conversionSymbolBaseAsset, double conversionSymbolCurrentPrice)
+        {
+            _ = symbol ?? throw new ArgumentNullException(nameof(symbol));
+            _ = symbolQuoteAsset ?? throw new ArgumentNullException(nameof(symbolQuoteAsset));
+            _ = accountDepositAsset ?? throw new ArgumentNullException(nameof(accountDepositAsset));
+
+            double tickValue;
+
+            var symbolTickSize = symbol.GetTickSize();
+
+            if (symbolQuoteAsset.AssetId == accountDepositAsset.AssetId)
+            {
+                tickValue = symbolTickSize;
+            }
+            else
+            {
+                _ = conversionSymbolBaseAsset ?? throw new ArgumentNullException(nameof(conversionSymbolBaseAsset));
+
+                if (conversionSymbolCurrentPrice <= 0) throw new ArgumentOutOfRangeException(nameof(conversionSymbolCurrentPrice), conversionSymbolCurrentPrice, $"The '{conversionSymbolCurrentPrice}' value must be greater than zero");
+
+                tickValue = conversionSymbolBaseAsset.AssetId == accountDepositAsset.AssetId
+                    ? symbolTickSize / conversionSymbolCurrentPrice
+                    : symbolTickSize * conversionSymbolCurrentPrice;
+            }
+
+            return tickValue;
+        }
+
         public static double GetPipSize(this ProtoOASymbol symbol) => 1 / Math.Pow(10, symbol.PipPosition);
 
         public static long GetRelativeFromPips(this ProtoOASymbol symbol, double pips)
