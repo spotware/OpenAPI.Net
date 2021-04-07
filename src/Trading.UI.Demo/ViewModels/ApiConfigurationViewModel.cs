@@ -1,8 +1,10 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Services.Dialogs;
 using System.IO;
+using Trading.UI.Demo.Events;
 using Trading.UI.Demo.Models;
 using Trading.UI.Demo.Services;
 
@@ -12,12 +14,14 @@ namespace Trading.UI.Demo.ViewModels
     {
         private readonly IDialogCoordinator _dialogCordinator;
         private readonly IAppDispatcher _dispatcher;
+        private readonly IEventAggregator _eventAggregator;
         private ApiConfigurationModel _model;
 
-        public ApiConfigurationViewModel(IDialogCoordinator dialogCordinator, IAppDispatcher dispatcher)
+        public ApiConfigurationViewModel(IDialogCoordinator dialogCordinator, IAppDispatcher dispatcher, IEventAggregator eventAggregator)
         {
             _dialogCordinator = dialogCordinator;
             _dispatcher = dispatcher;
+            _eventAggregator = eventAggregator;
 
             DoneCommand = new DelegateCommand(Done);
 
@@ -43,13 +47,15 @@ namespace Trading.UI.Demo.ViewModels
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
-            if (parameters.TryGetValue("Model", out ApiConfigurationModel model)) Model = model;
+            Model = new ApiConfigurationModel();
         }
 
         private async void Done()
         {
             if (IsModelValid())
             {
+                _eventAggregator.GetEvent<ApiConfigurationFinishedEvent>().Publish(Model);
+
                 OnRequestClose(new DialogResult(ButtonResult.OK));
             }
             else
@@ -83,13 +89,7 @@ namespace Trading.UI.Demo.ViewModels
                 return;
             }
 
-            var loadedConfig = ApiConfigurationModel.LoadFromFile(openFileDialog.FileName);
-
-            Model.ClientId = loadedConfig.ClientId;
-            Model.Secret = loadedConfig.Secret;
-            Model.RedirectUri = loadedConfig.RedirectUri;
-
-            Model.IsLoaded = true;
+            Model = ApiConfigurationModel.LoadFromFile(openFileDialog.FileName);
         }
     }
 }

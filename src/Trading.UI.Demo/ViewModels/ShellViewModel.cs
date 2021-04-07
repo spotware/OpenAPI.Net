@@ -67,6 +67,8 @@ namespace Trading.UI.Demo.ViewModels
 
         protected override void Loaded()
         {
+            _eventAggregator.GetEvent<ApiConfigurationFinishedEvent>().Subscribe(apiConfigurationModel => _apiConfiguration = apiConfigurationModel);
+
             _regionManager.RequestNavigate(ShellViewRegions.ChartViewRegion, nameof(ChartView));
             _regionManager.RequestNavigate(ShellViewRegions.AccountDataViewRegion, nameof(AccountDataView));
 
@@ -75,12 +77,7 @@ namespace Trading.UI.Demo.ViewModels
 
         private async void ShowApiConfigurationDialog()
         {
-            _apiConfiguration = new ApiConfigurationModel();
-
-            await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(ApiConfigurationView), new DialogParameters
-            {
-                {"Model", _apiConfiguration }
-            }, ApiConfigurationDialogCallback));
+            await _dispatcher.InvokeAsync(() => _dialogService.ShowDialog(nameof(ApiConfigurationView), ApiConfigurationDialogCallback));
         }
 
         private async void ApiConfigurationDialogCallback(IDialogResult dialogResult)

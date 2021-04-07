@@ -34,7 +34,11 @@ namespace Trading.UI.Demo.Models
 
             var serializer = new XmlSerializer(typeof(ApiConfigurationModel));
 
-            return serializer.Deserialize(fileStream) as ApiConfigurationModel;
+            var result = serializer.Deserialize(fileStream) as ApiConfigurationModel;
+
+            result.IsLoaded = true;
+
+            return result;
         }
     }
 }
