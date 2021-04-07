@@ -55,7 +55,7 @@ namespace Trading.UI.Demo.Models
             var positionsNetProfit = Positions.Sum(iPosition => iPosition.NetProfit);
             var positionsGrossProfit = Positions.Sum(iPosition => iPosition.GrossProfit);
 
-            var positionsUsedMargin = Positions.Sum(iPosition => iPosition.UsedMarginMonetary);
+            var positionsUsedMargin = Positions.Sum(iPosition => iPosition.UsedMargin / Math.Pow(10, iPosition.MoneyDigits));
 
             Equity = Math.Round(Balance + positionsNetProfit, 2);
             MarginUsed = Math.Round(positionsUsedMargin, 2);

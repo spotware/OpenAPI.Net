@@ -24,7 +24,6 @@ namespace Trading.UI.Demo.Models
         private double _grossProfit;
         private double _commissionMonetary;
         private double _swapMonetary;
-        private double _usedMarginMonetary;
 
         public MarketOrderModel()
         {
@@ -67,18 +66,7 @@ namespace Trading.UI.Demo.Models
 
         public double SwapMonetary { get => _swapMonetary; set => SetProperty(ref _swapMonetary, value); }
 
-        public long UsedMargin
-        {
-            get => _usedMargin;
-            set
-            {
-                SetProperty(ref _usedMargin, value);
-
-                UsedMarginMonetary = UsedMargin / Math.Pow(10, MoneyDigits);
-            }
-        }
-
-        public double UsedMarginMonetary { get => _usedMarginMonetary; set => SetProperty(ref _usedMarginMonetary, value); }
+        public long UsedMargin { get => _usedMargin; set => SetProperty(ref _usedMargin, value); }
 
         public int MoneyDigits { get; set; }
 
