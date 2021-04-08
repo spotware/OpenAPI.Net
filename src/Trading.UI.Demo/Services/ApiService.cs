@@ -164,17 +164,13 @@ namespace Trading.UI.Demo.Services
                     cancelationTokenSource.Cancel();
                 });
 
-            var message = new ProtoOAAccountAuthReq
+            var requestMessage = new ProtoOAAccountAuthReq
             {
                 CtidTraderAccountId = accountId,
                 AccessToken = accessToken,
             };
 
-            await client.SendMessage(message, ProtoOAPayloadType.ProtoOaAccountAuthReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (result is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountAuthReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -197,17 +193,13 @@ namespace Trading.UI.Demo.Services
                 cancelationTokenSource.Cancel();
             });
 
-            var symbolsMessage = new ProtoOASymbolsListReq
+            var requestMessage = new ProtoOASymbolsListReq
             {
                 CtidTraderAccountId = accountId,
                 IncludeArchivedSymbols = false
             };
 
-            await client.SendMessage(symbolsMessage, ProtoOAPayloadType.ProtoOaSymbolsListReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (result is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsListReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -230,26 +222,20 @@ namespace Trading.UI.Demo.Services
                 cancelationTokenSource.Cancel();
             });
 
-            var symbolsMessage = new ProtoOASymbolByIdReq
+            var requestMessage = new ProtoOASymbolByIdReq
             {
                 CtidTraderAccountId = accountId,
             };
 
-            symbolsMessage.SymbolId.AddRange(symbolIds);
+            requestMessage.SymbolId.AddRange(symbolIds);
 
-            await client.SendMessage(symbolsMessage, ProtoOAPayloadType.ProtoOaSymbolByIdReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (result is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolByIdReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
 
         public async Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive, ProtoOALightSymbol[] lightSymbols, ProtoOAAsset[] assets)
         {
-            VerifyConnection();
-
             var symbolIds = lightSymbols.Select(iSymbol => iSymbol.SymbolId).ToArray();
 
             var symbols = await GetSymbols(accountId, isLive, symbolIds);
@@ -265,11 +251,6 @@ namespace Trading.UI.Demo.Services
 
         public async Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken)
         {
-            var accountListRequest = new ProtoOAGetAccountListByAccessTokenReq
-            {
-                AccessToken = accessToken
-            };
-
             using var cancelationTokenSource = new CancellationTokenSource();
 
             ProtoOACtidTraderAccount[] result = null;
@@ -282,11 +263,12 @@ namespace Trading.UI.Demo.Services
                     cancelationTokenSource.Cancel();
                 });
 
-            await _liveClient.SendMessage(accountListRequest, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+            var requestMessage = new ProtoOAGetAccountListByAccessTokenReq
+            {
+                AccessToken = accessToken
+            };
 
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (result is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -419,11 +401,7 @@ namespace Trading.UI.Demo.Services
                 CtidTraderAccountId = accountId
             };
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaReconcileReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (result is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaReconcileReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -507,11 +485,7 @@ namespace Trading.UI.Demo.Services
                 CtidTraderAccountId = accountId
             };
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaTraderReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (result is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaTraderReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -570,7 +544,7 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(isLive);
 
-            List<HistoricalTradeModel> result = new List<HistoricalTradeModel>();
+            List<HistoricalTradeModel> result = new();
 
             CancellationTokenSource cancelationTokenSource = null;
 
@@ -636,20 +610,7 @@ namespace Trading.UI.Demo.Services
 
                 cancelationTokenSource = new CancellationTokenSource();
 
-                try
-                {
-                    await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaDealListReq);
-
-                    await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-                }
-                finally
-                {
-                    var isResponseReceived = cancelationTokenSource.IsCancellationRequested;
-
-                    cancelationTokenSource.Dispose();
-
-                    if (isResponseReceived is false) throw new TimeoutException("The API didn't responded");
-                }
+                await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaDealListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
 
                 await Task.Delay(TimeSpan.FromSeconds(1));
 
@@ -665,7 +626,7 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(isLive);
 
-            List<TransactionModel> result = new List<TransactionModel>();
+            List<TransactionModel> result = new();
 
             CancellationTokenSource cancelationTokenSource = null;
 
@@ -705,20 +666,7 @@ namespace Trading.UI.Demo.Services
 
                 cancelationTokenSource = new CancellationTokenSource();
 
-                try
-                {
-                    await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq);
-
-                    await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-                }
-                finally
-                {
-                    var isResponseReceived = cancelationTokenSource.IsCancellationRequested;
-
-                    cancelationTokenSource.Dispose();
-
-                    if (isResponseReceived is false) throw new TimeoutException("The API didn't responded");
-                }
+                await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
 
                 await Task.Delay(TimeSpan.FromSeconds(1));
 
@@ -730,8 +678,6 @@ namespace Trading.UI.Demo.Services
 
         public async Task SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds)
         {
-            VerifyConnection();
-
             var client = GetClient(isLive);
 
             using var cancelationTokenSource = new CancellationTokenSource();
@@ -753,11 +699,7 @@ namespace Trading.UI.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds)
@@ -785,11 +727,7 @@ namespace Trading.UI.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
@@ -817,11 +755,7 @@ namespace Trading.UI.Demo.Services
                 SymbolId = symbolId
             };
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
@@ -849,34 +783,30 @@ namespace Trading.UI.Demo.Services
                 SymbolId = symbolId
             };
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (receivedResponse is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId)
         {
+            VerifyConnection();
+
             var periodMaximum = GetMaximumTrendBarTime(period);
 
             if (from == default) from = to.Add(-periodMaximum);
 
             if (to - from > periodMaximum) throw new ArgumentOutOfRangeException(nameof(to), "The time range is not valid");
 
-            VerifyConnection();
-
             var client = GetClient(isLive);
 
-            List<ProtoOATrendbar> result = new List<ProtoOATrendbar>();
+            List<ProtoOATrendbar> result = new();
 
-            CancellationTokenSource cancelationTokenSource = null;
+            CancellationTokenSource cancelationTokenSource = new();
 
             using var disposable = client.OfType<ProtoOAGetTrendbarsRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
                 result.AddRange(response.Trendbar);
 
-                if (cancelationTokenSource is not null) cancelationTokenSource.Cancel();
+                cancelationTokenSource.Cancel();
             });
 
             var requestMessage = new ProtoOAGetTrendbarsReq
@@ -888,22 +818,7 @@ namespace Trading.UI.Demo.Services
                 SymbolId = symbolId
             };
 
-            cancelationTokenSource = new CancellationTokenSource();
-
-            try
-            {
-                await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetTrendbarsReq);
-
-                await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-            }
-            finally
-            {
-                var isResponseReceived = cancelationTokenSource.IsCancellationRequested;
-
-                cancelationTokenSource.Dispose();
-
-                if (isResponseReceived is false) throw new TimeoutException("The API didn't responded");
-            }
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetTrendbarsReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
 
             return result.ToArray();
         }
@@ -925,16 +840,12 @@ namespace Trading.UI.Demo.Services
                 cancelationTokenSource.Cancel();
             });
 
-            var requestMeessage = new ProtoOAAssetListReq
+            var requestMessage = new ProtoOAAssetListReq
             {
                 CtidTraderAccountId = accountId,
             };
 
-            await client.SendMessage(requestMeessage, ProtoOAPayloadType.ProtoOaAssetListReq);
-
-            await DelayUntilCanceled(TimeSpan.FromMinutes(1), cancelationTokenSource.Token);
-
-            if (result is null) throw new TimeoutException("The API didn't responded");
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAssetListReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -949,18 +860,7 @@ namespace Trading.UI.Demo.Services
 
         private void VerifyConnection()
         {
-            if (IsConnected is not true) throw new InvalidOperationException("The API service is not connected yet, please connect the service before calling this method");
-        }
-
-        private async Task DelayUntilCanceled(TimeSpan timeSpan, CancellationToken token)
-        {
-            try
-            {
-                await Task.Delay(timeSpan, token);
-            }
-            catch (TaskCanceledException)
-            {
-            }
+            if (IsConnected is false) throw new InvalidOperationException("The service is not connected yet, please connect the service before using it");
         }
 
         private TimeSpan GetMaximumTrendBarTime(ProtoOATrendbarPeriod period) => period switch
@@ -971,5 +871,27 @@ namespace Trading.UI.Demo.Services
             ProtoOATrendbarPeriod.W1 or ProtoOATrendbarPeriod.Mn1 => TimeSpan.FromMilliseconds(158112000000),
             _ => throw new ArgumentOutOfRangeException(nameof(period))
         };
+
+        private async Task SendMessage<TMessage>(TMessage message, ProtoOAPayloadType payloadType, OpenClient client, CancellationTokenSource cancellationTokenSource, Func<bool> isResponseReceived, TimeSpan waitTime = default)
+            where TMessage : IMessage
+        {
+            await client.SendMessage(message, payloadType);
+
+            if (waitTime == default) waitTime = TimeSpan.FromMinutes(1);
+
+            try
+            {
+                await Task.Delay(waitTime, cancellationTokenSource.Token);
+            }
+            catch (TaskCanceledException)
+            {
+            }
+            finally
+            {
+                cancellationTokenSource.Dispose();
+            }
+
+            if (isResponseReceived() is false) throw new TimeoutException("The API didn't responded");
+        }
     }
 }
