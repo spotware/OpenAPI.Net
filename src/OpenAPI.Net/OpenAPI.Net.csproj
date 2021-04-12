@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/afhacker/OpenAPI.Net</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/afhacker/OpenAPI.Net</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/spotware/OpenAPI.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/spotware/OpenAPI.Net</RepositoryUrl>
     <PackageTags>cTrader, Open API, Spotware</PackageTags>
     <Description>A .NET RX library for Spotware Open API</Description>
     <PackageId>Spotware.OpenAPI.Net</PackageId>
@@ -13,6 +13,7 @@
     <Platforms>AnyCPU</Platforms>
     <Company>Spotware</Company>
     <Authors>Spotware</Authors>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
