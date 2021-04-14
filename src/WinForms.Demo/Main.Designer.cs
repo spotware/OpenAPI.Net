@@ -288,7 +288,7 @@ namespace WinForms.Demo
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(16, 416);
+            this.btnClear.Location = new System.Drawing.Point(16, 340);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(193, 28);
@@ -442,6 +442,7 @@ namespace WinForms.Demo
             this.refreshTokenButton.TabIndex = 32;
             this.refreshTokenButton.Text = "Refresh Token";
             this.refreshTokenButton.UseVisualStyleBackColor = true;
+            this.refreshTokenButton.Click += new System.EventHandler(this.refreshTokenButton_Click);
             // 
             // Main
             // 

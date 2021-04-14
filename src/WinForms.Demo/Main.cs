@@ -15,12 +15,16 @@ namespace WinForms.Demo
 {
     public partial class Main : Form
     {
-        private string _clientId = "";
-        private string _clientSecret = "";
-        private string _token = "";
-        private string _apiHost = "demo.ctraderapi.com";
+        private const string _clientId = "2175_xzl5IOUElxoQJSXIOrJz7Da65B0bFv8K9xLjYhL7eO85sKT885";
+        private const string _clientSecret = "pA5Yova9jEpzgVMYCjTrS54LCX31MD0chqO94wDScE1qHgko3C";
+        private const string _token = "WFosGC8GEKIyA9DRLEdCXjdMyKDEZkBDF8DVqX_klWk";
+        private const string _apiHost = "demo.ctraderapi.com";
 
-        private int _apiPort = 5035;
+        // if you want to send a refresh token request then please set your refresh token here
+        private const string _refreshToken = "";
+
+        private const int _apiPort = 5035;
+
         private long _accountID = 15084071;
 
         //private string _clientId = "185_Cmy5vh47ORewO95NsLCbz10Xn6RAzxFA13fgyg5xTKhzuxj7jr";
@@ -48,6 +52,7 @@ namespace WinForms.Demo
             _client = new OpenClient(_apiHost, _apiPort, TimeSpan.FromSeconds(10));
 
             _client.ObserveOn(SynchronizationContext.Current).OfType<ProtoMessage>().Subscribe(OnMessage, OnError);
+            _client.ObserveOn(SynchronizationContext.Current).OfType<ProtoOASpotEvent>().Subscribe(OnSpotMessage);
             _client.ObserveOn(SynchronizationContext.Current).OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
             _client.ObserveOn(SynchronizationContext.Current).OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(OnAccountListResponse);
             _client.ObserveOn(SynchronizationContext.Current).OfType<ProtoOATraderRes>().Subscribe(OnTraderResponse);
@@ -75,6 +80,11 @@ namespace WinForms.Demo
         private void OnMessage(ProtoMessage message)
         {
             readQueueSync.Enqueue("Received: " + OpenApiMessagesPresentation.ToString(message));
+        }
+
+        private void OnSpotMessage(ProtoOASpotEvent message)
+        {
+            readQueueSync.Enqueue("Spot Received: " + message);
         }
 
         private void OnError(Exception exception)
@@ -107,6 +117,20 @@ namespace WinForms.Demo
                     ClientSecret = _clientSecret,
                 }.ToByteString(),
                 PayloadType = (int)ProtoOAPayloadType.ProtoOaApplicationAuthReq
+            };
+
+            Transmit(protoMessage);
+        }
+
+        private void refreshTokenButton_Click(object sender, EventArgs e)
+        {
+            var protoMessage = new ProtoMessage
+            {
+                Payload = new ProtoOARefreshTokenReq
+                {
+                    RefreshToken = _refreshToken
+                }.ToByteString(),
+                PayloadType = (int)ProtoOAPayloadType.ProtoOaRefreshTokenReq
             };
 
             Transmit(protoMessage);
@@ -177,7 +201,7 @@ namespace WinForms.Demo
 
             foreach (var trader in _traders)
             {
-                cbAccounts.Items.Add(trader.CtidTraderAccountId);
+                cbAccounts.Items.Add(trader.TraderLogin);
             }
             _accounts = null;
         }
@@ -235,7 +259,7 @@ namespace WinForms.Demo
             var message = new ProtoMessage
             {
                 Payload = spotRequest.ToByteString(),
-                PayloadType = (int)ProtoOAPayloadType.ProtoOaSubscribeSpotsReq
+                PayloadType = (int)ProtoOAPayloadType.ProtoOaSubscribeSpotsReq,
             };
 
             Transmit(message);
@@ -458,7 +482,7 @@ namespace WinForms.Demo
 
         private void cbAccounts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _accountID = (long)cbAccounts.SelectedItem;
+            _accountID = _traders.First(iTrader => iTrader.TraderLogin == (long)cbAccounts.SelectedItem).CtidTraderAccountId;
         }
     }
 }
