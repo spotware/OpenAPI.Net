@@ -108,7 +108,9 @@ namespace OpenAPI.Net
             {
                 var messageByte = message.ToByteArray();
 
-                var length = BitConverter.GetBytes(messageByte.Length).Reverse().ToArray();
+                var length = BitConverter.GetBytes(messageByte.Length);
+
+                Array.Reverse(length);
 
                 LastSentMessageTime = DateTime.Now;
 
@@ -152,7 +154,9 @@ namespace OpenAPI.Net
                 }
                 while (readBytes < lengthArray.Length);
 
-                var length = BitConverter.ToInt32(lengthArray.Reverse().ToArray(), 0);
+                Array.Reverse(lengthArray);
+
+                var length = BitConverter.ToInt32(lengthArray, 0);
 
                 if (length <= 0) return null;
 
