@@ -33,6 +33,8 @@ namespace Trading.UI.Demo.Services
 
         Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive, ProtoOALightSymbol[] lightSymbols, ProtoOAAsset[] assets);
 
+        Task<ProtoOALightSymbol[]> GetConversionSymbols(long accountId, bool isLive, long baseAssetId, long quoteAssetId);
+
         Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken);
 
         Task CreateNewOrder(OrderModel marketOrder, long accountId, bool isLive);
@@ -247,6 +249,36 @@ namespace Trading.UI.Demo.Services
                 BaseAsset = assets.First(iAsset => iAsset.AssetId == lightSymbol.BaseAssetId),
                 QuoteAsset = assets.First(iAsset => iAsset.AssetId == lightSymbol.QuoteAssetId)
             }).ToArray();
+        }
+
+        public async Task<ProtoOALightSymbol[]> GetConversionSymbols(long accountId, bool isLive, long baseAssetId, long quoteAssetId)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            using var cancelationTokenSource = new CancellationTokenSource();
+
+            ProtoOALightSymbol[] result = null;
+
+            using var disposable = client.OfType<ProtoOASymbolsForConversionRes>().Where(response => response.CtidTraderAccountId == accountId)
+                .Subscribe(response =>
+            {
+                result = response.Symbol.ToArray();
+
+                cancelationTokenSource.Cancel();
+            });
+
+            var requestMessage = new ProtoOASymbolsForConversionReq
+            {
+                CtidTraderAccountId = accountId,
+                FirstAssetId = baseAssetId,
+                LastAssetId = quoteAssetId
+            };
+
+            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsForConversionReq, client, cancelationTokenSource, () => result is not null);
+
+            return result;
         }
 
         public async Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken)

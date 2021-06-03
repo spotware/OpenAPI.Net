@@ -1,6 +1,7 @@
 ﻿using OpenAPI.Net.Helpers;
 using Prism.Mvvm;
 using System;
+using System.Collections.Generic;
 
 namespace Trading.UI.Demo.Models
 {
@@ -17,6 +18,8 @@ namespace Trading.UI.Demo.Models
         public ProtoOAAsset BaseAsset { get; init; }
 
         public ProtoOAAsset QuoteAsset { get; init; }
+
+        public List<SymbolModel> ConversionSymbols { get; } = new List<SymbolModel>();
 
         public string Name => LightSymbol.SymbolName;
 

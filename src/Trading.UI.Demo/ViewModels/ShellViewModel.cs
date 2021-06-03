@@ -311,19 +311,11 @@ namespace Trading.UI.Demo.ViewModels
 
             if (symbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId && symbol.TickValue is 0)
             {
-                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, null, default);
+                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, null);
             }
-            else
+            else if (symbol.ConversionSymbols.Count > 0 && symbol.ConversionSymbols.All(iSymbol => iSymbol.Bid is not 0))
             {
-                var conversionSymbol = accountModel.Symbols.FirstOrDefault(iSymbol => (iSymbol.BaseAsset.AssetId == symbol.QuoteAsset.AssetId
-                    || iSymbol.QuoteAsset.AssetId == symbol.QuoteAsset.AssetId)
-                    && (iSymbol.BaseAsset.AssetId == accountModel.DepositAsset.AssetId
-                    || iSymbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId));
-
-                if (conversionSymbol is not null && conversionSymbol.Bid is not 0)
-                {
-                    symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, conversionSymbol.BaseAsset, conversionSymbol.Bid);
-                }
+                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, symbol.ConversionSymbols.Select(iSymbol => new Tuple<ProtoOAAsset, ProtoOAAsset, double>(iSymbol.BaseAsset, iSymbol.QuoteAsset, iSymbol.Bid)));
             }
 
             if (symbol.TickValue is not 0)
@@ -397,6 +389,8 @@ namespace Trading.UI.Demo.ViewModels
                     DepositAsset = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId)
                 };
 
+                await FillConversionSymbols(_accountModel);
+
                 await FillAccountOrders(_accountModel);
 
                 var symbolIds = _accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();
@@ -408,6 +402,25 @@ namespace Trading.UI.Demo.ViewModels
             finally
             {
                 if (progressDialogController.IsOpen) await progressDialogController.CloseAsync();
+            }
+        }
+
+        private async Task FillConversionSymbols(AccountModel account)
+        {
+            foreach (var symbol in account.Symbols)
+            {
+                if (symbol.QuoteAsset.AssetId != account.DepositAsset.AssetId)
+                {
+                    var conversionLightSymbols = await _apiService.GetConversionSymbols(account.Id, account.IsLive, symbol.QuoteAsset.AssetId, account.DepositAsset.AssetId);
+
+                    var conversionSymbolModels = conversionLightSymbols.Select(iLightSymbol => account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == iLightSymbol.SymbolId)).Where(iSymbol => iSymbol is not null);
+
+                    symbol.ConversionSymbols.AddRange(conversionSymbolModels);
+                }
+                else
+                {
+                    symbol.ConversionSymbols.Add(symbol);
+                }
             }
         }
 

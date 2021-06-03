@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OpenAPI.Net.Helpers
 {
@@ -8,7 +10,7 @@ namespace OpenAPI.Net.Helpers
 
         public static double GetTickSize(this ProtoOASymbol symbol) => 1 / Math.Pow(10, symbol.Digits);
 
-        public static double GetTickValue(this ProtoOASymbol symbol, ProtoOAAsset symbolQuoteAsset, ProtoOAAsset accountDepositAsset, ProtoOAAsset conversionSymbolBaseAsset, double conversionSymbolCurrentPrice)
+        public static double GetTickValue(this ProtoOASymbol symbol, ProtoOAAsset symbolQuoteAsset, ProtoOAAsset accountDepositAsset, IEnumerable<Tuple<ProtoOAAsset, ProtoOAAsset, double>> conversionAssets)
         {
             _ = symbol ?? throw new ArgumentNullException(nameof(symbol));
             _ = symbolQuoteAsset ?? throw new ArgumentNullException(nameof(symbolQuoteAsset));
@@ -24,16 +26,40 @@ namespace OpenAPI.Net.Helpers
             }
             else
             {
-                _ = conversionSymbolBaseAsset ?? throw new ArgumentNullException(nameof(conversionSymbolBaseAsset));
-
-                if (conversionSymbolCurrentPrice <= 0) throw new ArgumentOutOfRangeException(nameof(conversionSymbolCurrentPrice), conversionSymbolCurrentPrice, $"The '{conversionSymbolCurrentPrice}' value must be greater than zero");
-
-                tickValue = conversionSymbolBaseAsset.AssetId == accountDepositAsset.AssetId
-                    ? symbolTickSize / conversionSymbolCurrentPrice
-                    : symbolTickSize * conversionSymbolCurrentPrice;
+                tickValue = symbolTickSize * Convert(symbolQuoteAsset, conversionAssets);
             }
 
             return tickValue;
+        }
+
+        public static double Convert(this ProtoOAAsset symbolQuoteAsset, IEnumerable<Tuple<ProtoOAAsset, ProtoOAAsset, double>> conversionAssets)
+        {
+            _ = conversionAssets ?? throw new ArgumentNullException(nameof(conversionAssets));
+
+            if (!conversionAssets.Any()) throw new ArgumentOutOfRangeException(nameof(conversionAssets), conversionAssets, $"The {nameof(conversionAssets)} is empty");
+            if (conversionAssets.Any(asset => asset.Item3 is 0)) throw new ArgumentOutOfRangeException(nameof(conversionAssets), conversionAssets, $"Some of the '{nameof(conversionAssets)}' price values or zero");
+
+            double result = 1;
+
+            var asset = symbolQuoteAsset;
+
+            foreach (var (baseAsset, quoteAsset, price) in conversionAssets)
+            {
+                if (asset.AssetId == baseAsset.AssetId)
+                {
+                    result *= price;
+
+                    asset = quoteAsset;
+                }
+                else
+                {
+                    result /= price;
+
+                    asset = baseAsset;
+                }
+            }
+
+            return result;
         }
 
         public static double GetPipSize(this ProtoOASymbol symbol) => 1 / Math.Pow(10, symbol.PipPosition);
@@ -51,7 +77,7 @@ namespace OpenAPI.Net.Helpers
 
         public static double GetPipsFromPoints(this ProtoOASymbol symbol, long points) => symbol.GetPipsFromPrice(points * symbol.GetTickSize());
 
-        public static long GetPointsFromPips(this ProtoOASymbol symbol, double pips) => Convert.ToInt64(pips * Math.Pow(10, symbol.Digits - symbol.PipPosition));
+        public static long GetPointsFromPips(this ProtoOASymbol symbol, double pips) => System.Convert.ToInt64(pips * Math.Pow(10, symbol.Digits - symbol.PipPosition));
 
         public static double GetPipsFromPrice(this ProtoOASymbol symbol, double price) => Math.Round(price * Math.Pow(10, symbol.PipPosition), symbol.Digits - symbol.PipPosition);
 
