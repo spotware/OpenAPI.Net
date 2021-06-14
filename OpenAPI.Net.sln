@@ -11,16 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.Net", "src\OpenAPI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.Net.Tests", "tests\OpenAPI.Net.Tests\OpenAPI.Net.Tests.csproj", "{B9BC1937-94E5-4F3B-883D-15EDCE72C5AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleDemo", "src\ConsoleDemo\ConsoleDemo.csproj", "{A79298DA-2F57-4ABA-83FA-B051A51CEFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.Demo", "src\Console.Demo\Console.Demo.csproj", "{A79298DA-2F57-4ABA-83FA-B051A51CEFCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0204E3DB-63E1-48B4-A767-6919BA8ECB07}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trading.UI.Demo", "src\Trading.UI.Demo\Trading.UI.Demo.csproj", "{842C8FED-4CAC-4676-9922-D59F88CEADC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Demo", "src\WPF.Demo\WPF.Demo.csproj", "{842C8FED-4CAC-4676-9922-D59F88CEADC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms.Demo", "src\WinForms.Demo\WinForms.Demo.csproj", "{7027B55B-5C8E-484A-986F-F7F909DD80E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms.Demo", "src\WinForms.Demo\WinForms.Demo.csproj", "{7027B55B-5C8E-484A-986F-F7F909DD80E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
