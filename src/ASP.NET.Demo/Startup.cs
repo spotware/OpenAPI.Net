@@ -1,13 +1,9 @@
+using ASP.NET.Demo.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.NET.Demo
 {
@@ -24,6 +20,12 @@ namespace ASP.NET.Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            var appSettingsDev = new ConfigurationBuilder().AddJsonFile("appsettings-dev.json").Build();
+
+            var apiCredentials = appSettingsDev.GetSection("ApiCredentials").Get<ApiCredentials>();
+
+            services.AddSingleton(apiCredentials);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
