@@ -1,9 +1,19 @@
 ﻿@page
 @model IndexModel
-
-<div>
-    <form asp-page-handler="addAccount" method="get">
-    </form>
-
-    <a class="btn btn-primary" asp-page="Index" asp-page-handler="addaccount">Add Trading Account(s)</a>
-</div>
+    <div>
+        <div tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Authentication</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please click on Add Trading Account(s) button</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-primary" asp-page="Index" asp-page-handler="addaccount">Add Trading Account(s)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

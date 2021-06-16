@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
-    <PackageReference Include="Spotware.OpenAPI.Net" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenAPI.Net\OpenAPI.Net.csproj" />
   </ItemGroup>
 
 </Project>

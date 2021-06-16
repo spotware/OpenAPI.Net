@@ -1,9 +1,13 @@
 using ASP.NET.Demo.Models;
+using ASP.NET.Demo.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenAPI.Net;
+using OpenAPI.Net.Helpers;
+using System;
 
 namespace ASP.NET.Demo
 {
@@ -26,6 +30,13 @@ namespace ASP.NET.Demo
             var apiCredentials = appSettingsDev.GetSection("ApiCredentials").Get<ApiCredentials>();
 
             services.AddSingleton(apiCredentials);
+
+            OpenClient liveClientFactory() => new(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            OpenClient demoClientFactory() => new(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+
+            var apiService = new ApiService(liveClientFactory, demoClientFactory, apiCredentials);
+
+            services.AddSingleton(apiService);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

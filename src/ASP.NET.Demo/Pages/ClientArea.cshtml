@@ -1,0 +1,32 @@
+﻿@page
+@model ASP.NET.Demo.Pages.ClientAreaModel
+@{
+}
+
+<div>
+    <div tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your Authorized Account(s)</h5>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Please select a trading account:
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Accounts
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                @foreach (var account in Model.Accounts)
+                                {
+                                    <button class="dropdown-item" type="button">@account.TraderLogin</button>
+                                }
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

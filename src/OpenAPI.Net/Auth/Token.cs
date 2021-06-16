@@ -34,7 +34,7 @@ namespace OpenAPI.Net.Auth
 
             public override void Write(Utf8JsonWriter writer, DateTimeOffset value, JsonSerializerOptions options)
             {
-                throw new NotImplementedException();
+                writer.WriteNumberValue(Convert.ToInt64((value - DateTimeOffset.UtcNow).TotalSeconds));
             }
         }
     }

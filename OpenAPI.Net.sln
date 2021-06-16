@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Demo", "src\WPF.Demo\WP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms.Demo", "src\WinForms.Demo\WinForms.Demo.csproj", "{7027B55B-5C8E-484A-986F-F7F909DD80E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET.Demo", "src\ASP.NET.Demo\ASP.NET.Demo.csproj", "{1EC058DD-6106-42E4-B665-2074A89E3C2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.Demo", "src\ASP.NET.Demo\ASP.NET.Demo.csproj", "{1EC058DD-6106-42E4-B665-2074A89E3C2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

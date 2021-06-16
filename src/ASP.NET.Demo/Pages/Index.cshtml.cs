@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using OpenAPI.Net.Auth;
+using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ASP.NET.Demo.Pages
@@ -18,9 +20,6 @@ namespace ASP.NET.Demo.Pages
             _apiCredentials = apiCredentials;
         }
 
-        [BindProperty(Name = "code", SupportsGet = true)]
-        public string AuthCode { get; set; }
-
         public App App => new(_apiCredentials.ClientId, _apiCredentials.Secret, $"{(Request.IsHttps ? "https" : "http")}://{Request.Host}{Request.Path}");
 
         public ActionResult OnGetAddAccount()
@@ -28,11 +27,23 @@ namespace ASP.NET.Demo.Pages
             return Redirect(App.GetAuthUri().ToString());
         }
 
-        public async Task OnGetAsync()
+        public async Task<ActionResult> OnGetAsync([FromQuery] string code)
         {
-            if (!string.IsNullOrWhiteSpace(AuthCode))
+            if (string.IsNullOrWhiteSpace(code)) return null;
+
+            try
             {
-                var token = await TokenFactory.GetToken(AuthCode, App);
+                var token = await TokenFactory.GetToken(code, App);
+
+                TempData["Token"] = JsonSerializer.Serialize(token);
+
+                return RedirectToPage("ClientArea");
+            }
+            catch (Exception ex)
+            {
+                TempData["Exception"] = JsonSerializer.Serialize(ex);
+
+                return RedirectToPage("Error");
             }
         }
     }
