@@ -4,29 +4,40 @@
 }
 
 <div>
-    <div tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Your Authorized Account(s)</h5>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Please select a trading account:
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Accounts
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                @foreach (var account in Model.Accounts)
-                                {
-                                    <button class="dropdown-item" type="button">@account.TraderLogin</button>
-                                }
-                            </div>
-                        </div>
-                    </p>
-                </div>
+    <div class="row no-gutters">
+        <div class="col-10"></div>
+        <div class="col-2 d-grid gap-1">
+            <div class="row">
+                <select class="form-select">
+                    @foreach (var account in Model.Accounts)
+                    {
+                        <option value="@account.TraderLogin">@account.TraderLogin</option>
+                    }
+                </select>
+            </div>
+            <div class="row table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-hover table-dark table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Bid</th>
+                            <th scope="col">Ask</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var symbol in Model.AccountModel.Symbols)
+                        {
+                            <tr>
+                                <td>@symbol.Name</td>
+                                <td>@symbol.Bid</td>
+                                <td>@symbol.Ask</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
+    <div class="row no-gutters">
     </div>
 </div>

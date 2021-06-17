@@ -1,4 +1,4 @@
-# Trading.UI.Demo
+# WPF.Demo
 
 This demo is a WPF application, it uses CefSharp to show the symbols chart and for the account authorizatrion.
 
