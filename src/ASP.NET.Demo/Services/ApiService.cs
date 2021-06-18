@@ -4,6 +4,7 @@ using OpenAPI.Net;
 using OpenAPI.Net.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading;
@@ -19,6 +20,10 @@ namespace ASP.NET.Demo.Services
 
         IObservable<IMessage> DemoObservable { get; }
 
+        Dictionary<ulong, AccountModel> AccountModels { get; }
+
+        List<ProtoOACtidTraderAccount> Accounts { get; }
+
         Task Connect();
 
         Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken);
@@ -32,6 +37,8 @@ namespace ASP.NET.Demo.Services
         Task<ProtoOALightSymbol[]> GetConversionSymbols(long accountId, bool isLive, long baseAssetId, long quoteAssetId);
 
         Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken);
+
+        Task CreateAccountModel(ProtoOACtidTraderAccount account);
 
         Task CreateNewOrder(OrderModel marketOrder, long accountId, bool isLive);
 
@@ -86,6 +93,10 @@ namespace ASP.NET.Demo.Services
 
         public IObservable<IMessage> DemoObservable => _demoClient;
 
+        public Dictionary<ulong, AccountModel> AccountModels { get; } = new Dictionary<ulong, AccountModel>();
+
+        public List<ProtoOACtidTraderAccount> Accounts { get; } = new List<ProtoOACtidTraderAccount>();
+
         public async Task Connect()
         {
             OpenClient liveClient = null;
@@ -115,6 +126,12 @@ namespace ASP.NET.Demo.Services
             IsConnected = true;
 
             await AuthorizeApp();
+
+            LiveObservable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
+            DemoObservable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
+
+            LiveObservable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
+            DemoObservable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
         }
 
         private async Task AuthorizeApp()
@@ -292,6 +309,8 @@ namespace ASP.NET.Demo.Services
                 {
                     result = response.CtidTraderAccount.ToArray();
 
+                    Accounts.AddRange(result);
+
                     cancelationTokenSource.Cancel();
                 });
 
@@ -303,6 +322,36 @@ namespace ASP.NET.Demo.Services
             await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient, cancelationTokenSource, () => result is not null);
 
             return result;
+        }
+
+        public async Task CreateAccountModel(ProtoOACtidTraderAccount account)
+        {
+            var accountId = (long)account.CtidTraderAccountId;
+            var trader = await GetTrader(accountId, account.IsLive);
+            var assets = await GetAssets(accountId, account.IsLive);
+            var lightSymbols = await GetLightSymbols(accountId, account.IsLive);
+
+            var accountModel = new AccountModel
+            {
+                Id = accountId,
+                IsLive = account.IsLive,
+                Symbols = await GetSymbolModels(accountId, account.IsLive, lightSymbols, assets),
+                Trader = trader,
+                RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp),
+                Balance = MonetaryConverter.FromMonetary(trader.Balance),
+                Assets = new ReadOnlyCollection<ProtoOAAsset>(assets),
+                DepositAsset = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId)
+            };
+
+            await FillConversionSymbols(accountModel);
+
+            await FillAccountOrders(accountModel);
+
+            var symbolIds = accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();
+
+            await SubscribeToSpots(accountId, accountModel.IsLive, symbolIds);
+
+            AccountModels[account.CtidTraderAccountId] = accountModel;
         }
 
         public async Task CreateNewOrder(OrderModel orderModel, long accountId, bool isLive)
@@ -924,6 +973,141 @@ namespace ASP.NET.Demo.Services
             }
 
             if (isResponseReceived() is false) throw new TimeoutException("The API didn't responded");
+        }
+
+        private void OnSpotEvent(ProtoOASpotEvent spotEvent)
+        {
+            if (!AccountModels.TryGetValue((ulong)spotEvent.CtidTraderAccountId, out var accountModel)) return;
+
+            var symbol = accountModel.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == spotEvent.SymbolId);
+
+            if (symbol is null) return;
+
+            double bid = symbol.Bid;
+            double ask = symbol.Ask;
+
+            if (spotEvent.HasBid) bid = symbol.Data.GetPriceFromRelative((long)spotEvent.Bid);
+            if (spotEvent.HasAsk) ask = symbol.Data.GetPriceFromRelative((long)spotEvent.Ask);
+
+            symbol.OnTick(bid, ask);
+
+            if (symbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId && symbol.TickValue is 0)
+            {
+                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, null);
+            }
+            else if (symbol.ConversionSymbols.Count > 0 && symbol.ConversionSymbols.All(iSymbol => iSymbol.Bid is not 0))
+            {
+                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, symbol.ConversionSymbols.Select(iSymbol => new Tuple<ProtoOAAsset, ProtoOAAsset, double>(iSymbol.BaseAsset, iSymbol.QuoteAsset, iSymbol.Bid)));
+            }
+
+            if (symbol.TickValue is not 0)
+            {
+                var positions = accountModel.Positions.ToArray();
+
+                foreach (var position in positions)
+                {
+                    if (position.Symbol != symbol) continue;
+
+                    position.OnSymbolTick();
+                }
+
+                accountModel.UpdateStatus();
+            }
+        }
+
+        private void OnExecutionEvent(ProtoOAExecutionEvent executionEvent)
+        {
+            if (!AccountModels.TryGetValue((ulong)executionEvent.CtidTraderAccountId, out var accountModel)) return;
+
+            var position = accountModel.Positions.FirstOrDefault(iPoisition => iPoisition.Id == executionEvent.Order.PositionId);
+            var order = accountModel.PendingOrders.FirstOrDefault(iOrder => iOrder.Id == executionEvent.Order.OrderId);
+
+            var symbol = accountModel.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == executionEvent.Order.TradeData.SymbolId);
+
+            if (symbol is null) return;
+
+            switch (executionEvent.ExecutionType)
+            {
+                case ProtoOAExecutionType.OrderFilled or ProtoOAExecutionType.OrderPartialFill:
+                    if (position is not null)
+                    {
+                        position.Update(executionEvent.Position, position.Symbol);
+
+                        if (position.Volume is 0) accountModel.Positions.Remove(position);
+                    }
+                    else
+                    {
+                        accountModel.Positions.Add(new MarketOrderModel(executionEvent.Position, symbol));
+                    }
+
+                    if (order is not null) accountModel.PendingOrders.Remove(order);
+
+                    break;
+
+                case ProtoOAExecutionType.OrderCancelled:
+                    if (order is not null) accountModel.PendingOrders.Remove(order);
+                    if (position is not null && executionEvent.Order.OrderType == ProtoOAOrderType.StopLossTakeProfit) position.Update(executionEvent.Position, position.Symbol);
+                    break;
+
+                case ProtoOAExecutionType.OrderAccepted when (executionEvent.Order.OrderType == ProtoOAOrderType.StopLossTakeProfit):
+                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
+                    if (order is not null) order.Update(executionEvent.Order, symbol);
+
+                    break;
+
+                case ProtoOAExecutionType.OrderAccepted when (executionEvent.Order.OrderStatus != ProtoOAOrderStatus.OrderStatusFilled
+                    && executionEvent.Order.OrderType == ProtoOAOrderType.Limit
+                    || executionEvent.Order.OrderType == ProtoOAOrderType.Stop
+                    || executionEvent.Order.OrderType == ProtoOAOrderType.StopLimit):
+                    accountModel.PendingOrders.Add(new PendingOrderModel(executionEvent.Order, symbol));
+
+                    break;
+
+                case ProtoOAExecutionType.OrderReplaced:
+                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
+                    if (order is not null) order.Update(executionEvent.Order, symbol);
+                    break;
+
+                case ProtoOAExecutionType.Swap:
+                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
+                    break;
+            }
+        }
+
+        private async Task FillConversionSymbols(AccountModel account)
+        {
+            foreach (var symbol in account.Symbols)
+            {
+                if (symbol.QuoteAsset.AssetId != account.DepositAsset.AssetId)
+                {
+                    var conversionLightSymbols = await GetConversionSymbols(account.Id, account.IsLive, symbol.QuoteAsset.AssetId, account.DepositAsset.AssetId);
+
+                    var conversionSymbolModels = conversionLightSymbols.Select(iLightSymbol => account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == iLightSymbol.SymbolId)).Where(iSymbol => iSymbol is not null);
+
+                    symbol.ConversionSymbols.AddRange(conversionSymbolModels);
+                }
+                else
+                {
+                    symbol.ConversionSymbols.Add(symbol);
+                }
+            }
+        }
+
+        private async Task FillAccountOrders(AccountModel account)
+        {
+            var response = await GetAccountOrders(account.Id, account.IsLive);
+
+            var positions = from poisiton in response.Position
+                            let positionSymbol = account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == poisiton.TradeData.SymbolId)
+                            select new MarketOrderModel(poisiton, positionSymbol);
+
+            var pendingOrders = from order in response.Order
+                                where order.OrderType is ProtoOAOrderType.Limit or ProtoOAOrderType.Stop or ProtoOAOrderType.StopLimit
+                                let orderSymbol = account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == order.TradeData.SymbolId)
+                                select new PendingOrderModel(order, orderSymbol);
+
+            account.Positions.AddRange(positions);
+            account.PendingOrders.AddRange(pendingOrders);
         }
     }
 }

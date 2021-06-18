@@ -8,7 +8,7 @@
         <div class="col-10"></div>
         <div class="col-2 d-grid gap-1">
             <div class="row">
-                <select class="form-select">
+                <select id="accounts-list" class="form-select">
                     @foreach (var account in Model.Accounts)
                     {
                         <option value="@account.TraderLogin">@account.TraderLogin</option>
@@ -24,14 +24,17 @@
                             <th scope="col">Ask</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var symbol in Model.AccountModel.Symbols)
+                    <tbody id="symbols-table-body">
+                        @if (Model.AccountModel is not null && Model.AccountModel.Symbols is not null)
                         {
-                            <tr>
-                                <td>@symbol.Name</td>
-                                <td>@symbol.Bid</td>
-                                <td>@symbol.Ask</td>
-                            </tr>
+                            @foreach (var symbol in Model.AccountModel?.Symbols)
+                            {
+                                <tr>
+                                    <td>@symbol.Name</td>
+                                    <td>@symbol.Bid</td>
+                                    <td>@symbol.Ask</td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
