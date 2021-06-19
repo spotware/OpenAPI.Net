@@ -37,6 +37,9 @@ namespace ASP.NET.Demo
             var apiService = new ApiService(liveClientFactory, demoClientFactory, apiCredentials);
 
             services.AddSingleton<IApiService>(apiService);
+            services.AddSingleton<IAccountsService>(serviceProvider => new AccountsService(serviceProvider.GetRequiredService<IApiService>()));
+
+            services.AddHostedService<ConnectApiHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,8 +3,8 @@ using Google.Protobuf;
 using OpenAPI.Net;
 using OpenAPI.Net.Helpers;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading;
@@ -20,13 +20,11 @@ namespace ASP.NET.Demo.Services
 
         IObservable<IMessage> DemoObservable { get; }
 
-        Dictionary<ulong, AccountModel> AccountModels { get; }
-
-        List<ProtoOACtidTraderAccount> Accounts { get; }
-
         Task Connect();
 
         Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken);
+
+        Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken);
 
         Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive);
 
@@ -37,8 +35,6 @@ namespace ASP.NET.Demo.Services
         Task<ProtoOALightSymbol[]> GetConversionSymbols(long accountId, bool isLive, long baseAssetId, long quoteAssetId);
 
         Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken);
-
-        Task CreateAccountModel(ProtoOACtidTraderAccount account);
 
         Task CreateNewOrder(OrderModel marketOrder, long accountId, bool isLive);
 
@@ -76,15 +72,22 @@ namespace ASP.NET.Demo.Services
         private readonly Func<OpenClient> _liveClientFactory;
         private readonly Func<OpenClient> _demoClientFactory;
         private readonly ApiCredentials _apiCredentials;
+        private readonly ConcurrentQueue<MessageQueueItem> _messagesQueue = new();
+        private readonly System.Timers.Timer _sendMessageTimer;
 
         private OpenClient _liveClient;
         private OpenClient _demoClient;
 
-        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, ApiCredentials apiCredentials)
+        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, ApiCredentials apiCredentials, int maxMessagePerSecond = 40)
         {
             _liveClientFactory = liveClientFactory ?? throw new ArgumentNullException(nameof(liveClientFactory));
             _demoClientFactory = demoClientFactory ?? throw new ArgumentNullException(nameof(demoClientFactory));
             _apiCredentials = apiCredentials;
+
+            _sendMessageTimer = new(1000.0 / maxMessagePerSecond);
+
+            _sendMessageTimer.Elapsed += SendMessageTimerElapsed;
+            _sendMessageTimer.AutoReset = false;
         }
 
         public bool IsConnected { get; private set; }
@@ -92,10 +95,6 @@ namespace ASP.NET.Demo.Services
         public IObservable<IMessage> LiveObservable => _liveClient;
 
         public IObservable<IMessage> DemoObservable => _demoClient;
-
-        public Dictionary<ulong, AccountModel> AccountModels { get; } = new Dictionary<ulong, AccountModel>();
-
-        public List<ProtoOACtidTraderAccount> Accounts { get; } = new List<ProtoOACtidTraderAccount>();
 
         public async Task Connect()
         {
@@ -127,11 +126,7 @@ namespace ASP.NET.Demo.Services
 
             await AuthorizeApp();
 
-            LiveObservable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
-            DemoObservable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
-
-            LiveObservable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
-            DemoObservable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
+            _sendMessageTimer.Start();
         }
 
         private async Task AuthorizeApp()
@@ -189,9 +184,17 @@ namespace ASP.NET.Demo.Services
                 AccessToken = accessToken,
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountAuthReq, client, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountAuthReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
+        }
+
+        public async Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken)
+        {
+            foreach (var account in accounts)
+            {
+                await AuthorizeAccount((long)account.CtidTraderAccountId, account.IsLive, accessToken);
+            }
         }
 
         public async Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive)
@@ -218,7 +221,7 @@ namespace ASP.NET.Demo.Services
                 IncludeArchivedSymbols = false
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsListReq, client, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsListReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -248,7 +251,7 @@ namespace ASP.NET.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolByIdReq, client, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolByIdReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -293,7 +296,7 @@ namespace ASP.NET.Demo.Services
                 LastAssetId = quoteAssetId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsForConversionReq, client, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsForConversionReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -309,8 +312,6 @@ namespace ASP.NET.Demo.Services
                 {
                     result = response.CtidTraderAccount.ToArray();
 
-                    Accounts.AddRange(result);
-
                     cancelationTokenSource.Cancel();
                 });
 
@@ -319,39 +320,9 @@ namespace ASP.NET.Demo.Services
                 AccessToken = accessToken
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient, cancelationTokenSource, () => result is not null);
 
             return result;
-        }
-
-        public async Task CreateAccountModel(ProtoOACtidTraderAccount account)
-        {
-            var accountId = (long)account.CtidTraderAccountId;
-            var trader = await GetTrader(accountId, account.IsLive);
-            var assets = await GetAssets(accountId, account.IsLive);
-            var lightSymbols = await GetLightSymbols(accountId, account.IsLive);
-
-            var accountModel = new AccountModel
-            {
-                Id = accountId,
-                IsLive = account.IsLive,
-                Symbols = await GetSymbolModels(accountId, account.IsLive, lightSymbols, assets),
-                Trader = trader,
-                RegistrationTime = DateTimeOffset.FromUnixTimeMilliseconds(trader.RegistrationTimestamp),
-                Balance = MonetaryConverter.FromMonetary(trader.Balance),
-                Assets = new ReadOnlyCollection<ProtoOAAsset>(assets),
-                DepositAsset = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId)
-            };
-
-            await FillConversionSymbols(accountModel);
-
-            await FillAccountOrders(accountModel);
-
-            var symbolIds = accountModel.Symbols.Select(iSymbol => iSymbol.Id).ToArray();
-
-            await SubscribeToSpots(accountId, accountModel.IsLive, symbolIds);
-
-            AccountModels[account.CtidTraderAccountId] = accountModel;
         }
 
         public async Task CreateNewOrder(OrderModel orderModel, long accountId, bool isLive)
@@ -425,7 +396,7 @@ namespace ASP.NET.Demo.Services
 
             var client = GetClient(isLive);
 
-            await client.SendMessage(newOrderReq, ProtoOAPayloadType.ProtoOaNewOrderReq);
+            await EnqueueMessage(newOrderReq, ProtoOAPayloadType.ProtoOaNewOrderReq, client);
         }
 
         public Task ClosePosition(long positionId, long volume, long accountId, bool isLive)
@@ -441,7 +412,7 @@ namespace ASP.NET.Demo.Services
                 Volume = volume
             };
 
-            return client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaClosePositionReq);
+            return EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaClosePositionReq, client);
         }
 
         public Task CancelOrder(long orderId, long accountId, bool isLive)
@@ -456,7 +427,7 @@ namespace ASP.NET.Demo.Services
                 OrderId = orderId
             };
 
-            return client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaCancelOrderReq);
+            return EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaCancelOrderReq, client);
         }
 
         public async Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive)
@@ -482,7 +453,7 @@ namespace ASP.NET.Demo.Services
                 CtidTraderAccountId = accountId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaReconcileReq, client, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaReconcileReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -532,7 +503,7 @@ namespace ASP.NET.Demo.Services
 
                         var client = GetClient(isLive);
 
-                        await client.SendMessage(amendPositionRequestMessage, ProtoOAPayloadType.ProtoOaAmendPositionSltpReq);
+                        await EnqueueMessage(amendPositionRequestMessage, ProtoOAPayloadType.ProtoOaAmendPositionSltpReq, client);
                     }
 
                     if (newOrder.Volume < oldOrder.Volume)
@@ -566,7 +537,7 @@ namespace ASP.NET.Demo.Services
                 CtidTraderAccountId = accountId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaTraderReq, client, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaTraderReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -616,7 +587,7 @@ namespace ASP.NET.Demo.Services
 
             var client = GetClient(isLive);
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAmendOrderReq);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAmendOrderReq, client);
         }
 
         public async Task<HistoricalTradeModel[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
@@ -691,7 +662,7 @@ namespace ASP.NET.Demo.Services
 
                 cancelationTokenSource = new CancellationTokenSource();
 
-                await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaDealListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
+                await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaDealListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
 
                 await Task.Delay(TimeSpan.FromSeconds(1));
 
@@ -747,7 +718,7 @@ namespace ASP.NET.Demo.Services
 
                 cancelationTokenSource = new CancellationTokenSource();
 
-                await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
+                await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
 
                 await Task.Delay(TimeSpan.FromSeconds(1));
 
@@ -780,7 +751,7 @@ namespace ASP.NET.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds)
@@ -808,7 +779,7 @@ namespace ASP.NET.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
@@ -836,7 +807,7 @@ namespace ASP.NET.Demo.Services
                 SymbolId = symbolId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
@@ -864,7 +835,7 @@ namespace ASP.NET.Demo.Services
                 SymbolId = symbolId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
         }
 
         public async Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId)
@@ -899,7 +870,7 @@ namespace ASP.NET.Demo.Services
                 SymbolId = symbolId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetTrendbarsReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetTrendbarsReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
 
             return result.ToArray();
         }
@@ -926,7 +897,7 @@ namespace ASP.NET.Demo.Services
                 CtidTraderAccountId = accountId,
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAssetListReq, client, cancelationTokenSource, () => result is not null);
+            await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAssetListReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
         }
@@ -953,161 +924,78 @@ namespace ASP.NET.Demo.Services
             _ => throw new ArgumentOutOfRangeException(nameof(period))
         };
 
-        private async Task SendMessage<TMessage>(TMessage message, ProtoOAPayloadType payloadType, OpenClient client, CancellationTokenSource cancellationTokenSource, Func<bool> isResponseReceived, TimeSpan waitTime = default)
+        private async Task EnqueueMessage<TMessage>(TMessage message, ProtoOAPayloadType payloadType, OpenClient client, CancellationTokenSource cancellationTokenSource = null, Func<bool> isResponseReceived = null, TimeSpan waitTime = default)
             where TMessage : IMessage
         {
-            await client.SendMessage(message, payloadType);
-
-            if (waitTime == default) waitTime = TimeSpan.FromMinutes(1);
-
-            try
+            var messageQueueItem = new MessageQueueItem
             {
-                await Task.Delay(waitTime, cancellationTokenSource.Token);
-            }
-            catch (TaskCanceledException)
-            {
-            }
-            finally
-            {
-                cancellationTokenSource.Dispose();
-            }
+                Message = message,
+                PayloadType = payloadType,
+                Client = client,
+                CancellationTokenSource = cancellationTokenSource,
+                IsResponseReceived = isResponseReceived,
+                ResponseWaitTime = waitTime == default ? TimeSpan.FromSeconds(!_messagesQueue.IsEmpty ? 10 * _messagesQueue.Count : 10) : waitTime
+            };
 
-            if (isResponseReceived() is false) throw new TimeoutException("The API didn't responded");
+            _messagesQueue.Enqueue(messageQueueItem);
+
+            await messageQueueItem.Wait();
         }
 
-        private void OnSpotEvent(ProtoOASpotEvent spotEvent)
+        private async void SendMessageTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (!AccountModels.TryGetValue((ulong)spotEvent.CtidTraderAccountId, out var accountModel)) return;
+            _sendMessageTimer.Stop();
 
-            var symbol = accountModel.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == spotEvent.SymbolId);
-
-            if (symbol is null) return;
-
-            double bid = symbol.Bid;
-            double ask = symbol.Ask;
-
-            if (spotEvent.HasBid) bid = symbol.Data.GetPriceFromRelative((long)spotEvent.Bid);
-            if (spotEvent.HasAsk) ask = symbol.Data.GetPriceFromRelative((long)spotEvent.Ask);
-
-            symbol.OnTick(bid, ask);
-
-            if (symbol.QuoteAsset.AssetId == accountModel.DepositAsset.AssetId && symbol.TickValue is 0)
+            if (_messagesQueue.TryDequeue(out var messageQueueItem) == false)
             {
-                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, null);
-            }
-            else if (symbol.ConversionSymbols.Count > 0 && symbol.ConversionSymbols.All(iSymbol => iSymbol.Bid is not 0))
-            {
-                symbol.TickValue = symbol.Data.GetTickValue(symbol.QuoteAsset, accountModel.DepositAsset, symbol.ConversionSymbols.Select(iSymbol => new Tuple<ProtoOAAsset, ProtoOAAsset, double>(iSymbol.BaseAsset, iSymbol.QuoteAsset, iSymbol.Bid)));
+                _sendMessageTimer.Start();
+
+                return;
             }
 
-            if (symbol.TickValue is not 0)
-            {
-                var positions = accountModel.Positions.ToArray();
+            await messageQueueItem.Client.SendMessage(messageQueueItem.Message, messageQueueItem.PayloadType);
 
-                foreach (var position in positions)
+            if (messageQueueItem.CancellationTokenSource is not null)
+            {
+                try
                 {
-                    if (position.Symbol != symbol) continue;
-
-                    position.OnSymbolTick();
+                    await Task.Delay(messageQueueItem.ResponseWaitTime, messageQueueItem.CancellationTokenSource.Token);
+                }
+                catch (TaskCanceledException)
+                {
                 }
 
-                accountModel.UpdateStatus();
+                if (messageQueueItem.IsResponseReceived() is false) throw new TimeoutException("The API didn't responded");
             }
+
+            messageQueueItem.IsSent = true;
+
+            _sendMessageTimer.Start();
         }
 
-        private void OnExecutionEvent(ProtoOAExecutionEvent executionEvent)
+        private class MessageQueueItem
         {
-            if (!AccountModels.TryGetValue((ulong)executionEvent.CtidTraderAccountId, out var accountModel)) return;
+            public IMessage Message { get; init; }
 
-            var position = accountModel.Positions.FirstOrDefault(iPoisition => iPoisition.Id == executionEvent.Order.PositionId);
-            var order = accountModel.PendingOrders.FirstOrDefault(iOrder => iOrder.Id == executionEvent.Order.OrderId);
+            public ProtoOAPayloadType PayloadType { get; init; }
 
-            var symbol = accountModel.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == executionEvent.Order.TradeData.SymbolId);
+            public OpenClient Client { get; init; }
 
-            if (symbol is null) return;
+            public CancellationTokenSource CancellationTokenSource { get; init; }
 
-            switch (executionEvent.ExecutionType)
+            public Func<bool> IsResponseReceived { get; init; }
+
+            public TimeSpan ResponseWaitTime { get; init; }
+
+            public bool IsSent { get; set; }
+
+            public async Task Wait()
             {
-                case ProtoOAExecutionType.OrderFilled or ProtoOAExecutionType.OrderPartialFill:
-                    if (position is not null)
-                    {
-                        position.Update(executionEvent.Position, position.Symbol);
-
-                        if (position.Volume is 0) accountModel.Positions.Remove(position);
-                    }
-                    else
-                    {
-                        accountModel.Positions.Add(new MarketOrderModel(executionEvent.Position, symbol));
-                    }
-
-                    if (order is not null) accountModel.PendingOrders.Remove(order);
-
-                    break;
-
-                case ProtoOAExecutionType.OrderCancelled:
-                    if (order is not null) accountModel.PendingOrders.Remove(order);
-                    if (position is not null && executionEvent.Order.OrderType == ProtoOAOrderType.StopLossTakeProfit) position.Update(executionEvent.Position, position.Symbol);
-                    break;
-
-                case ProtoOAExecutionType.OrderAccepted when (executionEvent.Order.OrderType == ProtoOAOrderType.StopLossTakeProfit):
-                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
-                    if (order is not null) order.Update(executionEvent.Order, symbol);
-
-                    break;
-
-                case ProtoOAExecutionType.OrderAccepted when (executionEvent.Order.OrderStatus != ProtoOAOrderStatus.OrderStatusFilled
-                    && executionEvent.Order.OrderType == ProtoOAOrderType.Limit
-                    || executionEvent.Order.OrderType == ProtoOAOrderType.Stop
-                    || executionEvent.Order.OrderType == ProtoOAOrderType.StopLimit):
-                    accountModel.PendingOrders.Add(new PendingOrderModel(executionEvent.Order, symbol));
-
-                    break;
-
-                case ProtoOAExecutionType.OrderReplaced:
-                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
-                    if (order is not null) order.Update(executionEvent.Order, symbol);
-                    break;
-
-                case ProtoOAExecutionType.Swap:
-                    if (position is not null) position.Update(executionEvent.Position, position.Symbol);
-                    break;
-            }
-        }
-
-        private async Task FillConversionSymbols(AccountModel account)
-        {
-            foreach (var symbol in account.Symbols)
-            {
-                if (symbol.QuoteAsset.AssetId != account.DepositAsset.AssetId)
+                while (IsSent == false)
                 {
-                    var conversionLightSymbols = await GetConversionSymbols(account.Id, account.IsLive, symbol.QuoteAsset.AssetId, account.DepositAsset.AssetId);
-
-                    var conversionSymbolModels = conversionLightSymbols.Select(iLightSymbol => account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == iLightSymbol.SymbolId)).Where(iSymbol => iSymbol is not null);
-
-                    symbol.ConversionSymbols.AddRange(conversionSymbolModels);
-                }
-                else
-                {
-                    symbol.ConversionSymbols.Add(symbol);
+                    await Task.Delay(100);
                 }
             }
-        }
-
-        private async Task FillAccountOrders(AccountModel account)
-        {
-            var response = await GetAccountOrders(account.Id, account.IsLive);
-
-            var positions = from poisiton in response.Position
-                            let positionSymbol = account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == poisiton.TradeData.SymbolId)
-                            select new MarketOrderModel(poisiton, positionSymbol);
-
-            var pendingOrders = from order in response.Order
-                                where order.OrderType is ProtoOAOrderType.Limit or ProtoOAOrderType.Stop or ProtoOAOrderType.StopLimit
-                                let orderSymbol = account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == order.TradeData.SymbolId)
-                                select new PendingOrderModel(order, orderSymbol);
-
-            account.Positions.AddRange(positions);
-            account.PendingOrders.AddRange(pendingOrders);
         }
     }
 }

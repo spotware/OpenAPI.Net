@@ -16,15 +16,17 @@ namespace ASP.NET.Demo.Pages
     public class ClientAreaModel : PageModel
     {
         private readonly IApiService _apiService;
+        private readonly IAccountsService _accountsService;
 
-        public ClientAreaModel(IApiService apiService)
+        public ClientAreaModel(IApiService apiService, IAccountsService accountsService)
         {
             _apiService = apiService;
+            _accountsService = accountsService;
         }
 
         public Token Token { get; private set; }
 
-        public List<ProtoOACtidTraderAccount> Accounts => _apiService.Accounts;
+        public List<ProtoOACtidTraderAccount> Accounts { get; } = new();
 
         [BindProperty(SupportsGet = true)]
         public long AccountLogin { get; set; }
@@ -39,17 +41,12 @@ namespace ASP.NET.Demo.Pages
 
             Token = JsonSerializer.Deserialize<Token>(tokenJson.ToString());
 
-            await _apiService.Connect();
-
             SubscribeToErrors(_apiService.LiveObservable);
             SubscribeToErrors(_apiService.DemoObservable);
 
-            await _apiService.GetAccountsList(Token.AccessToken);
+            Accounts.AddRange(await _apiService.GetAccountsList(Token.AccessToken));
 
-            foreach (var account in Accounts)
-            {
-                await _apiService.AuthorizeAccount((long)account.CtidTraderAccountId, account.IsLive, Token.AccessToken);
-            }
+            await _apiService.AuthorizeAccounts(Accounts, Token.AccessToken);
 
             var selectedAccount = Accounts.FirstOrDefault();
 
@@ -89,24 +86,14 @@ namespace ASP.NET.Demo.Pages
 
         public async Task OnGetAccountChanged()
         {
-            var account = _apiService.Accounts.FirstOrDefault(iAccount => iAccount.TraderLogin == AccountLogin);
-
-            if (account is null || _apiService.AccountModels.ContainsKey(account.CtidTraderAccountId)) return;
-
-            await _apiService.CreateAccountModel(account);
-
-            AccountModel = _apiService.AccountModels[account.CtidTraderAccountId];
+            AccountModel = await _accountsService.GetAccountModelByLogin(AccountLogin);
         }
 
-        public JsonResult OnGetSymbols()
+        public async Task<JsonResult> OnGetSymbols()
         {
-            var account = _apiService.Accounts.FirstOrDefault(iAccount => iAccount.TraderLogin == AccountLogin);
+            var accountModel = await _accountsService.GetAccountModelByLogin(AccountLogin);
 
-            if (account is null || !_apiService.AccountModels.TryGetValue(account.CtidTraderAccountId, out var accountModel) || accountModel.Symbols is null) return new JsonResult(null);
-
-            var symbols = new JsonResult(accountModel.Symbols.Select(iSymbol => new { iSymbol.Name, iSymbol.Bid, iSymbol.Ask, iSymbol.Id }));
-
-            return symbols;
+            return new(accountModel.Symbols.Select(iSymbol => new { iSymbol.Name, iSymbol.Bid, iSymbol.Ask, iSymbol.Id }));
         }
     }
 }
