@@ -78,7 +78,7 @@ namespace ASP.NET.Demo.Services
         private OpenClient _liveClient;
         private OpenClient _demoClient;
 
-        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, ApiCredentials apiCredentials, int maxMessagePerSecond = 40)
+        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, ApiCredentials apiCredentials, int maxMessagePerSecond = 45)
         {
             _liveClientFactory = liveClientFactory ?? throw new ArgumentNullException(nameof(liveClientFactory));
             _demoClientFactory = demoClientFactory ?? throw new ArgumentNullException(nameof(demoClientFactory));
@@ -934,7 +934,7 @@ namespace ASP.NET.Demo.Services
                 Client = client,
                 CancellationTokenSource = cancellationTokenSource,
                 IsResponseReceived = isResponseReceived,
-                ResponseWaitTime = waitTime == default ? TimeSpan.FromSeconds(!_messagesQueue.IsEmpty ? 10 * _messagesQueue.Count : 10) : waitTime
+                ResponseWaitTime = waitTime == default ? TimeSpan.FromSeconds(!_messagesQueue.IsEmpty ? 30 * _messagesQueue.Count : 30) : waitTime
             };
 
             _messagesQueue.Enqueue(messageQueueItem);
