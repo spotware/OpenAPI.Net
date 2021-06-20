@@ -3,6 +3,7 @@ using Google.Protobuf;
 using OpenAPI.Net.Helpers;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ASP.NET.Demo.Services
 {
-    public interface IAccountsService
+    public interface ITradingAccountsService
     {
         long GetAccountId(long login);
 
@@ -21,11 +22,13 @@ namespace ASP.NET.Demo.Services
         Task<AccountModel> GetAccountModelById(long id);
 
         Task<AccountModel> GetAccountModelByLogin(long login);
+
+        Task<IEnumerable<ProtoOACtidTraderAccount>> GetAccounts(string accessToken);
     }
 
-    public class AccountsService : IAccountsService
+    public class TradingAccountsService : ITradingAccountsService
     {
-        private readonly IApiService _apiService;
+        private readonly IOpenApiService _apiService;
 
         private readonly ConcurrentDictionary<long, ProtoOACtidTraderAccount> _accounts = new();
 
@@ -33,10 +36,15 @@ namespace ASP.NET.Demo.Services
 
         private readonly ConcurrentDictionary<long, AccountModel> _accountModels = new();
 
-        public AccountsService(IApiService apiService)
+        public TradingAccountsService(IOpenApiService apiService)
         {
             _apiService = apiService;
 
+            _apiService.Connected += ApiServiceConnected;
+        }
+
+        private void ApiServiceConnected()
+        {
             Subscribe(_apiService.LiveObservable);
             Subscribe(_apiService.DemoObservable);
         }
@@ -83,6 +91,15 @@ namespace ASP.NET.Demo.Services
         }
 
         public Task<AccountModel> GetAccountModelByLogin(long login) => GetAccountModelById(GetAccountId(login));
+
+        public async Task<IEnumerable<ProtoOACtidTraderAccount>> GetAccounts(string accessToken)
+        {
+            var accounts = await _apiService.GetAccountsList(accessToken);
+
+            await AuthorizeAccounts(accounts, accessToken);
+
+            return accounts;
+        }
 
         private async Task FillConversionSymbols(AccountModel account)
         {
@@ -219,19 +236,21 @@ namespace ASP.NET.Demo.Services
             }
         }
 
-        private void OnAccountList(ProtoOAGetAccountListByAccessTokenRes response)
+        private async Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken)
         {
-            foreach (var account in response.CtidTraderAccount)
+            foreach (var account in accounts)
             {
-                _accounts.TryAdd((long)account.CtidTraderAccountId, account);
-                accountIds.TryAdd(account.TraderLogin, (long)account.CtidTraderAccountId);
+                var accountId = Convert.ToInt64(account.CtidTraderAccountId);
+
+                await _apiService.AuthorizeAccount(accountId, account.IsLive, accessToken);
+
+                _accounts.TryAdd(accountId, account);
+                accountIds.TryAdd(account.TraderLogin, accountId);
             }
         }
 
         private void Subscribe(IObservable<IMessage> observable)
         {
-            observable.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(OnAccountList);
-
             observable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
 
             observable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);

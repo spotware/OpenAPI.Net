@@ -6,9 +6,9 @@ namespace ASP.NET.Demo.Services
 {
     public class ConnectApiHostedService : IHostedService
     {
-        private readonly IApiService _apiService;
+        private readonly IOpenApiService _apiService;
 
-        public ConnectApiHostedService(IApiService apiService)
+        public ConnectApiHostedService(IOpenApiService apiService)
         {
             _apiService = apiService;
         }

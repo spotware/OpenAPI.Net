@@ -1,4 +1,3 @@
-using ASP.NET.Demo.Models;
 using ASP.NET.Demo.Services;
 using Google.Protobuf;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +14,10 @@ namespace ASP.NET.Demo.Pages
 {
     public class ClientAreaModel : PageModel
     {
-        private readonly IApiService _apiService;
-        private readonly IAccountsService _accountsService;
+        private readonly IOpenApiService _apiService;
+        private readonly ITradingAccountsService _accountsService;
 
-        public ClientAreaModel(IApiService apiService, IAccountsService accountsService)
+        public ClientAreaModel(IOpenApiService apiService, ITradingAccountsService accountsService)
         {
             _apiService = apiService;
             _accountsService = accountsService;
@@ -31,8 +30,6 @@ namespace ASP.NET.Demo.Pages
         [BindProperty(SupportsGet = true)]
         public long AccountLogin { get; set; }
 
-        public AccountModel AccountModel { get; set; }
-
         public async Task OnGetAsync()
         {
             if (!TempData.TryGetValue("Token", out var tokenJson)) return;
@@ -44,17 +41,13 @@ namespace ASP.NET.Demo.Pages
             SubscribeToErrors(_apiService.LiveObservable);
             SubscribeToErrors(_apiService.DemoObservable);
 
-            Accounts.AddRange(await _apiService.GetAccountsList(Token.AccessToken));
-
-            await _apiService.AuthorizeAccounts(Accounts, Token.AccessToken);
+            Accounts.AddRange(await _accountsService.GetAccounts(Token.AccessToken));
 
             var selectedAccount = Accounts.FirstOrDefault();
 
             if (selectedAccount is not null)
             {
                 AccountLogin = selectedAccount.TraderLogin;
-
-                await OnGetAccountChanged();
             }
         }
 
@@ -82,18 +75,6 @@ namespace ASP.NET.Demo.Pages
 
         private async void OnErrorRes(ProtoErrorRes error)
         {
-        }
-
-        public async Task OnGetAccountChanged()
-        {
-            AccountModel = await _accountsService.GetAccountModelByLogin(AccountLogin);
-        }
-
-        public async Task<JsonResult> OnGetSymbols()
-        {
-            var accountModel = await _accountsService.GetAccountModelByLogin(AccountLogin);
-
-            return new(accountModel.Symbols.Select(iSymbol => new { iSymbol.Name, iSymbol.Bid, iSymbol.Ask, iSymbol.Id }));
         }
     }
 }

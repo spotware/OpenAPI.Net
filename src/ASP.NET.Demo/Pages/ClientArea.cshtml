@@ -11,7 +11,7 @@
                 <select id="accounts-list" class="form-select">
                     @foreach (var account in Model.Accounts)
                     {
-                        <option value="@account.TraderLogin">@account.TraderLogin</option>
+                        <option value="@account.TraderLogin" id="@account.CtidTraderAccountId">@account.TraderLogin</option>
                     }
                 </select>
             </div>
@@ -24,19 +24,7 @@
                             <th scope="col">Ask</th>
                         </tr>
                     </thead>
-                    <tbody id="symbols-table-body">
-                        @if (Model.AccountModel is not null && Model.AccountModel.Symbols is not null)
-                        {
-                            @foreach (var symbol in Model.AccountModel?.Symbols)
-                            {
-                                <tr>
-                                    <td>@symbol.Name</td>
-                                    <td>@symbol.Bid</td>
-                                    <td>@symbol.Ask</td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
+                    <tbody id="symbols-table-body" />
                 </table>
             </div>
         </div>
@@ -45,11 +33,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="accountChangeModal" tabindex="-1" role="dialog" aria-labelledby="accountChangeModalTitle" aria-hidden="true">
+<div class="modal fade" id="accountLoadingModal" tabindex="-1" role="dialog" aria-labelledby="accountLoadingModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="accountChangeModalTitle">Changing Account</h5>
+                <h5 class="modal-title" id="accountLoadingModalTitle">Loading Account Data</h5>
             </div>
             <div class="modal-body">
                 <p>Please wait...</p>
@@ -57,3 +45,5 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/client.js" asp-append-version="true"></script>

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ASP.NET.Demo.Services
 {
-    public interface IApiService : IDisposable
+    public interface IOpenApiService : IDisposable
     {
         bool IsConnected { get; }
 
@@ -20,11 +20,11 @@ namespace ASP.NET.Demo.Services
 
         IObservable<IMessage> DemoObservable { get; }
 
+        event Action Connected;
+
         Task Connect();
 
         Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken);
-
-        Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken);
 
         Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive);
 
@@ -67,7 +67,7 @@ namespace ASP.NET.Demo.Services
         Task UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
     }
 
-    public sealed class ApiService : IApiService
+    public sealed class OpenApiService : IOpenApiService
     {
         private readonly Func<OpenClient> _liveClientFactory;
         private readonly Func<OpenClient> _demoClientFactory;
@@ -78,7 +78,7 @@ namespace ASP.NET.Demo.Services
         private OpenClient _liveClient;
         private OpenClient _demoClient;
 
-        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, ApiCredentials apiCredentials, int maxMessagePerSecond = 45)
+        public OpenApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, ApiCredentials apiCredentials, int maxMessagePerSecond = 45)
         {
             _liveClientFactory = liveClientFactory ?? throw new ArgumentNullException(nameof(liveClientFactory));
             _demoClientFactory = demoClientFactory ?? throw new ArgumentNullException(nameof(demoClientFactory));
@@ -95,6 +95,8 @@ namespace ASP.NET.Demo.Services
         public IObservable<IMessage> LiveObservable => _liveClient;
 
         public IObservable<IMessage> DemoObservable => _demoClient;
+
+        public event Action Connected;
 
         public async Task Connect()
         {
@@ -127,6 +129,8 @@ namespace ASP.NET.Demo.Services
             await AuthorizeApp();
 
             _sendMessageTimer.Start();
+
+            Connected?.Invoke();
         }
 
         private async Task AuthorizeApp()
@@ -187,14 +191,6 @@ namespace ASP.NET.Demo.Services
             await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountAuthReq, client, cancelationTokenSource, () => result is not null);
 
             return result;
-        }
-
-        public async Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken)
-        {
-            foreach (var account in accounts)
-            {
-                await AuthorizeAccount((long)account.CtidTraderAccountId, account.IsLive, accessToken);
-            }
         }
 
         public async Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive)

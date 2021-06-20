@@ -1,3 +1,4 @@
+using ASP.NET.Demo.Hubs;
 using ASP.NET.Demo.Models;
 using ASP.NET.Demo.Services;
 using Microsoft.AspNetCore.Builder;
@@ -34,12 +35,14 @@ namespace ASP.NET.Demo
             OpenClient liveClientFactory() => new(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
             OpenClient demoClientFactory() => new(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
 
-            var apiService = new ApiService(liveClientFactory, demoClientFactory, apiCredentials);
+            var apiService = new OpenApiService(liveClientFactory, demoClientFactory, apiCredentials);
 
-            services.AddSingleton<IApiService>(apiService);
-            services.AddSingleton<IAccountsService>(serviceProvider => new AccountsService(serviceProvider.GetRequiredService<IApiService>()));
+            services.AddSingleton<IOpenApiService>(apiService);
+            services.AddSingleton<ITradingAccountsService>(new TradingAccountsService(apiService));
 
             services.AddHostedService<ConnectApiHostedService>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +69,7 @@ namespace ASP.NET.Demo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapHub<TradingAccountHub>("/tradingAccountHub");
             });
         }
     }
