@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace ASP.NET.Demo.Services
@@ -24,6 +25,10 @@ namespace ASP.NET.Demo.Services
         Task<AccountModel> GetAccountModelByLogin(long login);
 
         Task<IEnumerable<ProtoOACtidTraderAccount>> GetAccounts(string accessToken);
+
+        Channel<SymbolQuote> GetSymbolsQuoteChannel(long accountId);
+
+        void StopSymbolQuotes(long accountId);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -35,6 +40,8 @@ namespace ASP.NET.Demo.Services
         private readonly ConcurrentDictionary<long, long> accountIds = new();
 
         private readonly ConcurrentDictionary<long, AccountModel> _accountModels = new();
+
+        private readonly ConcurrentDictionary<long, Channel<SymbolQuote>> _subscribedAccountQuoteChannels = new();
 
         public TradingAccountsService(IOpenApiService apiService)
         {
@@ -101,6 +108,27 @@ namespace ASP.NET.Demo.Services
             return accounts;
         }
 
+        public Channel<SymbolQuote> GetSymbolsQuoteChannel(long accountId)
+        {
+            if (_subscribedAccountQuoteChannels.TryAdd(accountId, Channel.CreateUnbounded<SymbolQuote>()))
+            {
+                return _subscribedAccountQuoteChannels[accountId];
+            }
+            else
+            {
+                throw new InvalidOperationException($"Couldn't add the quotes channel to {nameof(_subscribedAccountQuoteChannels)}");
+            }
+        }
+
+        public void StopSymbolQuotes(long accountId)
+        {
+            if (!_subscribedAccountQuoteChannels.TryGetValue(accountId, out var channel)) return;
+
+            _subscribedAccountQuoteChannels.TryRemove(accountId, out _);
+
+            channel.Writer.TryComplete();
+        }
+
         private async Task FillConversionSymbols(AccountModel account)
         {
             foreach (var symbol in account.Symbols)
@@ -137,7 +165,7 @@ namespace ASP.NET.Demo.Services
             account.PendingOrders.AddRange(pendingOrders);
         }
 
-        private void OnSpotEvent(ProtoOASpotEvent spotEvent)
+        private async void OnSpotEvent(ProtoOASpotEvent spotEvent)
         {
             if (_accountModels.TryGetValue(spotEvent.CtidTraderAccountId, out var model) == false) return;
 
@@ -151,7 +179,9 @@ namespace ASP.NET.Demo.Services
             if (spotEvent.HasBid) bid = symbol.Data.GetPriceFromRelative((long)spotEvent.Bid);
             if (spotEvent.HasAsk) ask = symbol.Data.GetPriceFromRelative((long)spotEvent.Ask);
 
-            symbol.OnTick(bid, ask);
+            var quote = new SymbolQuote(symbol.Id, bid, ask);
+
+            symbol.OnTick(quote);
 
             if (symbol.QuoteAsset.AssetId == model.DepositAsset.AssetId && symbol.TickValue is 0)
             {
@@ -174,6 +204,11 @@ namespace ASP.NET.Demo.Services
                 }
 
                 model.UpdateStatus();
+            }
+
+            if (_subscribedAccountQuoteChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var channel))
+            {
+                await channel.Writer.WriteAsync(quote);
             }
         }
 

@@ -32,21 +32,23 @@ namespace ASP.NET.Demo.Models
 
         public double TickValue { get; set; }
 
-        public event Action<SymbolModel> Tick;
+        public event Action<SymbolQuote> Tick;
 
-        public void OnTick(double bid, double ask)
+        public void OnTick(SymbolQuote quote)
         {
-            if (bid != Bid)
+            if (quote.Bid != Bid)
             {
-                Bid = bid;
+                Bid = quote.Bid;
             }
 
-            if (ask != Ask)
+            if (quote.Ask != Ask)
             {
-                Ask = ask;
+                Ask = quote.Ask;
             }
 
-            Tick?.Invoke(this);
+            Tick?.Invoke(quote);
         }
     }
+
+    public record SymbolQuote(long Id, double Bid, double Ask);
 }
