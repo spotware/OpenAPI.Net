@@ -70,6 +70,7 @@ namespace ASP.NET.Demo
             {
                 endpoints.MapRazorPages();
                 endpoints.MapHub<TradingAccountHub>("/tradingAccountHub");
+                endpoints.MapHub<ApiErrorsHub>("/apiErrorsHub");
             });
         }
     }

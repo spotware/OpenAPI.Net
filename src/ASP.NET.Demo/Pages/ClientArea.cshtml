@@ -6,7 +6,7 @@
 <div>
     <div class="row no-gutters">
         <div class="col-10"></div>
-        <div class="col-2 d-grid gap-1">
+        <div class="col d-grid gap-1">
             <div class="row">
                 <select id="accounts-list" class="form-select">
                     @foreach (var account in Model.Accounts)
@@ -27,6 +27,8 @@
                     <tbody id="symbols-table-body" />
                 </table>
             </div>
+            <div id="toasts-container" aria-live="polite" aria-atomic="true" class="d-flex flex-column flex-wrap justify-content-start align-items-start" style="position: absolute; bottom: 0; right: 0;">
+            </div>
         </div>
     </div>
     <div class="row no-gutters">
@@ -46,4 +48,17 @@
     </div>
 </div>
 
-<script src="~/js/client.js" asp-append-version="true"></script>
+<template id="toast-template">
+    <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="rounded me-2" id="toast-icon"></i>
+            <strong class="me-auto" id="toast-title"></strong>
+            <small id="toast-title-small"></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" />
+    </div>
+</template>
+
+<script src="~/js/trading-accounts.js" asp-append-version="true"></script>
+<script src="~/js/api-errors.js" asp-append-version="true"></script>
