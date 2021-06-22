@@ -29,6 +29,14 @@ namespace ASP.NET.Demo.Services
         Channel<SymbolQuote> GetSymbolsQuoteChannel(long accountId);
 
         void StopSymbolQuotes(long accountId);
+
+        Channel<MarketOrderModel> GetPositionUpdatesChannel(long accountId);
+
+        void StopPositionUpdates(long accountId);
+
+        Task ClosePosition(long accountId, long positionId);
+
+        Task CloseAllPosition(long accountId);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -42,6 +50,8 @@ namespace ASP.NET.Demo.Services
         private readonly ConcurrentDictionary<long, AccountModel> _accountModels = new();
 
         private readonly ConcurrentDictionary<long, Channel<SymbolQuote>> _subscribedAccountQuoteChannels = new();
+
+        private readonly ConcurrentDictionary<long, Channel<MarketOrderModel>> _subscribedAccountPositionUpdateChannels = new();
 
         public TradingAccountsService(IOpenApiService apiService)
         {
@@ -129,6 +139,50 @@ namespace ASP.NET.Demo.Services
             channel.Writer.TryComplete();
         }
 
+        public Channel<MarketOrderModel> GetPositionUpdatesChannel(long accountId)
+        {
+            if (_subscribedAccountPositionUpdateChannels.TryAdd(accountId, Channel.CreateUnbounded<MarketOrderModel>()))
+            {
+                return _subscribedAccountPositionUpdateChannels[accountId];
+            }
+            else
+            {
+                throw new InvalidOperationException($"Couldn't add the positions channel to {nameof(_subscribedAccountPositionUpdateChannels)}");
+            }
+        }
+
+        public void StopPositionUpdates(long accountId)
+        {
+            if (!_subscribedAccountPositionUpdateChannels.TryGetValue(accountId, out var channel)) return;
+
+            _subscribedAccountPositionUpdateChannels.TryRemove(accountId, out _);
+
+            channel.Writer.TryComplete();
+        }
+
+        public async Task ClosePosition(long accountId, long positionId)
+        {
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
+
+            var position = model.Positions.FirstOrDefault(iPosition => iPosition.Id == positionId);
+
+            if (position is null) return;
+
+            await _apiService.ClosePosition(positionId, position.Volume, accountId, model.IsLive);
+        }
+
+        public async Task CloseAllPosition(long accountId)
+        {
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
+
+            var positions = model.Positions.ToArray();
+
+            foreach (var position in positions)
+            {
+                await _apiService.ClosePosition(position.Id, position.Volume, accountId, model.IsLive);
+            }
+        }
+
         private async Task FillConversionSymbols(AccountModel account)
         {
             foreach (var symbol in account.Symbols)
@@ -206,13 +260,23 @@ namespace ASP.NET.Demo.Services
                 model.UpdateStatus();
             }
 
-            if (_subscribedAccountQuoteChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var channel))
+            if (_subscribedAccountQuoteChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var quotesChannel))
             {
-                await channel.Writer.WriteAsync(quote);
+                await quotesChannel.Writer.WriteAsync(quote);
+            }
+
+            var updatedPositions = model.Positions.Where(iPosition => iPosition.Symbol.Id == symbol.Id).ToArray();
+
+            if (updatedPositions.Length > 0 && _subscribedAccountPositionUpdateChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var positionUpdatesChannel))
+            {
+                foreach (var position in updatedPositions)
+                {
+                    await positionUpdatesChannel.Writer.WriteAsync(position);
+                }
             }
         }
 
-        private void OnExecutionEvent(ProtoOAExecutionEvent executionEvent)
+        private async void OnExecutionEvent(ProtoOAExecutionEvent executionEvent)
         {
             if (_accountModels.TryGetValue(executionEvent.CtidTraderAccountId, out var model) == false) return;
 
@@ -234,7 +298,9 @@ namespace ASP.NET.Demo.Services
                     }
                     else
                     {
-                        model.Positions.Add(new MarketOrderModel(executionEvent.Position, symbol));
+                        position = new MarketOrderModel(executionEvent.Position, symbol);
+
+                        model.Positions.Add(position);
                     }
 
                     if (order is not null) model.PendingOrders.Remove(order);
@@ -268,6 +334,11 @@ namespace ASP.NET.Demo.Services
                 case ProtoOAExecutionType.Swap:
                     if (position is not null) position.Update(executionEvent.Position, position.Symbol);
                     break;
+            }
+
+            if (position is not null && _subscribedAccountPositionUpdateChannels.TryGetValue(executionEvent.CtidTraderAccountId, out var channel))
+            {
+                await channel.Writer.WriteAsync(position);
             }
         }
 

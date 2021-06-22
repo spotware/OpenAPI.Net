@@ -4,7 +4,7 @@
 }
 
 <div>
-    <div class="row no-gutters">
+    <div class="row no-gutters w-100 h-75 m-0 p-0">
         <div class="col-10"></div>
         <div class="col d-grid gap-1">
             <div class="row">
@@ -15,7 +15,7 @@
                     }
                 </select>
             </div>
-            <div class="row table-wrapper-scroll-y my-custom-scrollbar">
+            <div class="row table-wrapper-scroll-y" style="height: 65vh;">
                 <table class="table table-hover table-dark table-striped table-bordered">
                     <thead>
                         <tr>
@@ -31,7 +31,61 @@
             </div>
         </div>
     </div>
-    <div class="row no-gutters">
+    <div class="row no-gutters text-white w-100 m-0 p-0">
+        <ul class="nav nav-tabs" id="accountTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active text-muted" id="positions-tab" data-bs-toggle="tab" data-bs-target="#positions" type="button" role="tab" aria-controls="positions" aria-selected="true">Positions</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-muted" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="orders" aria-selected="false">Orders</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-muted" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="false">History</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-muted" id="transactions-tab" data-bs-toggle="tab" data-bs-target="#transactions" type="button" role="tab" aria-controls="transactions" aria-selected="false">Transactions</button>
+            </li>
+        </ul>
+        <div class="tab-content m-0 p-0" id="accountTabContent">
+            <div class="tab-pane fade show active" id="positions" role="tabpanel" aria-labelledby="positions-tab">
+                <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
+                    <button type="button" class="btn btn-secondary m-1" id="createNewOrderButton">Create New Order</button>
+                    <button type="button" class="btn btn-danger m-1" id="closeAllPositionsButton">Close All Positions</button>
+                </div>
+                <div class="table-wrapper-scroll-y" style="height: 20vh;">
+                    <table class="table table-hover table-dark table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Direction</th>
+                                <th scope="col">Volume</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Entry Price</th>
+                                <th scope="col">SL</th>
+                                <th scope="col">TP</th>
+                                <th scope="col">Commission</th>
+                                <th scope="col">Swap</th>
+                                <th scope="col">Margin</th>
+                                <th scope="col">Pips</th>
+                                <th scope="col">Label</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Gross Profit</th>
+                                <th scope="col">Net Profit</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="positions-table-body" />
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">Orders</div>
+            <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">History</div>
+            <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">Transactions</div>
+        </div>
+
+        <div>
+        </div>
     </div>
 </div>
 

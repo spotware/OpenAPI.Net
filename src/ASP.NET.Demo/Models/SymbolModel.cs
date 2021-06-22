@@ -49,6 +49,4 @@ namespace ASP.NET.Demo.Models
             Tick?.Invoke(quote);
         }
     }
-
-    public record SymbolQuote(long Id, double Bid, double Ask);
 }
