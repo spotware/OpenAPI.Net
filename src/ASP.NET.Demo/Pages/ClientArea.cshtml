@@ -27,8 +27,6 @@
                     <tbody id="symbols-table-body" />
                 </table>
             </div>
-            <div id="toasts-container" aria-live="polite" aria-atomic="true" class="d-flex flex-column flex-wrap justify-content-start align-items-start" style="position: absolute; bottom: 0; right: 0;">
-            </div>
         </div>
     </div>
     <div class="row no-gutters text-white w-100 m-0 p-0">
@@ -89,6 +87,9 @@
     </div>
 </div>
 
+<div id="toasts-container" aria-live="polite" aria-atomic="true" class="d-flex flex-column flex-wrap justify-content-start align-items-start" style="position: absolute; bottom: 0; right: 0;">
+</div>
+
 <div class="modal fade" id="accountLoadingModal" tabindex="-1" role="dialog" aria-labelledby="accountLoadingModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -115,4 +116,3 @@
 </template>
 
 <script src="~/js/trading-accounts.js" asp-append-version="true"></script>
-<script src="~/js/api-errors.js" asp-append-version="true"></script>

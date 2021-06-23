@@ -44,4 +44,6 @@ namespace ASP.NET.Demo.Models
     }
 
     public record SymbolQuote(long Id, double Bid, double Ask);
+
+    public record Error(string Message, string Type);
 }

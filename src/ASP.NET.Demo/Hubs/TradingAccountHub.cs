@@ -102,5 +102,27 @@ namespace ASP.NET.Demo.Hubs
 
             await _tradingAccountsService.CloseAllPosition(accountId);
         }
+
+        public async IAsyncEnumerable<Error> GetErrors(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            var channel = _tradingAccountsService.GetErrorsChannel(accountId);
+
+            while (await channel.Reader.WaitToReadAsync(cancellationToken))
+            {
+                while (channel.Reader.TryRead(out var error))
+                {
+                    yield return error;
+                }
+            }
+        }
+
+        public void StopErrors(string accountLogin)
+        {
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            _tradingAccountsService.StopErrors(accountId);
+        }
     }
 }

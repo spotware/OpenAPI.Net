@@ -37,6 +37,10 @@ namespace ASP.NET.Demo.Services
         Task ClosePosition(long accountId, long positionId);
 
         Task CloseAllPosition(long accountId);
+
+        Channel<Error> GetErrorsChannel(long accountId);
+
+        void StopErrors(long accountId);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -45,13 +49,15 @@ namespace ASP.NET.Demo.Services
 
         private readonly ConcurrentDictionary<long, ProtoOACtidTraderAccount> _accounts = new();
 
-        private readonly ConcurrentDictionary<long, long> accountIds = new();
+        private readonly ConcurrentDictionary<long, long> _accountIds = new();
 
         private readonly ConcurrentDictionary<long, AccountModel> _accountModels = new();
 
         private readonly ConcurrentDictionary<long, Channel<SymbolQuote>> _subscribedAccountQuoteChannels = new();
 
         private readonly ConcurrentDictionary<long, Channel<MarketOrderModel>> _subscribedAccountPositionUpdateChannels = new();
+
+        private readonly ConcurrentDictionary<long, Channel<Error>> _subscribedAccountErrorsChannels = new();
 
         public TradingAccountsService(IOpenApiService apiService)
         {
@@ -66,11 +72,11 @@ namespace ASP.NET.Demo.Services
             Subscribe(_apiService.DemoObservable);
         }
 
-        public long GetAccountId(long login) => accountIds[login];
+        public long GetAccountId(long login) => _accountIds.GetValueOrDefault(login);
 
-        public ProtoOACtidTraderAccount GetAccountById(long id) => _accounts[id];
+        public ProtoOACtidTraderAccount GetAccountById(long id) => _accounts.GetValueOrDefault(id);
 
-        public ProtoOACtidTraderAccount GetAccountByLogin(long login) => _accounts[GetAccountId(login)];
+        public ProtoOACtidTraderAccount GetAccountByLogin(long login) => _accounts.GetValueOrDefault(GetAccountId(login));
 
         public async Task<AccountModel> GetAccountModelById(long id)
         {
@@ -156,6 +162,27 @@ namespace ASP.NET.Demo.Services
             if (!_subscribedAccountPositionUpdateChannels.TryGetValue(accountId, out var channel)) return;
 
             _subscribedAccountPositionUpdateChannels.TryRemove(accountId, out _);
+
+            channel.Writer.TryComplete();
+        }
+
+        public Channel<Error> GetErrorsChannel(long accountId)
+        {
+            if (_subscribedAccountErrorsChannels.TryAdd(accountId, Channel.CreateUnbounded<Error>()))
+            {
+                return _subscribedAccountErrorsChannels[accountId];
+            }
+            else
+            {
+                throw new InvalidOperationException($"Couldn't add the error channel to {nameof(_subscribedAccountErrorsChannels)}");
+            }
+        }
+
+        public void StopErrors(long accountId)
+        {
+            if (!_subscribedAccountErrorsChannels.TryGetValue(accountId, out var channel)) return;
+
+            _subscribedAccountErrorsChannels.TryRemove(accountId, out _);
 
             channel.Writer.TryComplete();
         }
@@ -351,15 +378,41 @@ namespace ASP.NET.Demo.Services
                 await _apiService.AuthorizeAccount(accountId, account.IsLive, accessToken);
 
                 _accounts.TryAdd(accountId, account);
-                accountIds.TryAdd(account.TraderLogin, accountId);
+                _accountIds.TryAdd(account.TraderLogin, accountId);
+            }
+        }
+
+        private async void OnOrderErrorRes(ProtoOAOrderErrorEvent error)
+        {
+            if (!_subscribedAccountErrorsChannels.TryGetValue(error.CtidTraderAccountId, out var channel)) return;
+
+            await channel.Writer.WriteAsync(new(error.Description, nameof(ProtoOAOrderErrorEvent)));
+        }
+
+        private async void OnOaErrorRes(ProtoOAErrorRes error)
+        {
+            if (!_subscribedAccountErrorsChannels.TryGetValue(error.CtidTraderAccountId, out var channel)) return;
+
+            await channel.Writer.WriteAsync(new(error.Description, nameof(ProtoOAErrorRes)));
+        }
+
+        private async void OnErrorRes(ProtoErrorRes error)
+        {
+            var errorChannels = _subscribedAccountErrorsChannels.Values.ToArray();
+
+            foreach (var channel in errorChannels)
+            {
+                await channel.Writer.WriteAsync(new(error.Description, nameof(ProtoErrorRes)));
             }
         }
 
         private void Subscribe(IObservable<IMessage> observable)
         {
             observable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
-
             observable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
+            observable.OfType<ProtoErrorRes>().Subscribe(OnErrorRes);
+            observable.OfType<ProtoOAErrorRes>().Subscribe(OnOaErrorRes);
+            observable.OfType<ProtoOAOrderErrorEvent>().Subscribe(OnOrderErrorRes);
         }
     }
 }

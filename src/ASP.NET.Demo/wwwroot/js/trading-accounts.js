@@ -28,6 +28,35 @@
         tradingAccountConnection.invoke("GetPositions", accountLogin).catch(function (err) {
             return console.error(err.toString());
         });
+
+        tradingAccountConnection.stream("GetErrors", accountLogin)
+            .subscribe({
+                next: (error) => {
+                    var toastTemplate = $('#toast-template').contents().clone(true, true);
+
+                    toastTemplate.find('#toast-title').text('Error');
+                    toastTemplate.find('#toast-title-small').text(error.type);
+                    toastTemplate.find('#toast-icon').addClass('fas fa-exclamation-triangle');
+                    toastTemplate.find('.toast-body').text(error.message);
+
+                    var toast = toastTemplate.find(".toast");
+
+                    $('#toasts-container').append(toastTemplate);
+
+                    toast.toast({
+                        delay: 60000
+                    });
+
+                    $('.toast').toast('show');
+                },
+                complete: () => {
+                    console.info("Errors completed");
+                },
+                error: (err) => {
+                    console.error(err.toString());
+                },
+            });
+
         event.preventDefault();
 
         $('#accountLoadingModal').modal('hide');
@@ -66,7 +95,7 @@
                     }
                 },
                 complete: () => {
-                    console.info("quotes completed");
+                    console.info("Position Updates completed");
                 },
                 error: (err) => {
                     console.error(err.toString());
@@ -99,7 +128,7 @@
                     ask.html(quote.ask);
                 },
                 complete: () => {
-                    console.info("quotes completed");
+                    console.info("Symbol Quotes completed");
                 },
                 error: (err) => {
                     console.error(err.toString());
@@ -140,6 +169,14 @@
         var accountLogin = $("#accounts-list").val();
 
         tradingAccountConnection.invoke("StopSymbolQuotes", accountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        tradingAccountConnection.invoke("StopPositionUpdates", accountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        tradingAccountConnection.invoke("StopErrors", accountLogin).catch(function (err) {
             return console.error(err.toString());
         });
 
