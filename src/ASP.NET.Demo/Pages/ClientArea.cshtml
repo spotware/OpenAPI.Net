@@ -47,7 +47,7 @@
         <div class="tab-content m-0 p-0" id="accountTabContent">
             <div class="tab-pane fade show active" id="positions" role="tabpanel" aria-labelledby="positions-tab">
                 <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
-                    <button type="button" class="btn btn-secondary m-1" id="createNewOrderButton">Create New Order</button>
+                    <button type="button" class="btn btn-secondary m-1 create-order">Create New Order</button>
                     <button type="button" class="btn btn-danger m-1" id="closeAllPositionsButton">Close All Positions</button>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
@@ -77,11 +77,37 @@
                     </table>
                 </div>
             </div>
-            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">Orders</div>
+            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
+                    <button type="button" class="btn btn-secondary m-1 create-order">Create New Order</button>
+                    <button type="button" class="btn btn-danger m-1" id="cancelAllOrdersButton">Cancel All Orders</button>
+                </div>
+                <div class="table-wrapper-scroll-y" style="height: 20vh;">
+                    <table class="table table-hover table-dark table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Direction</th>
+                                <th scope="col">Volume</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Target Price</th>
+                                <th scope="col">SL</th>
+                                <th scope="col">TP</th>
+                                <th scope="col">Expiry</th>
+                                <th scope="col">Label</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body" />
+                    </table>
+                </div>
+            </div>
             <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">History</div>
             <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">Transactions</div>
         </div>
-
         <div>
         </div>
     </div>

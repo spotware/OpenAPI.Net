@@ -364,7 +364,7 @@ namespace ASP.NET.Demo.Services
 
                 if (pendingOrder.IsExpiryEnabled)
                 {
-                    newOrderReq.ExpirationTimestamp = new DateTimeOffset(pendingOrder.ExpiryTime).ToUnixTimeMilliseconds();
+                    newOrderReq.ExpirationTimestamp = pendingOrder.ExpiryTime.ToUnixTimeMilliseconds();
                 }
             }
 
@@ -562,7 +562,7 @@ namespace ASP.NET.Demo.Services
 
             if (newOrder.IsExpiryEnabled)
             {
-                requestMessage.ExpirationTimestamp = new DateTimeOffset(newOrder.ExpiryTime).ToUnixTimeMilliseconds();
+                requestMessage.ExpirationTimestamp = newOrder.ExpiryTime.ToUnixTimeMilliseconds();
             }
 
             if (newOrder.Type == PendingOrderType.Limit)

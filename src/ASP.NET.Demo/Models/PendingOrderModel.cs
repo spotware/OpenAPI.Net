@@ -12,6 +12,8 @@ namespace ASP.NET.Demo.Models
 
         public PendingOrderModel(ProtoOAOrder order, SymbolModel symbol) => Update(order, symbol);
 
+        public bool IsFilledOrCanceled { get; set; }
+
         public PendingOrderType Type { get; set; }
 
         public ProtoOAOrderType ProtoType
@@ -36,7 +38,7 @@ namespace ASP.NET.Demo.Models
 
         public bool IsExpiryEnabled { get; set; }
 
-        public DateTime ExpiryTime { get; set; }
+        public DateTimeOffset ExpiryTime { get; set; }
 
         public ProtoOAOrderStatus Status { get; set; }
 
@@ -67,7 +69,9 @@ namespace ASP.NET.Demo.Models
 
             if (order.HasExpirationTimestamp)
             {
-                ExpiryTime = DateTimeOffset.FromUnixTimeMilliseconds(order.ExpirationTimestamp).LocalDateTime;
+                ExpiryTime = DateTimeOffset.FromUnixTimeMilliseconds(order.ExpirationTimestamp);
+
+                IsExpiryEnabled = true;
             }
             else
             {

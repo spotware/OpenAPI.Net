@@ -21,14 +21,6 @@
     });
 
     tradingAccountConnection.on("AccountLoaded", function (accountLogin) {
-        tradingAccountConnection.invoke("GetSymbols", accountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
-
-        tradingAccountConnection.invoke("GetPositions", accountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
-
         tradingAccountConnection.stream("GetErrors", accountLogin)
             .subscribe({
                 next: (error) => {
@@ -56,6 +48,18 @@
                     console.error(err.toString());
                 },
             });
+
+        tradingAccountConnection.invoke("GetSymbols", accountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        tradingAccountConnection.invoke("GetPositions", accountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        tradingAccountConnection.invoke("GetOrders", accountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
 
         event.preventDefault();
 
@@ -96,6 +100,47 @@
                 },
                 complete: () => {
                     console.info("Position Updates completed");
+                },
+                error: (err) => {
+                    console.error(err.toString());
+                },
+            });
+
+        event.preventDefault();
+    });
+
+    tradingAccountConnection.on("Orders", function (data) {
+        var rows = '';
+        $.each(data.orders, function (i, order) {
+            var row = `<tr id="${order.id}">${getOrderRowData(order)}</tr>`;
+
+            rows += row;
+        });
+
+        $('#orders-table-body').html(rows);
+
+        tradingAccountConnection.stream("GetOrderUpdates", data.accountLogin)
+            .subscribe({
+                next: (order) => {
+                    var row = $('#orders-table-body').find(`#${order.id}`);
+
+                    if (order.isFilledOrCanceled) {
+                        row.remove();
+                        return;
+                    }
+                    else if (row.length == 0) {
+                        newRow = `<tr id="${order.id}">${getOrderRowData(order)}</tr>`;
+
+                        $('#orders-table-body').append(newRow);
+
+                        return;
+                    }
+                    else {
+                        row.html(getOrderRowData(order));
+                    }
+                },
+                complete: () => {
+                    console.info("Order Updates completed");
                 },
                 error: (err) => {
                     console.error(err.toString());
@@ -156,6 +201,24 @@
         alert('you clicked on button #' + positionId);
     });
 
+    $(document).on("click", ".cancel-order", function () {
+        tradingAccountConnection.invoke("CancelOrder", $("#accounts-list").val(), $(this).attr('id')).catch(function (err) {
+            return console.error(err.toString());
+        });
+    });
+
+    $(document).on("click", "#cancelAllOrdersButton", function () {
+        tradingAccountConnection.invoke("CancelAllOrders", $("#accounts-list").val()).catch(function (err) {
+            return console.error(err.toString());
+        });
+    });
+
+    $(document).on("click", ".modify-order", function () {
+        var id = $(this).attr('id');
+
+        alert('you clicked on button #' + id);
+    });
+
     function onAccountChanged() {
         isLoaded = false;
 
@@ -207,6 +270,25 @@
                 <td id="buttons">
                     <button type="button" class="modify-position btn btn-secondary mr-1" id="${position.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify"><i class="fas fa-edit"></i></button>
                     <button type="button" class="close-position btn btn-danger ml-1" id="${position.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Close"><i class="fas fa-times"></i></button>
+                </td>`;
+    }
+
+    function getOrderRowData(order) {
+        return `<td id="id">${order.id}</td>
+                <td id="symbol">${order.symbol}</td>
+                <td id="direction">${order.direction}</td>
+                <td id="volume">${order.volume}</td>
+                <td id="volume">${order.type}</td>
+                <td id="openTime">${order.openTime}</td>
+                <td id="price">${order.price}</td>
+                <td id="stopLoss">${order.stopLoss}</td>
+                <td id="takeProfit">${order.takeProfit}</td>
+                <td id="expiry">${order.isExpiryEnabled ? order.expiry : ""}</td>
+                <td id="label">${order.label}</td>
+                <td id="comment">${order.comment}</td>
+                <td id="buttons">
+                    <button type="button" class="modify-order btn btn-secondary mr-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="cancel-order btn btn-danger ml-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i class="fas fa-times"></i></button>
                 </td>`;
     }
 });

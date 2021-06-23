@@ -63,7 +63,7 @@ namespace ASP.NET.Demo.Hubs
             await Clients.Caller.SendAsync("Positions", new
             {
                 accountLogin,
-                Positions = accountModel.Positions.Select(marketOrder => Position.FromMarketOrder(marketOrder))
+                Positions = accountModel.Positions.Select(marketOrder => Position.FromModel(marketOrder))
             });
         }
 
@@ -75,9 +75,9 @@ namespace ASP.NET.Demo.Hubs
 
             while (await channel.Reader.WaitToReadAsync(cancellationToken))
             {
-                while (channel.Reader.TryRead(out var marketOrder))
+                while (channel.Reader.TryRead(out var position))
                 {
-                    yield return Position.FromMarketOrder(marketOrder);
+                    yield return position;
                 }
             }
         }
@@ -101,6 +101,53 @@ namespace ASP.NET.Demo.Hubs
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             await _tradingAccountsService.CloseAllPosition(accountId);
+        }
+
+        public async Task GetOrders(string accountLogin)
+        {
+            var accountModel = await _tradingAccountsService.GetAccountModelByLogin(Convert.ToInt64(accountLogin));
+
+            await Clients.Caller.SendAsync("Orders", new
+            {
+                accountLogin,
+                Orders = accountModel.PendingOrders.Select(order => PendingOrder.FromModel(order))
+            });
+        }
+
+        public async IAsyncEnumerable<PendingOrder> GetOrderUpdates(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            var channel = _tradingAccountsService.GetOrderUpdatesChannel(accountId);
+
+            while (await channel.Reader.WaitToReadAsync(cancellationToken))
+            {
+                while (channel.Reader.TryRead(out var order))
+                {
+                    yield return order;
+                }
+            }
+        }
+
+        public void StopOrderUpdates(string accountLogin)
+        {
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            _tradingAccountsService.StopOrderUpdates(accountId);
+        }
+
+        public async Task CancelOrder(string accountLogin, string orderId)
+        {
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            await _tradingAccountsService.CancelOrder(accountId, Convert.ToInt64(orderId));
+        }
+
+        public async Task CancelAllOrders(string accountLogin)
+        {
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            await _tradingAccountsService.CancelAllOrders(accountId);
         }
 
         public async IAsyncEnumerable<Error> GetErrors(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
