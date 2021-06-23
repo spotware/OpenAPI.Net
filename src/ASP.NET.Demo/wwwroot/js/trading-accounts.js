@@ -3,8 +3,6 @@
 
     var isLoaded = false;
 
-    var selectedAccountLogin;
-
     $('#accountLoadingModal').on('shown.bs.modal', function () {
         if (isLoaded) {
             isLoaded = false;
@@ -18,54 +16,25 @@
         $("#accounts-list").on("change", onAccountChanged);
 
         onAccountChanged();
-    }).catch(function (err) {
-        return console.error(err.toString());
-    });
+    }).catch(onError);
 
     tradingAccountConnection.on("AccountLoaded", function (accountLogin) {
         tradingAccountConnection.stream("GetErrors", accountLogin)
             .subscribe({
-                next: (error) => {
-                    var toastTemplate = $('#toast-template').contents().clone(true, true);
-
-                    toastTemplate.find('#toast-title').text('Error');
-                    toastTemplate.find('#toast-title-small').text(error.type);
-                    toastTemplate.find('#toast-icon').addClass('fas fa-exclamation-triangle');
-                    toastTemplate.find('.toast-body').text(error.message);
-
-                    var toast = toastTemplate.find(".toast");
-
-                    $('#toasts-container').append(toastTemplate);
-
-                    toast.toast({
-                        delay: 60000
-                    });
-
-                    $('.toast').toast('show');
-                },
+                next: onError,
                 complete: () => {
                     console.info("Errors completed");
                 },
-                error: (err) => {
-                    console.error(err.toString());
-                },
+                error: onError,
             });
 
-        tradingAccountConnection.invoke("GetSymbols", accountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("GetSymbols", accountLogin).catch(onError);
 
-        tradingAccountConnection.invoke("GetPositions", accountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("GetPositions", accountLogin).catch(onError);
 
-        tradingAccountConnection.invoke("GetOrders", accountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("GetOrders", accountLogin).catch(onError);
 
-        tradingAccountConnection.invoke("GetAccountInfo", accountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("GetAccountInfo", accountLogin).catch(onError);
 
         event.preventDefault();
 
@@ -107,9 +76,7 @@
                 complete: () => {
                     console.info("Position Updates completed");
                 },
-                error: (err) => {
-                    console.error(err.toString());
-                },
+                error: onError,
             });
 
         event.preventDefault();
@@ -148,9 +115,7 @@
                 complete: () => {
                     console.info("Order Updates completed");
                 },
-                error: (err) => {
-                    console.error(err.toString());
-                },
+                error: onError,
             });
 
         event.preventDefault();
@@ -181,9 +146,7 @@
                 complete: () => {
                     console.info("Symbol Quotes completed");
                 },
-                error: (err) => {
-                    console.error(err.toString());
-                },
+                error: onError,
             });
 
         event.preventDefault();
@@ -200,24 +163,18 @@
                 complete: () => {
                     console.info("Account Info Updates completed");
                 },
-                error: (err) => {
-                    console.error(err.toString());
-                },
+                error: onError,
             });
 
         event.preventDefault();
     });
 
     $(document).on("click", ".close-position", function () {
-        tradingAccountConnection.invoke("ClosePosition", $("#accounts-list").val(), $(this).attr('id')).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("ClosePosition", $("#accounts-list").val(), $(this).attr('id')).catch(onError);
     });
 
     $(document).on("click", "#closeAllPositionsButton", function () {
-        tradingAccountConnection.invoke("CloseAllPositions", $("#accounts-list").val()).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("CloseAllPositions", $("#accounts-list").val()).catch(onError);
     });
 
     $(document).on("click", ".modify-position", function () {
@@ -227,15 +184,11 @@
     });
 
     $(document).on("click", ".cancel-order", function () {
-        tradingAccountConnection.invoke("CancelOrder", $("#accounts-list").val(), $(this).attr('id')).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("CancelOrder", $("#accounts-list").val(), $(this).attr('id')).catch(onError);
     });
 
     $(document).on("click", "#cancelAllOrdersButton", function () {
-        tradingAccountConnection.invoke("CancelAllOrders", $("#accounts-list").val()).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("CancelAllOrders", $("#accounts-list").val()).catch(onError);
     });
 
     $(document).on("click", ".modify-order", function () {
@@ -254,31 +207,23 @@
 
         $('#accountLoadingModal').modal('toggle')
 
-        tradingAccountConnection.invoke("StopSymbolQuotes", selectedAccountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        var previousAccountLogin = $("#accounts-list").data("previousAccountLogin");
 
-        tradingAccountConnection.invoke("StopPositionUpdates", selectedAccountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("StopSymbolQuotes", previousAccountLogin).catch(onError);
 
-        tradingAccountConnection.invoke("StopOrderUpdates", selectedAccountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("StopPositionUpdates", previousAccountLogin).catch(onError);
 
-        tradingAccountConnection.invoke("StopAccountInfoUpdates", selectedAccountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("StopOrderUpdates", previousAccountLogin).catch(onError);
 
-        tradingAccountConnection.invoke("StopErrors", selectedAccountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        tradingAccountConnection.invoke("StopAccountInfoUpdates", previousAccountLogin).catch(onError);
 
-        selectedAccountLogin = $("#accounts-list").val();
+        tradingAccountConnection.invoke("StopErrors", previousAccountLogin).catch(onError);
 
-        tradingAccountConnection.invoke("LoadAccount", selectedAccountLogin).catch(function (err) {
-            return console.error(err.toString());
-        });
+        var accountLogin = $("#accounts-list").val();
+
+        $("#accounts-list").data("previousAccountLogin", accountLogin);
+
+        tradingAccountConnection.invoke("LoadAccount", accountLogin).catch(onError);
 
         event.preventDefault();
     };
@@ -331,7 +276,28 @@
         $('#marginUsed').html(`${info.marginUsed} ${info.currency}`);
         $('#freeMargin').html(`${info.freeMargin} ${info.currency}`);
         $('#marginLevel').html(`${info.marginLevel > 0 ? info.marginLevel : "N/A"}%`);
-        $('#grossProfit').html(`${info.unrealizedGrossProfit} ${info.currency}`);
-        $('#netProfit').html(`${info.unrealizedNetProfit} ${info.currency}`);
+        $('#unrealizedGrossProfit').html(`${info.unrealizedGrossProfit} ${info.currency}`);
+        $('#unrealizedNetProfit').html(`${info.unrealizedNetProfit} ${info.currency}`);
+    }
+
+    function onError(error) {
+        console.error(`Error: ${error}`);
+
+        var toastTemplate = $('#toast-template').contents().clone(true, true);
+
+        toastTemplate.find('#toast-title').text('Error');
+        toastTemplate.find('#toast-title-small').text(error.hasOwnProperty('type') ? error.type : 'N/A');
+        toastTemplate.find('#toast-icon').addClass('fas fa-exclamation-triangle');
+        toastTemplate.find('.toast-body').text(error.hasOwnProperty('message') ? error.message : error);
+
+        var toast = toastTemplate.find(".toast");
+
+        $('#toasts-container').append(toastTemplate);
+
+        toast.toast({
+            delay: 60000
+        });
+
+        $('.toast').toast('show');
     }
 });
