@@ -49,6 +49,12 @@ namespace ASP.NET.Demo.Services
         Task CancelOrder(long accountId, long orderId);
 
         Task CancelAllOrders(long accountId);
+
+        Channel<AccountInfo> GetAccountInfoUpdatesChannel(long accountId);
+
+        void StopAccountInfoUpdates(long accountId);
+
+        AccountInfo GetAccountInfo(long accountId);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -68,6 +74,8 @@ namespace ASP.NET.Demo.Services
         private readonly ConcurrentDictionary<long, Channel<PendingOrder>> _subscribedAccountOrderUpdateChannels = new();
 
         private readonly ConcurrentDictionary<long, Channel<Error>> _subscribedAccountErrorsChannels = new();
+
+        private readonly ConcurrentDictionary<long, Channel<AccountInfo>> _subscribedAccountInfoUpdateChannels = new();
 
         public TradingAccountsService(IOpenApiService apiService)
         {
@@ -264,6 +272,34 @@ namespace ASP.NET.Demo.Services
             }
         }
 
+        public Channel<AccountInfo> GetAccountInfoUpdatesChannel(long accountId)
+        {
+            if (_subscribedAccountInfoUpdateChannels.TryAdd(accountId, Channel.CreateUnbounded<AccountInfo>()))
+            {
+                return _subscribedAccountInfoUpdateChannels[accountId];
+            }
+            else
+            {
+                throw new InvalidOperationException($"Couldn't add the account info channel to {nameof(_subscribedAccountInfoUpdateChannels)}");
+            }
+        }
+
+        public void StopAccountInfoUpdates(long accountId)
+        {
+            if (!_subscribedAccountInfoUpdateChannels.TryGetValue(accountId, out var channel)) return;
+
+            _subscribedAccountInfoUpdateChannels.TryRemove(accountId, out _);
+
+            channel.Writer.TryComplete();
+        }
+
+        public AccountInfo GetAccountInfo(long accountId)
+        {
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return null;
+
+            return AccountInfo.FromModel(model);
+        }
+
         private async Task FillConversionSymbols(AccountModel account)
         {
             foreach (var symbol in account.Symbols)
@@ -329,31 +365,28 @@ namespace ASP.NET.Demo.Services
 
             if (symbol.TickValue is not 0)
             {
-                var positions = model.Positions.ToArray();
+                var symbolPositions = model.Positions.Where(iPosition => iPosition.Symbol.Id == symbol.Id).ToArray();
 
-                foreach (var position in positions)
+                var isSubscribedForPositionUpdates = _subscribedAccountPositionUpdateChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var positionUpdatesChannel);
+
+                foreach (var position in symbolPositions)
                 {
-                    if (position.Symbol != symbol) continue;
-
                     position.OnSymbolTick();
+
+                    if (isSubscribedForPositionUpdates) await positionUpdatesChannel.Writer.WriteAsync(Position.FromModel(position));
                 }
 
                 model.UpdateStatus();
+
+                if ((symbolPositions.Length > 0 || model.DepositAsset == symbol.BaseAsset || model.DepositAsset == symbol.QuoteAsset) && _subscribedAccountInfoUpdateChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var accountInfoUpdateChannel))
+                {
+                    await accountInfoUpdateChannel.Writer.WriteAsync(AccountInfo.FromModel(model));
+                }
             }
 
             if (_subscribedAccountQuoteChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var quotesChannel))
             {
                 await quotesChannel.Writer.WriteAsync(quote);
-            }
-
-            var updatedPositions = model.Positions.Where(iPosition => iPosition.Symbol.Id == symbol.Id).ToArray();
-
-            if (updatedPositions.Length > 0 && _subscribedAccountPositionUpdateChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var positionUpdatesChannel))
-            {
-                foreach (var position in updatedPositions)
-                {
-                    await positionUpdatesChannel.Writer.WriteAsync(Position.FromModel(position));
-                }
             }
         }
 

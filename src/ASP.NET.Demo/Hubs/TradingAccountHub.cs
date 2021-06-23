@@ -22,6 +22,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task LoadAccount(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             _ = await _tradingAccountsService.GetAccountModelByLogin(Convert.ToInt64(accountLogin));
 
             await Clients.Caller.SendAsync("AccountLoaded", accountLogin);
@@ -29,6 +31,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task GetSymbols(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountModel = await _tradingAccountsService.GetAccountModelByLogin(Convert.ToInt64(accountLogin));
 
             await Clients.Caller.SendAsync("Symbols", new { accountLogin, Symbols = accountModel.Symbols.Select(iSymbol => new { iSymbol.Name, iSymbol.Bid, iSymbol.Ask, iSymbol.Id }) });
@@ -36,6 +40,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async IAsyncEnumerable<SymbolQuote> GetSymbolQuotes(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) yield return null;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             var channel = _tradingAccountsService.GetSymbolsQuoteChannel(accountId);
@@ -51,6 +57,8 @@ namespace ASP.NET.Demo.Hubs
 
         public void StopSymbolQuotes(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             _tradingAccountsService.StopSymbolQuotes(accountId);
@@ -58,6 +66,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task GetPositions(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountModel = await _tradingAccountsService.GetAccountModelByLogin(Convert.ToInt64(accountLogin));
 
             await Clients.Caller.SendAsync("Positions", new
@@ -69,6 +79,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async IAsyncEnumerable<Position> GetPositionUpdates(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) yield return null;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             var channel = _tradingAccountsService.GetPositionUpdatesChannel(accountId);
@@ -84,6 +96,8 @@ namespace ASP.NET.Demo.Hubs
 
         public void StopPositionUpdates(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             _tradingAccountsService.StopPositionUpdates(accountId);
@@ -91,6 +105,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task ClosePosition(string accountLogin, string positionId)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin) || string.IsNullOrWhiteSpace(positionId)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             await _tradingAccountsService.ClosePosition(accountId, Convert.ToInt64(positionId));
@@ -98,6 +114,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task CloseAllPositions(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             await _tradingAccountsService.CloseAllPosition(accountId);
@@ -105,6 +123,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task GetOrders(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountModel = await _tradingAccountsService.GetAccountModelByLogin(Convert.ToInt64(accountLogin));
 
             await Clients.Caller.SendAsync("Orders", new
@@ -116,6 +136,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async IAsyncEnumerable<PendingOrder> GetOrderUpdates(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) yield return null;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             var channel = _tradingAccountsService.GetOrderUpdatesChannel(accountId);
@@ -131,6 +153,8 @@ namespace ASP.NET.Demo.Hubs
 
         public void StopOrderUpdates(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             _tradingAccountsService.StopOrderUpdates(accountId);
@@ -138,6 +162,8 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task CancelOrder(string accountLogin, string orderId)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin) || string.IsNullOrWhiteSpace(orderId)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             await _tradingAccountsService.CancelOrder(accountId, Convert.ToInt64(orderId));
@@ -145,13 +171,56 @@ namespace ASP.NET.Demo.Hubs
 
         public async Task CancelAllOrders(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             await _tradingAccountsService.CancelAllOrders(accountId);
         }
 
+        public async IAsyncEnumerable<AccountInfo> GetAccountInfoUpdates(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrWhiteSpace(accountLogin)) yield return null;
+
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            var channel = _tradingAccountsService.GetAccountInfoUpdatesChannel(accountId);
+
+            while (await channel.Reader.WaitToReadAsync(cancellationToken))
+            {
+                while (channel.Reader.TryRead(out var accountInfo))
+                {
+                    yield return accountInfo;
+                }
+            }
+        }
+
+        public void StopAccountInfoUpdates(string accountLogin)
+        {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            _tradingAccountsService.StopAccountInfoUpdates(accountId);
+        }
+
+        public async Task GetAccountInfo(string accountLogin)
+        {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
+            var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
+
+            await Clients.Caller.SendAsync("AccountInfo", new
+            {
+                accountLogin,
+                Info = _tradingAccountsService.GetAccountInfo(accountId)
+            });
+        }
+
         public async IAsyncEnumerable<Error> GetErrors(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) yield return null;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             var channel = _tradingAccountsService.GetErrorsChannel(accountId);
@@ -167,6 +236,8 @@ namespace ASP.NET.Demo.Hubs
 
         public void StopErrors(string accountLogin)
         {
+            if (string.IsNullOrWhiteSpace(accountLogin)) return;
+
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
             _tradingAccountsService.StopErrors(accountId);

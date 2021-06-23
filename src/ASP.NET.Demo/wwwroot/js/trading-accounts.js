@@ -3,6 +3,8 @@
 
     var isLoaded = false;
 
+    var selectedAccountLogin;
+
     $('#accountLoadingModal').on('shown.bs.modal', function () {
         if (isLoaded) {
             isLoaded = false;
@@ -58,6 +60,10 @@
         });
 
         tradingAccountConnection.invoke("GetOrders", accountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        tradingAccountConnection.invoke("GetAccountInfo", accountLogin).catch(function (err) {
             return console.error(err.toString());
         });
 
@@ -183,6 +189,25 @@
         event.preventDefault();
     });
 
+    tradingAccountConnection.on("AccountInfo", function (data) {
+        updateAccountStats(data.info);
+
+        tradingAccountConnection.stream("GetAccountInfoUpdates", data.accountLogin)
+            .subscribe({
+                next: (info) => {
+                    updateAccountStats(info);
+                },
+                complete: () => {
+                    console.info("Account Info Updates completed");
+                },
+                error: (err) => {
+                    console.error(err.toString());
+                },
+            });
+
+        event.preventDefault();
+    });
+
     $(document).on("click", ".close-position", function () {
         tradingAccountConnection.invoke("ClosePosition", $("#accounts-list").val(), $(this).attr('id')).catch(function (err) {
             return console.error(err.toString());
@@ -229,21 +254,29 @@
 
         $('#accountLoadingModal').modal('toggle')
 
-        var accountLogin = $("#accounts-list").val();
-
-        tradingAccountConnection.invoke("StopSymbolQuotes", accountLogin).catch(function (err) {
+        tradingAccountConnection.invoke("StopSymbolQuotes", selectedAccountLogin).catch(function (err) {
             return console.error(err.toString());
         });
 
-        tradingAccountConnection.invoke("StopPositionUpdates", accountLogin).catch(function (err) {
+        tradingAccountConnection.invoke("StopPositionUpdates", selectedAccountLogin).catch(function (err) {
             return console.error(err.toString());
         });
 
-        tradingAccountConnection.invoke("StopErrors", accountLogin).catch(function (err) {
+        tradingAccountConnection.invoke("StopOrderUpdates", selectedAccountLogin).catch(function (err) {
             return console.error(err.toString());
         });
 
-        tradingAccountConnection.invoke("LoadAccount", accountLogin).catch(function (err) {
+        tradingAccountConnection.invoke("StopAccountInfoUpdates", selectedAccountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        tradingAccountConnection.invoke("StopErrors", selectedAccountLogin).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        selectedAccountLogin = $("#accounts-list").val();
+
+        tradingAccountConnection.invoke("LoadAccount", selectedAccountLogin).catch(function (err) {
             return console.error(err.toString());
         });
 
@@ -290,5 +323,15 @@
                     <button type="button" class="modify-order btn btn-secondary mr-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify"><i class="fas fa-edit"></i></button>
                     <button type="button" class="cancel-order btn btn-danger ml-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i class="fas fa-times"></i></button>
                 </td>`;
+    }
+
+    function updateAccountStats(info) {
+        $('#balance').html(`${info.balance} ${info.currency}`);
+        $('#equity').html(`${info.equity} ${info.currency}`);
+        $('#marginUsed').html(`${info.marginUsed} ${info.currency}`);
+        $('#freeMargin').html(`${info.freeMargin} ${info.currency}`);
+        $('#marginLevel').html(`${info.marginLevel > 0 ? info.marginLevel : "N/A"}%`);
+        $('#grossProfit').html(`${info.unrealizedGrossProfit} ${info.currency}`);
+        $('#netProfit').html(`${info.unrealizedNetProfit} ${info.currency}`);
     }
 });
