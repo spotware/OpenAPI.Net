@@ -14,6 +14,15 @@
 
     tradingAccountConnection.start().then(function () {
         $("#accounts-list").on("change", onAccountChanged);
+        $('#marketOrderSymbolsList').on("change", onMarketOrderSymbolChanged);
+        $('#marketRange').on("change", () => $('#marketRangeInput').prop('disabled', !$('#marketRange').is(":checked")));
+        $('#marketOrderStopLoss').on("change", () => {
+            var isDisabled = !$('#marketOrderStopLoss').is(":checked");
+
+            $('#marketOrderStopLossInput').prop('disabled', isDisabled);
+            $('#marketOrderTrailingStopLoss').prop('disabled', isDisabled);
+        });
+        $('#marketOrderTakeProfit').on("change", () => $('#marketOrderTakeProfitInput').prop('disabled', !$('#marketOrderTakeProfit').is(":checked")));
 
         onAccountChanged();
     }).catch(onError);
@@ -124,21 +133,23 @@
     tradingAccountConnection.on("Symbols", function (data) {
         var rows = '';
         $.each(data.symbols, function (i, symbol) {
+            $("#symbolsTable").data(symbol.name, symbol);
+
             var row = `<tr id="${symbol.id}">
-                            <td>${symbol.name}</td>
+                            <td id="name">${symbol.name}</td>
                             <td id="bid">${symbol.bid}</td>
                             <td id="ask">${symbol.ask}</td></tr>`;
 
             rows += row;
         });
 
-        $('#symbols-table-body').html(rows);
+        $('#symbolsTableBody').html(rows);
 
         tradingAccountConnection.stream("GetSymbolQuotes", data.accountLogin)
             .subscribe({
                 next: (quote) => {
-                    var bid = $('#symbols-table-body > #' + quote.id + ' > #bid');
-                    var ask = $('#symbols-table-body > #' + quote.id + ' > #ask');
+                    var bid = $('#symbolsTableBody > #' + quote.id + ' > #bid');
+                    var ask = $('#symbolsTableBody > #' + quote.id + ' > #ask');
 
                     bid.html(quote.bid);
                     ask.html(quote.ask);
@@ -195,6 +206,48 @@
         var id = $(this).attr('id');
 
         alert('you clicked on button #' + id);
+    });
+
+    $(document).on("click", "#createMarketOrderButton", function () {
+        var symbolOptions = '';
+
+        $('#symbolsTableBody > tr').each((index, element) => {
+            var name = $(element).find('#name').text();
+
+            symbolOptions += `<option value="${name}" id="${element.id}">${name}</option>`;
+        });
+
+        $('#marketOrderSymbolsList').html(symbolOptions);
+
+        onMarketOrderSymbolChanged();
+
+        $('#orderModalButton').html("Place Order");
+        $('#orderModalTitle').html("Create New Order");
+
+        $('#orderModal').modal('toggle');
+    });
+
+    $(document).on("click", "#orderModalButton", function () {
+        tradingAccountConnection.invoke("CreateNewMarketOrder", {
+            "accountLogin": parseInt($("#accounts-list").val()),
+            "symbolId": $("#symbolsTable").data($('#marketOrderSymbolsList').val()).id,
+            "volume": parseFloat($('#marketOrderVolumeInput').val()),
+            "direction": $('#marketOrderDirectionList').val(),
+            "comment": $('#marketOrderCommenttextarea').val(),
+            "isMarketRange": $('#marketRange').is(":checked"),
+            "marketRange": parseInt($('#marketRangeInput').val()),
+            "hasStopLoss": $('#marketOrderStopLoss').is(":checked"),
+            "stopLoss": parseInt($('#marketOrderStopLossInput').val()),
+            "hasTrailingStop": $('#marketOrderTrailingStopLoss').is(":checked"),
+            "hasTakeProfit": $('#marketOrderTakeProfit').is(":checked"),
+            "takeProfit": parseInt($('#marketOrderTakeProfitInput').val())
+        }).catch(onError);
+
+        $('#orderModal').modal('hide');
+    });
+
+    $(document).on("click", "#closeOrderModalButton", function () {
+        $('#orderModal').modal('hide');
     });
 
     function onAccountChanged() {
@@ -299,5 +352,21 @@
         });
 
         $('.toast').toast('show');
+
+        $('.toast').on('hidden.bs.toast', e => e.target.remove());
+    }
+
+    function onMarketOrderSymbolChanged() {
+        var selectedSymbolName = $('#marketOrderSymbolsList').val();
+
+        var symbol = $("#symbolsTable").data(selectedSymbolName);
+
+        $("#marketOrderVolumeInput").attr({
+            "max": symbol.maxVolume,
+            "min": symbol.minVolume,
+            "step": symbol.stepVolume
+        });
+
+        $("#marketOrderVolumeInput").val(symbol.minVolume);
     }
 });

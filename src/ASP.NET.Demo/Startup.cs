@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using OpenAPI.Net;
 using OpenAPI.Net.Helpers;
 using System;
+using System.Text.Json;
 
 namespace ASP.NET.Demo
 {
@@ -42,7 +43,10 @@ namespace ASP.NET.Demo
 
             services.AddHostedService<ConnectApiHostedService>();
 
-            services.AddSignalR();
+            services.AddSignalR(hubOptions => hubOptions.EnableDetailedErrors = true).AddJsonProtocol(options =>
+            {
+                options.PayloadSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -335,7 +335,20 @@ namespace ASP.NET.Demo.Services
 
             if (orderModel is MarketOrderModel marketOrder)
             {
-                newOrderReq.OrderType = marketOrder.IsMarketRange ? ProtoOAOrderType.MarketRange : ProtoOAOrderType.Market;
+                if (marketOrder.IsMarketRange)
+                {
+                    newOrderReq.OrderType = ProtoOAOrderType.MarketRange;
+
+                    newOrderReq.BaseSlippagePrice = marketOrder.BaseSlippagePrice;
+
+                    var slippageinPoint = orderModel.Symbol.Data.GetPointsFromPips(marketOrder.MarketRangeInPips);
+
+                    if (slippageinPoint < int.MaxValue) newOrderReq.SlippageInPoints = (int)slippageinPoint;
+                }
+                else
+                {
+                    newOrderReq.OrderType = ProtoOAOrderType.Market;
+                }
 
                 if (marketOrder.Id != default)
                 {

@@ -1,6 +1,7 @@
 ﻿using ASP.NET.Demo.Models;
 using ASP.NET.Demo.Services;
 using Microsoft.AspNetCore.SignalR;
+using OpenAPI.Net.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,21 @@ namespace ASP.NET.Demo.Hubs
 
             var accountModel = await _tradingAccountsService.GetAccountModelByLogin(Convert.ToInt64(accountLogin));
 
-            await Clients.Caller.SendAsync("Symbols", new { accountLogin, Symbols = accountModel.Symbols.Select(iSymbol => new { iSymbol.Name, iSymbol.Bid, iSymbol.Ask, iSymbol.Id }) });
+            await Clients.Caller.SendAsync("Symbols", new
+            {
+                accountLogin,
+                Symbols = accountModel.Symbols.Where(symbol => symbol.Data.TradingMode == ProtoOATradingMode.Enabled).Select(symbol => new
+                {
+                    symbol.Name,
+                    symbol.Bid,
+                    symbol.Ask,
+                    symbol.Id,
+                    symbol.TickSize,
+                    MinVolume = MonetaryConverter.FromMonetary(symbol.Data.MinVolume),
+                    MaxVolume = MonetaryConverter.FromMonetary(symbol.Data.MaxVolume),
+                    StepVolume = MonetaryConverter.FromMonetary(symbol.Data.StepVolume),
+                })
+            });
         }
 
         public async IAsyncEnumerable<SymbolQuote> GetSymbolQuotes(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
@@ -242,5 +257,7 @@ namespace ASP.NET.Demo.Hubs
 
             _tradingAccountsService.StopErrors(accountId);
         }
+
+        public Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest) => _tradingAccountsService.CreateNewMarketOrder(orderRequest);
     }
 }

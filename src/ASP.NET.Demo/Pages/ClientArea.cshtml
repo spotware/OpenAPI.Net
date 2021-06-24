@@ -16,7 +16,7 @@
                 </select>
             </div>
             <div class="row table-wrapper-scroll-y" style="height: 60vh;">
-                <table class="table table-hover table-dark table-striped table-bordered">
+                <table class="table table-hover table-dark table-striped table-bordered" id="symbolsTable">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -24,7 +24,7 @@
                             <th scope="col">Ask</th>
                         </tr>
                     </thead>
-                    <tbody id="symbols-table-body" />
+                    <tbody id="symbolsTableBody" />
                 </table>
             </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="tab-content m-0 p-0" id="accountTabContent">
             <div class="tab-pane fade show active" id="positions" role="tabpanel" aria-labelledby="positions-tab">
                 <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
-                    <button type="button" class="btn btn-secondary m-1 create-order">Create New Order</button>
+                    <button type="button" class="btn btn-secondary m-1" id="createMarketOrderButton">Create New Order</button>
                     <button type="button" class="btn btn-danger m-1" id="closeAllPositionsButton">Close All Positions</button>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
@@ -79,7 +79,7 @@
             </div>
             <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                 <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
-                    <button type="button" class="btn btn-secondary m-1 create-order">Create New Order</button>
+                    <button type="button" class="btn btn-secondary m-1" id="createPendingOrderButton">Create New Order</button>
                     <button type="button" class="btn btn-danger m-1" id="cancelAllOrdersButton">Cancel All Orders</button>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
@@ -107,8 +107,6 @@
             </div>
             <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">History</div>
             <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">Transactions</div>
-        </div>
-        <div>
         </div>
     </div>
     <div class="row no-gutters text-white w-100 m-0 p-0" id="accountStats">
@@ -160,6 +158,108 @@
             </div>
             <div class="modal-body">
                 <p>Please wait...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="orderModalTitle"></h5>
+                <button type="button" class="btn btn-secondary" id="closeOrderModalButton"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body m-0 p-0 pt-1 pb-1">
+                <ul class="nav nav-tabs" id="orderModalTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active text-muted" id="marketOrderTab" data-bs-toggle="tab" data-bs-target="#marketOrderTabContent" type="button" role="tab" aria-controls="marketOrderTabContent" aria-selected="true">Market</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-muted" id="pendingOrderTab" data-bs-toggle="tab" data-bs-target="#pendingOrderTabContent" type="button" role="tab" aria-controls="pendingOrderTabContent" aria-selected="false">Pending</button>
+                    </li>
+                </ul>
+                <div class="tab-content m-0 p-2" id="orderModalTabContent">
+                    <div class="tab-pane fade show active" id="marketOrderTabContent" role="tabpanel" aria-labelledby="marketOrderTab">
+                        <div class="row no-gutters text-whiteform-group">
+                            <div class="col">
+                                <label for="marketOrderSymbolsList">Symbol</label>
+                                <select id="marketOrderSymbolsList" class="form-select">
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="marketOrderSymbolsList">Direction</label>
+                                <select id="marketOrderDirectionList" class="form-select">
+                                    <option value="Buy">Buy</option>
+                                    <option value="Sell">Sell</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row no-gutters text-white form-group">
+                            <div class="col">
+                                <label for="volumeInput">Volume (Units)</label>
+                                <input type="number" class="form-control" id="marketOrderVolumeInput" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" min="0">
+                            </div>
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="marketRange">
+                                    <label class="form-check-label" for="marketRange">Market Range</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="number" class="form-control" id="marketRangeInput" value="10" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                                    </div>
+                                    <div class="col-2 p-1">
+                                        <label>Pips</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters text-white form-group">
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="marketOrderStopLoss">
+                                    <label class="form-check-label" for="marketOrderStopLoss">Stop Loss</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="number" class="form-control" id="marketOrderStopLossInput" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                                    </div>
+                                    <div class="col-2 p-1">
+                                        <label for="marketOrderStopLossInput">Pips</label>
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="marketOrderTrailingStopLoss" disabled>
+                                    <label class="form-check-label" for="marketOrderTrailingStopLoss">Trailing Stop</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="marketOrderTakeProfit">
+                                    <label class="form-check-label" for="marketOrderTakeProfit">Take Profit</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="number" class="form-control" id="marketOrderTakeProfitInput" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                                    </div>
+                                    <div class="col-2 p-1">
+                                        <label for="marketOrderTakeProfitInput">Pips</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-white form-group">
+                            <textarea class="form-control" maxlength="100" id="marketOrderCommenttextarea" rows="3" placeholder="Comment..."></textarea>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade m-0 p-0" id="pendingOrderTabContent" role="tabpanel" aria-labelledby="pendingOrderTab">
+                        Pending
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="orderModalButton"></button>
             </div>
         </div>
     </div>

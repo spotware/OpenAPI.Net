@@ -66,6 +66,7 @@ namespace ASP.NET.Demo.Models
         public double NetProfit { get; set; }
 
         public double GrossProfit { get; set; }
+        public double BaseSlippagePrice { get; set; }
 
         public void Update(ProtoOAPosition position, SymbolModel symbol)
         {

@@ -55,6 +55,8 @@ namespace ASP.NET.Demo.Services
         void StopAccountInfoUpdates(long accountId);
 
         AccountInfo GetAccountInfo(long accountId);
+
+        Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -118,7 +120,7 @@ namespace ASP.NET.Demo.Services
                 DepositAsset = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId)
             };
 
-            await FillConversionSymbols(model);
+            //await FillConversionSymbols(model);
 
             await FillAccountOrders(model);
 
@@ -516,6 +518,33 @@ namespace ASP.NET.Demo.Services
             observable.OfType<ProtoErrorRes>().Subscribe(OnErrorRes);
             observable.OfType<ProtoOAErrorRes>().Subscribe(OnOaErrorRes);
             observable.OfType<ProtoOAOrderErrorEvent>().Subscribe(OnOrderErrorRes);
+        }
+
+        public async Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest)
+        {
+            var accountId = GetAccountId(orderRequest.AccountLogin);
+
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
+
+            var symbol = model.Symbols.FirstOrDefault(symbol => symbol.Id == orderRequest.SymbolId);
+
+            if (symbol is null) return;
+
+            await _apiService.CreateNewOrder(new MarketOrderModel
+            {
+                Symbol = symbol,
+                Volume = MonetaryConverter.ToMonetary(orderRequest.Volume),
+                TradeSide = orderRequest.Direction.Equals("Buy", StringComparison.OrdinalIgnoreCase) ? ProtoOATradeSide.Buy : ProtoOATradeSide.Sell,
+                Comment = orderRequest.Comment,
+                IsMarketRange = orderRequest.IsMarketRange,
+                MarketRangeInPips = orderRequest.MarketRange,
+                BaseSlippagePrice = symbol.Bid,
+                IsStopLossEnabled = orderRequest.HasStopLoss,
+                StopLossInPips = orderRequest.StopLoss,
+                IsTrailingStopLossEnabled = orderRequest.HasTrailingStop,
+                IsTakeProfitEnabled = orderRequest.HasTakeProfit,
+                TakeProfitInPips = orderRequest.TakeProfit
+            }, accountId, model.IsLive);
         }
     }
 }
