@@ -59,6 +59,10 @@ namespace ASP.NET.Demo.Services
         Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest);
 
         Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest);
+
+        Task CreateNewPendingOrder(NewPendingOrderRequest orderRequest);
+
+        Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -312,13 +316,13 @@ namespace ASP.NET.Demo.Services
 
             var symbol = model.Symbols.FirstOrDefault(symbol => symbol.Id == orderRequest.SymbolId);
 
-            if (symbol is null) return;
+            if (symbol is null || Enum.TryParse<ProtoOATradeSide>(orderRequest.Direction, true, out var tradeSide) == false) return;
 
             await _apiService.CreateNewOrder(new MarketOrderModel
             {
                 Symbol = symbol,
                 Volume = MonetaryConverter.ToMonetary(orderRequest.Volume),
-                TradeSide = orderRequest.Direction.Equals("Buy", StringComparison.OrdinalIgnoreCase) ? ProtoOATradeSide.Buy : ProtoOATradeSide.Sell,
+                TradeSide = tradeSide,
                 Comment = orderRequest.Comment,
                 IsMarketRange = orderRequest.IsMarketRange,
                 MarketRangeInPips = orderRequest.MarketRange,
@@ -339,12 +343,12 @@ namespace ASP.NET.Demo.Services
 
             var order = model.Positions.FirstOrDefault(position => position.Id == orderRequest.Id);
 
-            if (order is null) return;
+            if (order is null || Enum.TryParse<ProtoOATradeSide>(orderRequest.Direction, true, out var tradeSide) == false) return;
 
             var newOrder = order.Clone();
 
             newOrder.Volume = MonetaryConverter.ToMonetary(orderRequest.Volume);
-            newOrder.TradeSide = orderRequest.Direction.Equals("Buy", StringComparison.OrdinalIgnoreCase) ? ProtoOATradeSide.Buy : ProtoOATradeSide.Sell;
+            newOrder.TradeSide = tradeSide;
             newOrder.IsStopLossEnabled = orderRequest.HasStopLoss;
             newOrder.StopLossInPips = orderRequest.StopLoss;
             newOrder.IsTrailingStopLossEnabled = orderRequest.HasTrailingStop;
@@ -352,6 +356,61 @@ namespace ASP.NET.Demo.Services
             newOrder.TakeProfitInPips = orderRequest.TakeProfit;
 
             await _apiService.ModifyPosition(order, newOrder, accountId, model.IsLive);
+        }
+
+        public async Task CreateNewPendingOrder(NewPendingOrderRequest orderRequest)
+        {
+            var accountId = GetAccountId(orderRequest.AccountLogin);
+
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
+
+            var symbol = model.Symbols.FirstOrDefault(symbol => symbol.Id == orderRequest.SymbolId);
+
+            if (symbol is null || Enum.TryParse<PendingOrderType>(orderRequest.Type, true, out var type) == false || Enum.TryParse<ProtoOATradeSide>(orderRequest.Direction, true, out var tradeSide) == false) return;
+
+            await _apiService.CreateNewOrder(new PendingOrderModel
+            {
+                Symbol = symbol,
+                Volume = MonetaryConverter.ToMonetary(orderRequest.Volume),
+                Price = orderRequest.Price,
+                Type = type,
+                TradeSide = tradeSide,
+                Comment = orderRequest.Comment,
+                LimitRangeInPips = orderRequest.LimitRange,
+                IsExpiryEnabled = orderRequest.HasExpiry,
+                ExpiryTime = orderRequest.Expiry,
+                IsStopLossEnabled = orderRequest.HasStopLoss,
+                StopLossInPips = orderRequest.StopLoss,
+                IsTrailingStopLossEnabled = orderRequest.HasTrailingStop,
+                IsTakeProfitEnabled = orderRequest.HasTakeProfit,
+                TakeProfitInPips = orderRequest.TakeProfit
+            }, accountId, model.IsLive);
+        }
+
+        public async Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest)
+        {
+            var accountId = GetAccountId(orderRequest.AccountLogin);
+
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
+
+            var order = model.PendingOrders.FirstOrDefault(order => order.Id == orderRequest.Id);
+
+            if (order is null) return;
+
+            var newOrder = order.Clone();
+
+            newOrder.Volume = MonetaryConverter.ToMonetary(orderRequest.Volume);
+            newOrder.IsStopLossEnabled = orderRequest.HasStopLoss;
+            newOrder.StopLossInPips = orderRequest.StopLoss;
+            newOrder.IsTrailingStopLossEnabled = orderRequest.HasTrailingStop;
+            newOrder.IsTakeProfitEnabled = orderRequest.HasTakeProfit;
+            newOrder.TakeProfitInPips = orderRequest.TakeProfit;
+            newOrder.Price = orderRequest.Price;
+            newOrder.LimitRangeInPips = orderRequest.LimitRange;
+            newOrder.IsExpiryEnabled = orderRequest.HasExpiry;
+            newOrder.ExpiryTime = orderRequest.Expiry;
+
+            await _apiService.ModifyOrder(order, newOrder, accountId, model.IsLive);
         }
 
         private async Task FillConversionSymbols(AccountModel account)

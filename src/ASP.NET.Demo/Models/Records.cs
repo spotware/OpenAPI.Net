@@ -134,4 +134,37 @@ namespace ASP.NET.Demo.Models
 
         public double Volume { get; set; }
     }
+
+    public record OrderInfo
+    {
+        public long Id { get; set; }
+
+        public double Price { get; init; }
+
+        public string Type { get; set; }
+
+        public double StopLossInPips { get; init; }
+
+        public double TakeProfitInPips { get; init; }
+
+        public bool HasStopLoss { get; set; }
+
+        public bool HasTrailingStop { get; set; }
+
+        public bool HasTakeProfit { get; set; }
+
+        public string Comment { get; set; }
+
+        public string SymbolName { get; set; }
+
+        public string Direction { get; set; }
+
+        public double Volume { get; set; }
+
+        public long LimitRange { get; set; }
+
+        public bool HasExpiry { get; set; }
+
+        public DateTimeOffset Expiry { get; set; }
+    }
 }

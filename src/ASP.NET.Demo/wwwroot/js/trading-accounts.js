@@ -10,11 +10,21 @@
         }
     })
 
+    $('.nav-link').on('click', e => {
+        if (e.target.id == 'marketOrderTab') {
+            $('#orderModal').data('type', 'createMarket');
+        }
+        else {
+            $('#orderModal').data('type', 'createPending');
+        }
+    });
+
     var tradingAccountConnection = new signalR.HubConnectionBuilder().withUrl("/tradingAccountHub").build();
 
     tradingAccountConnection.start().then(function () {
         $("#accounts-list").on("change", onAccountChanged);
         $('#marketOrderSymbolsList').on("change", onMarketOrderSymbolChanged);
+        $('#pendingOrderSymbolsList').on("change", onPendingOrderSymbolChanged);
         $('#marketRange').on("change", () => $('#marketRangeInput').prop('disabled', !$('#marketRange').is(":checked")));
         $('#marketOrderStopLoss').on("change", () => {
             var isDisabled = !$('#marketOrderStopLoss').is(":checked");
@@ -22,7 +32,16 @@
             $('#marketOrderStopLossInput').prop('disabled', isDisabled);
             $('#marketOrderTrailingStopLoss').prop('disabled', isDisabled);
         });
+        $('#pendingOrderStopLoss').on("change", () => {
+            var isDisabled = !$('#pendingOrderStopLoss').is(":checked");
+
+            $('#pendingOrderStopLossInput').prop('disabled', isDisabled);
+            $('#pendingOrderTrailingStopLoss').prop('disabled', isDisabled);
+        });
         $('#marketOrderTakeProfit').on("change", () => $('#marketOrderTakeProfitInput').prop('disabled', !$('#marketOrderTakeProfit').is(":checked")));
+        $('#pendingOrderTakeProfit').on("change", () => $('#pendingOrderTakeProfitInput').prop('disabled', !$('#pendingOrderTakeProfit').is(":checked")));
+        $('#pendingOrderExpiry').on("change", () => $('#pendingOrderExpiryDateTime').prop('disabled', !$('#pendingOrderExpiry').is(":checked")));
+        $('#pendingOrderTypeList').on("change", () => $('#pendingOrderLimitRangeInput').prop('disabled', $('#pendingOrderTypeList').val() != "StopLimit"));
 
         onAccountChanged();
     }).catch(onError);
@@ -193,11 +212,11 @@
         var accountId = parseInt($("#accounts-list").val());
 
         tradingAccountConnection.invoke('getPositionInfo', accountId, positionId).then(info => {
-            resetMarketOrderForm();
+            resetOrderForms();
 
             $('#pendingOrderTab').addClass('disabled');
 
-            fillSymbolsList('#marketOrderSymbolsList');
+            fillSymbolsList();
 
             $('#marketOrderSymbolsList').val(info.symbolName).change();
             $('#marketOrderSymbolsList').prop('disabled', true);
@@ -238,22 +257,80 @@
     });
 
     $(document).on("click", ".modify-order", function () {
-        var id = $(this).attr('id');
+        var positionId = parseInt($(this).attr('id'));
+        var accountId = parseInt($("#accounts-list").val());
 
-        alert('you clicked on button #' + id);
+        tradingAccountConnection.invoke('getOrderInfo', accountId, positionId).then(info => {
+            resetOrderForms();
+
+            $('#marketOrderTab').addClass('disabled');
+
+            fillSymbolsList();
+
+            $('#pendingOrderSymbolsList').val(info.symbolName).change();
+            $('#pendingOrderSymbolsList').prop('disabled', true);
+            $('#pendingOrderDirectionList').val(info.direction).change();
+            $('#pendingOrderDirectionList').prop('disabled', true);
+            $('#pendingOrderVolumeInput').val(info.volume).change();
+            $('#pendingOrderTypeList').val(info.type).change();
+            $('#pendingOrderTypeList').prop('disabled', true);
+            $("#pendingOrderStopLoss").prop("checked", info.hasStopLoss);
+            $('#pendingOrderStopLossInput').prop('disabled', !info.hasStopLoss);
+            $("#pendingOrderTakeProfit").prop("checked", info.hasTakeProfit);
+            $('#pendingOrderTakeProfitInput').prop('disabled', !info.hasTakeProfit);
+            $('#pendingOrderStopLossInput').val(info.stopLossInPips).change();
+            $('#pendingOrderTakeProfitInput').val(info.takeProfitInPips).change();
+            $('#pendingOrderTrailingStopLoss').prop('disabled', !info.hasStopLoss);
+            $("#pendingOrderTrailingStopLoss").prop("checked", info.hasTrailingStop);
+            $('#pendingOrderCommenttextarea').val(info.comment).change();
+            $('#pendingOrderCommenttextarea').prop('disabled', true);
+            $('#pendingOrderExpiry').prop('checked', info.hasExpiry);
+            $('#pendingOrderExpiryDateTime').prop('disabled', !info.hasExpiry);
+
+            if (info.hasExpiry) {
+                $('#pendingOrderExpiryDateTime').val(new Date(info.expiry).toJSON().slice(0, 19)).change();
+            }
+
+            $('#pendingOrderPriceInput').val(info.price).change();
+
+            $('#orderModalButton').html("Modify Order");
+            $('#orderModalTitle').html("Modify Pending Order");
+
+            $('#orderModal').data('type', 'modifyPending');
+            $('#orderModal').data('id', info.id);
+
+            $('#pendingOrderTab').tab('show');
+
+            $('#orderModal').modal('toggle');
+        }).catch(onError);
     });
 
     $(document).on("click", "#createMarketOrderButton", function () {
         resetOrderForms();
 
-        fillSymbolsList('#marketOrderSymbolsList');
-
-        onMarketOrderSymbolChanged();
+        fillSymbolsList();
 
         $('#orderModalButton').html("Place Order");
         $('#orderModalTitle').html("Create New Order");
 
+        $('#orderModal').data('type', 'createMarket');
+
         $('#marketOrderTab').tab('show');
+
+        $('#orderModal').modal('toggle');
+    });
+
+    $(document).on("click", "#createPendingOrderButton", function () {
+        resetOrderForms();
+
+        fillSymbolsList();
+
+        $('#orderModalButton').html("Place Order");
+        $('#orderModalTitle').html("Create New Order");
+
+        $('#orderModal').data('type', 'createPending');
+
+        $('#pendingOrderTab').tab('show');
 
         $('#orderModal').modal('toggle');
     });
@@ -292,9 +369,40 @@
                 break;
 
             case "createPending":
+                tradingAccountConnection.invoke("CreateNewPendingOrder", {
+                    "accountLogin": parseInt($("#accounts-list").val()),
+                    "symbolId": $("#symbolsTable").data($('#pendingOrderSymbolsList').val()).id,
+                    "volume": parseFloat($('#pendingOrderVolumeInput').val()),
+                    "direction": $('#pendingOrderDirectionList').val(),
+                    "comment": $('#pendingOrderCommenttextarea').val(),
+                    "hasStopLoss": $('#pendingOrderStopLoss').is(":checked"),
+                    "stopLoss": parseInt($('#pendingOrderStopLossInput').val()),
+                    "hasTrailingStop": $('#pendingOrderTrailingStopLoss').is(":checked"),
+                    "hasTakeProfit": $('#pendingOrderTakeProfit').is(":checked"),
+                    "takeProfit": parseInt($('#pendingOrderTakeProfitInput').val()),
+                    "type": $('#pendingOrderTypeList').val(),
+                    "price": parseFloat($('#pendingOrderPriceInput').val()),
+                    "limitRange": parseInt($('#pendingOrderLimitRangeInput').val()),
+                    "hasExpiry": $('#pendingOrderExpiry').is(":checked"),
+                    "expiry": $('#pendingOrderExpiry').is(":checked") ? new Date($('#pendingOrderExpiryDateTime').val()) : new Date()
+                }).catch(onError);
                 break;
 
             case "modifyPending":
+                tradingAccountConnection.invoke("ModifyPendingOrder", {
+                    "accountLogin": parseInt($("#accounts-list").val()),
+                    "id": $('#orderModal').data('id'),
+                    "volume": parseFloat($('#pendingOrderVolumeInput').val()),
+                    "hasStopLoss": $('#pendingOrderStopLoss').is(":checked"),
+                    "stopLoss": parseInt($('#pendingOrderStopLossInput').val()),
+                    "hasTrailingStop": $('#pendingOrderTrailingStopLoss').is(":checked"),
+                    "hasTakeProfit": $('#pendingOrderTakeProfit').is(":checked"),
+                    "takeProfit": parseInt($('#pendingOrderTakeProfitInput').val()),
+                    "price": parseFloat($('#pendingOrderPriceInput').val()),
+                    "limitRange": parseInt($('#pendingOrderLimitRangeInput').val()),
+                    "hasExpiry": $('#pendingOrderExpiry').is(":checked"),
+                    "expiry": $('#pendingOrderExpiry').is(":checked") ? new Date($('#pendingOrderExpiryDateTime').val()) : new Date()
+                }).catch(onError);
                 break;
 
             default:
@@ -424,12 +532,31 @@
             "max": symbol.maxVolume,
             "min": symbol.minVolume,
             "step": symbol.stepVolume
-        });
+        }).change();
 
-        $("#marketOrderVolumeInput").val(symbol.minVolume);
+        $("#marketOrderVolumeInput").val(symbol.minVolume).change();
     }
 
-    function fillSymbolsList(listId) {
+    function onPendingOrderSymbolChanged() {
+        var selectedSymbolName = $('#pendingOrderSymbolsList').val();
+
+        var symbol = $("#symbolsTable").data(selectedSymbolName);
+
+        $("#pendingOrderVolumeInput").attr({
+            "max": symbol.maxVolume,
+            "min": symbol.minVolume,
+            "step": symbol.stepVolume
+        }).change();
+
+        $("#pendingOrderPriceInput").attr({
+            "step": symbol.pipSize,
+        }).change();
+
+        $("#pendingOrderPriceInput").val(getSymbolPrice(symbol.id)).change();
+        $("#pendingOrderVolumeInput").val(symbol.minVolume).change();
+    }
+
+    function fillSymbolsList() {
         var symbolOptions = '';
 
         $('#symbolsTableBody > tr').each((index, element) => {
@@ -438,7 +565,11 @@
             symbolOptions += `<option value="${name}" id="${element.id}">${name}</option>`;
         });
 
-        $(listId).html(symbolOptions);
+        $('#marketOrderSymbolsList').html(symbolOptions);
+        $('#pendingOrderSymbolsList').html(symbolOptions);
+
+        onMarketOrderSymbolChanged();
+        onPendingOrderSymbolChanged();
     }
 
     function resetMarketOrderForm() {
@@ -447,21 +578,44 @@
         $('#marketOrderDirectionList').val('Buy').change();
         $('#marketOrderVolumeInput').val(1).change();
         $('#marketRangeInput').prop('value', 10);
-        $('#marketRangeInput').prop('disabled', false);
+        $('#marketRangeInput').prop('disabled', true);
         $('#marketRange').prop('disabled', false);
+        $("#marketRange").prop("checked", false);
         $("#marketOrderStopLoss").prop("checked", false);
-        $('#marketOrderStopLossInput').prop('disabled', false);
+        $('#marketOrderStopLossInput').prop('disabled', true);
         $("#marketOrderTakeProfit").prop("checked", false);
-        $('#marketOrderTakeProfitInput').prop('disabled', false);
+        $('#marketOrderTakeProfitInput').prop('disabled', true);
         $('#marketOrderStopLossInput').val(20).change();
         $('#marketOrderTakeProfitInput').val(20).change();
-        $('#marketOrderTrailingStopLoss').prop('disabled', false);
+        $('#marketOrderTrailingStopLoss').prop('disabled', true);
         $("#marketOrderTrailingStopLoss").prop("checked", false);
         $('#marketOrderCommenttextarea').val('').change();
         $('#marketOrderCommenttextarea').prop('disabled', false);
     }
 
     function resetPendingOrderForm() {
+        $("#pendingOrderSymbolsList").prop('selectedIndex', 0)
+        $('#pendingOrderSymbolsList').prop('disabled', false);
+        $('#pendingOrderDirectionList').val('Buy').change();
+        $('#pendingOrderVolumeInput').val(1).change();
+        $('#pendingOrderPriceInput').val(0).change();
+        $('#pendingOrderTypeList').val('Limit').change();
+        $('#pendingOrderLimitRangeInput').prop('value', 10);
+        $('#pendingOrderLimitRangeInput').prop('disabled', true);
+        $("#pendingOrderExpiry").prop("checked", false);
+        $('#pendingOrderExpiryDateTime').val(new Date().toJSON().slice(0, 19)).change();
+        $('#pendingOrderExpiryDateTime').prop('disabled', true);
+        $('#pendingOrderExpiryDateTime').prop('min', new Date().toJSON().slice(0, 19));
+        $("#pendingOrderStopLoss").prop("checked", false);
+        $('#pendingOrderStopLossInput').prop('disabled', true);
+        $("#pendingOrderTakeProfit").prop("checked", false);
+        $('#pendingOrderTakeProfitInput').prop('disabled', true);
+        $('#pendingOrderStopLossInput').val(20).change();
+        $('#pendingOrderTakeProfitInput').val(20).change();
+        $('#pendingOrderTrailingStopLoss').prop('disabled', true);
+        $("#pendingOrderTrailingStopLoss").prop("checked", false);
+        $('#pendingOrderCommenttextarea').val('').change();
+        $('#pendingOrderCommenttextarea').prop('disabled', false);
     }
 
     function resetOrderForms() {
@@ -473,5 +627,9 @@
 
         resetMarketOrderForm();
         resetPendingOrderForm();
+    }
+
+    function getSymbolPrice(symbolId) {
+        return $("#symbolsTableBody").find(`#${symbolId}`).find('#bid').text();
     }
 });

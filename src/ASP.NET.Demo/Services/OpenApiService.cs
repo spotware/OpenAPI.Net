@@ -579,12 +579,26 @@ namespace ASP.NET.Demo.Services
 
             if (newOrder.IsStopLossEnabled)
             {
+                if (newOrder.StopLossInPips != default && newOrder.StopLossInPrice == default)
+                {
+                    newOrder.StopLossInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                        ? newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.StopLossInPips)
+                        : newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.StopLossInPips);
+                }
+
                 requestMessage.StopLoss = newOrder.StopLossInPrice;
                 requestMessage.TrailingStopLoss = newOrder.IsTrailingStopLossEnabled;
             }
 
             if (newOrder.IsTakeProfitEnabled)
             {
+                if (newOrder.TakeProfitInPips != default && newOrder.TakeProfitInPrice == default)
+                {
+                    newOrder.TakeProfitInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                        ? newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.TakeProfitInPips)
+                        : newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.TakeProfitInPips);
+                }
+
                 requestMessage.TakeProfit = newOrder.TakeProfitInPrice;
             }
 

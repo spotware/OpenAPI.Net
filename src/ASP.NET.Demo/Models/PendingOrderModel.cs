@@ -53,8 +53,6 @@ namespace ASP.NET.Demo.Models
             TradeData = order.TradeData;
             LastUpdateTime = DateTimeOffset.FromUnixTimeMilliseconds(order.UtcLastUpdateTimestamp);
             Status = order.OrderStatus;
-            StopLossInPrice = order.StopLoss;
-            TakeProfitInPrice = order.TakeProfit;
             ProtoType = order.OrderType;
             OpenTime = DateTimeOffset.FromUnixTimeMilliseconds(order.TradeData.OpenTimestamp);
             Comment = order.TradeData.Comment;
@@ -83,8 +81,18 @@ namespace ASP.NET.Demo.Models
             if (order.HasRelativeStopLoss)
             {
                 IsStopLossEnabled = true;
+
                 StopLossInPips = Symbol.Data.GetPipsFromRelative(order.RelativeStopLoss);
                 StopLossInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.Data.AddPipsToPrice(Price, StopLossInPips) : Symbol.Data.SubtractPipsFromPrice(Price, StopLossInPips);
+
+                IsTrailingStopLossEnabled = order.TrailingStopLoss;
+            }
+            else if (order.HasStopLoss)
+            {
+                IsStopLossEnabled = true;
+
+                StopLossInPrice = order.StopLoss;
+                StopLossInPips = Symbol.Data.GetPipsFromPrice(Math.Abs(StopLossInPrice - Price));
 
                 IsTrailingStopLossEnabled = order.TrailingStopLoss;
             }
@@ -100,8 +108,16 @@ namespace ASP.NET.Demo.Models
             if (order.HasRelativeTakeProfit)
             {
                 IsTakeProfitEnabled = true;
+
                 TakeProfitInPips = Symbol.Data.GetPipsFromRelative(order.RelativeTakeProfit);
                 TakeProfitInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.Data.SubtractPipsFromPrice(Price, TakeProfitInPips) : Symbol.Data.AddPipsToPrice(Price, TakeProfitInPips);
+            }
+            else if (order.HasTakeProfit)
+            {
+                IsTakeProfitEnabled = true;
+
+                TakeProfitInPrice = order.TakeProfit;
+                TakeProfitInPips = Symbol.Data.GetPipsFromPrice(Math.Abs(TakeProfitInPrice - Price));
             }
             else
             {

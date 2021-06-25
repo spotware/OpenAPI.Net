@@ -45,7 +45,7 @@ namespace ASP.NET.Demo.Hubs
                     symbol.Bid,
                     symbol.Ask,
                     symbol.Id,
-                    symbol.TickSize,
+                    symbol.PipSize,
                     MinVolume = MonetaryConverter.FromMonetary(symbol.Data.MinVolume),
                     MaxVolume = MonetaryConverter.FromMonetary(symbol.Data.MaxVolume),
                     StepVolume = MonetaryConverter.FromMonetary(symbol.Data.StepVolume),
@@ -262,6 +262,10 @@ namespace ASP.NET.Demo.Hubs
 
         public Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest) => _tradingAccountsService.ModifyMarketOrder(orderRequest);
 
+        public Task CreateNewPendingOrder(NewPendingOrderRequest orderRequest) => _tradingAccountsService.CreateNewPendingOrder(orderRequest);
+
+        public Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest) => _tradingAccountsService.ModifyPendingOrder(orderRequest);
+
         public async Task<PositionInfo> GetPositionInfo(long accountLogin, long positionId)
         {
             var accountModel = await _tradingAccountsService.GetAccountModelByLogin(accountLogin);
@@ -283,6 +287,34 @@ namespace ASP.NET.Demo.Hubs
                 TakeProfitInPips = position.TakeProfitInPips,
                 HasTrailingStop = position.IsTrailingStopLossEnabled,
                 IsMarketRange = position.IsMarketRange
+            };
+        }
+
+        public async Task<OrderInfo> GetOrderInfo(long accountLogin, long orderId)
+        {
+            var accountModel = await _tradingAccountsService.GetAccountModelByLogin(accountLogin);
+
+            var order = accountModel.PendingOrders.FirstOrDefault(order => order.Id == orderId);
+
+            if (order is null) return null;
+
+            return new OrderInfo
+            {
+                Id = order.Id,
+                Direction = order.TradeSide.ToString(),
+                SymbolName = order.Symbol.Name,
+                Comment = order.Comment,
+                Volume = MonetaryConverter.FromMonetary(order.Volume),
+                HasStopLoss = order.IsStopLossEnabled,
+                StopLossInPips = order.StopLossInPips,
+                HasTakeProfit = order.IsTakeProfitEnabled,
+                TakeProfitInPips = order.TakeProfitInPips,
+                HasTrailingStop = order.IsTrailingStopLossEnabled,
+                HasExpiry = order.IsExpiryEnabled,
+                Expiry = order.ExpiryTime,
+                Type = order.Type.ToString(),
+                LimitRange = Convert.ToInt64(order.LimitRangeInPips),
+                Price = order.Price
             };
         }
     }
