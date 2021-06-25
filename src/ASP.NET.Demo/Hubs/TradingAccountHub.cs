@@ -259,5 +259,31 @@ namespace ASP.NET.Demo.Hubs
         }
 
         public Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest) => _tradingAccountsService.CreateNewMarketOrder(orderRequest);
+
+        public Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest) => _tradingAccountsService.ModifyMarketOrder(orderRequest);
+
+        public async Task<PositionInfo> GetPositionInfo(long accountLogin, long positionId)
+        {
+            var accountModel = await _tradingAccountsService.GetAccountModelByLogin(accountLogin);
+
+            var position = accountModel.Positions.FirstOrDefault(position => position.Id == positionId);
+
+            if (position is null) return null;
+
+            return new PositionInfo
+            {
+                Id = position.Id,
+                Direction = position.TradeSide.ToString(),
+                SymbolName = position.Symbol.Name,
+                Comment = position.Comment,
+                Volume = MonetaryConverter.FromMonetary(position.Volume),
+                HasStopLoss = position.IsStopLossEnabled,
+                StopLossInPips = position.StopLossInPips,
+                HasTakeProfit = position.IsTakeProfitEnabled,
+                TakeProfitInPips = position.TakeProfitInPips,
+                HasTrailingStop = position.IsTrailingStopLossEnabled,
+                IsMarketRange = position.IsMarketRange
+            };
+        }
     }
 }

@@ -483,13 +483,14 @@ namespace ASP.NET.Demo.Services
             {
                 if (newOrder.Volume > oldOrder.Volume)
                 {
-                    newOrder.Volume = newOrder.Volume - oldOrder.Volume;
+                    newOrder.Volume -= oldOrder.Volume;
 
                     await CreateNewOrder(newOrder, accountId, isLive);
                 }
                 else
                 {
-                    if (newOrder.StopLossInPips != oldOrder.StopLossInPips || newOrder.TakeProfitInPips != oldOrder.TakeProfitInPips)
+                    if (newOrder.StopLossInPips != oldOrder.StopLossInPips || newOrder.IsStopLossEnabled != oldOrder.IsStopLossEnabled || newOrder.TakeProfitInPips != oldOrder.TakeProfitInPips || newOrder.IsTakeProfitEnabled != oldOrder.IsTakeProfitEnabled
+                        || newOrder.IsTrailingStopLossEnabled != oldOrder.IsTrailingStopLossEnabled)
                     {
                         var amendPositionRequestMessage = new ProtoOAAmendPositionSLTPReq
                         {
@@ -500,6 +501,13 @@ namespace ASP.NET.Demo.Services
 
                         if (newOrder.IsStopLossEnabled)
                         {
+                            if (newOrder.StopLossInPips != default && newOrder.StopLossInPrice == default)
+                            {
+                                newOrder.StopLossInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                                    ? newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.StopLossInPips)
+                                    : newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.StopLossInPips);
+                            }
+
                             amendPositionRequestMessage.StopLoss = newOrder.StopLossInPrice;
                             amendPositionRequestMessage.StopLossTriggerMethod = oldOrder.StopTriggerMethod;
                             amendPositionRequestMessage.TrailingStopLoss = newOrder.IsTrailingStopLossEnabled;
@@ -507,6 +515,13 @@ namespace ASP.NET.Demo.Services
 
                         if (newOrder.IsTakeProfitEnabled)
                         {
+                            if (newOrder.TakeProfitInPips != default && newOrder.TakeProfitInPrice == default)
+                            {
+                                newOrder.TakeProfitInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                                    ? newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.TakeProfitInPips)
+                                    : newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.TakeProfitInPips);
+                            }
+
                             amendPositionRequestMessage.TakeProfit = newOrder.TakeProfitInPrice;
                         }
 

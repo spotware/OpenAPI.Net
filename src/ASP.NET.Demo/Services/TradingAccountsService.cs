@@ -57,6 +57,8 @@ namespace ASP.NET.Demo.Services
         AccountInfo GetAccountInfo(long accountId);
 
         Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest);
+
+        Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -302,6 +304,56 @@ namespace ASP.NET.Demo.Services
             return AccountInfo.FromModel(model);
         }
 
+        public async Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest)
+        {
+            var accountId = GetAccountId(orderRequest.AccountLogin);
+
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
+
+            var symbol = model.Symbols.FirstOrDefault(symbol => symbol.Id == orderRequest.SymbolId);
+
+            if (symbol is null) return;
+
+            await _apiService.CreateNewOrder(new MarketOrderModel
+            {
+                Symbol = symbol,
+                Volume = MonetaryConverter.ToMonetary(orderRequest.Volume),
+                TradeSide = orderRequest.Direction.Equals("Buy", StringComparison.OrdinalIgnoreCase) ? ProtoOATradeSide.Buy : ProtoOATradeSide.Sell,
+                Comment = orderRequest.Comment,
+                IsMarketRange = orderRequest.IsMarketRange,
+                MarketRangeInPips = orderRequest.MarketRange,
+                BaseSlippagePrice = symbol.Bid,
+                IsStopLossEnabled = orderRequest.HasStopLoss,
+                StopLossInPips = orderRequest.StopLoss,
+                IsTrailingStopLossEnabled = orderRequest.HasTrailingStop,
+                IsTakeProfitEnabled = orderRequest.HasTakeProfit,
+                TakeProfitInPips = orderRequest.TakeProfit
+            }, accountId, model.IsLive);
+        }
+
+        public async Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest)
+        {
+            var accountId = GetAccountId(orderRequest.AccountLogin);
+
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
+
+            var order = model.Positions.FirstOrDefault(position => position.Id == orderRequest.Id);
+
+            if (order is null) return;
+
+            var newOrder = order.Clone();
+
+            newOrder.Volume = MonetaryConverter.ToMonetary(orderRequest.Volume);
+            newOrder.TradeSide = orderRequest.Direction.Equals("Buy", StringComparison.OrdinalIgnoreCase) ? ProtoOATradeSide.Buy : ProtoOATradeSide.Sell;
+            newOrder.IsStopLossEnabled = orderRequest.HasStopLoss;
+            newOrder.StopLossInPips = orderRequest.StopLoss;
+            newOrder.IsTrailingStopLossEnabled = orderRequest.HasTrailingStop;
+            newOrder.IsTakeProfitEnabled = orderRequest.HasTakeProfit;
+            newOrder.TakeProfitInPips = orderRequest.TakeProfit;
+
+            await _apiService.ModifyPosition(order, newOrder, accountId, model.IsLive);
+        }
+
         private async Task FillConversionSymbols(AccountModel account)
         {
             foreach (var symbol in account.Symbols)
@@ -491,14 +543,14 @@ namespace ASP.NET.Demo.Services
         {
             if (!_subscribedAccountErrorsChannels.TryGetValue(error.CtidTraderAccountId, out var channel)) return;
 
-            await channel.Writer.WriteAsync(new(error.Description, nameof(ProtoOAOrderErrorEvent)));
+            await channel.Writer.WriteAsync(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoOAOrderErrorEvent)));
         }
 
         private async void OnOaErrorRes(ProtoOAErrorRes error)
         {
             if (!_subscribedAccountErrorsChannels.TryGetValue(error.CtidTraderAccountId, out var channel)) return;
 
-            await channel.Writer.WriteAsync(new(error.Description, nameof(ProtoOAErrorRes)));
+            await channel.Writer.WriteAsync(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoOAErrorRes)));
         }
 
         private async void OnErrorRes(ProtoErrorRes error)
@@ -507,7 +559,7 @@ namespace ASP.NET.Demo.Services
 
             foreach (var channel in errorChannels)
             {
-                await channel.Writer.WriteAsync(new(error.Description, nameof(ProtoErrorRes)));
+                await channel.Writer.WriteAsync(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoErrorRes)));
             }
         }
 
@@ -518,33 +570,6 @@ namespace ASP.NET.Demo.Services
             observable.OfType<ProtoErrorRes>().Subscribe(OnErrorRes);
             observable.OfType<ProtoOAErrorRes>().Subscribe(OnOaErrorRes);
             observable.OfType<ProtoOAOrderErrorEvent>().Subscribe(OnOrderErrorRes);
-        }
-
-        public async Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest)
-        {
-            var accountId = GetAccountId(orderRequest.AccountLogin);
-
-            if (_accountModels.TryGetValue(accountId, out var model) == false) return;
-
-            var symbol = model.Symbols.FirstOrDefault(symbol => symbol.Id == orderRequest.SymbolId);
-
-            if (symbol is null) return;
-
-            await _apiService.CreateNewOrder(new MarketOrderModel
-            {
-                Symbol = symbol,
-                Volume = MonetaryConverter.ToMonetary(orderRequest.Volume),
-                TradeSide = orderRequest.Direction.Equals("Buy", StringComparison.OrdinalIgnoreCase) ? ProtoOATradeSide.Buy : ProtoOATradeSide.Sell,
-                Comment = orderRequest.Comment,
-                IsMarketRange = orderRequest.IsMarketRange,
-                MarketRangeInPips = orderRequest.MarketRange,
-                BaseSlippagePrice = symbol.Bid,
-                IsStopLossEnabled = orderRequest.HasStopLoss,
-                StopLossInPips = orderRequest.StopLoss,
-                IsTrailingStopLossEnabled = orderRequest.HasTrailingStop,
-                IsTakeProfitEnabled = orderRequest.HasTakeProfit,
-                TakeProfitInPips = orderRequest.TakeProfit
-            }, accountId, model.IsLive);
         }
     }
 }

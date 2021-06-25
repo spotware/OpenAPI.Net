@@ -189,9 +189,44 @@
     });
 
     $(document).on("click", ".modify-position", function () {
-        var positionId = $(this).attr('id');
+        var positionId = parseInt($(this).attr('id'));
+        var accountId = parseInt($("#accounts-list").val());
 
-        alert('you clicked on button #' + positionId);
+        tradingAccountConnection.invoke('getPositionInfo', accountId, positionId).then(info => {
+            resetMarketOrderForm();
+
+            $('#pendingOrderTab').addClass('disabled');
+
+            fillSymbolsList('#marketOrderSymbolsList');
+
+            $('#marketOrderSymbolsList').val(info.symbolName).change();
+            $('#marketOrderSymbolsList').prop('disabled', true);
+            $('#marketOrderDirectionList').val(info.direction).change();
+            $('#marketOrderVolumeInput').val(info.volume).change();
+            $('#marketRangeInput').removeAttr('value');
+            $('#marketRangeInput').prop('disabled', true);
+            $('#marketRange').prop('disabled', true);
+            $("#marketOrderStopLoss").prop("checked", info.hasStopLoss);
+            $('#marketOrderStopLossInput').prop('disabled', !info.hasStopLoss);
+            $("#marketOrderTakeProfit").prop("checked", info.hasTakeProfit);
+            $('#marketOrderTakeProfitInput').prop('disabled', !info.hasTakeProfit);
+            $('#marketOrderStopLossInput').val(info.stopLossInPips).change();
+            $('#marketOrderTakeProfitInput').val(info.takeProfitInPips).change();
+            $('#marketOrderTrailingStopLoss').prop('disabled', !info.hasStopLoss);
+            $("#marketOrderTrailingStopLoss").prop("checked", info.hasTrailingStop);
+            $('#marketOrderCommenttextarea').val(info.comment).change();
+            $('#marketOrderCommenttextarea').prop('disabled', true);
+
+            $('#orderModalButton').html("Modify Order");
+            $('#orderModalTitle').html("Modify Market Order");
+
+            $('#orderModal').data('type', 'modifyMarket');
+            $('#orderModal').data('id', info.id);
+
+            $('#marketOrderTab').tab('show');
+
+            $('#orderModal').modal('toggle');
+        }).catch(onError);
     });
 
     $(document).on("click", ".cancel-order", function () {
@@ -209,39 +244,63 @@
     });
 
     $(document).on("click", "#createMarketOrderButton", function () {
-        var symbolOptions = '';
+        resetOrderForms();
 
-        $('#symbolsTableBody > tr').each((index, element) => {
-            var name = $(element).find('#name').text();
-
-            symbolOptions += `<option value="${name}" id="${element.id}">${name}</option>`;
-        });
-
-        $('#marketOrderSymbolsList').html(symbolOptions);
+        fillSymbolsList('#marketOrderSymbolsList');
 
         onMarketOrderSymbolChanged();
 
         $('#orderModalButton').html("Place Order");
         $('#orderModalTitle').html("Create New Order");
 
+        $('#marketOrderTab').tab('show');
+
         $('#orderModal').modal('toggle');
     });
 
     $(document).on("click", "#orderModalButton", function () {
-        tradingAccountConnection.invoke("CreateNewMarketOrder", {
-            "accountLogin": parseInt($("#accounts-list").val()),
-            "symbolId": $("#symbolsTable").data($('#marketOrderSymbolsList').val()).id,
-            "volume": parseFloat($('#marketOrderVolumeInput').val()),
-            "direction": $('#marketOrderDirectionList').val(),
-            "comment": $('#marketOrderCommenttextarea').val(),
-            "isMarketRange": $('#marketRange').is(":checked"),
-            "marketRange": parseInt($('#marketRangeInput').val()),
-            "hasStopLoss": $('#marketOrderStopLoss').is(":checked"),
-            "stopLoss": parseInt($('#marketOrderStopLossInput').val()),
-            "hasTrailingStop": $('#marketOrderTrailingStopLoss').is(":checked"),
-            "hasTakeProfit": $('#marketOrderTakeProfit').is(":checked"),
-            "takeProfit": parseInt($('#marketOrderTakeProfitInput').val())
-        }).catch(onError);
+        switch ($('#orderModal').data('type')) {
+            case "createMarket":
+                tradingAccountConnection.invoke("CreateNewMarketOrder", {
+                    "accountLogin": parseInt($("#accounts-list").val()),
+                    "symbolId": $("#symbolsTable").data($('#marketOrderSymbolsList').val()).id,
+                    "volume": parseFloat($('#marketOrderVolumeInput').val()),
+                    "direction": $('#marketOrderDirectionList').val(),
+                    "comment": $('#marketOrderCommenttextarea').val(),
+                    "isMarketRange": $('#marketRange').is(":checked"),
+                    "marketRange": parseInt($('#marketRangeInput').val()),
+                    "hasStopLoss": $('#marketOrderStopLoss').is(":checked"),
+                    "stopLoss": parseInt($('#marketOrderStopLossInput').val()),
+                    "hasTrailingStop": $('#marketOrderTrailingStopLoss').is(":checked"),
+                    "hasTakeProfit": $('#marketOrderTakeProfit').is(":checked"),
+                    "takeProfit": parseInt($('#marketOrderTakeProfitInput').val())
+                }).catch(onError);
+
+                break;
+            case "modifyMarket":
+                tradingAccountConnection.invoke("ModifyMarketOrder", {
+                    "accountLogin": parseInt($("#accounts-list").val()),
+                    "id": $('#orderModal').data('id'),
+                    "volume": parseFloat($('#marketOrderVolumeInput').val()),
+                    "direction": $('#marketOrderDirectionList').val(),
+                    "hasStopLoss": $('#marketOrderStopLoss').is(":checked"),
+                    "stopLoss": parseInt($('#marketOrderStopLossInput').val()),
+                    "hasTrailingStop": $('#marketOrderTrailingStopLoss').is(":checked"),
+                    "hasTakeProfit": $('#marketOrderTakeProfit').is(":checked"),
+                    "takeProfit": parseInt($('#marketOrderTakeProfitInput').val())
+                }).catch(onError);
+                break;
+
+            case "createPending":
+                break;
+
+            case "modifyPending":
+                break;
+
+            default:
+                alert('Unknown case ' + $('#orderModal').data('type'));
+                break;
+        }
 
         $('#orderModal').modal('hide');
     });
@@ -368,5 +427,51 @@
         });
 
         $("#marketOrderVolumeInput").val(symbol.minVolume);
+    }
+
+    function fillSymbolsList(listId) {
+        var symbolOptions = '';
+
+        $('#symbolsTableBody > tr').each((index, element) => {
+            var name = $(element).find('#name').text();
+
+            symbolOptions += `<option value="${name}" id="${element.id}">${name}</option>`;
+        });
+
+        $(listId).html(symbolOptions);
+    }
+
+    function resetMarketOrderForm() {
+        $("#marketOrderSymbolsList").prop('selectedIndex', 0)
+        $('#marketOrderSymbolsList').prop('disabled', false);
+        $('#marketOrderDirectionList').val('Buy').change();
+        $('#marketOrderVolumeInput').val(1).change();
+        $('#marketRangeInput').prop('value', 10);
+        $('#marketRangeInput').prop('disabled', false);
+        $('#marketRange').prop('disabled', false);
+        $("#marketOrderStopLoss").prop("checked", false);
+        $('#marketOrderStopLossInput').prop('disabled', false);
+        $("#marketOrderTakeProfit").prop("checked", false);
+        $('#marketOrderTakeProfitInput').prop('disabled', false);
+        $('#marketOrderStopLossInput').val(20).change();
+        $('#marketOrderTakeProfitInput').val(20).change();
+        $('#marketOrderTrailingStopLoss').prop('disabled', false);
+        $("#marketOrderTrailingStopLoss").prop("checked", false);
+        $('#marketOrderCommenttextarea').val('').change();
+        $('#marketOrderCommenttextarea').prop('disabled', false);
+    }
+
+    function resetPendingOrderForm() {
+    }
+
+    function resetOrderForms() {
+        $('#marketOrderTab').removeClass('disabled');
+        $('#pendingOrderTab').removeClass('disabled');
+
+        $('#orderModal').data('type', 'createMarket');
+        $('#orderModal').data('id', 0);
+
+        resetMarketOrderForm();
+        resetPendingOrderForm();
     }
 });

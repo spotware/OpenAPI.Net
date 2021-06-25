@@ -109,4 +109,29 @@ namespace ASP.NET.Demo.Models
     }
 
     public record Error(string Message, string Type);
+
+    public record PositionInfo
+    {
+        public long Id { get; set; }
+
+        public bool IsMarketRange { get; set; }
+
+        public double StopLossInPips { get; init; }
+
+        public double TakeProfitInPips { get; init; }
+
+        public bool HasStopLoss { get; set; }
+
+        public bool HasTrailingStop { get; set; }
+
+        public bool HasTakeProfit { get; set; }
+
+        public string Comment { get; set; }
+
+        public string SymbolName { get; set; }
+
+        public string Direction { get; set; }
+
+        public double Volume { get; set; }
+    }
 }
