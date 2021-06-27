@@ -504,7 +504,7 @@
                                 Visibility="Collapsed" />
                             <DataGridTextColumn
                                 Binding="{Binding Path=BaseToUsdConversionRate}"
-                                Header="Base To Usd"
+                                Header="Base To USD"
                                 SortMemberPath="BaseToUsdConversionRate"
                                 Visibility="Collapsed" />
                             <DataGridTextColumn

@@ -50,7 +50,7 @@ namespace ASP.NET.Demo.Services
 
         Task<ProtoOATrader> GetTrader(long accountId, bool isLive);
 
-        Task<HistoricalTradeModel[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
+        Task<HistoricalTrade[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
 
         Task<TransactionModel[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
 
@@ -628,13 +628,13 @@ namespace ASP.NET.Demo.Services
             await EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAmendOrderReq, client);
         }
 
-        public async Task<HistoricalTradeModel[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
+        public async Task<HistoricalTrade[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            List<HistoricalTradeModel> result = new();
+            List<HistoricalTrade> result = new();
 
             CancellationTokenSource cancelationTokenSource = null;
 
@@ -642,7 +642,7 @@ namespace ASP.NET.Demo.Services
             {
                 var trades = response.Deal.Select(deal =>
                 {
-                    var trade = new HistoricalTradeModel
+                    var trade = new HistoricalTrade
                     {
                         Id = deal.DealId,
                         SymbolId = deal.SymbolId,
@@ -650,8 +650,8 @@ namespace ASP.NET.Demo.Services
                         PositionId = deal.PositionId,
                         Volume = deal.Volume,
                         FilledVolume = deal.FilledVolume,
-                        TradeSide = deal.TradeSide,
-                        Status = deal.DealStatus,
+                        Direction = deal.TradeSide.ToString(),
+                        Status = deal.DealStatus.ToString(),
                         Commission = deal.Commission,
                         ExecutionPrice = deal.ExecutionPrice,
                         MarginRate = deal.MarginRate,
@@ -972,8 +972,13 @@ namespace ASP.NET.Demo.Services
                 Client = client,
                 CancellationTokenSource = cancellationTokenSource,
                 IsResponseReceived = isResponseReceived,
-                ResponseWaitTime = waitTime == default ? TimeSpan.FromSeconds(!_messagesQueue.IsEmpty ? 30 * _messagesQueue.Count : 30) : waitTime
+                ResponseWaitTime = waitTime == default ? TimeSpan.FromSeconds(!_messagesQueue.IsEmpty ? 30 * _messagesQueue.Count : 30) : waitTime,
+                IsHistorical = payloadType is ProtoOAPayloadType.ProtoOaDealListReq or ProtoOAPayloadType.ProtoOaGetTrendbarsReq or ProtoOAPayloadType.ProtoOaGetTickdataReq or ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq
             };
+
+            messageQueueItem.ResponseWaitTime = messageQueueItem.IsHistorical
+                ? waitTime == default ? TimeSpan.FromSeconds(!_messagesQueue.IsEmpty ? 120 * _messagesQueue.Count : 120) : waitTime
+                : waitTime == default ? TimeSpan.FromSeconds(!_messagesQueue.IsEmpty ? 30 * _messagesQueue.Count : 30) : waitTime;
 
             _messagesQueue.Enqueue(messageQueueItem);
 
@@ -1008,6 +1013,8 @@ namespace ASP.NET.Demo.Services
 
             messageQueueItem.IsSent = true;
 
+            if (messageQueueItem.IsHistorical) await Task.Delay(250);
+
             _sendMessageTimer.Start();
         }
 
@@ -1023,7 +1030,9 @@ namespace ASP.NET.Demo.Services
 
             public Func<bool> IsResponseReceived { get; init; }
 
-            public TimeSpan ResponseWaitTime { get; init; }
+            public TimeSpan ResponseWaitTime { get; set; }
+
+            public bool IsHistorical { get; init; }
 
             public bool IsSent { get; set; }
 

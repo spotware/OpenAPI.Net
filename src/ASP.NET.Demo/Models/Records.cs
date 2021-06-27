@@ -95,6 +95,8 @@ namespace ASP.NET.Demo.Models
 
         public string Currency { get; init; }
 
+        public DateTimeOffset RegistrationTime { get; init; }
+
         public static AccountInfo FromModel(AccountModel model) => new()
         {
             Balance = model.Balance,
@@ -104,7 +106,8 @@ namespace ASP.NET.Demo.Models
             MarginUsed = model.MarginUsed,
             UnrealizedGrossProfit = model.UnrealizedGrossProfit,
             UnrealizedNetProfit = model.UnrealizedNetProfit,
-            Currency = model.Currency
+            Currency = model.Currency,
+            RegistrationTime = model.RegistrationTime
         };
     }
 

@@ -3,10 +3,10 @@
 
     var isLoaded = false;
 
-    $('#accountLoadingModal').on('shown.bs.modal', function () {
+    $('#loadingModal').on('shown.bs.modal', function () {
         if (isLoaded) {
             isLoaded = false;
-            $('#accountLoadingModal').modal('hide');
+            $('#loadingModal').modal('hide');
         }
     })
 
@@ -66,9 +66,7 @@
 
         event.preventDefault();
 
-        $('#accountLoadingModal').modal('hide');
-
-        isLoaded = true;
+        hideLoadingModal();
     });
 
     tradingAccountConnection.on("Positions", function (data) {
@@ -184,6 +182,18 @@
 
     tradingAccountConnection.on("AccountInfo", function (data) {
         updateAccountStats(data.info);
+
+        $('#historyFromDateTime').prop('min', new Date(data.info.registrationTime).toJSON().slice(0, 19));
+        $('#historyFromDateTime').prop('max', new Date().toJSON().slice(0, 19));
+
+        $('#historyToDateTime').prop('min', new Date(data.info.registrationTime).toJSON().slice(0, 19));
+        $('#historyToDateTime').prop('max', new Date().toJSON().slice(0, 19));
+
+        $('#transactionsFromDateTime').prop('min', new Date(data.info.registrationTime).toJSON().slice(0, 19));
+        $('#transactionsFromDateTime').prop('max', new Date().toJSON().slice(0, 19));
+
+        $('#transactionsToDateTime').prop('min', new Date(data.info.registrationTime).toJSON().slice(0, 19));
+        $('#transactionsToDateTime').prop('max', new Date().toJSON().slice(0, 19));
 
         tradingAccountConnection.stream("GetAccountInfoUpdates", data.accountLogin)
             .subscribe({
@@ -384,7 +394,7 @@
                     "price": parseFloat($('#pendingOrderPriceInput').val()),
                     "limitRange": parseInt($('#pendingOrderLimitRangeInput').val()),
                     "hasExpiry": $('#pendingOrderExpiry').is(":checked"),
-                    "expiry": $('#pendingOrderExpiry').is(":checked") ? new Date($('#pendingOrderExpiryDateTime').val()) : new Date()
+                    "expiry": $('#pendingOrderExpiry').is(":checked") ? new Date($('#pendingOrderExpiryDateTime').val()).toISOString() : new Date().toISOString()
                 }).catch(onError);
                 break;
 
@@ -401,7 +411,7 @@
                     "price": parseFloat($('#pendingOrderPriceInput').val()),
                     "limitRange": parseInt($('#pendingOrderLimitRangeInput').val()),
                     "hasExpiry": $('#pendingOrderExpiry').is(":checked"),
-                    "expiry": $('#pendingOrderExpiry').is(":checked") ? new Date($('#pendingOrderExpiryDateTime').val()) : new Date()
+                    "expiry": $('#pendingOrderExpiry').is(":checked") ? new Date($('#pendingOrderExpiryDateTime').val()).toISOString() : new Date().toISOString()
                 }).catch(onError);
                 break;
 
@@ -417,15 +427,46 @@
         $('#orderModal').modal('hide');
     });
 
-    function onAccountChanged() {
-        isLoaded = false;
+    $(document).on("click", "#loadHistoryButton", function () {
+        showLoadingModal();
 
-        $("#accountLoadingModal").modal({
-            backdrop: 'static',
-            keyboard: false
+        var from = new Date($('#historyFromDateTime').val()).toISOString();
+        var to = new Date($('#historyToDateTime').val()).toISOString();
+
+        tradingAccountConnection.invoke('getHistory', from, to, parseInt($("#accounts-list").val())).then(data => {
+            var rows = '';
+
+            $.each(data, function (i, trade) {
+                var row = `<tr id="${trade.id}"><td id="id">${trade.id}</td>
+                <td id="orderId">${trade.orderId}</td>
+                <td id="positionId">${trade.positionId}</td>
+                <td id="symbol">${trade.symbolName}</td>
+                <td id="direction">${trade.direction}</td>
+                <td id="volume">${trade.volume}</td>
+                <td id="filledVolume">${trade.filledVolume}</td>
+                <td id="closedVolume">${trade.closedVolume}</td>
+                <td id="status">${trade.status}</td>
+                <td id="grossProfit">${trade.grossProfit}</td>
+                <td id="swap">${trade.swap}</td>
+                <td id="closedBalance">${trade.closedBalance}</td>
+                <td id="commission">${trade.commission}</td>
+                <td id="executionPrice">${trade.executionPrice}</td>
+                <td id="executionPrice">${trade.isClosing == true ? "Yes" : "No"}</td>
+                <td id="creationTime">${new Date(trade.creationTime).toLocaleString()}</td>
+                <td id="executionTime">${new Date(trade.executionTime).toLocaleString()}</td>
+                <td id="lastUpdateTime">${new Date(trade.lastUpdateTime).toLocaleString()}</td></tr>`;
+
+                rows += row;
+            });
+
+            $('#historyTableBody').html(rows);
+
+            hideLoadingModal();
         });
+    });
 
-        $('#accountLoadingModal').modal('toggle')
+    function onAccountChanged() {
+        showLoadingModal();
 
         var previousAccountLogin = $("#accounts-list").data("previousAccountLogin");
 
@@ -453,7 +494,7 @@
                 <td id="symbol">${position.symbol}</td>
                 <td id="direction">${position.direction}</td>
                 <td id="volume">${position.volume}</td>
-                <td id="openTime">${position.openTime}</td>
+                <td id="openTime">${new Date(position.openTime).toLocaleString()}</td>
                 <td id="price">${position.price}</td>
                 <td id="stopLoss">${position.stopLoss}</td>
                 <td id="takeProfit">${position.takeProfit}</td>
@@ -477,11 +518,11 @@
                 <td id="direction">${order.direction}</td>
                 <td id="volume">${order.volume}</td>
                 <td id="volume">${order.type}</td>
-                <td id="openTime">${order.openTime}</td>
+                <td id="openTime">${new Date(order.openTime).toLocaleString()}</td>
                 <td id="price">${order.price}</td>
                 <td id="stopLoss">${order.stopLoss}</td>
                 <td id="takeProfit">${order.takeProfit}</td>
-                <td id="expiry">${order.isExpiryEnabled ? order.expiry : ""}</td>
+                <td id="expiry">${order.isExpiryEnabled ? new Date(order.expiry).toLocaleString() : ""}</td>
                 <td id="label">${order.label}</td>
                 <td id="comment">${order.comment}</td>
                 <td id="buttons">
@@ -631,5 +672,22 @@
 
     function getSymbolPrice(symbolId) {
         return $("#symbolsTableBody").find(`#${symbolId}`).find('#bid').text();
+    }
+
+    function showLoadingModal() {
+        isLoaded = false;
+
+        $("#loadingModal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        $('#loadingModal').modal('toggle')
+    }
+
+    function hideLoadingModal() {
+        $('#loadingModal').modal('hide');
+
+        isLoaded = true;
     }
 });

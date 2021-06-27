@@ -317,5 +317,7 @@ namespace ASP.NET.Demo.Hubs
                 Price = order.Price
             };
         }
+
+        public async Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountLogin) => await _tradingAccountsService.GetHistory(from, to, _tradingAccountsService.GetAccountId(accountLogin));
     }
 }

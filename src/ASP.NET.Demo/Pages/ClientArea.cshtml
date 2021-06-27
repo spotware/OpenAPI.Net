@@ -105,8 +105,88 @@
                     </table>
                 </div>
             </div>
-            <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">History</div>
-            <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">Transactions</div>
+            <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                <div class="btn-toolbar ml-0 mt-1 mb-1 p-0 row" role="toolbar">
+                    <div class="col-1" style="width: 4%">
+                        <label for="historyFromDateTime" class="m-2">From</label>
+                    </div>
+                    <div class="col-2">
+                        <input type="datetime-local" id="historyFromDateTime" class="form-control m-1">
+                    </div>
+                    <div class="col-1" style="width: 3%">
+                        <label for="historyToDateTime" class="m-2">To</label>
+                    </div>
+                    <div class="col-2">
+                        <input type="datetime-local" id="historyToDateTime" class="form-control m-1">
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-secondary m-1" id="loadHistoryButton">Load</button>
+                    </div>
+                </div>
+                <div class="table-wrapper-scroll-y" style="height: 20vh;">
+                    <table class="table table-hover table-dark table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Position ID</th>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Direction</th>
+                                <th scope="col">Volume</th>
+                                <th scope="col">Filled Volume</th>
+                                <th scope="col">Closed Volume</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Gross Profit</th>
+                                <th scope="col">Swap</th>
+                                <th scope="col">Closed Balance</th>
+                                <th scope="col">Commission</th>
+                                <th scope="col">Execution Price</th>
+                                <th scope="col">Closing</th>
+                                <th scope="col">Creation</th>
+                                <th scope="col">Execution</th>
+                                <th scope="col">Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody" />
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">
+                <div class="btn-toolbar ml-0 mt-1 mb-1 p-0 row" role="toolbar">
+                    <div class="col-1" style="width: 4%">
+                        <label for="transactionsFromDateTime" class="m-2">From</label>
+                    </div>
+                    <div class="col-2">
+                        <input type="datetime-local" id="transactionsFromDateTime" class="form-control m-1">
+                    </div>
+                    <div class="col-1" style="width: 3%">
+                        <label for="transactionsToDateTime" class="m-2">To</label>
+                    </div>
+                    <div class="col-2">
+                        <input type="datetime-local" id="transactionsToDateTime" class="form-control m-1">
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-secondary m-1" id="loadTransactionsButton">Load</button>
+                    </div>
+                </div>
+                <div class="table-wrapper-scroll-y" style="height: 20vh;">
+                    <table class="table table-hover table-dark table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Balance</th>
+                                <th scope="col">Equity</th>
+                                <th scope="col">Version</th>
+                                <th scope="col">Note</th>
+                                <th scope="col">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsTableBody" />
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row no-gutters text-white w-100 m-0 p-0" id="accountStats">
@@ -150,11 +230,11 @@
 <div id="toasts-container" aria-live="polite" aria-atomic="true" class="d-flex flex-column flex-wrap justify-content-start align-items-start" style="position: absolute; bottom: 0; right: 0;">
 </div>
 
-<div class="modal fade" id="accountLoadingModal" tabindex="-1" role="dialog" aria-labelledby="accountLoadingModalTitle" aria-hidden="true">
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="accountLoadingModalTitle">Loading Account Data</h5>
+                <h5 class="modal-title" id="loadingModalTitle">Loading Data</h5>
             </div>
             <div class="modal-body">
                 <p>Please wait...</p>

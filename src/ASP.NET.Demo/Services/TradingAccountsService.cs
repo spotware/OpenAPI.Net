@@ -63,6 +63,8 @@ namespace ASP.NET.Demo.Services
         Task CreateNewPendingOrder(NewPendingOrderRequest orderRequest);
 
         Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest);
+
+        Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountId);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -411,6 +413,27 @@ namespace ASP.NET.Demo.Services
             newOrder.ExpiryTime = orderRequest.Expiry;
 
             await _apiService.ModifyOrder(order, newOrder, accountId, model.IsLive);
+        }
+
+        public async Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountId)
+        {
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return null;
+
+            var trades = await _apiService.GetHistoricalTrades(accountId, model.IsLive, from, to);
+
+            foreach (var trade in trades)
+            {
+                var tradeSymbol = model.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == trade.SymbolId);
+
+                if (tradeSymbol is null) continue;
+
+                trade.SymbolName = tradeSymbol.Name;
+                trade.Volume = MonetaryConverter.FromMonetary(trade.Volume);
+                trade.FilledVolume = MonetaryConverter.FromMonetary(trade.FilledVolume);
+                trade.ClosedVolume = MonetaryConverter.FromMonetary(trade.ClosedVolume);
+            }
+
+            return trades;
         }
 
         private async Task FillConversionSymbols(AccountModel account)
