@@ -52,7 +52,7 @@ namespace ASP.NET.Demo.Services
 
         Task<HistoricalTrade[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
 
-        Task<TransactionModel[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
+        Task<Transaction[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
 
         Task SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds);
 
@@ -710,19 +710,19 @@ namespace ASP.NET.Demo.Services
             return result.ToArray();
         }
 
-        public async Task<TransactionModel[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
+        public async Task<Transaction[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            List<TransactionModel> result = new();
+            List<Transaction> result = new();
 
             CancellationTokenSource cancelationTokenSource = null;
 
             using var disposable = client.OfType<ProtoOACashFlowHistoryListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                var transactions = response.DepositWithdraw.Select(depositWithdraw => new TransactionModel
+                var transactions = response.DepositWithdraw.Select(depositWithdraw => new Transaction
                 {
                     Id = depositWithdraw.BalanceHistoryId,
                     Type = depositWithdraw.OperationType,

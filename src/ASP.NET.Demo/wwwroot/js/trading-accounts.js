@@ -465,6 +465,34 @@
         });
     });
 
+    $(document).on("click", "#loadTransactionsButton", function () {
+        showLoadingModal();
+
+        var from = new Date($('#transactionsFromDateTime').val()).toISOString();
+        var to = new Date($('#transactionsToDateTime').val()).toISOString();
+
+        tradingAccountConnection.invoke('getTransactions', from, to, parseInt($("#accounts-list").val())).then(data => {
+            var rows = '';
+
+            $.each(data, function (i, transaction) {
+                var row = `<tr id="${transaction.id}"><td id="id">${transaction.id}</td>
+                <td id="type">${transaction.type}</td>
+                <td id="amount">${transaction.delta}</td>
+                <td id="balance">${transaction.balance}</td>
+                <td id="equity">${transaction.equity}</td>
+                <td id="version">${transaction.balanceVersion}</td>
+                <td id="note">${transaction.note}</td>
+                <td id="time">${transaction.time}</td></tr>`;
+
+                rows += row;
+            });
+
+            $('#transactionsTableBody').html(rows);
+
+            hideLoadingModal();
+        });
+    });
+
     function onAccountChanged() {
         showLoadingModal();
 

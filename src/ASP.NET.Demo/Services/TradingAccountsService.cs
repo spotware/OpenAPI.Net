@@ -65,6 +65,8 @@ namespace ASP.NET.Demo.Services
         Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest);
 
         Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountId);
+
+        Task<IEnumerable<Transaction>> GetTransactions(DateTimeOffset from, DateTimeOffset to, long accountId);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -434,6 +436,21 @@ namespace ASP.NET.Demo.Services
             }
 
             return trades;
+        }
+
+        public async Task<IEnumerable<Transaction>> GetTransactions(DateTimeOffset from, DateTimeOffset to, long accountId)
+        {
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return null;
+
+            var transactions = await _apiService.GetTransactions(accountId, model.IsLive, from, to);
+
+            foreach (var transaction in transactions)
+            {
+                transaction.Delta = MonetaryConverter.FromMonetary(transaction.Delta);
+                transaction.Balance = MonetaryConverter.FromMonetary(transaction.Balance);
+            }
+
+            return transactions;
         }
 
         private async Task FillConversionSymbols(AccountModel account)
