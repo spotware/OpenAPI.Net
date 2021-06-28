@@ -34,9 +34,9 @@ namespace ASP.NET.Demo.Services
 
         void StopPositionUpdates(long accountId);
 
-        Task ClosePosition(long accountId, long positionId);
+        void ClosePosition(long accountId, long positionId);
 
-        Task CloseAllPosition(long accountId);
+        void CloseAllPosition(long accountId);
 
         Channel<Error> GetErrorsChannel(long accountId);
 
@@ -46,9 +46,9 @@ namespace ASP.NET.Demo.Services
 
         void StopOrderUpdates(long accountId);
 
-        Task CancelOrder(long accountId, long orderId);
+        void CancelOrder(long accountId, long orderId);
 
-        Task CancelAllOrders(long accountId);
+        void CancelAllOrders(long accountId);
 
         Channel<AccountInfo> GetAccountInfoUpdatesChannel(long accountId);
 
@@ -56,13 +56,13 @@ namespace ASP.NET.Demo.Services
 
         AccountInfo GetAccountInfo(long accountId);
 
-        Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest);
+        void CreateNewMarketOrder(NewMarketOrderRequest orderRequest);
 
-        Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest);
+        void ModifyMarketOrder(ModifyMarketOrderRequest orderRequest);
 
-        Task CreateNewPendingOrder(NewPendingOrderRequest orderRequest);
+        void CreateNewPendingOrder(NewPendingOrderRequest orderRequest);
 
-        Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest);
+        void ModifyPendingOrder(ModifyPendingOrderRequest orderRequest);
 
         Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountId);
 
@@ -130,7 +130,7 @@ namespace ASP.NET.Demo.Services
                 DepositAsset = assets.First(iAsset => iAsset.AssetId == trader.DepositAssetId)
             };
 
-            //await FillConversionSymbols(model);
+            await FillConversionSymbols(model);
 
             await FillAccountOrders(model);
 
@@ -217,7 +217,7 @@ namespace ASP.NET.Demo.Services
             channel.Writer.TryComplete();
         }
 
-        public async Task ClosePosition(long accountId, long positionId)
+        public void ClosePosition(long accountId, long positionId)
         {
             if (_accountModels.TryGetValue(accountId, out var model) == false) return;
 
@@ -225,10 +225,10 @@ namespace ASP.NET.Demo.Services
 
             if (position is null) return;
 
-            await _apiService.ClosePosition(positionId, position.Volume, accountId, model.IsLive);
+            _apiService.ClosePosition(positionId, position.Volume, accountId, model.IsLive);
         }
 
-        public async Task CloseAllPosition(long accountId)
+        public void CloseAllPosition(long accountId)
         {
             if (_accountModels.TryGetValue(accountId, out var model) == false) return;
 
@@ -236,7 +236,7 @@ namespace ASP.NET.Demo.Services
 
             foreach (var position in positions)
             {
-                await _apiService.ClosePosition(position.Id, position.Volume, accountId, model.IsLive);
+                _apiService.ClosePosition(position.Id, position.Volume, accountId, model.IsLive);
             }
         }
 
@@ -261,7 +261,7 @@ namespace ASP.NET.Demo.Services
             channel.Writer.TryComplete();
         }
 
-        public async Task CancelOrder(long accountId, long orderId)
+        public void CancelOrder(long accountId, long orderId)
         {
             if (_accountModels.TryGetValue(accountId, out var model) == false) return;
 
@@ -269,10 +269,10 @@ namespace ASP.NET.Demo.Services
 
             if (order is null) return;
 
-            await _apiService.CancelOrder(orderId, accountId, model.IsLive);
+            _apiService.CancelOrder(orderId, accountId, model.IsLive);
         }
 
-        public async Task CancelAllOrders(long accountId)
+        public void CancelAllOrders(long accountId)
         {
             if (_accountModels.TryGetValue(accountId, out var model) == false) return;
 
@@ -280,7 +280,7 @@ namespace ASP.NET.Demo.Services
 
             foreach (var order in orders)
             {
-                await _apiService.CancelOrder(order.Id, accountId, model.IsLive);
+                _apiService.CancelOrder(order.Id, accountId, model.IsLive);
             }
         }
 
@@ -312,7 +312,7 @@ namespace ASP.NET.Demo.Services
             return AccountInfo.FromModel(model);
         }
 
-        public async Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest)
+        public void CreateNewMarketOrder(NewMarketOrderRequest orderRequest)
         {
             var accountId = GetAccountId(orderRequest.AccountLogin);
 
@@ -322,7 +322,7 @@ namespace ASP.NET.Demo.Services
 
             if (symbol is null || Enum.TryParse<ProtoOATradeSide>(orderRequest.Direction, true, out var tradeSide) == false) return;
 
-            await _apiService.CreateNewOrder(new MarketOrderModel
+            _apiService.CreateNewOrder(new MarketOrderModel
             {
                 Symbol = symbol,
                 Volume = MonetaryConverter.ToMonetary(orderRequest.Volume),
@@ -339,7 +339,7 @@ namespace ASP.NET.Demo.Services
             }, accountId, model.IsLive);
         }
 
-        public async Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest)
+        public void ModifyMarketOrder(ModifyMarketOrderRequest orderRequest)
         {
             var accountId = GetAccountId(orderRequest.AccountLogin);
 
@@ -359,10 +359,10 @@ namespace ASP.NET.Demo.Services
             newOrder.IsTakeProfitEnabled = orderRequest.HasTakeProfit;
             newOrder.TakeProfitInPips = orderRequest.TakeProfit;
 
-            await _apiService.ModifyPosition(order, newOrder, accountId, model.IsLive);
+            _apiService.ModifyPosition(order, newOrder, accountId, model.IsLive);
         }
 
-        public async Task CreateNewPendingOrder(NewPendingOrderRequest orderRequest)
+        public void CreateNewPendingOrder(NewPendingOrderRequest orderRequest)
         {
             var accountId = GetAccountId(orderRequest.AccountLogin);
 
@@ -372,7 +372,7 @@ namespace ASP.NET.Demo.Services
 
             if (symbol is null || Enum.TryParse<PendingOrderType>(orderRequest.Type, true, out var type) == false || Enum.TryParse<ProtoOATradeSide>(orderRequest.Direction, true, out var tradeSide) == false) return;
 
-            await _apiService.CreateNewOrder(new PendingOrderModel
+            _apiService.CreateNewOrder(new PendingOrderModel
             {
                 Symbol = symbol,
                 Volume = MonetaryConverter.ToMonetary(orderRequest.Volume),
@@ -391,7 +391,7 @@ namespace ASP.NET.Demo.Services
             }, accountId, model.IsLive);
         }
 
-        public async Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest)
+        public void ModifyPendingOrder(ModifyPendingOrderRequest orderRequest)
         {
             var accountId = GetAccountId(orderRequest.AccountLogin);
 
@@ -414,7 +414,7 @@ namespace ASP.NET.Demo.Services
             newOrder.IsExpiryEnabled = orderRequest.HasExpiry;
             newOrder.ExpiryTime = orderRequest.Expiry;
 
-            await _apiService.ModifyOrder(order, newOrder, accountId, model.IsLive);
+            _apiService.ModifyOrder(order, newOrder, accountId, model.IsLive);
         }
 
         public async Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountId)
@@ -662,12 +662,23 @@ namespace ASP.NET.Demo.Services
             }
         }
 
+        private async void OnError(Exception exception)
+        {
+            var errorChannels = _subscribedAccountErrorsChannels.Values.ToArray();
+
+            foreach (var channel in errorChannels)
+            {
+                await channel.Writer.WriteAsync(new(exception.ToString(), "Exception"));
+            }
+        }
+
         private void Subscribe(IObservable<IMessage> observable)
         {
             observable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
             observable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
             observable.OfType<ProtoErrorRes>().Subscribe(OnErrorRes);
             observable.OfType<ProtoOAErrorRes>().Subscribe(OnOaErrorRes);
+            observable.Subscribe(_ => { }, OnError);
             observable.OfType<ProtoOAOrderErrorEvent>().Subscribe(OnOrderErrorRes);
         }
     }

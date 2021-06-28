@@ -118,22 +118,22 @@ namespace ASP.NET.Demo.Hubs
             _tradingAccountsService.StopPositionUpdates(accountId);
         }
 
-        public async Task ClosePosition(string accountLogin, string positionId)
+        public void ClosePosition(string accountLogin, string positionId)
         {
             if (string.IsNullOrWhiteSpace(accountLogin) || string.IsNullOrWhiteSpace(positionId)) return;
 
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
-            await _tradingAccountsService.ClosePosition(accountId, Convert.ToInt64(positionId));
+            _tradingAccountsService.ClosePosition(accountId, Convert.ToInt64(positionId));
         }
 
-        public async Task CloseAllPositions(string accountLogin)
+        public void CloseAllPositions(string accountLogin)
         {
             if (string.IsNullOrWhiteSpace(accountLogin)) return;
 
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
-            await _tradingAccountsService.CloseAllPosition(accountId);
+            _tradingAccountsService.CloseAllPosition(accountId);
         }
 
         public async Task GetOrders(string accountLogin)
@@ -175,22 +175,22 @@ namespace ASP.NET.Demo.Hubs
             _tradingAccountsService.StopOrderUpdates(accountId);
         }
 
-        public async Task CancelOrder(string accountLogin, string orderId)
+        public void CancelOrder(string accountLogin, string orderId)
         {
             if (string.IsNullOrWhiteSpace(accountLogin) || string.IsNullOrWhiteSpace(orderId)) return;
 
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
-            await _tradingAccountsService.CancelOrder(accountId, Convert.ToInt64(orderId));
+            _tradingAccountsService.CancelOrder(accountId, Convert.ToInt64(orderId));
         }
 
-        public async Task CancelAllOrders(string accountLogin)
+        public void CancelAllOrders(string accountLogin)
         {
             if (string.IsNullOrWhiteSpace(accountLogin)) return;
 
             var accountId = _tradingAccountsService.GetAccountId(Convert.ToInt64(accountLogin));
 
-            await _tradingAccountsService.CancelAllOrders(accountId);
+            _tradingAccountsService.CancelAllOrders(accountId);
         }
 
         public async IAsyncEnumerable<AccountInfo> GetAccountInfoUpdates(string accountLogin, [EnumeratorCancellation] CancellationToken cancellationToken)
@@ -258,13 +258,13 @@ namespace ASP.NET.Demo.Hubs
             _tradingAccountsService.StopErrors(accountId);
         }
 
-        public Task CreateNewMarketOrder(NewMarketOrderRequest orderRequest) => _tradingAccountsService.CreateNewMarketOrder(orderRequest);
+        public void CreateNewMarketOrder(NewMarketOrderRequest orderRequest) => _tradingAccountsService.CreateNewMarketOrder(orderRequest);
 
-        public Task ModifyMarketOrder(ModifyMarketOrderRequest orderRequest) => _tradingAccountsService.ModifyMarketOrder(orderRequest);
+        public void ModifyMarketOrder(ModifyMarketOrderRequest orderRequest) => _tradingAccountsService.ModifyMarketOrder(orderRequest);
 
-        public Task CreateNewPendingOrder(NewPendingOrderRequest orderRequest) => _tradingAccountsService.CreateNewPendingOrder(orderRequest);
+        public void CreateNewPendingOrder(NewPendingOrderRequest orderRequest) => _tradingAccountsService.CreateNewPendingOrder(orderRequest);
 
-        public Task ModifyPendingOrder(ModifyPendingOrderRequest orderRequest) => _tradingAccountsService.ModifyPendingOrder(orderRequest);
+        public void ModifyPendingOrder(ModifyPendingOrderRequest orderRequest) => _tradingAccountsService.ModifyPendingOrder(orderRequest);
 
         public async Task<PositionInfo> GetPositionInfo(long accountLogin, long positionId)
         {
