@@ -67,6 +67,8 @@ namespace ASP.NET.Demo.Services
         Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountId);
 
         Task<IEnumerable<Transaction>> GetTransactions(DateTimeOffset from, DateTimeOffset to, long accountId);
+
+        Task<SymbolData> GetSymbolTrendbars(long accountId, long symbolId);
     }
 
     public class TradingAccountsService : ITradingAccountsService
@@ -451,6 +453,29 @@ namespace ASP.NET.Demo.Services
             }
 
             return transactions;
+        }
+
+        public async Task<SymbolData> GetSymbolTrendbars(long accountId, long symbolId)
+        {
+            if (_accountModels.TryGetValue(accountId, out var model) == false) return null;
+
+            var symbol = model.Symbols.FirstOrDefault(symbol => symbol.Id == symbolId);
+
+            if (symbol is null) return null;
+
+            var trendbars = await _apiService.GetTrendbars(accountId, model.IsLive, default, DateTimeOffset.Now, ProtoOATrendbarPeriod.D1, symbolId);
+
+            var ohlc = new List<Ohlc>();
+
+            foreach (var trendbar in trendbars)
+            {
+                ohlc.Add(new Ohlc(DateTimeOffset.FromUnixTimeSeconds(trendbar.UtcTimestampInMinutes * 60).ToUnixTimeMilliseconds(),
+                    symbol.Data.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaOpen),
+                    symbol.Data.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaHigh),
+                    symbol.Data.GetPriceFromRelative(trendbar.Low), symbol.Data.GetPriceFromRelative(trendbar.Low + (long)trendbar.DeltaClose)));
+            }
+
+            return new SymbolData(symbol.Name, ohlc);
         }
 
         private async Task FillConversionSymbols(AccountModel account)

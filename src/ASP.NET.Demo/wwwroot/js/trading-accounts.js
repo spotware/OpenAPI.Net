@@ -162,6 +162,10 @@
 
         $('#symbolsTableBody').html(rows);
 
+        var firstSymbolId = parseInt($('#symbolsTableBody > tr')[0].id);
+
+        createSymbolChart(firstSymbolId);
+
         tradingAccountConnection.stream("GetSymbolQuotes", data.accountLogin)
             .subscribe({
                 next: (quote) => {
@@ -493,6 +497,8 @@
         });
     });
 
+    $(document).on("click", "#symbolsTableBody > tr", e => createSymbolChart(parseInt(e.currentTarget.id)));
+
     function onAccountChanged() {
         showLoadingModal();
 
@@ -718,4 +724,85 @@
 
         isLoaded = true;
     }
+
+    function createSymbolChart(symbolId) {
+        var accountLogin = parseInt($("#accounts-list").val());
+
+        tradingAccountConnection.invoke('getSymbolTrendbars', accountLogin, symbolId).then(data => createChart(data.name, data.ohlc)).catch(onError);
+    }
+
+    var ctx = document.getElementById('chartCanvas').getContext('2d');
+    ctx.canvas.width = 1000;
+    ctx.canvas.height = 250;
+
+    var chartConfig = {
+        type: 'candlestick',
+        data: {
+            datasets: []
+        },
+        options: {
+            responsive: true,
+            animation: {
+                duration: 0
+            },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0
+        }
+    };
+
+    var chart = new Chart(ctx, chartConfig);
+
+    function createChart(name, data) {
+        var newDataset = {
+            label: name,
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: data
+        };
+
+        if (chart.data.datasets.length > 0) chart.data.datasets.pop();
+
+        chart.data.datasets.push(newDataset);
+
+        chart.update();
+    }
+
+    function randomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    function randomBar(date, lastClose) {
+        var open = randomNumber(lastClose * 0.95, lastClose * 1.05).toFixed(2);
+        var close = randomNumber(open * 0.95, open * 1.05).toFixed(2);
+        var high = randomNumber(Math.max(open, close), Math.max(open, close) * 1.1).toFixed(2);
+        var low = randomNumber(Math.min(open, close) * 0.9, Math.min(open, close)).toFixed(2);
+
+        return {
+            t: date.valueOf(),
+            o: open,
+            h: high,
+            l: low,
+            c: close
+        };
+    }
+
+    function getRandomData(count) {
+        var date = luxon.DateTime.fromRFC2822('01 Apr 2017 00:00 Z');
+        var data = [randomBar(date, 30)];
+        while (data.length < count) {
+            date = date.plus({ days: 1 });
+            if (date.weekday <= 5) {
+                data.push(randomBar(date, data[data.length - 1].c));
+            }
+        }
+        return data;
+    }
+
+    //createChart("Test", getRandomData(100));
 });

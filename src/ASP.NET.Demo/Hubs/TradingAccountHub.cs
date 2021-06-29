@@ -321,5 +321,7 @@ namespace ASP.NET.Demo.Hubs
         public async Task<IEnumerable<HistoricalTrade>> GetHistory(DateTimeOffset from, DateTimeOffset to, long accountLogin) => await _tradingAccountsService.GetHistory(from, to, _tradingAccountsService.GetAccountId(accountLogin));
 
         public async Task<IEnumerable<Transaction>> GetTransactions(DateTimeOffset from, DateTimeOffset to, long accountLogin) => await _tradingAccountsService.GetTransactions(from, to, _tradingAccountsService.GetAccountId(accountLogin));
+
+        public async Task<SymbolData> GetSymbolTrendbars(long accountLogin, long symbolId) => await _tradingAccountsService.GetSymbolTrendbars(_tradingAccountsService.GetAccountId(accountLogin), symbolId);
     }
 }

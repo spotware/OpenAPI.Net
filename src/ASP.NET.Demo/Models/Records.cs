@@ -1,5 +1,6 @@
 ﻿using OpenAPI.Net.Helpers;
 using System;
+using System.Collections.Generic;
 
 namespace ASP.NET.Demo.Models
 {
@@ -170,4 +171,7 @@ namespace ASP.NET.Demo.Models
 
         public DateTimeOffset Expiry { get; set; }
     }
+
+    public record Ohlc(long T, double O, double H, double L, double C);
+    public record SymbolData(string Name, IEnumerable<Ohlc> Ohlc);
 }
