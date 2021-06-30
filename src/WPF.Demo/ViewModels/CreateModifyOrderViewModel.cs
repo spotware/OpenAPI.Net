@@ -120,11 +120,11 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private async void PlaceMarketOrder()
+        private void PlaceMarketOrder()
         {
             try
             {
-                await _apiService.CreateNewOrder(MarketOrderModel, _account.Id, _account.IsLive);
+                _apiService.CreateNewOrder(MarketOrderModel, _account.Id, _account.IsLive);
             }
             finally
             {
@@ -132,11 +132,11 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private async void ModifyMarketOrder()
+        private void ModifyMarketOrder()
         {
             try
             {
-                await _apiService.ModifyPosition(_orderUnderModification as MarketOrderModel, MarketOrderModel, _account.Id, _account.IsLive);
+                _apiService.ModifyPosition(_orderUnderModification as MarketOrderModel, MarketOrderModel, _account.Id, _account.IsLive);
             }
             finally
             {
@@ -144,11 +144,11 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private async void ModifyPendingOrder()
+        private void ModifyPendingOrder()
         {
             try
             {
-                await _apiService.ModifyOrder(_orderUnderModification as PendingOrderModel, PendingOrderModel, _account.Id, _account.IsLive);
+                _apiService.ModifyOrder(_orderUnderModification as PendingOrderModel, PendingOrderModel, _account.Id, _account.IsLive);
             }
             finally
             {
@@ -156,11 +156,11 @@ namespace Trading.UI.Demo.ViewModels
             }
         }
 
-        private async void PlacePendingOrder()
+        private void PlacePendingOrder()
         {
             try
             {
-                await _apiService.CreateNewOrder(PendingOrderModel, _account.Id, _account.IsLive);
+                _apiService.CreateNewOrder(PendingOrderModel, _account.Id, _account.IsLive);
             }
             finally
             {

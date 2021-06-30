@@ -478,24 +478,21 @@ namespace ASP.NET.Demo.Services
             return new SymbolData(symbol.Name, ohlc);
         }
 
-        private async Task FillConversionSymbols(AccountModel account)
+        private Task FillConversionSymbols(AccountModel account) => Task.WhenAll(account.Symbols.Select(async symbol =>
         {
-            foreach (var symbol in account.Symbols)
+            if (symbol.QuoteAsset.AssetId != account.DepositAsset.AssetId)
             {
-                if (symbol.QuoteAsset.AssetId != account.DepositAsset.AssetId)
-                {
-                    var conversionLightSymbols = await _apiService.GetConversionSymbols(account.Id, account.IsLive, symbol.QuoteAsset.AssetId, account.DepositAsset.AssetId);
+                var conversionLightSymbols = await _apiService.GetConversionSymbols(account.Id, account.IsLive, symbol.QuoteAsset.AssetId, account.DepositAsset.AssetId);
 
-                    var conversionSymbolModels = conversionLightSymbols.Select(iLightSymbol => account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == iLightSymbol.SymbolId)).Where(iSymbol => iSymbol is not null);
+                var conversionSymbolModels = conversionLightSymbols.Select(iLightSymbol => account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == iLightSymbol.SymbolId)).Where(iSymbol => iSymbol is not null);
 
-                    symbol.ConversionSymbols.AddRange(conversionSymbolModels);
-                }
-                else
-                {
-                    symbol.ConversionSymbols.Add(symbol);
-                }
+                symbol.ConversionSymbols.AddRange(conversionSymbolModels);
             }
-        }
+            else
+            {
+                symbol.ConversionSymbols.Add(symbol);
+            }
+        }).ToArray());
 
         private async Task FillAccountOrders(AccountModel account)
         {
@@ -650,18 +647,15 @@ namespace ASP.NET.Demo.Services
             }
         }
 
-        private async Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken)
+        private Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken) => Task.WhenAll(accounts.Select(async account =>
         {
-            foreach (var account in accounts)
-            {
-                var accountId = Convert.ToInt64(account.CtidTraderAccountId);
+            var accountId = Convert.ToInt64(account.CtidTraderAccountId);
 
-                await _apiService.AuthorizeAccount(accountId, account.IsLive, accessToken);
+            await _apiService.AuthorizeAccount(accountId, account.IsLive, accessToken);
 
-                _accounts.TryAdd(accountId, account);
-                _accountIds.TryAdd(account.TraderLogin, accountId);
-            }
-        }
+            _accounts.TryAdd(accountId, account);
+            _accountIds.TryAdd(account.TraderLogin, accountId);
+        }).ToArray());
 
         private async void OnOrderErrorRes(ProtoOAOrderErrorEvent error)
         {

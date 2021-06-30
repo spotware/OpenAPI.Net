@@ -2,10 +2,10 @@
 using OpenAPI.Net;
 using OpenAPI.Net.Helpers;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Trading.UI.Demo.Enums;
 using Trading.UI.Demo.Models;
@@ -37,17 +37,17 @@ namespace Trading.UI.Demo.Services
 
         Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken);
 
-        Task CreateNewOrder(OrderModel marketOrder, long accountId, bool isLive);
+        void CreateNewOrder(OrderModel marketOrder, long accountId, bool isLive);
 
-        Task ClosePosition(long positionId, long volume, long accountId, bool isLive);
+        void ClosePosition(long positionId, long volume, long accountId, bool isLive);
 
         Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive);
 
-        Task ModifyPosition(MarketOrderModel oldOrder, MarketOrderModel newOrder, long accountId, bool isLive);
+        void ModifyPosition(MarketOrderModel oldOrder, MarketOrderModel newOrder, long accountId, bool isLive);
 
-        Task CancelOrder(long orderId, long accountId, bool isLive);
+        void CancelOrder(long orderId, long accountId, bool isLive);
 
-        Task ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId, bool isLive);
+        void ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId, bool isLive);
 
         Task<ProtoOATrader> GetTrader(long accountId, bool isLive);
 
@@ -55,31 +55,38 @@ namespace Trading.UI.Demo.Services
 
         Task<TransactionModel[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to);
 
-        Task SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds);
+        Task<ProtoOASubscribeSpotsRes> SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds);
 
-        Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds);
+        Task<ProtoOAUnsubscribeSpotsRes> UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds);
 
         Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive);
 
         Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId);
 
-        Task SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
+        Task<ProtoOASubscribeLiveTrendbarRes> SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
 
-        Task UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
+        Task<ProtoOAUnsubscribeLiveTrendbarRes> UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
     }
 
     public sealed class ApiService : IApiService
     {
         private readonly Func<OpenClient> _liveClientFactory;
         private readonly Func<OpenClient> _demoClientFactory;
+        private readonly ConcurrentQueue<MessageQueueItem> _messagesQueue = new();
+        private readonly System.Timers.Timer _sendMessageTimer;
 
         private OpenClient _liveClient;
         private OpenClient _demoClient;
 
-        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory)
+        public ApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, int maxMessagePerSecond = 45)
         {
             _liveClientFactory = liveClientFactory ?? throw new ArgumentNullException(nameof(liveClientFactory));
             _demoClientFactory = demoClientFactory ?? throw new ArgumentNullException(nameof(demoClientFactory));
+
+            _sendMessageTimer = new(1000.0 / maxMessagePerSecond);
+
+            _sendMessageTimer.Elapsed += SendMessageTimerElapsed;
+            _sendMessageTimer.AutoReset = false;
         }
 
         public bool IsConnected { get; private set; }
@@ -146,25 +153,26 @@ namespace Trading.UI.Demo.Services
             }
 
             if (!isLiveClientAppAuthorized || !isDemoClientAppAuthorized) throw new TimeoutException("The API didn't responded");
+
+            _sendMessageTimer.Start();
         }
 
-        public async Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken)
+        public Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOAAccountAuthRes>();
 
-            ProtoOAAccountAuthRes result = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOAAccountAuthRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
-                {
-                    result = response;
+            disposable = client.OfType<ProtoOAAccountAuthRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            {
+                taskCompletionSource.SetResult(response);
 
-                    cancelationTokenSource.Cancel();
-                });
+                disposable?.Dispose();
+            });
 
             var requestMessage = new ProtoOAAccountAuthReq
             {
@@ -172,27 +180,26 @@ namespace Trading.UI.Demo.Services
                 AccessToken = accessToken,
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountAuthReq, client, cancelationTokenSource, () => result is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountAuthReq, client);
 
-            return result;
+            return taskCompletionSource.Task;
         }
 
-        public async Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive)
+        public Task<ProtoOALightSymbol[]> GetLightSymbols(long accountId, bool isLive)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOALightSymbol[]>();
 
-            ProtoOALightSymbol[] result = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOASymbolsListRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
+            disposable = client.OfType<ProtoOASymbolsListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                result = response.Symbol.Where(iSymbol => iSymbol.Enabled).ToArray();
+                taskCompletionSource.SetResult(response.Symbol.Where(iSymbol => iSymbol.Enabled).ToArray());
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOASymbolsListReq
@@ -201,27 +208,26 @@ namespace Trading.UI.Demo.Services
                 IncludeArchivedSymbols = false
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsListReq, client, cancelationTokenSource, () => result is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsListReq, client);
 
-            return result;
+            return taskCompletionSource.Task;
         }
 
-        public async Task<ProtoOASymbol[]> GetSymbols(long accountId, bool isLive, long[] symbolIds)
+        public Task<ProtoOASymbol[]> GetSymbols(long accountId, bool isLive, long[] symbolIds)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOASymbol[]>();
 
-            ProtoOASymbol[] result = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOASymbolByIdRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
+            disposable = client.OfType<ProtoOASymbolByIdRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                result = response.Symbol.Where(iSymbol => iSymbol.TradingMode == ProtoOATradingMode.Enabled).ToArray();
+                taskCompletionSource.SetResult(response.Symbol.Where(iSymbol => iSymbol.TradingMode == ProtoOATradingMode.Enabled).ToArray());
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOASymbolByIdReq
@@ -231,9 +237,9 @@ namespace Trading.UI.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolByIdReq, client, cancelationTokenSource, () => result is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolByIdReq, client);
 
-            return result;
+            return taskCompletionSource.Task;
         }
 
         public async Task<SymbolModel[]> GetSymbolModels(long accountId, bool isLive, ProtoOALightSymbol[] lightSymbols, ProtoOAAsset[] assets)
@@ -251,22 +257,22 @@ namespace Trading.UI.Demo.Services
             }).ToArray();
         }
 
-        public async Task<ProtoOALightSymbol[]> GetConversionSymbols(long accountId, bool isLive, long baseAssetId, long quoteAssetId)
+        public Task<ProtoOALightSymbol[]> GetConversionSymbols(long accountId, bool isLive, long baseAssetId, long quoteAssetId)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOALightSymbol[]>();
 
-            ProtoOALightSymbol[] result = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOASymbolsForConversionRes>().Where(response => response.CtidTraderAccountId == accountId)
+            disposable = client.OfType<ProtoOASymbolsForConversionRes>().Where(response => response.CtidTraderAccountId == accountId)
                 .Subscribe(response =>
             {
-                result = response.Symbol.ToArray();
+                taskCompletionSource.SetResult(response.Symbol.ToArray());
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOASymbolsForConversionReq
@@ -276,36 +282,62 @@ namespace Trading.UI.Demo.Services
                 LastAssetId = quoteAssetId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsForConversionReq, client, cancelationTokenSource, () => result is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsForConversionReq, client);
 
-            return result;
+            return taskCompletionSource.Task;
         }
 
-        public async Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken)
+        public Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken)
         {
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOACtidTraderAccount[]>();
 
-            ProtoOACtidTraderAccount[] result = null;
+            IDisposable disposable = null;
 
-            using var disposable = _liveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>()
-                .Subscribe(response =>
-                {
-                    result = response.CtidTraderAccount.ToArray();
+            disposable = _liveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
+            {
+                taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
 
-                    cancelationTokenSource.Cancel();
-                });
+                disposable?.Dispose();
+            });
 
             var requestMessage = new ProtoOAGetAccountListByAccessTokenReq
             {
                 AccessToken = accessToken
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient, cancelationTokenSource, () => result is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient);
 
-            return result;
+            return taskCompletionSource.Task;
         }
 
-        public async Task CreateNewOrder(OrderModel orderModel, long accountId, bool isLive)
+        public Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            var taskCompletionSource = new TaskCompletionSource<ProtoOAReconcileRes>();
+
+            IDisposable disposable = null;
+
+            disposable = client.OfType<ProtoOAReconcileRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            {
+                taskCompletionSource.SetResult(response);
+
+                disposable?.Dispose();
+            });
+
+            var requestMessage = new ProtoOAReconcileReq
+            {
+                CtidTraderAccountId = accountId
+            };
+
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaReconcileReq, client);
+
+            return taskCompletionSource.Task;
+        }
+
+        public void CreateNewOrder(OrderModel orderModel, long accountId, bool isLive)
         {
             VerifyConnection();
 
@@ -319,7 +351,20 @@ namespace Trading.UI.Demo.Services
 
             if (orderModel is MarketOrderModel marketOrder)
             {
-                newOrderReq.OrderType = marketOrder.IsMarketRange ? ProtoOAOrderType.MarketRange : ProtoOAOrderType.Market;
+                if (marketOrder.IsMarketRange)
+                {
+                    newOrderReq.OrderType = ProtoOAOrderType.MarketRange;
+
+                    newOrderReq.BaseSlippagePrice = marketOrder.Symbol.Bid;
+
+                    var slippageinPoint = orderModel.Symbol.Data.GetPointsFromPips(marketOrder.MarketRangeInPips);
+
+                    if (slippageinPoint < int.MaxValue) newOrderReq.SlippageInPoints = (int)slippageinPoint;
+                }
+                else
+                {
+                    newOrderReq.OrderType = ProtoOAOrderType.Market;
+                }
 
                 if (marketOrder.Id != default)
                 {
@@ -376,10 +421,10 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(isLive);
 
-            await client.SendMessage(newOrderReq, ProtoOAPayloadType.ProtoOaNewOrderReq);
+            EnqueueMessage(newOrderReq, ProtoOAPayloadType.ProtoOaNewOrderReq, client);
         }
 
-        public Task ClosePosition(long positionId, long volume, long accountId, bool isLive)
+        public void ClosePosition(long positionId, long volume, long accountId, bool isLive)
         {
             VerifyConnection();
 
@@ -392,10 +437,10 @@ namespace Trading.UI.Demo.Services
                 Volume = volume
             };
 
-            return client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaClosePositionReq);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaClosePositionReq, client);
         }
 
-        public Task CancelOrder(long orderId, long accountId, bool isLive)
+        public void CancelOrder(long orderId, long accountId, bool isLive)
         {
             VerifyConnection();
 
@@ -407,60 +452,33 @@ namespace Trading.UI.Demo.Services
                 OrderId = orderId
             };
 
-            return client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaCancelOrderReq);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaCancelOrderReq, client);
         }
 
-        public async Task<ProtoOAReconcileRes> GetAccountOrders(long accountId, bool isLive)
-        {
-            VerifyConnection();
-
-            var client = GetClient(isLive);
-
-            using var cancelationTokenSource = new CancellationTokenSource();
-
-            ProtoOAReconcileRes result = null;
-
-            using var disposable = client.OfType<ProtoOAReconcileRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
-            {
-                result = response;
-
-                cancelationTokenSource.Cancel();
-            });
-
-            var requestMessage = new ProtoOAReconcileReq
-            {
-                CtidTraderAccountId = accountId
-            };
-
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaReconcileReq, client, cancelationTokenSource, () => result is not null);
-
-            return result;
-        }
-
-        public async Task ModifyPosition(MarketOrderModel oldOrder, MarketOrderModel newOrder, long accountId, bool isLive)
+        public void ModifyPosition(MarketOrderModel oldOrder, MarketOrderModel newOrder, long accountId, bool isLive)
         {
             VerifyConnection();
 
             if (oldOrder.TradeData.TradeSide != newOrder.TradeSide)
             {
-                await ClosePosition(oldOrder.Id, oldOrder.Volume, accountId, isLive);
+                ClosePosition(oldOrder.Id, oldOrder.Volume, accountId, isLive);
 
                 newOrder.Id = default;
 
-                await CreateNewOrder(newOrder, accountId, isLive);
+                CreateNewOrder(newOrder, accountId, isLive);
             }
             else
             {
                 if (newOrder.Volume > oldOrder.Volume)
                 {
-                    newOrder.Volume = newOrder.Volume - oldOrder.Volume;
+                    newOrder.Volume -= oldOrder.Volume;
 
-                    await CreateNewOrder(newOrder, accountId, isLive);
+                    CreateNewOrder(newOrder, accountId, isLive);
                 }
                 else
                 {
-                    if (newOrder.StopLossInPips != oldOrder.StopLossInPips || newOrder.TakeProfitInPips != oldOrder.TakeProfitInPips)
+                    if (newOrder.StopLossInPips != oldOrder.StopLossInPips || newOrder.IsStopLossEnabled != oldOrder.IsStopLossEnabled || newOrder.TakeProfitInPips != oldOrder.TakeProfitInPips || newOrder.IsTakeProfitEnabled != oldOrder.IsTakeProfitEnabled
+                        || newOrder.IsTrailingStopLossEnabled != oldOrder.IsTrailingStopLossEnabled)
                     {
                         var amendPositionRequestMessage = new ProtoOAAmendPositionSLTPReq
                         {
@@ -471,6 +489,13 @@ namespace Trading.UI.Demo.Services
 
                         if (newOrder.IsStopLossEnabled)
                         {
+                            if (newOrder.StopLossInPips != default && newOrder.StopLossInPrice == default)
+                            {
+                                newOrder.StopLossInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                                    ? newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.StopLossInPips)
+                                    : newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.StopLossInPips);
+                            }
+
                             amendPositionRequestMessage.StopLoss = newOrder.StopLossInPrice;
                             amendPositionRequestMessage.StopLossTriggerMethod = oldOrder.StopTriggerMethod;
                             amendPositionRequestMessage.TrailingStopLoss = newOrder.IsTrailingStopLossEnabled;
@@ -478,38 +503,44 @@ namespace Trading.UI.Demo.Services
 
                         if (newOrder.IsTakeProfitEnabled)
                         {
+                            if (newOrder.TakeProfitInPips != default && newOrder.TakeProfitInPrice == default)
+                            {
+                                newOrder.TakeProfitInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                                    ? newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.TakeProfitInPips)
+                                    : newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.TakeProfitInPips);
+                            }
+
                             amendPositionRequestMessage.TakeProfit = newOrder.TakeProfitInPrice;
                         }
 
                         var client = GetClient(isLive);
 
-                        await client.SendMessage(amendPositionRequestMessage, ProtoOAPayloadType.ProtoOaAmendPositionSltpReq);
+                        EnqueueMessage(amendPositionRequestMessage, ProtoOAPayloadType.ProtoOaAmendPositionSltpReq, client);
                     }
 
                     if (newOrder.Volume < oldOrder.Volume)
                     {
-                        await ClosePosition(oldOrder.Id, oldOrder.Volume - newOrder.Volume, accountId, isLive);
+                        ClosePosition(oldOrder.Id, oldOrder.Volume - newOrder.Volume, accountId, isLive);
                     }
                 }
             }
         }
 
-        public async Task<ProtoOATrader> GetTrader(long accountId, bool isLive)
+        public Task<ProtoOATrader> GetTrader(long accountId, bool isLive)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOATrader>();
 
-            ProtoOATrader result = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOATraderRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
+            disposable = client.OfType<ProtoOATraderRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                result = response.Trader;
+                taskCompletionSource.SetResult(response.Trader);
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOATraderReq
@@ -517,12 +548,12 @@ namespace Trading.UI.Demo.Services
                 CtidTraderAccountId = accountId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaTraderReq, client, cancelationTokenSource, () => result is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaTraderReq, client);
 
-            return result;
+            return taskCompletionSource.Task;
         }
 
-        public async Task ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId, bool isLive)
+        public void ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId, bool isLive)
         {
             VerifyConnection();
 
@@ -535,12 +566,26 @@ namespace Trading.UI.Demo.Services
 
             if (newOrder.IsStopLossEnabled)
             {
+                if (newOrder.StopLossInPips != default && newOrder.StopLossInPrice == default)
+                {
+                    newOrder.StopLossInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                        ? newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.StopLossInPips)
+                        : newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.StopLossInPips);
+                }
+
                 requestMessage.StopLoss = newOrder.StopLossInPrice;
                 requestMessage.TrailingStopLoss = newOrder.IsTrailingStopLossEnabled;
             }
 
             if (newOrder.IsTakeProfitEnabled)
             {
+                if (newOrder.TakeProfitInPips != default && newOrder.TakeProfitInPrice == default)
+                {
+                    newOrder.TakeProfitInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                        ? newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.TakeProfitInPips)
+                        : newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.TakeProfitInPips);
+                }
+
                 requestMessage.TakeProfit = newOrder.TakeProfitInPrice;
             }
 
@@ -567,10 +612,10 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(isLive);
 
-            await client.SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAmendOrderReq);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAmendOrderReq, client);
         }
 
-        public async Task<HistoricalTradeModel[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
+        public Task<HistoricalTradeModel[]> GetHistoricalTrades(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
         {
             VerifyConnection();
 
@@ -578,9 +623,14 @@ namespace Trading.UI.Demo.Services
 
             List<HistoricalTradeModel> result = new();
 
-            CancellationTokenSource cancelationTokenSource = null;
+            var taskCompletionSource = new TaskCompletionSource<HistoricalTradeModel[]>();
 
-            using var disposable = client.OfType<ProtoOADealListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            var requestsNumber = 0;
+            var responsesNumber = 0;
+
+            IDisposable disposable = null;
+
+            disposable = client.OfType<ProtoOADealListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
                 var trades = response.Deal.Select(deal =>
                 {
@@ -622,7 +672,14 @@ namespace Trading.UI.Demo.Services
 
                 result.AddRange(trades);
 
-                if (cancelationTokenSource is not null) cancelationTokenSource.Cancel();
+                responsesNumber++;
+
+                if (responsesNumber == requestsNumber)
+                {
+                    taskCompletionSource.SetResult(result.ToArray());
+
+                    disposable?.Dispose();
+                }
             });
 
             var timeAmountToAdd = TimeSpan.FromMilliseconds(604800000);
@@ -640,19 +697,17 @@ namespace Trading.UI.Demo.Services
                     CtidTraderAccountId = accountId
                 };
 
-                cancelationTokenSource = new CancellationTokenSource();
-
-                await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaDealListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
-
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaDealListReq, client);
 
                 time = toTime;
+
+                requestsNumber++;
             } while (time < to);
 
-            return result.ToArray();
+            return taskCompletionSource.Task;
         }
 
-        public async Task<TransactionModel[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
+        public Task<TransactionModel[]> GetTransactions(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to)
         {
             VerifyConnection();
 
@@ -660,9 +715,14 @@ namespace Trading.UI.Demo.Services
 
             List<TransactionModel> result = new();
 
-            CancellationTokenSource cancelationTokenSource = null;
+            var taskCompletionSource = new TaskCompletionSource<TransactionModel[]>();
 
-            using var disposable = client.OfType<ProtoOACashFlowHistoryListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            var requestsNumber = 0;
+            var responsesNumber = 0;
+
+            IDisposable disposable = null;
+
+            disposable = client.OfType<ProtoOACashFlowHistoryListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
                 var transactions = response.DepositWithdraw.Select(depositWithdraw => new TransactionModel
                 {
@@ -678,7 +738,14 @@ namespace Trading.UI.Demo.Services
 
                 result.AddRange(transactions);
 
-                if (cancelationTokenSource is not null) cancelationTokenSource.Cancel();
+                responsesNumber++;
+
+                if (responsesNumber == requestsNumber)
+                {
+                    taskCompletionSource.SetResult(result.ToArray());
+
+                    disposable?.Dispose();
+                }
             });
 
             var timeAmountToAdd = TimeSpan.FromMilliseconds(604800000);
@@ -696,32 +763,29 @@ namespace Trading.UI.Demo.Services
                     CtidTraderAccountId = accountId
                 };
 
-                cancelationTokenSource = new CancellationTokenSource();
-
-                await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
-
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq, client);
 
                 time = toTime;
+
+                requestsNumber++;
             } while (time < to);
 
-            return result.ToArray();
+            return taskCompletionSource.Task;
         }
 
-        public async Task SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds)
+        public Task<ProtoOASubscribeSpotsRes> SubscribeToSpots(long accountId, bool isLive, params long[] symbolIds)
         {
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOASubscribeSpotsRes>();
 
-            ProtoOASubscribeSpotsRes receivedResponse = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOASubscribeSpotsRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
+            disposable = client.OfType<ProtoOASubscribeSpotsRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                receivedResponse = response;
+                taskCompletionSource.SetResult(response);
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOASubscribeSpotsReq
@@ -731,25 +795,26 @@ namespace Trading.UI.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq, client);
+
+            return taskCompletionSource.Task;
         }
 
-        public async Task UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds)
+        public Task<ProtoOAUnsubscribeSpotsRes> UnsubscribeFromSpots(long accountId, bool isLive, params long[] symbolIds)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOAUnsubscribeSpotsRes>();
 
-            ProtoOAUnsubscribeSpotsRes receivedResponse = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOAUnsubscribeSpotsRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
+            disposable = client.OfType<ProtoOAUnsubscribeSpotsRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                receivedResponse = response;
+                taskCompletionSource.SetResult(response);
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOAUnsubscribeSpotsReq
@@ -759,25 +824,26 @@ namespace Trading.UI.Demo.Services
 
             requestMessage.SymbolId.AddRange(symbolIds);
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq, client);
+
+            return taskCompletionSource.Task;
         }
 
-        public async Task SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
+        public Task<ProtoOASubscribeLiveTrendbarRes> SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOASubscribeLiveTrendbarRes>();
 
-            ProtoOASubscribeLiveTrendbarRes receivedResponse = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOASubscribeLiveTrendbarRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
+            disposable = client.OfType<ProtoOASubscribeLiveTrendbarRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                receivedResponse = response;
+                taskCompletionSource.SetResult(response);
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOASubscribeLiveTrendbarReq
@@ -787,25 +853,26 @@ namespace Trading.UI.Demo.Services
                 SymbolId = symbolId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq, client);
+
+            return taskCompletionSource.Task;
         }
 
-        public async Task UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
+        public Task<ProtoOAUnsubscribeLiveTrendbarRes> UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOAUnsubscribeLiveTrendbarRes>();
 
-            ProtoOAUnsubscribeLiveTrendbarRes receivedResponse = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOAUnsubscribeLiveTrendbarRes>().Where(response => response.CtidTraderAccountId == accountId)
-                .Subscribe(response =>
+            disposable = client.OfType<ProtoOAUnsubscribeLiveTrendbarRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                receivedResponse = response;
+                taskCompletionSource.SetResult(response);
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOAUnsubscribeLiveTrendbarReq
@@ -815,14 +882,16 @@ namespace Trading.UI.Demo.Services
                 SymbolId = symbolId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq, client, cancelationTokenSource, () => receivedResponse is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq, client);
+
+            return taskCompletionSource.Task;
         }
 
-        public async Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId)
+        public Task<ProtoOATrendbar[]> GetTrendbars(long accountId, bool isLive, DateTimeOffset from, DateTimeOffset to, ProtoOATrendbarPeriod period, long symbolId)
         {
             VerifyConnection();
 
-            var periodMaximum = GetMaximumTrendBarTime(period);
+            var periodMaximum = period.GetMaximumTime();
 
             if (from == default) from = to.Add(-periodMaximum);
 
@@ -830,15 +899,15 @@ namespace Trading.UI.Demo.Services
 
             var client = GetClient(isLive);
 
-            List<ProtoOATrendbar> result = new();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOATrendbar[]>();
 
-            CancellationTokenSource cancelationTokenSource = new();
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOAGetTrendbarsRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            disposable = client.OfType<ProtoOAGetTrendbarsRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                result.AddRange(response.Trendbar);
+                taskCompletionSource.SetResult(response.Trendbar.ToArray());
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOAGetTrendbarsReq
@@ -850,26 +919,26 @@ namespace Trading.UI.Demo.Services
                 SymbolId = symbolId
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetTrendbarsReq, client, cancelationTokenSource, () => cancelationTokenSource.IsCancellationRequested);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetTrendbarsReq, client);
 
-            return result.ToArray();
+            return taskCompletionSource.Task;
         }
 
-        public async Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive)
+        public Task<ProtoOAAsset[]> GetAssets(long accountId, bool isLive)
         {
             VerifyConnection();
 
             var client = GetClient(isLive);
 
-            using var cancelationTokenSource = new CancellationTokenSource();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOAAsset[]>();
 
-            ProtoOAAsset[] result = null;
+            IDisposable disposable = null;
 
-            using var disposable = client.OfType<ProtoOAAssetListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            disposable = client.OfType<ProtoOAAssetListRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
             {
-                result = response.Asset.ToArray();
+                taskCompletionSource.SetResult(response.Asset.ToArray());
 
-                cancelationTokenSource.Cancel();
+                disposable?.Dispose();
             });
 
             var requestMessage = new ProtoOAAssetListReq
@@ -877,9 +946,9 @@ namespace Trading.UI.Demo.Services
                 CtidTraderAccountId = accountId,
             };
 
-            await SendMessage(requestMessage, ProtoOAPayloadType.ProtoOaAssetListReq, client, cancelationTokenSource, () => result is not null);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAssetListReq, client);
 
-            return result;
+            return taskCompletionSource.Task;
         }
 
         public void Dispose()
@@ -895,35 +964,47 @@ namespace Trading.UI.Demo.Services
             if (IsConnected is false) throw new InvalidOperationException("The service is not connected yet, please connect the service before using it");
         }
 
-        private TimeSpan GetMaximumTrendBarTime(ProtoOATrendbarPeriod period) => period switch
-        {
-            ProtoOATrendbarPeriod.M1 or ProtoOATrendbarPeriod.M2 or ProtoOATrendbarPeriod.M3 or ProtoOATrendbarPeriod.M4 or ProtoOATrendbarPeriod.M5 => TimeSpan.FromMilliseconds(302400000),
-            ProtoOATrendbarPeriod.M10 or ProtoOATrendbarPeriod.M15 or ProtoOATrendbarPeriod.M30 or ProtoOATrendbarPeriod.H1 => TimeSpan.FromMilliseconds(21168000000),
-            ProtoOATrendbarPeriod.H4 or ProtoOATrendbarPeriod.H12 or ProtoOATrendbarPeriod.D1 => TimeSpan.FromMilliseconds(31622400000),
-            ProtoOATrendbarPeriod.W1 or ProtoOATrendbarPeriod.Mn1 => TimeSpan.FromMilliseconds(158112000000),
-            _ => throw new ArgumentOutOfRangeException(nameof(period))
-        };
-
-        private async Task SendMessage<TMessage>(TMessage message, ProtoOAPayloadType payloadType, OpenClient client, CancellationTokenSource cancellationTokenSource, Func<bool> isResponseReceived, TimeSpan waitTime = default)
+        private void EnqueueMessage<TMessage>(TMessage message, ProtoOAPayloadType payloadType, OpenClient client)
             where TMessage : IMessage
         {
-            await client.SendMessage(message, payloadType);
-
-            if (waitTime == default) waitTime = TimeSpan.FromMinutes(1);
-
-            try
+            var messageQueueItem = new MessageQueueItem
             {
-                await Task.Delay(waitTime, cancellationTokenSource.Token);
-            }
-            catch (TaskCanceledException)
+                Message = message,
+                PayloadType = payloadType,
+                Client = client,
+                IsHistorical = payloadType is ProtoOAPayloadType.ProtoOaDealListReq or ProtoOAPayloadType.ProtoOaGetTrendbarsReq or ProtoOAPayloadType.ProtoOaGetTickdataReq or ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq
+            };
+
+            _messagesQueue.Enqueue(messageQueueItem);
+        }
+
+        private async void SendMessageTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            _sendMessageTimer.Stop();
+
+            if (_messagesQueue.TryDequeue(out var messageQueueItem) == false)
             {
-            }
-            finally
-            {
-                cancellationTokenSource.Dispose();
+                _sendMessageTimer.Start();
+
+                return;
             }
 
-            if (isResponseReceived() is false) throw new TimeoutException("The API didn't responded");
+            await messageQueueItem.Client.SendMessage(messageQueueItem.Message, messageQueueItem.PayloadType);
+
+            if (messageQueueItem.IsHistorical) await Task.Delay(250);
+
+            _sendMessageTimer.Start();
+        }
+
+        private class MessageQueueItem
+        {
+            public IMessage Message { get; init; }
+
+            public ProtoOAPayloadType PayloadType { get; init; }
+
+            public OpenClient Client { get; init; }
+
+            public bool IsHistorical { get; init; }
         }
     }
 }

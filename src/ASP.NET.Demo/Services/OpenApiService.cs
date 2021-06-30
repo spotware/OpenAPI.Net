@@ -120,47 +120,40 @@ namespace ASP.NET.Demo.Services
                 throw;
             }
 
-            _liveClient = liveClient;
-            _demoClient = demoClient;
+            _sendMessageTimer.Start();
+
+            await Task.WhenAll(AuthorizeApp(liveClient), AuthorizeApp(demoClient));
 
             IsConnected = true;
 
-            await AuthorizeApp();
-
-            _sendMessageTimer.Start();
+            _liveClient = liveClient;
+            _demoClient = demoClient;
 
             Connected?.Invoke();
         }
 
-        private async Task AuthorizeApp()
+        private Task<ProtoOAApplicationAuthRes> AuthorizeApp(OpenClient client)
         {
-            VerifyConnection();
+            var taskCompletionSource = new TaskCompletionSource<ProtoOAApplicationAuthRes>();
 
-            var authRequest = new ProtoOAApplicationAuthReq
+            IDisposable disposable = null;
+
+            disposable = client.OfType<ProtoOAApplicationAuthRes>().Subscribe(response =>
+            {
+                taskCompletionSource.SetResult(response);
+
+                disposable?.Dispose();
+            });
+
+            var requestMessage = new ProtoOAApplicationAuthReq
             {
                 ClientId = _apiCredentials.ClientId,
                 ClientSecret = _apiCredentials.Secret,
             };
 
-            bool isLiveClientAppAuthorized = false;
-            bool isDemoClientAppAuthorized = false;
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaApplicationAuthReq, client);
 
-            using var liveDisposable = _liveClient.OfType<ProtoOAApplicationAuthRes>()
-                .Subscribe(response => isLiveClientAppAuthorized = true);
-            using var demoDisposable = _demoClient.OfType<ProtoOAApplicationAuthRes>()
-                .Subscribe(response => isDemoClientAppAuthorized = true);
-
-            await _liveClient.SendMessage(authRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
-            await _demoClient.SendMessage(authRequest, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
-
-            var waitStartTime = DateTime.Now;
-
-            while (!isLiveClientAppAuthorized && !isDemoClientAppAuthorized && DateTime.Now - waitStartTime < TimeSpan.FromSeconds(5))
-            {
-                await Task.Delay(1000);
-            }
-
-            if (!isLiveClientAppAuthorized || !isDemoClientAppAuthorized) throw new TimeoutException("The API didn't responded");
+            return taskCompletionSource.Task;
         }
 
         public Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken)
@@ -897,7 +890,7 @@ namespace ASP.NET.Demo.Services
         {
             VerifyConnection();
 
-            var periodMaximum = GetMaximumTrendBarTime(period);
+            var periodMaximum = period.GetMaximumTime();
 
             if (from == default) from = to.Add(-periodMaximum);
 
@@ -969,15 +962,6 @@ namespace ASP.NET.Demo.Services
         {
             if (IsConnected is false) throw new InvalidOperationException("The service is not connected yet, please connect the service before using it");
         }
-
-        private TimeSpan GetMaximumTrendBarTime(ProtoOATrendbarPeriod period) => period switch
-        {
-            ProtoOATrendbarPeriod.M1 or ProtoOATrendbarPeriod.M2 or ProtoOATrendbarPeriod.M3 or ProtoOATrendbarPeriod.M4 or ProtoOATrendbarPeriod.M5 => TimeSpan.FromMilliseconds(302400000),
-            ProtoOATrendbarPeriod.M10 or ProtoOATrendbarPeriod.M15 or ProtoOATrendbarPeriod.M30 or ProtoOATrendbarPeriod.H1 => TimeSpan.FromMilliseconds(21168000000),
-            ProtoOATrendbarPeriod.H4 or ProtoOATrendbarPeriod.H12 or ProtoOATrendbarPeriod.D1 => TimeSpan.FromMilliseconds(31622400000),
-            ProtoOATrendbarPeriod.W1 or ProtoOATrendbarPeriod.Mn1 => TimeSpan.FromMilliseconds(158112000000),
-            _ => throw new ArgumentOutOfRangeException(nameof(period))
-        };
 
         private void EnqueueMessage<TMessage>(TMessage message, ProtoOAPayloadType payloadType, OpenClient client)
             where TMessage : IMessage

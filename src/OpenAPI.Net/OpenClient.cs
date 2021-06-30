@@ -2,7 +2,7 @@
 using OpenAPI.Net.Exceptions;
 using OpenAPI.Net.Helpers;
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -17,12 +17,11 @@ namespace OpenAPI.Net
     {
         private readonly TimeSpan _heartbeatInerval;
 
-        private ProtoHeartbeatEvent _heartbeatEvent = new ProtoHeartbeatEvent();
+        private readonly ProtoHeartbeatEvent _heartbeatEvent = new ProtoHeartbeatEvent();
 
-        private SemaphoreSlim _streamWriteSemaphoreSlim = new SemaphoreSlim(1, 1);
-        private SemaphoreSlim _observersSemaphoreSlim = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _streamWriteSemaphoreSlim = new SemaphoreSlim(1, 1);
 
-        private List<IObserver<IMessage>> _observers = new List<IObserver<IMessage>>();
+        private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new ConcurrentDictionary<int, IObserver<IMessage>>();
 
         private TcpClient _tcpClient;
 
@@ -79,16 +78,7 @@ namespace OpenAPI.Net
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
-            _observersSemaphoreSlim.Wait();
-
-            try
-            {
-                _observers.Add(observer);
-            }
-            finally
-            {
-                _observersSemaphoreSlim.Release();
-            }
+            _observers.AddOrUpdate(observer.GetHashCode(), observer, (key, oldObserver) => observer);
 
             return Disposable.Create(() => OnObserverDispose(observer));
         }
@@ -228,23 +218,12 @@ namespace OpenAPI.Net
 
         private void OnObserverDispose(IObserver<IMessage> observer)
         {
-            _observersSemaphoreSlim.Wait();
-
-            try
-            {
-                _observers.Remove(observer);
-            }
-            finally
-            {
-                _observersSemaphoreSlim.Release();
-            }
+            _observers.TryRemove(observer.GetHashCode(), out _);
         }
 
         private void OnNext(ProtoMessage protoMessage)
         {
-            var observers = GetObservers();
-
-            foreach (var observer in observers)
+            foreach (var (_, observer) in _observers)
             {
                 try
                 {
@@ -269,9 +248,7 @@ namespace OpenAPI.Net
 
             Dispose();
 
-            var observers = GetObservers();
-
-            foreach (var observer in observers)
+            foreach (var (_, observer) in _observers)
             {
                 observer.OnError(exception);
             }
@@ -281,25 +258,9 @@ namespace OpenAPI.Net
         {
             IsCompleted = true;
 
-            var observers = GetObservers();
-
-            foreach (var observer in observers)
+            foreach (var (_, observer) in _observers)
             {
                 observer.OnCompleted();
-            }
-        }
-
-        private IObserver<IMessage>[] GetObservers()
-        {
-            _observersSemaphoreSlim.Wait();
-
-            try
-            {
-                return _observers.ToArray();
-            }
-            finally
-            {
-                _observersSemaphoreSlim.Release();
             }
         }
 

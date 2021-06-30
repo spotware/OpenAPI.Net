@@ -252,7 +252,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 foreach (var position in positions)
                 {
-                    await _apiService.ClosePosition(position.Id, position.TradeData.Volume, Account.Id, Account.IsLive);
+                    _apiService.ClosePosition(position.Id, position.TradeData.Volume, Account.Id, Account.IsLive);
 
                     currentProgress += progressStep;
 
@@ -281,7 +281,7 @@ namespace Trading.UI.Demo.ViewModels
             {
                 foreach (var order in orders)
                 {
-                    await _apiService.CancelOrder(order.Id, Account.Id, Account.IsLive);
+                    _apiService.CancelOrder(order.Id, Account.Id, Account.IsLive);
 
                     currentProgress += progressStep;
 

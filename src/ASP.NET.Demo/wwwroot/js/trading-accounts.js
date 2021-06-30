@@ -162,7 +162,9 @@
 
         $('#symbolsTableBody').html(rows);
 
-        var firstSymbolId = parseInt($('#symbolsTableBody > tr')[0].id);
+        $("#symbolsTable").data("selectedSymbol", $('#symbolsTableBody > tr').first().find('#name').text());
+
+        var firstSymbolId = parseInt($('#symbolsTableBody > tr').first().attr('id'));
 
         createSymbolChart(firstSymbolId);
 
@@ -497,7 +499,11 @@
         });
     });
 
-    $(document).on("click", "#symbolsTableBody > tr", e => createSymbolChart(parseInt(e.currentTarget.id)));
+    $(document).on("click", "#symbolsTableBody > tr", e => {
+        createSymbolChart(parseInt(e.currentTarget.id));
+
+        $("#symbolsTable").data("selectedSymbol", $(e.currentTarget).find('#name').text());
+    });
 
     function onAccountChanged() {
         showLoadingModal();
@@ -648,6 +654,9 @@
 
         $('#marketOrderSymbolsList').html(symbolOptions);
         $('#pendingOrderSymbolsList').html(symbolOptions);
+
+        $('#marketOrderSymbolsList').val($("#symbolsTable").data("selectedSymbol")).change();
+        $('#pendingOrderSymbolsList').val($("#symbolsTable").data("selectedSymbol")).change();
 
         onMarketOrderSymbolChanged();
         onPendingOrderSymbolChanged();
