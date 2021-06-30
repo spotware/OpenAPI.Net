@@ -205,7 +205,7 @@ namespace OpenAPI.Net
             }
             finally
             {
-                if (isSemaphoreEntered) _streamWriteSemaphoreSlim.Release();
+                if (isSemaphoreEntered && !IsDisposed) _streamWriteSemaphoreSlim.Release();
             }
         }
 

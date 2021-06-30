@@ -129,7 +129,26 @@ namespace ASP.NET.Demo.Services
             _liveClient = liveClient;
             _demoClient = demoClient;
 
+            _liveClient.Merge(_demoClient).Distinct().Subscribe(_ => { }, _ => Reconnect());
+
             Connected?.Invoke();
+        }
+
+        private async void Reconnect()
+        {
+            _liveClient?.Dispose();
+            _demoClient?.Dispose();
+
+            try
+            {
+                await Connect();
+            }
+            catch
+            {
+                await Task.Delay(5000);
+
+                Reconnect();
+            }
         }
 
         private Task<ProtoOAApplicationAuthRes> AuthorizeApp(OpenClient client)
