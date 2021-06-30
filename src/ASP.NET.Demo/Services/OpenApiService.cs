@@ -64,6 +64,8 @@ namespace ASP.NET.Demo.Services
         Task<ProtoOASubscribeLiveTrendbarRes> SubscribeToLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
 
         Task<ProtoOAUnsubscribeLiveTrendbarRes> UnsubscribeFromLiveTrendbar(long accountId, bool isLive, long symbolId, ProtoOATrendbarPeriod period);
+
+        Task<ProtoOAAccountLogoutRes> LogoutAccount(long accountId, bool isLive);
     }
 
     public sealed class OpenApiService : IOpenApiService
@@ -129,15 +131,15 @@ namespace ASP.NET.Demo.Services
             _liveClient = liveClient;
             _demoClient = demoClient;
 
-            _liveClient.Merge(_demoClient).Distinct().Subscribe(_ => { }, _ => Reconnect());
+            _liveClient.Subscribe(_ => { }, _ => Reconnect());
+            _demoClient.Subscribe(_ => { }, _ => Reconnect());
 
             Connected?.Invoke();
         }
 
         private async void Reconnect()
         {
-            _liveClient?.Dispose();
-            _demoClient?.Dispose();
+            if (_liveClient.IsDisposed == false || _demoClient.IsDisposed == false) return;
 
             try
             {
@@ -199,6 +201,33 @@ namespace ASP.NET.Demo.Services
             };
 
             EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountAuthReq, client);
+
+            return taskCompletionSource.Task;
+        }
+
+        public Task<ProtoOAAccountLogoutRes> LogoutAccount(long accountId, bool isLive)
+        {
+            VerifyConnection();
+
+            var client = GetClient(isLive);
+
+            var taskCompletionSource = new TaskCompletionSource<ProtoOAAccountLogoutRes>();
+
+            IDisposable disposable = null;
+
+            disposable = client.OfType<ProtoOAAccountLogoutRes>().Where(response => response.CtidTraderAccountId == accountId).Subscribe(response =>
+            {
+                taskCompletionSource.SetResult(response);
+
+                disposable?.Dispose();
+            });
+
+            var requestMessage = new ProtoOAAccountLogoutReq
+            {
+                CtidTraderAccountId = accountId,
+            };
+
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaAccountLogoutReq, client);
 
             return taskCompletionSource.Task;
         }

@@ -244,13 +244,21 @@ namespace OpenAPI.Net
 
         private void OnError(Exception exception)
         {
+            if (IsTerminated) return;
+
             IsTerminated = true;
 
             Dispose();
 
             foreach (var (_, observer) in _observers)
             {
-                observer.OnError(exception);
+                try
+                {
+                    observer.OnError(exception);
+                }
+                catch (Exception ex) when (ex == exception)
+                {
+                }
             }
         }
 

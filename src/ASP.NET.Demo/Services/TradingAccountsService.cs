@@ -100,6 +100,15 @@ namespace ASP.NET.Demo.Services
 
         private void ApiServiceConnected()
         {
+            _accounts.Clear();
+            _accountIds.Clear();
+            _accountModels.Clear();
+            _subscribedAccountQuoteChannels.Clear();
+            _subscribedAccountPositionUpdateChannels.Clear();
+            _subscribedAccountOrderUpdateChannels.Clear();
+            _subscribedAccountErrorsChannels.Clear();
+            _subscribedAccountInfoUpdateChannels.Clear();
+
             Subscribe(_apiService.LiveObservable);
             Subscribe(_apiService.DemoObservable);
         }
@@ -151,6 +160,8 @@ namespace ASP.NET.Demo.Services
         {
             var accounts = await _apiService.GetAccountsList(accessToken);
 
+            await LogoutAccounts(accounts.Where(iAccount => _accounts.ContainsKey(Convert.ToInt64(iAccount.CtidTraderAccountId))));
+
             await AuthorizeAccounts(accounts, accessToken);
 
             return accounts;
@@ -158,14 +169,11 @@ namespace ASP.NET.Demo.Services
 
         public Channel<SymbolQuote> GetSymbolsQuoteChannel(long accountId)
         {
-            if (_subscribedAccountQuoteChannels.TryAdd(accountId, Channel.CreateUnbounded<SymbolQuote>()))
-            {
-                return _subscribedAccountQuoteChannels[accountId];
-            }
-            else
-            {
-                throw new InvalidOperationException($"Couldn't add the quotes channel to {nameof(_subscribedAccountQuoteChannels)}");
-            }
+            var channel = Channel.CreateUnbounded<SymbolQuote>();
+
+            _subscribedAccountQuoteChannels.AddOrUpdate(accountId, channel, (key, oldChannel) => channel);
+
+            return channel;
         }
 
         public void StopSymbolQuotes(long accountId)
@@ -179,14 +187,11 @@ namespace ASP.NET.Demo.Services
 
         public Channel<Position> GetPositionUpdatesChannel(long accountId)
         {
-            if (_subscribedAccountPositionUpdateChannels.TryAdd(accountId, Channel.CreateUnbounded<Position>()))
-            {
-                return _subscribedAccountPositionUpdateChannels[accountId];
-            }
-            else
-            {
-                throw new InvalidOperationException($"Couldn't add the positions channel to {nameof(_subscribedAccountPositionUpdateChannels)}");
-            }
+            var channel = Channel.CreateUnbounded<Position>();
+
+            _subscribedAccountPositionUpdateChannels.AddOrUpdate(accountId, channel, (key, oldChannel) => channel);
+
+            return channel;
         }
 
         public void StopPositionUpdates(long accountId)
@@ -200,14 +205,11 @@ namespace ASP.NET.Demo.Services
 
         public Channel<Error> GetErrorsChannel(long accountId)
         {
-            if (_subscribedAccountErrorsChannels.TryAdd(accountId, Channel.CreateUnbounded<Error>()))
-            {
-                return _subscribedAccountErrorsChannels[accountId];
-            }
-            else
-            {
-                throw new InvalidOperationException($"Couldn't add the error channel to {nameof(_subscribedAccountErrorsChannels)}");
-            }
+            var channel = Channel.CreateUnbounded<Error>();
+
+            _subscribedAccountErrorsChannels.AddOrUpdate(accountId, channel, (key, oldChannel) => channel);
+
+            return channel;
         }
 
         public void StopErrors(long accountId)
@@ -244,14 +246,11 @@ namespace ASP.NET.Demo.Services
 
         public Channel<PendingOrder> GetOrderUpdatesChannel(long accountId)
         {
-            if (_subscribedAccountOrderUpdateChannels.TryAdd(accountId, Channel.CreateUnbounded<PendingOrder>()))
-            {
-                return _subscribedAccountOrderUpdateChannels[accountId];
-            }
-            else
-            {
-                throw new InvalidOperationException($"Couldn't add the order channel to {nameof(_subscribedAccountOrderUpdateChannels)}");
-            }
+            var channel = Channel.CreateUnbounded<PendingOrder>();
+
+            _subscribedAccountOrderUpdateChannels.AddOrUpdate(accountId, channel, (key, oldChannel) => channel);
+
+            return channel;
         }
 
         public void StopOrderUpdates(long accountId)
@@ -288,14 +287,11 @@ namespace ASP.NET.Demo.Services
 
         public Channel<AccountInfo> GetAccountInfoUpdatesChannel(long accountId)
         {
-            if (_subscribedAccountInfoUpdateChannels.TryAdd(accountId, Channel.CreateUnbounded<AccountInfo>()))
-            {
-                return _subscribedAccountInfoUpdateChannels[accountId];
-            }
-            else
-            {
-                throw new InvalidOperationException($"Couldn't add the account info channel to {nameof(_subscribedAccountInfoUpdateChannels)}");
-            }
+            var channel = Channel.CreateUnbounded<AccountInfo>();
+
+            _subscribedAccountInfoUpdateChannels.AddOrUpdate(accountId, channel, (key, oldChannel) => channel);
+
+            return channel;
         }
 
         public void StopAccountInfoUpdates(long accountId)
@@ -511,7 +507,7 @@ namespace ASP.NET.Demo.Services
             account.PendingOrders.AddRange(pendingOrders);
         }
 
-        private async void OnSpotEvent(ProtoOASpotEvent spotEvent)
+        private void OnSpotEvent(ProtoOASpotEvent spotEvent)
         {
             if (_accountModels.TryGetValue(spotEvent.CtidTraderAccountId, out var model) == false) return;
 
@@ -548,24 +544,24 @@ namespace ASP.NET.Demo.Services
                 {
                     position.OnSymbolTick();
 
-                    if (isSubscribedForPositionUpdates) await positionUpdatesChannel.Writer.WriteAsync(Position.FromModel(position));
+                    if (isSubscribedForPositionUpdates) positionUpdatesChannel.Writer.TryWrite(Position.FromModel(position));
                 }
 
                 model.UpdateStatus();
 
                 if ((symbolPositions.Length > 0 || model.DepositAsset == symbol.BaseAsset || model.DepositAsset == symbol.QuoteAsset) && _subscribedAccountInfoUpdateChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var accountInfoUpdateChannel))
                 {
-                    await accountInfoUpdateChannel.Writer.WriteAsync(AccountInfo.FromModel(model));
+                    accountInfoUpdateChannel.Writer.TryWrite(AccountInfo.FromModel(model));
                 }
             }
 
             if (_subscribedAccountQuoteChannels.TryGetValue(spotEvent.CtidTraderAccountId, out var quotesChannel))
             {
-                await quotesChannel.Writer.WriteAsync(quote);
+                quotesChannel.Writer.TryWrite(quote);
             }
         }
 
-        private async void OnExecutionEvent(ProtoOAExecutionEvent executionEvent)
+        private void OnExecutionEvent(ProtoOAExecutionEvent executionEvent)
         {
             if (_accountModels.TryGetValue(executionEvent.CtidTraderAccountId, out var model) == false) return;
 
@@ -638,12 +634,12 @@ namespace ASP.NET.Demo.Services
 
             if (position is not null && _subscribedAccountPositionUpdateChannels.TryGetValue(executionEvent.CtidTraderAccountId, out var positionUpdateChannel))
             {
-                await positionUpdateChannel.Writer.WriteAsync(Position.FromModel(position));
+                positionUpdateChannel.Writer.TryWrite(Position.FromModel(position));
             }
 
             if (order is not null && _subscribedAccountOrderUpdateChannels.TryGetValue(executionEvent.CtidTraderAccountId, out var orderUpdateChannel))
             {
-                await orderUpdateChannel.Writer.WriteAsync(PendingOrder.FromModel(order));
+                orderUpdateChannel.Writer.TryWrite(PendingOrder.FromModel(order));
             }
         }
 
@@ -657,37 +653,37 @@ namespace ASP.NET.Demo.Services
             _accountIds.TryAdd(account.TraderLogin, accountId);
         }).ToArray());
 
-        private async void OnOrderErrorRes(ProtoOAOrderErrorEvent error)
+        private Task LogoutAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts) => Task.WhenAll(accounts.Select(async account =>
+        {
+            var accountId = Convert.ToInt64(account.CtidTraderAccountId);
+
+            await _apiService.LogoutAccount(accountId, account.IsLive);
+
+            _accounts.TryRemove(accountId, out _);
+            _accountIds.TryRemove(account.TraderLogin, out _);
+        }).ToArray());
+
+        private void OnOrderErrorRes(ProtoOAOrderErrorEvent error)
         {
             if (!_subscribedAccountErrorsChannels.TryGetValue(error.CtidTraderAccountId, out var channel)) return;
 
-            await channel.Writer.WriteAsync(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoOAOrderErrorEvent)));
+            channel.Writer.TryWrite(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoOAOrderErrorEvent)));
         }
 
-        private async void OnOaErrorRes(ProtoOAErrorRes error)
+        private void OnOaErrorRes(ProtoOAErrorRes error)
         {
             if (!_subscribedAccountErrorsChannels.TryGetValue(error.CtidTraderAccountId, out var channel)) return;
 
-            await channel.Writer.WriteAsync(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoOAErrorRes)));
+            channel.Writer.TryWrite(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoOAErrorRes)));
         }
 
-        private async void OnErrorRes(ProtoErrorRes error)
+        private void OnErrorRes(ProtoErrorRes error)
         {
             var errorChannels = _subscribedAccountErrorsChannels.Values.ToArray();
 
             foreach (var channel in errorChannels)
             {
-                await channel.Writer.WriteAsync(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoErrorRes)));
-            }
-        }
-
-        private async void OnError(Exception exception)
-        {
-            var errorChannels = _subscribedAccountErrorsChannels.Values.ToArray();
-
-            foreach (var channel in errorChannels)
-            {
-                await channel.Writer.WriteAsync(new(exception.ToString(), "Exception"));
+                channel.Writer.TryWrite(new($"Code: {error.ErrorCode} | Description: {error.Description}", nameof(ProtoErrorRes)));
             }
         }
 
@@ -697,7 +693,6 @@ namespace ASP.NET.Demo.Services
             observable.OfType<ProtoOAExecutionEvent>().Subscribe(OnExecutionEvent);
             observable.OfType<ProtoErrorRes>().Subscribe(OnErrorRes);
             observable.OfType<ProtoOAErrorRes>().Subscribe(OnOaErrorRes);
-            observable.Subscribe(_ => { }, OnError);
             observable.OfType<ProtoOAOrderErrorEvent>().Subscribe(OnOrderErrorRes);
         }
     }
