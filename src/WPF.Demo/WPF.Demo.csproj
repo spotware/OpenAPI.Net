@@ -8,6 +8,20 @@
     <Platforms>x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Chart.js\chartjs-plugin-zoom.min.js" />
+    <None Remove="Chart.js\hammer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Chart.js\chartjs-plugin-zoom.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Chart.js\hammer.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="90.6.50" />
     <PackageReference Include="MahApps.Metro" Version="2.4.5" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />

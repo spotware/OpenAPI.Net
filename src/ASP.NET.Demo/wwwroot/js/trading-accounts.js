@@ -763,7 +763,26 @@
             hover: {
                 animationDuration: 0
             },
-            responsiveAnimationDuration: 0
+            responsiveAnimationDuration: 0,
+            plugins: {
+                zoom: {
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                        overScaleMode: 'y'
+                    },
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true,
+                        },
+                        mode: 'xy',
+                        overScaleMode: 'y'
+                    }
+                }
+            }
         }
     };
 
