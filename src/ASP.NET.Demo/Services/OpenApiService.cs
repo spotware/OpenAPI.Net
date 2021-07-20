@@ -131,15 +131,24 @@ namespace ASP.NET.Demo.Services
             _liveClient = liveClient;
             _demoClient = demoClient;
 
-            _liveClient.Subscribe(_ => { }, _ => Reconnect());
-            _demoClient.Subscribe(_ => { }, _ => Reconnect());
+            _liveClient.Subscribe(_ => { }, OnError);
+            _demoClient.Subscribe(_ => { }, OnError);
 
             Connected?.Invoke();
         }
 
+        private void OnError(Exception exception)
+        {
+            if (IsConnected is false) return;
+
+            IsConnected = false;
+
+            Reconnect();
+        }
+
         private async void Reconnect()
         {
-            if (_liveClient.IsDisposed == false || _demoClient.IsDisposed == false) return;
+            if (_liveClient.IsDisposed is false || _demoClient.IsDisposed is false) return;
 
             try
             {
