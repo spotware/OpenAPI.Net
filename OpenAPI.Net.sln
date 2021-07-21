@@ -11,20 +11,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.Net", "src\OpenAPI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.Net.Tests", "tests\OpenAPI.Net.Tests\OpenAPI.Net.Tests.csproj", "{B9BC1937-94E5-4F3B-883D-15EDCE72C5AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.Demo", "src\Console.Demo\Console.Demo.csproj", "{A79298DA-2F57-4ABA-83FA-B051A51CEFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.Sample", "src\Console.Sample\Console.Sample.csproj", "{A79298DA-2F57-4ABA-83FA-B051A51CEFCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0204E3DB-63E1-48B4-A767-6919BA8ECB07}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Demo", "src\WPF.Demo\WPF.Demo.csproj", "{842C8FED-4CAC-4676-9922-D59F88CEADC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Sample", "src\WPF.Sample\WPF.Sample.csproj", "{842C8FED-4CAC-4676-9922-D59F88CEADC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms.Demo", "src\WinForms.Demo\WinForms.Demo.csproj", "{7027B55B-5C8E-484A-986F-F7F909DD80E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms.Sample", "src\WinForms.Sample\WinForms.Sample.csproj", "{7027B55B-5C8E-484A-986F-F7F909DD80E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.Demo", "src\ASP.NET.Demo\ASP.NET.Demo.csproj", "{1EC058DD-6106-42E4-B665-2074A89E3C2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.Sample", "src\ASP.NET.Sample\ASP.NET.Sample.csproj", "{1EC058DD-6106-42E4-B665-2074A89E3C2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.WebAssembly.Demo", "src\Blazor.WebAssembly.Demo\Blazor.WebAssembly.Demo.csproj", "{B35EBD11-9758-4D67-AB40-74EF6612F8A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Shared", "src\Demo.Shared\Samples.Shared.csproj", "{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +54,10 @@ Global
 		{1EC058DD-6106-42E4-B665-2074A89E3C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC058DD-6106-42E4-B665-2074A89E3C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EC058DD-6106-42E4-B665-2074A89E3C2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B35EBD11-9758-4D67-AB40-74EF6612F8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B35EBD11-9758-4D67-AB40-74EF6612F8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B35EBD11-9758-4D67-AB40-74EF6612F8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B35EBD11-9758-4D67-AB40-74EF6612F8A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,7 +69,7 @@ Global
 		{842C8FED-4CAC-4676-9922-D59F88CEADC5} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 		{7027B55B-5C8E-484A-986F-F7F909DD80E3} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 		{1EC058DD-6106-42E4-B665-2074A89E3C2D} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
-		{B35EBD11-9758-4D67-AB40-74EF6612F8A4} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
+		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E05B0FF6-48DB-46F1-BD20-0D3980D5D6E4}

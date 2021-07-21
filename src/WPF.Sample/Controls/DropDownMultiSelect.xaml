@@ -1,0 +1,113 @@
+﻿<UserControl
+    x:Class="Trading.UI.Sample.Controls.DropDownMultiSelect"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
+        <Border
+            x:Name="OutputTextBoxBorder"
+            BorderBrush="{DynamicResource MahApps.Brushes.TextBox.Border}"
+            BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    x:Name="OutputTextBox"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    BorderBrush="Transparent"
+                    IsReadOnly="True" />
+
+                <Button
+                    x:Name="Show"
+                    Grid.Column="1"
+                    controls:ControlsHelper.CornerRadius="1"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Click="ShowButton_Click"
+                    ToolTip="Show">
+                    <iconPacks:PackIconMaterial Kind="ArrowDown" />
+                </Button>
+
+                <Button
+                    Grid.Column="2"
+                    controls:ControlsHelper.CornerRadius="1"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Click="ClearButton_Click"
+                    ToolTip="Clear Selection">
+                    <iconPacks:PackIconMaterial Kind="SelectionOff" />
+                </Button>
+            </Grid>
+        </Border>
+
+        <Popup
+            x:Name="ItemsPopup"
+            Width="{Binding Path=ActualWidth, ElementName=OutputTextBoxBorder}"
+            Placement="Bottom"
+            PlacementTarget="{Binding ElementName=OutputTextBoxBorder}"
+            StaysOpen="False">
+            <Border BorderBrush="{DynamicResource MahApps.Brushes.TextBox.Border}" BorderThickness="1">
+                <ListView
+                    x:Name="ItemsListView"
+                    MaxHeight="200"
+                    Grid.IsSharedSizeScope="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                    <ColumnDefinition Width="*" SharedSizeGroup="B" />
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox
+                                    Grid.Column="0"
+                                    Margin="2"
+                                    VerticalAlignment="Center"
+                                    Checked="CheckBox_Changed"
+                                    IsChecked="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Unchecked="CheckBox_Changed" />
+
+                                <ContentControl Grid.Column="1" Content="{Binding}">
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext.IsItemTemplateProvided, RelativeSource={RelativeSource AncestorType=ListView}}" Value="False">
+                                                    <Setter Property="ContentTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <TextBlock
+                                                                    Margin="2"
+                                                                    HorizontalAlignment="Left"
+                                                                    VerticalAlignment="Center"
+                                                                    Text="{Binding Path=DisplayText}" />
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding DataContext.IsItemTemplateProvided, RelativeSource={RelativeSource AncestorType=ListView}}" Value="True">
+                                                    <Setter Property="ContentTemplate" Value="{Binding DataContext.ItemTemplate, RelativeSource={RelativeSource AncestorType=ListView}}" />
+                                                    <Setter Property="DataContext" Value="{Binding Path=Object}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

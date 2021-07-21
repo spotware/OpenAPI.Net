@@ -1,0 +1,430 @@
+﻿<UserControl
+    x:Class="Trading.UI.Sample.Views.CreateModifyOrderView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Trading.UI.Sample.Behaviors"
+    xmlns:controls="clr-namespace:Trading.UI.Sample.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    xmlns:enums="clr-namespace:Trading.UI.Sample.Enums"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:markupExtensions="clr-namespace:Trading.UI.Sample.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:openApi="clr-namespace:;assembly=OpenAPI.Net"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    dialog:DialogParticipation.Register="{Binding}"
+    mc:Ignorable="d">
+    <prism:Dialog.WindowStyle>
+        <Style BasedOn="{StaticResource DialogStyle}" TargetType="mah:MetroWindow">
+            <Setter Property="Height" Value="530" />
+            <Setter Property="Width" Value="500" />
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=LoadedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding Path=UnloadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/CreateModifyOrderViewResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <TabControl SelectedIndex="{Binding Path=SelectedTabIndex, UpdateSourceTrigger=PropertyChanged}" TabStripPlacement="Left">
+        <TabItem Header="Market" IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <mah:MetroHeader
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        MinWidth="120"
+                        Margin="5"
+                        Header="Symbols">
+                        <ComboBox
+                            DisplayMemberPath="Name"
+                            IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}"
+                            ItemsSource="{Binding Path=Symbols, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding Path=MarketOrderModel.Symbol, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        MinWidth="100"
+                        Margin="5"
+                        Header="Trade Side">
+                        <ComboBox ItemsSource="{Binding Source={markupExtensions:EnumBindingMarkup {x:Type openApi:ProtoOATradeSide}}}" SelectedItem="{Binding Path=MarketOrderModel.TradeSide, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        MinWidth="100"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <TextBlock Margin="0,5" Text="Volume (Units)" />
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
+                            Interval="{Binding Path=MarketOrderModel.Symbol.Data.StepVolume, Converter={StaticResource MonetaryConverter}}"
+                            Maximum="{Binding Path=MarketOrderModel.Symbol.Data.MaxVolume, Converter={StaticResource MonetaryConverter}}"
+                            Minimum="{Binding Path=MarketOrderModel.Symbol.Data.MinVolume, Converter={StaticResource MonetaryConverter}}"
+                            NumericInputMode="Numbers"
+                            Value="{Binding Path=MarketOrderModel.Volume, Mode=TwoWay, Converter={StaticResource MonetaryConverter}}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        MinWidth="100"
+                        Margin="5"
+                        IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
+                        <mah:MetroHeader.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=MarketOrderModel.IsMarketRange, Mode=TwoWay}" />
+                                <TextBlock Margin="5" Text="Market Range" />
+                            </StackPanel>
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            x:Name="MarketRangeNumericUpDown"
+                            HideUpDownButtons="True"
+                            IsEnabled="{Binding Path=MarketOrderModel.IsMarketRange, UpdateSourceTrigger=PropertyChanged}"
+                            NumericInputMode="Decimal"
+                            ParsingNumberStyle="AllowDecimalPoint"
+                            Value="{Binding Path=MarketOrderModel.MarketRangeInPips, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=MarketOrderModel.IsStopLossEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Margin="5" Text="Stop Loss (Pips)" />
+                            </StackPanel>
+                        </mah:MetroHeader.Header>
+                        <StackPanel IsEnabled="{Binding Path=MarketOrderModel.IsStopLossEnabled, UpdateSourceTrigger=PropertyChanged}" Orientation="Vertical">
+                            <mah:NumericUpDown
+                                x:Name="StopLossInPipsNumericUpDown"
+                                HideUpDownButtons="True"
+                                NumericInputMode="Decimal"
+                                ParsingNumberStyle="AllowDecimalPoint"
+                                Value="{Binding Path=MarketOrderModel.StopLossInPips, Mode=TwoWay}" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=MarketOrderModel.IsTrailingStopLossEnabled, Mode=TwoWay}" />
+                                <TextBlock Margin="5" Text="Trailing Stop" />
+                            </StackPanel>
+                        </StackPanel>
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=MarketOrderModel.IsTakeProfitEnabled, Mode=TwoWay}" />
+                                <TextBlock Margin="5" Text="Take Profit (Pips)" />
+                            </StackPanel>
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            Height="{Binding Path=ActualHeight, ElementName=StopLossInPipsNumericUpDown}"
+                            VerticalAlignment="Top"
+                            HideUpDownButtons="True"
+                            IsEnabled="{Binding Path=MarketOrderModel.IsTakeProfitEnabled, UpdateSourceTrigger=PropertyChanged}"
+                            NumericInputMode="Decimal"
+                            ParsingNumberStyle="AllowDecimalPoint"
+                            Value="{Binding Path=MarketOrderModel.TakeProfitInPips, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <mah:MetroHeader Margin="5" Header="Comment">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=MarketOrderModel.Comment, Mode=TwoWay}" />
+                        </mah:MetroHeader>
+
+                        <mah:MetroHeader Margin="5" Header="Label">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=MarketOrderModel.Label, Mode=TwoWay}" />
+                        </mah:MetroHeader>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=PlaceMarketOrderCommand}"
+                            Content="Place Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeVisibilityConverter}}" />
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=ModifyMarketOrderCommand}"
+                            Content="Modify Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Pending" IsEnabled="{Binding Path=IsModifyingMarketOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <mah:MetroHeader
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        MinWidth="120"
+                        Margin="5"
+                        Header="Symbols">
+                        <ComboBox
+                            DisplayMemberPath="Name"
+                            IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}"
+                            ItemsSource="{Binding Path=Symbols, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding Path=PendingOrderSelectedSymbol, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        MinWidth="100"
+                        Margin="5"
+                        Header="Trade Side">
+                        <ComboBox
+                            IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}"
+                            ItemsSource="{Binding Source={markupExtensions:EnumBindingMarkup {x:Type openApi:ProtoOATradeSide}}}"
+                            SelectedItem="{Binding Path=PendingOrderModel.TradeSide, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        MinWidth="100"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <TextBlock Margin="0,5" Text="Volume (Units)" />
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
+                            Interval="{Binding Path=PendingOrderModel.Symbol.Data.StepVolume, Converter={StaticResource MonetaryConverter}}"
+                            Maximum="{Binding Path=PendingOrderModel.Symbol.Data.MaxVolume, Converter={StaticResource MonetaryConverter}}"
+                            Minimum="{Binding Path=PendingOrderModel.Symbol.Data.MinVolume, Converter={StaticResource MonetaryConverter}}"
+                            NumericInputMode="Numbers"
+                            Value="{Binding Path=PendingOrderModel.Volume, Mode=TwoWay, Converter={StaticResource MonetaryConverter}}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        MinWidth="100"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <TextBlock Margin="0,5" Text="Type" />
+                        </mah:MetroHeader.Header>
+                        <ComboBox
+                            Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
+                            IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}"
+                            ItemsSource="{Binding Source={markupExtensions:EnumBindingMarkup {x:Type enums:PendingOrderType}}}"
+                            SelectedItem="{Binding Path=PendingOrderModel.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        MinWidth="100"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <TextBlock Margin="0,5" Text="Price" />
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
+                            Interval="{Binding Path=PendingOrderModel.Symbol.PipSize}"
+                            Minimum="0"
+                            NumericInputMode="All"
+                            Value="{Binding Path=PendingOrderModel.Price, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        MinWidth="100"
+                        Margin="5"
+                        IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}">
+                        <mah:MetroHeader.Header>
+                            <TextBlock Margin="0,5" Text="Limit Range (Pips)" />
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            Height="{Binding Path=ActualHeight, ElementName=MarketRangeNumericUpDown}"
+                            Minimum="0"
+                            NumericInputMode="Decimal"
+                            Value="{Binding Path=PendingOrderModel.LimitRangeInPips, Mode=TwoWay}">
+                            <mah:NumericUpDown.Style>
+                                <Style TargetType="mah:NumericUpDown">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=PendingOrderModel.Type, UpdateSourceTrigger=PropertyChanged}" Value="StopLimit">
+                                            <Setter Property="IsEnabled" Value="True" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </mah:NumericUpDown.Style>
+                        </mah:NumericUpDown>
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=PendingOrderModel.IsExpiryEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Margin="5" Text="Expiry" />
+                            </StackPanel>
+                        </mah:MetroHeader.Header>
+                        <mah:DateTimePicker
+                            DisplayDateStart="{Binding Source={x:Static system:DateTime.Now}, Mode=OneWay}"
+                            IsEnabled="{Binding Path=PendingOrderModel.IsExpiryEnabled, UpdateSourceTrigger=PropertyChanged}"
+                            Orientation="Vertical"
+                            SelectedDateTime="{Binding Path=PendingOrderModel.ExpiryTime}" />
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=PendingOrderModel.IsStopLossEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Margin="5" Text="Stop Loss (Pips)" />
+                            </StackPanel>
+                        </mah:MetroHeader.Header>
+                        <StackPanel IsEnabled="{Binding Path=PendingOrderModel.IsStopLossEnabled, UpdateSourceTrigger=PropertyChanged}" Orientation="Vertical">
+                            <mah:NumericUpDown
+                                HideUpDownButtons="True"
+                                NumericInputMode="Decimal"
+                                ParsingNumberStyle="AllowDecimalPoint"
+                                Value="{Binding Path=PendingOrderModel.StopLossInPips, Mode=TwoWay}" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=PendingOrderModel.IsTrailingStopLossEnabled, Mode=TwoWay}" />
+                                <TextBlock Margin="5" Text="Trailing Stop" />
+                            </StackPanel>
+                        </StackPanel>
+                    </mah:MetroHeader>
+
+                    <mah:MetroHeader
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Margin="5">
+                        <mah:MetroHeader.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0,5" IsChecked="{Binding Path=PendingOrderModel.IsTakeProfitEnabled, Mode=TwoWay}" />
+                                <TextBlock Margin="5" Text="Take Profit (Pips)" />
+                            </StackPanel>
+                        </mah:MetroHeader.Header>
+                        <mah:NumericUpDown
+                            Height="{Binding Path=ActualHeight, ElementName=StopLossInPipsNumericUpDown}"
+                            VerticalAlignment="Top"
+                            HideUpDownButtons="True"
+                            IsEnabled="{Binding Path=PendingOrderModel.IsTakeProfitEnabled, UpdateSourceTrigger=PropertyChanged}"
+                            NumericInputMode="Decimal"
+                            ParsingNumberStyle="AllowDecimalPoint"
+                            Value="{Binding Path=PendingOrderModel.TakeProfitInPips, Mode=TwoWay}" />
+                    </mah:MetroHeader>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <mah:MetroHeader Margin="5" Header="Comment">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Comment, Mode=TwoWay}" />
+                        </mah:MetroHeader>
+
+                        <mah:MetroHeader Margin="5" Header="Label">
+                            <TextBox IsEnabled="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=PendingOrderModel.Label, Mode=TwoWay}" />
+                        </mah:MetroHeader>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=PlacePendingOrderCommand}"
+                            Content="Place Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToOppositeVisibilityConverter}}" />
+                        <Button
+                            Margin="5"
+                            Command="{Binding Path=ModifyPendingOrderCommand}"
+                            Content="Modify Order"
+                            Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"
+                            Visibility="{Binding Path=IsModifyingPendingOrder, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\lib\Chart.js\chart-3.0.0-beta.9.js" />
+    <Content Remove="wwwroot\lib\chartjs-adapter-luxon\chartjs-adapter-luxon-0.2.1.js" />
+    <Content Remove="wwwroot\lib\chartjs-chart-financial\chartjs-chart-financial.js" />
+    <Content Remove="wwwroot\lib\luxon\luxon-1.24.1.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\Chart.js\chart-3.0.0-beta.9.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\lib\chartjs-adapter-luxon\chartjs-adapter-luxon-0.2.1.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\lib\chartjs-chart-financial\chartjs-chart-financial.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\lib\luxon\luxon-1.24.1.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.7" PrivateAssets="all" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Demo.Shared\Samples.Shared.csproj" />
+    <ProjectReference Include="..\OpenAPI.Net\OpenAPI.Net.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+</Project>

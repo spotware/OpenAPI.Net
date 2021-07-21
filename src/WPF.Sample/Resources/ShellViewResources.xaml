@@ -1,0 +1,42 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Trading.UI.Sample.Controls"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <DataTemplate x:Key="AccountTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="B" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style x:Key="AccountIsLiveTextBlockStyle" TargetType="controls:RectangleTextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsLive}" Value="True">
+                            <Setter Property="BackgroundColor" Value="Green" />
+                            <Setter Property="Text" Value="Live" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsLive}" Value="False">
+                            <Setter Property="BackgroundColor" Value="Red" />
+                            <Setter Property="Text" Value="Demo" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+
+            <controls:RectangleTextBlock
+                Grid.Column="0"
+                Margin="1"
+                Style="{StaticResource AccountIsLiveTextBlockStyle}" />
+
+            <controls:RectangleTextBlock
+                Grid.Column="1"
+                Margin="1"
+                BackgroundColor="Brown"
+                Text="{Binding Path=TraderLogin}"
+                TextHorizontalAlignment="Left" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
