@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForms.Sample", "src\WinF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.Sample", "src\ASP.NET.Sample\ASP.NET.Sample.csproj", "{1EC058DD-6106-42E4-B665-2074A89E3C2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Shared", "src\Demo.Shared\Samples.Shared.csproj", "{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Shared", "src\Samples.Shared\Samples.Shared.csproj", "{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
