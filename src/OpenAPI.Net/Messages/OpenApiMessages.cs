@@ -171,157 +171,165 @@ public static partial class OpenApiMessagesReflection {
           "c3RSZXMSQAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5",
           "cGU6FlBST1RPX09BX0RFQUxfTElTVF9SRVMSGwoTY3RpZFRyYWRlckFjY291",
           "bnRJZBgCIAIoAxIaCgRkZWFsGAMgAygLMgwuUHJvdG9PQURlYWwSDwoHaGFz",
-          "TW9yZRgEIAIoCCKhAQoYUHJvdG9PQUV4cGVjdGVkTWFyZ2luUmVxEkYKC3Bh",
+          "TW9yZRgEIAIoCCKhAQoTUHJvdG9PQU9yZGVyTGlzdFJlcRJBCgtwYXlsb2Fk",
+          "VHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZToXUFJPVE9fT0FfT1JE",
+          "RVJfTElTVF9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIVCg1m",
+          "cm9tVGltZXN0YW1wGAMgAigDEhMKC3RvVGltZXN0YW1wGAQgAigDIqQBChNQ",
+          "cm90b09BT3JkZXJMaXN0UmVzEkEKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
+          "dG9PQVBheWxvYWRUeXBlOhdQUk9UT19PQV9PUkRFUl9MSVNUX1JFUxIbChNj",
+          "dGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhwKBW9yZGVyGAMgAygLMg0uUHJv",
+          "dG9PQU9yZGVyEg8KB2hhc01vcmUYBCACKAgioQEKGFByb3RvT0FFeHBlY3Rl",
+          "ZE1hcmdpblJlcRJGCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXls",
+          "b2FkVHlwZTocUFJPVE9fT0FfRVhQRUNURURfTUFSR0lOX1JFURIbChNjdGlk",
+          "VHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5bWJvbElkGAMgAigDEg4KBnZv",
+          "bHVtZRgEIAMoAyK8AQoYUHJvdG9PQUV4cGVjdGVkTWFyZ2luUmVzEkYKC3Bh",
           "eWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhxQUk9UT19P",
-          "QV9FWFBFQ1RFRF9NQVJHSU5fUkVREhsKE2N0aWRUcmFkZXJBY2NvdW50SWQY",
-          "AiACKAMSEAoIc3ltYm9sSWQYAyACKAMSDgoGdm9sdW1lGAQgAygDIrwBChhQ",
-          "cm90b09BRXhwZWN0ZWRNYXJnaW5SZXMSRgoLcGF5bG9hZFR5cGUYASABKA4y",
-          "Ey5Qcm90b09BUGF5bG9hZFR5cGU6HFBST1RPX09BX0VYUEVDVEVEX01BUkdJ",
-          "Tl9SRVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxImCgZtYXJnaW4Y",
-          "AyADKAsyFi5Qcm90b09BRXhwZWN0ZWRNYXJnaW4SEwoLbW9uZXlEaWdpdHMY",
-          "BCABKA0ivgEKGVByb3RvT0FNYXJnaW5DaGFuZ2VkRXZlbnQSRwoLcGF5bG9h",
-          "ZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6HVBST1RPX09BX01B",
-          "UkdJTl9DSEFOR0VEX0VWRU5UEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiAC",
-          "KAMSEgoKcG9zaXRpb25JZBgDIAIoBBISCgp1c2VkTWFyZ2luGAQgAigEEhMK",
-          "C21vbmV5RGlnaXRzGAUgASgNIrcBCh1Qcm90b09BQ2FzaEZsb3dIaXN0b3J5",
-          "TGlzdFJlcRJNCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2Fk",
-          "VHlwZTojUFJPVE9fT0FfQ0FTSF9GTE9XX0hJU1RPUllfTElTVF9SRVESGwoT",
-          "Y3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIVCg1mcm9tVGltZXN0YW1wGAMg",
-          "AigDEhMKC3RvVGltZXN0YW1wGAQgAigDIr0BCh1Qcm90b09BQ2FzaEZsb3dI",
-          "aXN0b3J5TGlzdFJlcxJNCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQ",
-          "YXlsb2FkVHlwZTojUFJPVE9fT0FfQ0FTSF9GTE9XX0hJU1RPUllfTElTVF9S",
-          "RVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIwCg9kZXBvc2l0V2l0",
-          "aGRyYXcYAyADKAsyFy5Qcm90b09BRGVwb3NpdFdpdGhkcmF3IpEBCiVQcm90",
-          "b09BR2V0QWNjb3VudExpc3RCeUFjY2Vzc1Rva2VuUmVxElMKC3BheWxvYWRU",
-          "eXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOilQUk9UT19PQV9HRVRf",
-          "QUNDT1VOVFNfQllfQUNDRVNTX1RPS0VOX1JFURITCgthY2Nlc3NUb2tlbhgC",
-          "IAIoCSL/AQolUHJvdG9PQUdldEFjY291bnRMaXN0QnlBY2Nlc3NUb2tlblJl",
-          "cxJTCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTop",
-          "UFJPVE9fT0FfR0VUX0FDQ09VTlRTX0JZX0FDQ0VTU19UT0tFTl9SRVMSEwoL",
-          "YWNjZXNzVG9rZW4YAiACKAkSNgoPcGVybWlzc2lvblNjb3BlGAMgASgOMh0u",
-          "UHJvdG9PQUNsaWVudFBlcm1pc3Npb25TY29wZRI0ChFjdGlkVHJhZGVyQWNj",
-          "b3VudBgEIAMoCzIZLlByb3RvT0FDdGlkVHJhZGVyQWNjb3VudCJ0ChZQcm90",
-          "b09BUmVmcmVzaFRva2VuUmVxEkQKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
-          "dG9PQVBheWxvYWRUeXBlOhpQUk9UT19PQV9SRUZSRVNIX1RPS0VOX1JFURIU",
-          "CgxyZWZyZXNoVG9rZW4YAiACKAkirwEKFlByb3RvT0FSZWZyZXNoVG9rZW5S",
-          "ZXMSRAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6",
-          "GlBST1RPX09BX1JFRlJFU0hfVE9LRU5fUkVTEhMKC2FjY2Vzc1Rva2VuGAIg",
-          "AigJEhEKCXRva2VuVHlwZRgDIAIoCRIRCglleHBpcmVzSW4YBCACKAMSFAoM",
-          "cmVmcmVzaFRva2VuGAUgAigJIpEBChhQcm90b09BU3Vic2NyaWJlU3BvdHNS",
-          "ZXESRgoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6",
-          "HFBST1RPX09BX1NVQlNDUklCRV9TUE9UU19SRVESGwoTY3RpZFRyYWRlckFj",
-          "Y291bnRJZBgCIAIoAxIQCghzeW1ib2xJZBgDIAMoAyJ/ChhQcm90b09BU3Vi",
-          "c2NyaWJlU3BvdHNSZXMSRgoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09B",
-          "UGF5bG9hZFR5cGU6HFBST1RPX09BX1NVQlNDUklCRV9TUE9UU19SRVMSGwoT",
-          "Y3RpZFRyYWRlckFjY291bnRJZBgCIAIoAyKVAQoaUHJvdG9PQVVuc3Vic2Ny",
-          "aWJlU3BvdHNSZXESSAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5",
-          "bG9hZFR5cGU6HlBST1RPX09BX1VOU1VCU0NSSUJFX1NQT1RTX1JFURIbChNj",
-          "dGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5bWJvbElkGAMgAygDIoMB",
-          "ChpQcm90b09BVW5zdWJzY3JpYmVTcG90c1JlcxJICgtwYXlsb2FkVHlwZRgB",
-          "IAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZToeUFJPVE9fT0FfVU5TVUJTQ1JJ",
-          "QkVfU1BPVFNfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMi1AEK",
-          "EFByb3RvT0FTcG90RXZlbnQSPQoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90",
-          "b09BUGF5bG9hZFR5cGU6E1BST1RPX09BX1NQT1RfRVZFTlQSGwoTY3RpZFRy",
-          "YWRlckFjY291bnRJZBgCIAIoAxIQCghzeW1ib2xJZBgDIAIoAxILCgNiaWQY",
-          "BCABKAQSCwoDYXNrGAUgASgEEiIKCHRyZW5kYmFyGAYgAygLMhAuUHJvdG9P",
-          "QVRyZW5kYmFyEhQKDHNlc3Npb25DbG9zZRgHIAEoBCLIAQofUHJvdG9PQVN1",
-          "YnNjcmliZUxpdmVUcmVuZGJhclJlcRJOCgtwYXlsb2FkVHlwZRgBIAEoDjIT",
-          "LlByb3RvT0FQYXlsb2FkVHlwZTokUFJPVE9fT0FfU1VCU0NSSUJFX0xJVkVf",
-          "VFJFTkRCQVJfUkVREhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSJgoG",
-          "cGVyaW9kGAMgAigOMhYuUHJvdG9PQVRyZW5kYmFyUGVyaW9kEhAKCHN5bWJv",
-          "bElkGAQgAigDIo4BCh9Qcm90b09BU3Vic2NyaWJlTGl2ZVRyZW5kYmFyUmVz",
-          "Ek4KC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiRQ",
-          "Uk9UT19PQV9TVUJTQ1JJQkVfTElWRV9UUkVOREJBUl9SRVMSGwoTY3RpZFRy",
-          "YWRlckFjY291bnRJZBgCIAIoAyLMAQohUHJvdG9PQVVuc3Vic2NyaWJlTGl2",
-          "ZVRyZW5kYmFyUmVxElAKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBh",
-          "eWxvYWRUeXBlOiZQUk9UT19PQV9VTlNVQlNDUklCRV9MSVZFX1RSRU5EQkFS",
-          "X1JFURIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDEiYKBnBlcmlvZBgD",
-          "IAIoDjIWLlByb3RvT0FUcmVuZGJhclBlcmlvZBIQCghzeW1ib2xJZBgEIAIo",
-          "AyKSAQohUHJvdG9PQVVuc3Vic2NyaWJlTGl2ZVRyZW5kYmFyUmVzElAKC3Bh",
-          "eWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiZQUk9UT19P",
-          "QV9VTlNVQlNDUklCRV9MSVZFX1RSRU5EQkFSX1JFUxIbChNjdGlkVHJhZGVy",
-          "QWNjb3VudElkGAIgAigDIuEBChZQcm90b09BR2V0VHJlbmRiYXJzUmVxEkQK",
-          "C3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhpQUk9U",
-          "T19PQV9HRVRfVFJFTkRCQVJTX1JFURIbChNjdGlkVHJhZGVyQWNjb3VudElk",
-          "GAIgAigDEhUKDWZyb21UaW1lc3RhbXAYAyACKAMSEwoLdG9UaW1lc3RhbXAY",
-          "BCACKAMSJgoGcGVyaW9kGAUgAigOMhYuUHJvdG9PQVRyZW5kYmFyUGVyaW9k",
-          "EhAKCHN5bWJvbElkGAYgAigDIuwBChZQcm90b09BR2V0VHJlbmRiYXJzUmVz",
-          "EkQKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhpQ",
-          "Uk9UT19PQV9HRVRfVFJFTkRCQVJTX1JFUxIbChNjdGlkVHJhZGVyQWNjb3Vu",
-          "dElkGAIgAigDEiYKBnBlcmlvZBgDIAIoDjIWLlByb3RvT0FUcmVuZGJhclBl",
-          "cmlvZBIRCgl0aW1lc3RhbXAYBCACKAMSIgoIdHJlbmRiYXIYBSADKAsyEC5Q",
-          "cm90b09BVHJlbmRiYXISEAoIc3ltYm9sSWQYBiABKAMi2AEKFVByb3RvT0FH",
-          "ZXRUaWNrRGF0YVJlcRJDCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQ",
-          "YXlsb2FkVHlwZToZUFJPVE9fT0FfR0VUX1RJQ0tEQVRBX1JFURIbChNjdGlk",
-          "VHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5bWJvbElkGAMgAigDEh8KBHR5",
-          "cGUYBCACKA4yES5Qcm90b09BUXVvdGVUeXBlEhUKDWZyb21UaW1lc3RhbXAY",
-          "BSACKAMSEwoLdG9UaW1lc3RhbXAYBiACKAMirgEKFVByb3RvT0FHZXRUaWNr",
-          "RGF0YVJlcxJDCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2Fk",
-          "VHlwZToZUFJPVE9fT0FfR0VUX1RJQ0tEQVRBX1JFUxIbChNjdGlkVHJhZGVy",
-          "QWNjb3VudElkGAIgAigDEiIKCHRpY2tEYXRhGAMgAygLMhAuUHJvdG9PQVRp",
-          "Y2tEYXRhEg8KB2hhc01vcmUYBCACKAgiiAEKH1Byb3RvT0FHZXRDdGlkUHJv",
-          "ZmlsZUJ5VG9rZW5SZXESUAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09B",
-          "UGF5bG9hZFR5cGU6JlBST1RPX09BX0dFVF9DVElEX1BST0ZJTEVfQllfVE9L",
-          "RU5fUkVREhMKC2FjY2Vzc1Rva2VuGAIgAigJIpkBCh9Qcm90b09BR2V0Q3Rp",
-          "ZFByb2ZpbGVCeVRva2VuUmVzElAKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
-          "dG9PQVBheWxvYWRUeXBlOiZQUk9UT19PQV9HRVRfQ1RJRF9QUk9GSUxFX0JZ",
-          "X1RPS0VOX1JFUxIkCgdwcm9maWxlGAIgAigLMhMuUHJvdG9PQUN0aWRQcm9m",
-          "aWxlIsQBChFQcm90b09BRGVwdGhFdmVudBI+CgtwYXlsb2FkVHlwZRgBIAEo",
-          "DjITLlByb3RvT0FQYXlsb2FkVHlwZToUUFJPVE9fT0FfREVQVEhfRVZFTlQS",
-          "GwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIQCghzeW1ib2xJZBgDIAIo",
-          "BBIlCgluZXdRdW90ZXMYBCADKAsyEi5Qcm90b09BRGVwdGhRdW90ZRIZCg1k",
-          "ZWxldGVkUXVvdGVzGAUgAygEQgIQASKeAQoeUHJvdG9PQVN1YnNjcmliZURl",
-          "cHRoUXVvdGVzUmVxEk0KC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBh",
-          "eWxvYWRUeXBlOiNQUk9UT19PQV9TVUJTQ1JJQkVfREVQVEhfUVVPVEVTX1JF",
-          "URIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5bWJvbElkGAMg",
-          "AygDIowBCh5Qcm90b09BU3Vic2NyaWJlRGVwdGhRdW90ZXNSZXMSTQoLcGF5",
-          "bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6I1BST1RPX09B",
-          "X1NVQlNDUklCRV9ERVBUSF9RVU9URVNfUkVTEhsKE2N0aWRUcmFkZXJBY2Nv",
-          "dW50SWQYAiACKAMiogEKIFByb3RvT0FVbnN1YnNjcmliZURlcHRoUXVvdGVz",
-          "UmVxEk8KC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBl",
-          "OiVQUk9UT19PQV9VTlNVQlNDUklCRV9ERVBUSF9RVU9URVNfUkVREhsKE2N0",
-          "aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSEAoIc3ltYm9sSWQYAyADKAMikAEK",
-          "IFByb3RvT0FVbnN1YnNjcmliZURlcHRoUXVvdGVzUmVzEk8KC3BheWxvYWRU",
-          "eXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiVQUk9UT19PQV9VTlNV",
-          "QlNDUklCRV9ERVBUSF9RVU9URVNfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50",
-          "SWQYAiACKAMigwEKHFByb3RvT0FTeW1ib2xDYXRlZ29yeUxpc3RSZXESRgoL",
-          "cGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6HFBST1RP",
-          "X09BX1NZTUJPTF9DQVRFR09SWV9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJ",
-          "ZBgCIAIoAyKzAQocUHJvdG9PQVN5bWJvbENhdGVnb3J5TGlzdFJlcxJGCgtw",
-          "YXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTocUFJPVE9f",
-          "T0FfU1lNQk9MX0NBVEVHT1JZX1JFUxIbChNjdGlkVHJhZGVyQWNjb3VudElk",
-          "GAIgAigDEi4KDnN5bWJvbENhdGVnb3J5GAMgAygLMhYuUHJvdG9PQVN5bWJv",
-          "bENhdGVnb3J5In0KF1Byb3RvT0FBY2NvdW50TG9nb3V0UmVxEkUKC3BheWxv",
-          "YWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhtQUk9UT19PQV9B",
-          "Q0NPVU5UX0xPR09VVF9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIo",
-          "AyJ9ChdQcm90b09BQWNjb3VudExvZ291dFJlcxJFCgtwYXlsb2FkVHlwZRgB",
-          "IAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTobUFJPVE9fT0FfQUNDT1VOVF9M",
-          "T0dPVVRfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMiiQEKHVBy",
-          "b3RvT0FBY2NvdW50RGlzY29ubmVjdEV2ZW50EksKC3BheWxvYWRUeXBlGAEg",
-          "ASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiFQUk9UT19PQV9BQ0NPVU5UX0RJ",
-          "U0NPTk5FQ1RfRVZFTlQSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAyKA",
-          "AQoYUHJvdG9PQU1hcmdpbkNhbGxMaXN0UmVxEkcKC3BheWxvYWRUeXBlGAEg",
-          "ASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh1QUk9UT19PQV9NQVJHSU5fQ0FM",
-          "TF9MSVNUX1JFURIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDIosBChhQ",
-          "cm90b09BTWFyZ2luQ2FsbExpc3RSZXMSRwoLcGF5bG9hZFR5cGUYASABKA4y",
-          "Ey5Qcm90b09BUGF5bG9hZFR5cGU6HVBST1RPX09BX01BUkdJTl9DQUxMX0xJ",
-          "U1RfUkVTEiYKCm1hcmdpbkNhbGwYAiADKAsyEi5Qcm90b09BTWFyZ2luQ2Fs",
-          "bCKsAQoaUHJvdG9PQU1hcmdpbkNhbGxVcGRhdGVSZXESSQoLcGF5bG9hZFR5",
-          "cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6H1BST1RPX09BX01BUkdJ",
-          "Tl9DQUxMX1VQREFURV9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIo",
-          "AxImCgptYXJnaW5DYWxsGAMgAigLMhIuUHJvdG9PQU1hcmdpbkNhbGwiZwoa",
-          "UHJvdG9PQU1hcmdpbkNhbGxVcGRhdGVSZXMSSQoLcGF5bG9hZFR5cGUYASAB",
-          "KA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6H1BST1RPX09BX01BUkdJTl9DQUxM",
-          "X1VQREFURV9SRVMisAEKHFByb3RvT0FNYXJnaW5DYWxsVXBkYXRlRXZlbnQS",
-          "SwoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6IVBS",
-          "T1RPX09BX01BUkdJTl9DQUxMX1VQREFURV9FVkVOVBIbChNjdGlkVHJhZGVy",
-          "QWNjb3VudElkGAIgAigDEiYKCm1hcmdpbkNhbGwYAyACKAsyEi5Qcm90b09B",
-          "TWFyZ2luQ2FsbCKyAQodUHJvdG9PQU1hcmdpbkNhbGxUcmlnZ2VyRXZlbnQS",
-          "TAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6IlBS",
-          "T1RPX09BX01BUkdJTl9DQUxMX1RSSUdHRVJfRVZFTlQSGwoTY3RpZFRyYWRl",
-          "ckFjY291bnRJZBgCIAIoAxImCgptYXJnaW5DYWxsGAMgAigLMhIuUHJvdG9P",
-          "QU1hcmdpbkNhbGxCQgofY29tLnh0cmFkZXIucHJvdG9jb2wub3BlbmFwaS52",
-          "MkIaQ29udGFpbmVyT3BlbkFwaVYyTWVzc2FnZXNQAaABAQ=="));
+          "QV9FWFBFQ1RFRF9NQVJHSU5fUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQY",
+          "AiACKAMSJgoGbWFyZ2luGAMgAygLMhYuUHJvdG9PQUV4cGVjdGVkTWFyZ2lu",
+          "EhMKC21vbmV5RGlnaXRzGAQgASgNIr4BChlQcm90b09BTWFyZ2luQ2hhbmdl",
+          "ZEV2ZW50EkcKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRU",
+          "eXBlOh1QUk9UT19PQV9NQVJHSU5fQ0hBTkdFRF9FVkVOVBIbChNjdGlkVHJh",
+          "ZGVyQWNjb3VudElkGAIgAigDEhIKCnBvc2l0aW9uSWQYAyACKAQSEgoKdXNl",
+          "ZE1hcmdpbhgEIAIoBBITCgttb25leURpZ2l0cxgFIAEoDSK3AQodUHJvdG9P",
+          "QUNhc2hGbG93SGlzdG9yeUxpc3RSZXESTQoLcGF5bG9hZFR5cGUYASABKA4y",
+          "Ey5Qcm90b09BUGF5bG9hZFR5cGU6I1BST1RPX09BX0NBU0hfRkxPV19ISVNU",
+          "T1JZX0xJU1RfUkVREhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSFQoN",
+          "ZnJvbVRpbWVzdGFtcBgDIAIoAxITCgt0b1RpbWVzdGFtcBgEIAIoAyK9AQod",
+          "UHJvdG9PQUNhc2hGbG93SGlzdG9yeUxpc3RSZXMSTQoLcGF5bG9hZFR5cGUY",
+          "ASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6I1BST1RPX09BX0NBU0hfRkxP",
+          "V19ISVNUT1JZX0xJU1RfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiAC",
+          "KAMSMAoPZGVwb3NpdFdpdGhkcmF3GAMgAygLMhcuUHJvdG9PQURlcG9zaXRX",
+          "aXRoZHJhdyKRAQolUHJvdG9PQUdldEFjY291bnRMaXN0QnlBY2Nlc3NUb2tl",
+          "blJlcRJTCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlw",
+          "ZTopUFJPVE9fT0FfR0VUX0FDQ09VTlRTX0JZX0FDQ0VTU19UT0tFTl9SRVES",
+          "EwoLYWNjZXNzVG9rZW4YAiACKAki/wEKJVByb3RvT0FHZXRBY2NvdW50TGlz",
+          "dEJ5QWNjZXNzVG9rZW5SZXMSUwoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90",
+          "b09BUGF5bG9hZFR5cGU6KVBST1RPX09BX0dFVF9BQ0NPVU5UU19CWV9BQ0NF",
+          "U1NfVE9LRU5fUkVTEhMKC2FjY2Vzc1Rva2VuGAIgAigJEjYKD3Blcm1pc3Np",
+          "b25TY29wZRgDIAEoDjIdLlByb3RvT0FDbGllbnRQZXJtaXNzaW9uU2NvcGUS",
+          "NAoRY3RpZFRyYWRlckFjY291bnQYBCADKAsyGS5Qcm90b09BQ3RpZFRyYWRl",
+          "ckFjY291bnQidAoWUHJvdG9PQVJlZnJlc2hUb2tlblJlcRJECgtwYXlsb2Fk",
+          "VHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZToaUFJPVE9fT0FfUkVG",
+          "UkVTSF9UT0tFTl9SRVESFAoMcmVmcmVzaFRva2VuGAIgAigJIq8BChZQcm90",
+          "b09BUmVmcmVzaFRva2VuUmVzEkQKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
+          "dG9PQVBheWxvYWRUeXBlOhpQUk9UT19PQV9SRUZSRVNIX1RPS0VOX1JFUxIT",
+          "CgthY2Nlc3NUb2tlbhgCIAIoCRIRCgl0b2tlblR5cGUYAyACKAkSEQoJZXhw",
+          "aXJlc0luGAQgAigDEhQKDHJlZnJlc2hUb2tlbhgFIAIoCSKRAQoYUHJvdG9P",
+          "QVN1YnNjcmliZVNwb3RzUmVxEkYKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
+          "dG9PQVBheWxvYWRUeXBlOhxQUk9UT19PQV9TVUJTQ1JJQkVfU1BPVFNfUkVR",
+          "EhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSEAoIc3ltYm9sSWQYAyAD",
+          "KAMifwoYUHJvdG9PQVN1YnNjcmliZVNwb3RzUmVzEkYKC3BheWxvYWRUeXBl",
+          "GAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhxQUk9UT19PQV9TVUJTQ1JJ",
+          "QkVfU1BPVFNfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMilQEK",
+          "GlByb3RvT0FVbnN1YnNjcmliZVNwb3RzUmVxEkgKC3BheWxvYWRUeXBlGAEg",
+          "ASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh5QUk9UT19PQV9VTlNVQlNDUklC",
+          "RV9TUE9UU19SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIQCghz",
+          "eW1ib2xJZBgDIAMoAyKDAQoaUHJvdG9PQVVuc3Vic2NyaWJlU3BvdHNSZXMS",
+          "SAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6HlBS",
+          "T1RPX09BX1VOU1VCU0NSSUJFX1NQT1RTX1JFUxIbChNjdGlkVHJhZGVyQWNj",
+          "b3VudElkGAIgAigDItQBChBQcm90b09BU3BvdEV2ZW50Ej0KC3BheWxvYWRU",
+          "eXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhNQUk9UT19PQV9TUE9U",
+          "X0VWRU5UEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSEAoIc3ltYm9s",
+          "SWQYAyACKAMSCwoDYmlkGAQgASgEEgsKA2FzaxgFIAEoBBIiCgh0cmVuZGJh",
+          "chgGIAMoCzIQLlByb3RvT0FUcmVuZGJhchIUCgxzZXNzaW9uQ2xvc2UYByAB",
+          "KAQiyAEKH1Byb3RvT0FTdWJzY3JpYmVMaXZlVHJlbmRiYXJSZXESTgoLcGF5",
+          "bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6JFBST1RPX09B",
+          "X1NVQlNDUklCRV9MSVZFX1RSRU5EQkFSX1JFURIbChNjdGlkVHJhZGVyQWNj",
+          "b3VudElkGAIgAigDEiYKBnBlcmlvZBgDIAIoDjIWLlByb3RvT0FUcmVuZGJh",
+          "clBlcmlvZBIQCghzeW1ib2xJZBgEIAIoAyKOAQofUHJvdG9PQVN1YnNjcmli",
+          "ZUxpdmVUcmVuZGJhclJlcxJOCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3Rv",
+          "T0FQYXlsb2FkVHlwZTokUFJPVE9fT0FfU1VCU0NSSUJFX0xJVkVfVFJFTkRC",
+          "QVJfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMizAEKIVByb3Rv",
+          "T0FVbnN1YnNjcmliZUxpdmVUcmVuZGJhclJlcRJQCgtwYXlsb2FkVHlwZRgB",
+          "IAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTomUFJPVE9fT0FfVU5TVUJTQ1JJ",
+          "QkVfTElWRV9UUkVOREJBUl9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgC",
+          "IAIoAxImCgZwZXJpb2QYAyACKA4yFi5Qcm90b09BVHJlbmRiYXJQZXJpb2QS",
+          "EAoIc3ltYm9sSWQYBCACKAMikgEKIVByb3RvT0FVbnN1YnNjcmliZUxpdmVU",
+          "cmVuZGJhclJlcxJQCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXls",
+          "b2FkVHlwZTomUFJPVE9fT0FfVU5TVUJTQ1JJQkVfTElWRV9UUkVOREJBUl9S",
+          "RVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAyLhAQoWUHJvdG9PQUdl",
+          "dFRyZW5kYmFyc1JlcRJECgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQ",
+          "YXlsb2FkVHlwZToaUFJPVE9fT0FfR0VUX1RSRU5EQkFSU19SRVESGwoTY3Rp",
+          "ZFRyYWRlckFjY291bnRJZBgCIAIoAxIVCg1mcm9tVGltZXN0YW1wGAMgAigD",
+          "EhMKC3RvVGltZXN0YW1wGAQgAigDEiYKBnBlcmlvZBgFIAIoDjIWLlByb3Rv",
+          "T0FUcmVuZGJhclBlcmlvZBIQCghzeW1ib2xJZBgGIAIoAyLsAQoWUHJvdG9P",
+          "QUdldFRyZW5kYmFyc1JlcxJECgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3Rv",
+          "T0FQYXlsb2FkVHlwZToaUFJPVE9fT0FfR0VUX1RSRU5EQkFSU19SRVMSGwoT",
+          "Y3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxImCgZwZXJpb2QYAyACKA4yFi5Q",
+          "cm90b09BVHJlbmRiYXJQZXJpb2QSEQoJdGltZXN0YW1wGAQgAigDEiIKCHRy",
+          "ZW5kYmFyGAUgAygLMhAuUHJvdG9PQVRyZW5kYmFyEhAKCHN5bWJvbElkGAYg",
+          "ASgDItgBChVQcm90b09BR2V0VGlja0RhdGFSZXESQwoLcGF5bG9hZFR5cGUY",
+          "ASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6GVBST1RPX09BX0dFVF9USUNL",
+          "REFUQV9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIQCghzeW1i",
+          "b2xJZBgDIAIoAxIfCgR0eXBlGAQgAigOMhEuUHJvdG9PQVF1b3RlVHlwZRIV",
+          "Cg1mcm9tVGltZXN0YW1wGAUgAigDEhMKC3RvVGltZXN0YW1wGAYgAigDIq4B",
+          "ChVQcm90b09BR2V0VGlja0RhdGFSZXMSQwoLcGF5bG9hZFR5cGUYASABKA4y",
+          "Ey5Qcm90b09BUGF5bG9hZFR5cGU6GVBST1RPX09BX0dFVF9USUNLREFUQV9S",
+          "RVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIiCgh0aWNrRGF0YRgD",
+          "IAMoCzIQLlByb3RvT0FUaWNrRGF0YRIPCgdoYXNNb3JlGAQgAigIIogBCh9Q",
+          "cm90b09BR2V0Q3RpZFByb2ZpbGVCeVRva2VuUmVxElAKC3BheWxvYWRUeXBl",
+          "GAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiZQUk9UT19PQV9HRVRfQ1RJ",
+          "RF9QUk9GSUxFX0JZX1RPS0VOX1JFURITCgthY2Nlc3NUb2tlbhgCIAIoCSKZ",
+          "AQofUHJvdG9PQUdldEN0aWRQcm9maWxlQnlUb2tlblJlcxJQCgtwYXlsb2Fk",
+          "VHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTomUFJPVE9fT0FfR0VU",
+          "X0NUSURfUFJPRklMRV9CWV9UT0tFTl9SRVMSJAoHcHJvZmlsZRgCIAIoCzIT",
+          "LlByb3RvT0FDdGlkUHJvZmlsZSLEAQoRUHJvdG9PQURlcHRoRXZlbnQSPgoL",
+          "cGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6FFBST1RP",
+          "X09BX0RFUFRIX0VWRU5UEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMS",
+          "EAoIc3ltYm9sSWQYAyACKAQSJQoJbmV3UXVvdGVzGAQgAygLMhIuUHJvdG9P",
+          "QURlcHRoUXVvdGUSGQoNZGVsZXRlZFF1b3RlcxgFIAMoBEICEAEingEKHlBy",
+          "b3RvT0FTdWJzY3JpYmVEZXB0aFF1b3Rlc1JlcRJNCgtwYXlsb2FkVHlwZRgB",
+          "IAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTojUFJPVE9fT0FfU1VCU0NSSUJF",
+          "X0RFUFRIX1FVT1RFU19SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIo",
+          "AxIQCghzeW1ib2xJZBgDIAMoAyKMAQoeUHJvdG9PQVN1YnNjcmliZURlcHRo",
+          "UXVvdGVzUmVzEk0KC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxv",
+          "YWRUeXBlOiNQUk9UT19PQV9TVUJTQ1JJQkVfREVQVEhfUVVPVEVTX1JFUxIb",
+          "ChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDIqIBCiBQcm90b09BVW5zdWJz",
+          "Y3JpYmVEZXB0aFF1b3Rlc1JlcRJPCgtwYXlsb2FkVHlwZRgBIAEoDjITLlBy",
+          "b3RvT0FQYXlsb2FkVHlwZTolUFJPVE9fT0FfVU5TVUJTQ1JJQkVfREVQVEhf",
+          "UVVPVEVTX1JFURIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5",
+          "bWJvbElkGAMgAygDIpABCiBQcm90b09BVW5zdWJzY3JpYmVEZXB0aFF1b3Rl",
+          "c1JlcxJPCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlw",
+          "ZTolUFJPVE9fT0FfVU5TVUJTQ1JJQkVfREVQVEhfUVVPVEVTX1JFUxIbChNj",
+          "dGlkVHJhZGVyQWNjb3VudElkGAIgAigDIoMBChxQcm90b09BU3ltYm9sQ2F0",
+          "ZWdvcnlMaXN0UmVxEkYKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBh",
+          "eWxvYWRUeXBlOhxQUk9UT19PQV9TWU1CT0xfQ0FURUdPUllfUkVREhsKE2N0",
+          "aWRUcmFkZXJBY2NvdW50SWQYAiACKAMiswEKHFByb3RvT0FTeW1ib2xDYXRl",
+          "Z29yeUxpc3RSZXMSRgoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5",
+          "bG9hZFR5cGU6HFBST1RPX09BX1NZTUJPTF9DQVRFR09SWV9SRVMSGwoTY3Rp",
+          "ZFRyYWRlckFjY291bnRJZBgCIAIoAxIuCg5zeW1ib2xDYXRlZ29yeRgDIAMo",
+          "CzIWLlByb3RvT0FTeW1ib2xDYXRlZ29yeSJ9ChdQcm90b09BQWNjb3VudExv",
+          "Z291dFJlcRJFCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2Fk",
+          "VHlwZTobUFJPVE9fT0FfQUNDT1VOVF9MT0dPVVRfUkVREhsKE2N0aWRUcmFk",
+          "ZXJBY2NvdW50SWQYAiACKAMifQoXUHJvdG9PQUFjY291bnRMb2dvdXRSZXMS",
+          "RQoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6G1BS",
+          "T1RPX09BX0FDQ09VTlRfTE9HT1VUX1JFUxIbChNjdGlkVHJhZGVyQWNjb3Vu",
+          "dElkGAIgAigDIokBCh1Qcm90b09BQWNjb3VudERpc2Nvbm5lY3RFdmVudBJL",
+          "CgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTohUFJP",
+          "VE9fT0FfQUNDT1VOVF9ESVNDT05ORUNUX0VWRU5UEhsKE2N0aWRUcmFkZXJB",
+          "Y2NvdW50SWQYAiACKAMigAEKGFByb3RvT0FNYXJnaW5DYWxsTGlzdFJlcRJH",
+          "CgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTodUFJP",
+          "VE9fT0FfTUFSR0lOX0NBTExfTElTVF9SRVESGwoTY3RpZFRyYWRlckFjY291",
+          "bnRJZBgCIAIoAyKLAQoYUHJvdG9PQU1hcmdpbkNhbGxMaXN0UmVzEkcKC3Bh",
+          "eWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh1QUk9UT19P",
+          "QV9NQVJHSU5fQ0FMTF9MSVNUX1JFUxImCgptYXJnaW5DYWxsGAIgAygLMhIu",
+          "UHJvdG9PQU1hcmdpbkNhbGwirAEKGlByb3RvT0FNYXJnaW5DYWxsVXBkYXRl",
+          "UmVxEkkKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBl",
+          "Oh9QUk9UT19PQV9NQVJHSU5fQ0FMTF9VUERBVEVfUkVREhsKE2N0aWRUcmFk",
+          "ZXJBY2NvdW50SWQYAiACKAMSJgoKbWFyZ2luQ2FsbBgDIAIoCzISLlByb3Rv",
+          "T0FNYXJnaW5DYWxsImcKGlByb3RvT0FNYXJnaW5DYWxsVXBkYXRlUmVzEkkK",
+          "C3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh9QUk9U",
+          "T19PQV9NQVJHSU5fQ0FMTF9VUERBVEVfUkVTIrABChxQcm90b09BTWFyZ2lu",
+          "Q2FsbFVwZGF0ZUV2ZW50EksKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9P",
+          "QVBheWxvYWRUeXBlOiFQUk9UT19PQV9NQVJHSU5fQ0FMTF9VUERBVEVfRVZF",
+          "TlQSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxImCgptYXJnaW5DYWxs",
+          "GAMgAigLMhIuUHJvdG9PQU1hcmdpbkNhbGwisgEKHVByb3RvT0FNYXJnaW5D",
+          "YWxsVHJpZ2dlckV2ZW50EkwKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9P",
+          "QVBheWxvYWRUeXBlOiJQUk9UT19PQV9NQVJHSU5fQ0FMTF9UUklHR0VSX0VW",
+          "RU5UEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSJgoKbWFyZ2luQ2Fs",
+          "bBgDIAIoCzISLlByb3RvT0FNYXJnaW5DYWxsQkIKH2NvbS54dHJhZGVyLnBy",
+          "b3RvY29sLm9wZW5hcGkudjJCGkNvbnRhaW5lck9wZW5BcGlWMk1lc3NhZ2Vz",
+          "UAGgAQE="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::OpenApiModelMessagesReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -360,6 +368,8 @@ public static partial class OpenApiMessagesReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAOrderErrorEvent), global::ProtoOAOrderErrorEvent.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "ErrorCode", "OrderId", "PositionId", "Description" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOADealListReq), global::ProtoOADealListReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "FromTimestamp", "ToTimestamp", "MaxRows" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOADealListRes), global::ProtoOADealListRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Deal", "HasMore" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAOrderListReq), global::ProtoOAOrderListReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "FromTimestamp", "ToTimestamp" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAOrderListRes), global::ProtoOAOrderListRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Order", "HasMore" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAExpectedMarginReq), global::ProtoOAExpectedMarginReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "SymbolId", "Volume" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAExpectedMarginRes), global::ProtoOAExpectedMarginRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Margin", "MoneyDigits" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAMarginChangedEvent), global::ProtoOAMarginChangedEvent.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "PositionId", "UsedMargin", "MoneyDigits" }, null, null, null, null),
@@ -418,19 +428,23 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAApplicationAuthReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[0]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAApplicationAuthReq() {
     OnConstruction();
   }
@@ -438,6 +452,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAApplicationAuthReq(ProtoOAApplicationAuthReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -447,6 +462,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAApplicationAuthReq Clone() {
     return new ProtoOAApplicationAuthReq(this);
   }
@@ -457,6 +473,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -466,11 +483,13 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -484,6 +503,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   ///The unique Client ID provided during the registration.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ClientId {
     get { return clientId_ ?? ClientIdDefaultValue; }
     set {
@@ -492,11 +512,13 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
   /// <summary>Gets whether the "clientId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasClientId {
     get { return clientId_ != null; }
   }
   /// <summary>Clears the value of the "clientId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearClientId() {
     clientId_ = null;
   }
@@ -510,6 +532,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   ///The unique Client Secret provided during the registration.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ClientSecret {
     get { return clientSecret_ ?? ClientSecretDefaultValue; }
     set {
@@ -518,21 +541,25 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
   /// <summary>Gets whether the "clientSecret" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasClientSecret {
     get { return clientSecret_ != null; }
   }
   /// <summary>Clears the value of the "clientSecret" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearClientSecret() {
     clientSecret_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAApplicationAuthReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAApplicationAuthReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -547,6 +574,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -559,11 +587,13 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -588,6 +618,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -608,6 +639,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -626,6 +658,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAApplicationAuthReq other) {
     if (other == null) {
       return;
@@ -643,6 +676,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -672,6 +706,7 @@ public sealed partial class ProtoOAApplicationAuthReq : pb::IMessage<ProtoOAAppl
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -710,19 +745,23 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAApplicationAuthRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[1]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAApplicationAuthRes() {
     OnConstruction();
   }
@@ -730,6 +769,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAApplicationAuthRes(ProtoOAApplicationAuthRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -737,6 +777,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAApplicationAuthRes Clone() {
     return new ProtoOAApplicationAuthRes(this);
   }
@@ -747,6 +788,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -756,21 +798,25 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAApplicationAuthRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAApplicationAuthRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -783,6 +829,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -793,11 +840,13 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -814,6 +863,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -826,6 +876,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -838,6 +889,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAApplicationAuthRes other) {
     if (other == null) {
       return;
@@ -849,6 +901,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -870,6 +923,7 @@ public sealed partial class ProtoOAApplicationAuthRes : pb::IMessage<ProtoOAAppl
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -900,19 +954,23 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAccountAuthReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountAuthReq() {
     OnConstruction();
   }
@@ -920,6 +978,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountAuthReq(ProtoOAAccountAuthReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -929,6 +988,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountAuthReq Clone() {
     return new ProtoOAAccountAuthReq(this);
   }
@@ -939,6 +999,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -948,11 +1009,13 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -966,6 +1029,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   /// The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -975,11 +1039,13 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -993,6 +1059,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   /// The Access Token issued for providing access to the Trader's Account.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string AccessToken {
     get { return accessToken_ ?? AccessTokenDefaultValue; }
     set {
@@ -1001,21 +1068,25 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
   /// <summary>Gets whether the "accessToken" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasAccessToken {
     get { return accessToken_ != null; }
   }
   /// <summary>Clears the value of the "accessToken" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearAccessToken() {
     accessToken_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAccountAuthReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAccountAuthReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -1030,6 +1101,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -1042,11 +1114,13 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -1071,6 +1145,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -1091,6 +1166,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -1109,6 +1185,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAccountAuthReq other) {
     if (other == null) {
       return;
@@ -1126,6 +1203,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -1155,6 +1233,7 @@ public sealed partial class ProtoOAAccountAuthReq : pb::IMessage<ProtoOAAccountA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -1193,19 +1272,23 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAccountAuthRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountAuthRes() {
     OnConstruction();
   }
@@ -1213,6 +1296,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountAuthRes(ProtoOAAccountAuthRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -1221,6 +1305,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountAuthRes Clone() {
     return new ProtoOAAccountAuthRes(this);
   }
@@ -1231,6 +1316,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -1240,11 +1326,13 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -1258,6 +1346,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   /// The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -1267,21 +1356,25 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAccountAuthRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAccountAuthRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -1295,6 +1388,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -1306,11 +1400,13 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -1331,6 +1427,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -1347,6 +1444,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -1362,6 +1460,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAccountAuthRes other) {
     if (other == null) {
       return;
@@ -1376,6 +1475,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -1401,6 +1501,7 @@ public sealed partial class ProtoOAAccountAuthRes : pb::IMessage<ProtoOAAccountA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -1435,19 +1536,23 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAErrorRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAErrorRes() {
     OnConstruction();
   }
@@ -1455,6 +1560,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAErrorRes(ProtoOAErrorRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -1466,6 +1572,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAErrorRes Clone() {
     return new ProtoOAErrorRes(this);
   }
@@ -1476,6 +1583,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -1485,11 +1593,13 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -1503,6 +1613,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   ///The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -1512,11 +1623,13 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -1530,6 +1643,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   /// The name of the ProtoErrorCode or the other custom ErrorCodes (e.g. ProtoCHErrorCode).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ErrorCode {
     get { return errorCode_ ?? ErrorCodeDefaultValue; }
     set {
@@ -1538,11 +1652,13 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
   /// <summary>Gets whether the "errorCode" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasErrorCode {
     get { return errorCode_ != null; }
   }
   /// <summary>Clears the value of the "errorCode" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearErrorCode() {
     errorCode_ = null;
   }
@@ -1556,6 +1672,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   /// The error description.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Description {
     get { return description_ ?? DescriptionDefaultValue; }
     set {
@@ -1564,11 +1681,13 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
   /// <summary>Gets whether the "description" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasDescription {
     get { return description_ != null; }
   }
   /// <summary>Clears the value of the "description" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearDescription() {
     description_ = null;
   }
@@ -1582,6 +1701,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   /// The timestamp in seconds when the current maintenance session will be ended.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long MaintenanceEndTimestamp {
     get { if ((_hasBits0 & 4) != 0) { return maintenanceEndTimestamp_; } else { return MaintenanceEndTimestampDefaultValue; } }
     set {
@@ -1591,21 +1711,25 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
   /// <summary>Gets whether the "maintenanceEndTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasMaintenanceEndTimestamp {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "maintenanceEndTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearMaintenanceEndTimestamp() {
     _hasBits0 &= ~4;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAErrorRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAErrorRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -1622,6 +1746,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -1636,11 +1761,13 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -1673,6 +1800,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -1701,6 +1829,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -1725,6 +1854,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAErrorRes other) {
     if (other == null) {
       return;
@@ -1748,6 +1878,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -1785,6 +1916,7 @@ public sealed partial class ProtoOAErrorRes : pb::IMessage<ProtoOAErrorRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -1831,19 +1963,23 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAClientDisconnectEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAClientDisconnectEvent() {
     OnConstruction();
   }
@@ -1851,6 +1987,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAClientDisconnectEvent(ProtoOAClientDisconnectEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -1859,6 +1996,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAClientDisconnectEvent Clone() {
     return new ProtoOAClientDisconnectEvent(this);
   }
@@ -1869,6 +2007,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -1878,11 +2017,13 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -1896,6 +2037,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   /// The disconnection reason explained. For example: The application access was blocked by cTrader Administrator.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Reason {
     get { return reason_ ?? ReasonDefaultValue; }
     set {
@@ -1904,21 +2046,25 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   }
   /// <summary>Gets whether the "reason" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasReason {
     get { return reason_ != null; }
   }
   /// <summary>Clears the value of the "reason" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearReason() {
     reason_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAClientDisconnectEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAClientDisconnectEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -1932,6 +2078,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -1943,11 +2090,13 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -1968,6 +2117,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -1984,6 +2134,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -1999,6 +2150,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAClientDisconnectEvent other) {
     if (other == null) {
       return;
@@ -2013,6 +2165,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -2038,6 +2191,7 @@ public sealed partial class ProtoOAClientDisconnectEvent : pb::IMessage<ProtoOAC
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -2072,19 +2226,23 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAccountsTokenInvalidatedEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountsTokenInvalidatedEvent() {
     OnConstruction();
   }
@@ -2092,6 +2250,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountsTokenInvalidatedEvent(ProtoOAAccountsTokenInvalidatedEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -2101,6 +2260,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountsTokenInvalidatedEvent Clone() {
     return new ProtoOAAccountsTokenInvalidatedEvent(this);
   }
@@ -2111,6 +2271,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -2120,11 +2281,13 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -2138,6 +2301,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   /// The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> CtidTraderAccountIds {
     get { return ctidTraderAccountIds_; }
   }
@@ -2151,6 +2315,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   /// The disconnection reason explained. For example: Access Token is expired or recalled.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Reason {
     get { return reason_ ?? ReasonDefaultValue; }
     set {
@@ -2159,21 +2324,25 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   }
   /// <summary>Gets whether the "reason" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasReason {
     get { return reason_ != null; }
   }
   /// <summary>Clears the value of the "reason" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearReason() {
     reason_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAccountsTokenInvalidatedEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAccountsTokenInvalidatedEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -2188,6 +2357,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -2200,11 +2370,13 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -2226,6 +2398,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -2243,6 +2416,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -2259,6 +2433,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAccountsTokenInvalidatedEvent other) {
     if (other == null) {
       return;
@@ -2274,6 +2449,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -2304,6 +2480,7 @@ public sealed partial class ProtoOAAccountsTokenInvalidatedEvent : pb::IMessage<
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -2343,19 +2520,23 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAVersionReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAVersionReq() {
     OnConstruction();
   }
@@ -2363,6 +2544,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAVersionReq(ProtoOAVersionReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -2370,6 +2552,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAVersionReq Clone() {
     return new ProtoOAVersionReq(this);
   }
@@ -2380,6 +2563,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -2389,21 +2573,25 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAVersionReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAVersionReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -2416,6 +2604,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -2426,11 +2615,13 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -2447,6 +2638,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -2459,6 +2651,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -2471,6 +2664,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAVersionReq other) {
     if (other == null) {
       return;
@@ -2482,6 +2676,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -2503,6 +2698,7 @@ public sealed partial class ProtoOAVersionReq : pb::IMessage<ProtoOAVersionReq>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -2533,19 +2729,23 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAVersionRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAVersionRes() {
     OnConstruction();
   }
@@ -2553,6 +2753,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAVersionRes(ProtoOAVersionRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -2561,6 +2762,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAVersionRes Clone() {
     return new ProtoOAVersionRes(this);
   }
@@ -2571,6 +2773,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -2580,11 +2783,13 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -2598,6 +2803,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   /// The current version of the server application.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Version {
     get { return version_ ?? VersionDefaultValue; }
     set {
@@ -2606,21 +2812,25 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   }
   /// <summary>Gets whether the "version" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasVersion {
     get { return version_ != null; }
   }
   /// <summary>Clears the value of the "version" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearVersion() {
     version_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAVersionRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAVersionRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -2634,6 +2844,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -2645,11 +2856,13 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -2670,6 +2883,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -2686,6 +2900,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -2701,6 +2916,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAVersionRes other) {
     if (other == null) {
       return;
@@ -2715,6 +2931,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -2740,6 +2957,7 @@ public sealed partial class ProtoOAVersionRes : pb::IMessage<ProtoOAVersionRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -2774,19 +2992,23 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOANewOrderReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOANewOrderReq() {
     OnConstruction();
   }
@@ -2794,6 +3016,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOANewOrderReq(ProtoOANewOrderReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -2823,6 +3046,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOANewOrderReq Clone() {
     return new ProtoOANewOrderReq(this);
   }
@@ -2833,6 +3057,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -2842,11 +3067,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -2860,6 +3087,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -2869,11 +3097,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -2887,6 +3117,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The unique identifier of a symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 4) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -2896,11 +3127,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~4;
   }
@@ -2914,6 +3147,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The type of an order - MARKET, LIMIT, STOP, MARKET_RANGE, STOP_LIMIT.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAOrderType OrderType {
     get { if ((_hasBits0 & 8) != 0) { return orderType_; } else { return OrderTypeDefaultValue; } }
     set {
@@ -2923,11 +3157,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "orderType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasOrderType {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "orderType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearOrderType() {
     _hasBits0 &= ~8;
   }
@@ -2941,6 +3177,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The trade direction - BUY or SELL.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATradeSide TradeSide {
     get { if ((_hasBits0 & 16) != 0) { return tradeSide_; } else { return TradeSideDefaultValue; } }
     set {
@@ -2950,11 +3187,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "tradeSide" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTradeSide {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "tradeSide" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTradeSide() {
     _hasBits0 &= ~16;
   }
@@ -2968,6 +3207,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The volume represented in 0.01 of a unit (e.g. US$ 10.00 = 1000).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long Volume {
     get { if ((_hasBits0 & 32) != 0) { return volume_; } else { return VolumeDefaultValue; } }
     set {
@@ -2977,11 +3217,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "volume" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasVolume {
     get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "volume" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearVolume() {
     _hasBits0 &= ~32;
   }
@@ -2995,6 +3237,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The limit price, can be specified for the LIMIT order only.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double LimitPrice {
     get { if ((_hasBits0 & 64) != 0) { return limitPrice_; } else { return LimitPriceDefaultValue; } }
     set {
@@ -3004,11 +3247,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "limitPrice" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasLimitPrice {
     get { return (_hasBits0 & 64) != 0; }
   }
   /// <summary>Clears the value of the "limitPrice" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearLimitPrice() {
     _hasBits0 &= ~64;
   }
@@ -3022,6 +3267,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Stop Price, can be specified for the STOP and the STOP_LIMIT orders only.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double StopPrice {
     get { if ((_hasBits0 & 128) != 0) { return stopPrice_; } else { return StopPriceDefaultValue; } }
     set {
@@ -3031,11 +3277,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "stopPrice" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopPrice {
     get { return (_hasBits0 & 128) != 0; }
   }
   /// <summary>Clears the value of the "stopPrice" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopPrice() {
     _hasBits0 &= ~128;
   }
@@ -3049,6 +3297,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The specific order execution or expiration instruction - GOOD_TILL_DATE, GOOD_TILL_CANCEL, IMMEDIATE_OR_CANCEL, FILL_OR_KILL, MARKET_ON_OPEN.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATimeInForce TimeInForce {
     get { if ((_hasBits0 & 256) != 0) { return timeInForce_; } else { return TimeInForceDefaultValue; } }
     set {
@@ -3058,11 +3307,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "timeInForce" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTimeInForce {
     get { return (_hasBits0 & 256) != 0; }
   }
   /// <summary>Clears the value of the "timeInForce" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTimeInForce() {
     _hasBits0 &= ~256;
   }
@@ -3076,6 +3327,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The exact Order expiration time. Should be set for the Good Till Date orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long ExpirationTimestamp {
     get { if ((_hasBits0 & 512) != 0) { return expirationTimestamp_; } else { return ExpirationTimestampDefaultValue; } }
     set {
@@ -3085,11 +3337,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "expirationTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasExpirationTimestamp {
     get { return (_hasBits0 & 512) != 0; }
   }
   /// <summary>Clears the value of the "expirationTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearExpirationTimestamp() {
     _hasBits0 &= ~512;
   }
@@ -3103,6 +3357,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The absolute Stop Loss price (1.23456 for example). Not supported for the MARKER orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double StopLoss {
     get { if ((_hasBits0 & 1024) != 0) { return stopLoss_; } else { return StopLossDefaultValue; } }
     set {
@@ -3112,11 +3367,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "stopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopLoss {
     get { return (_hasBits0 & 1024) != 0; }
   }
   /// <summary>Clears the value of the "stopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopLoss() {
     _hasBits0 &= ~1024;
   }
@@ -3130,6 +3387,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// The absolute Take Profit price (1.23456 for example). Unsupported for the MARKER orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double TakeProfit {
     get { if ((_hasBits0 & 2048) != 0) { return takeProfit_; } else { return TakeProfitDefaultValue; } }
     set {
@@ -3139,11 +3397,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "takeProfit" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTakeProfit {
     get { return (_hasBits0 & 2048) != 0; }
   }
   /// <summary>Clears the value of the "takeProfit" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTakeProfit() {
     _hasBits0 &= ~2048;
   }
@@ -3157,6 +3417,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// User-specified comment. MaxLength = 512.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Comment {
     get { return comment_ ?? CommentDefaultValue; }
     set {
@@ -3165,11 +3426,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "comment" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasComment {
     get { return comment_ != null; }
   }
   /// <summary>Clears the value of the "comment" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearComment() {
     comment_ = null;
   }
@@ -3183,6 +3446,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Base price to calculate relative slippage price for MARKET_RANGE order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double BaseSlippagePrice {
     get { if ((_hasBits0 & 4096) != 0) { return baseSlippagePrice_; } else { return BaseSlippagePriceDefaultValue; } }
     set {
@@ -3192,11 +3456,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "baseSlippagePrice" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasBaseSlippagePrice {
     get { return (_hasBits0 & 4096) != 0; }
   }
   /// <summary>Clears the value of the "baseSlippagePrice" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearBaseSlippagePrice() {
     _hasBits0 &= ~4096;
   }
@@ -3210,6 +3476,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Slippage distance for MARKET_RANGE and STOP_LIMIT order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int SlippageInPoints {
     get { if ((_hasBits0 & 8192) != 0) { return slippageInPoints_; } else { return SlippageInPointsDefaultValue; } }
     set {
@@ -3219,11 +3486,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "slippageInPoints" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSlippageInPoints {
     get { return (_hasBits0 & 8192) != 0; }
   }
   /// <summary>Clears the value of the "slippageInPoints" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSlippageInPoints() {
     _hasBits0 &= ~8192;
   }
@@ -3237,6 +3506,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// User-specified label. MaxLength = 100.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Label {
     get { return label_ ?? LabelDefaultValue; }
     set {
@@ -3245,11 +3515,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "label" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasLabel {
     get { return label_ != null; }
   }
   /// <summary>Clears the value of the "label" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearLabel() {
     label_ = null;
   }
@@ -3263,6 +3535,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Reference to the existing position if the Order is intended to modify it.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long PositionId {
     get { if ((_hasBits0 & 16384) != 0) { return positionId_; } else { return PositionIdDefaultValue; } }
     set {
@@ -3272,11 +3545,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "positionId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPositionId {
     get { return (_hasBits0 & 16384) != 0; }
   }
   /// <summary>Clears the value of the "positionId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPositionId() {
     _hasBits0 &= ~16384;
   }
@@ -3290,6 +3565,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Optional user-specific clientOrderId (similar to FIX ClOrderID). MaxLength = 50.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ClientOrderId {
     get { return clientOrderId_ ?? ClientOrderIdDefaultValue; }
     set {
@@ -3298,11 +3574,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "clientOrderId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasClientOrderId {
     get { return clientOrderId_ != null; }
   }
   /// <summary>Clears the value of the "clientOrderId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearClientOrderId() {
     clientOrderId_ = null;
   }
@@ -3316,6 +3594,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Relative Stop Loss that can be specified instead of the absolute as one. Specified in 1/100000 of unit of a price. For BUY stopLoss = entryPrice - relativeStopLoss, for SELL stopLoss = entryPrice + relativeStopLoss.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long RelativeStopLoss {
     get { if ((_hasBits0 & 32768) != 0) { return relativeStopLoss_; } else { return RelativeStopLossDefaultValue; } }
     set {
@@ -3325,11 +3604,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "relativeStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasRelativeStopLoss {
     get { return (_hasBits0 & 32768) != 0; }
   }
   /// <summary>Clears the value of the "relativeStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearRelativeStopLoss() {
     _hasBits0 &= ~32768;
   }
@@ -3343,6 +3624,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Relative Take Profit that can be specified instead of the absolute one. Specified in 1/100000 of unit of a price. For BUY takeProfit = entryPrice + relativeTakeProfit, for SELL takeProfit = entryPrice - relativeTakeProfit.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long RelativeTakeProfit {
     get { if ((_hasBits0 & 65536) != 0) { return relativeTakeProfit_; } else { return RelativeTakeProfitDefaultValue; } }
     set {
@@ -3352,11 +3634,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "relativeTakeProfit" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasRelativeTakeProfit {
     get { return (_hasBits0 & 65536) != 0; }
   }
   /// <summary>Clears the value of the "relativeTakeProfit" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearRelativeTakeProfit() {
     _hasBits0 &= ~65536;
   }
@@ -3370,6 +3654,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// If TRUE then stopLoss is guaranteed. Available for the French Risk or the Guaranteed Stop Loss Accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool GuaranteedStopLoss {
     get { if ((_hasBits0 & 131072) != 0) { return guaranteedStopLoss_; } else { return GuaranteedStopLossDefaultValue; } }
     set {
@@ -3379,11 +3664,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "guaranteedStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasGuaranteedStopLoss {
     get { return (_hasBits0 & 131072) != 0; }
   }
   /// <summary>Clears the value of the "guaranteedStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearGuaranteedStopLoss() {
     _hasBits0 &= ~131072;
   }
@@ -3397,6 +3684,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// If TRUE then the Stop Loss is Trailing.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool TrailingStopLoss {
     get { if ((_hasBits0 & 262144) != 0) { return trailingStopLoss_; } else { return TrailingStopLossDefaultValue; } }
     set {
@@ -3406,11 +3694,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "trailingStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTrailingStopLoss {
     get { return (_hasBits0 & 262144) != 0; }
   }
   /// <summary>Clears the value of the "trailingStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTrailingStopLoss() {
     _hasBits0 &= ~262144;
   }
@@ -3424,6 +3714,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   /// Trigger method for the STOP or the STOP_LIMIT pending order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAOrderTriggerMethod StopTriggerMethod {
     get { if ((_hasBits0 & 524288) != 0) { return stopTriggerMethod_; } else { return StopTriggerMethodDefaultValue; } }
     set {
@@ -3433,21 +3724,25 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
   /// <summary>Gets whether the "stopTriggerMethod" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopTriggerMethod {
     get { return (_hasBits0 & 524288) != 0; }
   }
   /// <summary>Clears the value of the "stopTriggerMethod" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopTriggerMethod() {
     _hasBits0 &= ~524288;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOANewOrderReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOANewOrderReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -3482,6 +3777,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -3514,11 +3810,13 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -3623,6 +3921,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -3723,6 +4022,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -3801,6 +4101,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOANewOrderReq other) {
     if (other == null) {
       return;
@@ -3878,6 +4179,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -3987,6 +4289,7 @@ public sealed partial class ProtoOANewOrderReq : pb::IMessage<ProtoOANewOrderReq
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -4105,19 +4408,23 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAExecutionEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAExecutionEvent() {
     OnConstruction();
   }
@@ -4125,6 +4432,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAExecutionEvent(ProtoOAExecutionEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -4141,6 +4449,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAExecutionEvent Clone() {
     return new ProtoOAExecutionEvent(this);
   }
@@ -4151,6 +4460,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -4160,11 +4470,13 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -4178,6 +4490,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -4187,11 +4500,13 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -4205,6 +4520,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// Type of the order operation. For example: ACCEPTED, FILLED, etc.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAExecutionType ExecutionType {
     get { if ((_hasBits0 & 4) != 0) { return executionType_; } else { return ExecutionTypeDefaultValue; } }
     set {
@@ -4214,11 +4530,13 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
   /// <summary>Gets whether the "executionType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasExecutionType {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "executionType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearExecutionType() {
     _hasBits0 &= ~4;
   }
@@ -4230,6 +4548,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// Reference to the position linked with the execution
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPosition Position {
     get { return position_; }
     set {
@@ -4244,6 +4563,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// Reference to the initial order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAOrder Order {
     get { return order_; }
     set {
@@ -4258,6 +4578,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// Reference to the deal (execution).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOADeal Deal {
     get { return deal_; }
     set {
@@ -4272,6 +4593,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// Reference to the Bonus Deposit or Withdrawal operation.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOABonusDepositWithdraw BonusDepositWithdraw {
     get { return bonusDepositWithdraw_; }
     set {
@@ -4286,6 +4608,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// Reference to the Deposit or Withdrawal operation.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOADepositWithdraw DepositWithdraw {
     get { return depositWithdraw_; }
     set {
@@ -4302,6 +4625,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   ///The name of the ProtoErrorCode or the other custom ErrorCodes (e.g. ProtoCHErrorCode).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ErrorCode {
     get { return errorCode_ ?? ErrorCodeDefaultValue; }
     set {
@@ -4310,11 +4634,13 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
   /// <summary>Gets whether the "errorCode" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasErrorCode {
     get { return errorCode_ != null; }
   }
   /// <summary>Clears the value of the "errorCode" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearErrorCode() {
     errorCode_ = null;
   }
@@ -4328,6 +4654,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   /// If TRUE then the event generated by the server logic instead of the trader's request. (e.g. stop-out).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool IsServerEvent {
     get { if ((_hasBits0 & 8) != 0) { return isServerEvent_; } else { return IsServerEventDefaultValue; } }
     set {
@@ -4337,21 +4664,25 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
   /// <summary>Gets whether the "isServerEvent" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasIsServerEvent {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "isServerEvent" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearIsServerEvent() {
     _hasBits0 &= ~8;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAExecutionEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAExecutionEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -4373,6 +4704,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -4392,11 +4724,13 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -4449,6 +4783,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -4497,6 +4832,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -4536,6 +4872,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAExecutionEvent other) {
     if (other == null) {
       return;
@@ -4589,6 +4926,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -4661,6 +4999,7 @@ public sealed partial class ProtoOAExecutionEvent : pb::IMessage<ProtoOAExecutio
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -4742,19 +5081,23 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOACancelOrderReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACancelOrderReq() {
     OnConstruction();
   }
@@ -4762,6 +5105,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACancelOrderReq(ProtoOACancelOrderReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -4771,6 +5115,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACancelOrderReq Clone() {
     return new ProtoOACancelOrderReq(this);
   }
@@ -4781,6 +5126,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -4790,11 +5136,13 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -4808,6 +5156,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -4817,11 +5166,13 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -4835,6 +5186,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   /// The unique ID of the order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long OrderId {
     get { if ((_hasBits0 & 4) != 0) { return orderId_; } else { return OrderIdDefaultValue; } }
     set {
@@ -4844,21 +5196,25 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
   /// <summary>Gets whether the "orderId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasOrderId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "orderId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearOrderId() {
     _hasBits0 &= ~4;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOACancelOrderReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOACancelOrderReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -4873,6 +5229,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -4885,11 +5242,13 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -4914,6 +5273,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -4934,6 +5294,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -4952,6 +5313,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOACancelOrderReq other) {
     if (other == null) {
       return;
@@ -4969,6 +5331,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -4998,6 +5361,7 @@ public sealed partial class ProtoOACancelOrderReq : pb::IMessage<ProtoOACancelOr
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -5036,19 +5400,23 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAmendOrderReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAmendOrderReq() {
     OnConstruction();
   }
@@ -5056,6 +5424,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAmendOrderReq(ProtoOAAmendOrderReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -5077,6 +5446,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAmendOrderReq Clone() {
     return new ProtoOAAmendOrderReq(this);
   }
@@ -5087,6 +5457,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -5096,11 +5467,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -5114,6 +5487,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -5123,11 +5497,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -5141,6 +5517,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The unique ID of the order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long OrderId {
     get { if ((_hasBits0 & 4) != 0) { return orderId_; } else { return OrderIdDefaultValue; } }
     set {
@@ -5150,11 +5527,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "orderId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasOrderId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "orderId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearOrderId() {
     _hasBits0 &= ~4;
   }
@@ -5168,6 +5547,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// Volume, represented in 0.01 of a unit (e.g. cents).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long Volume {
     get { if ((_hasBits0 & 8) != 0) { return volume_; } else { return VolumeDefaultValue; } }
     set {
@@ -5177,11 +5557,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "volume" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasVolume {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "volume" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearVolume() {
     _hasBits0 &= ~8;
   }
@@ -5195,6 +5577,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The Limit Price, can be specified for the LIMIT order only.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double LimitPrice {
     get { if ((_hasBits0 & 16) != 0) { return limitPrice_; } else { return LimitPriceDefaultValue; } }
     set {
@@ -5204,11 +5587,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "limitPrice" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasLimitPrice {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "limitPrice" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearLimitPrice() {
     _hasBits0 &= ~16;
   }
@@ -5222,6 +5607,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The Stop Price, can be specified for the STOP and the STOP_LIMIT orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double StopPrice {
     get { if ((_hasBits0 & 32) != 0) { return stopPrice_; } else { return StopPriceDefaultValue; } }
     set {
@@ -5231,11 +5617,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "stopPrice" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopPrice {
     get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "stopPrice" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopPrice() {
     _hasBits0 &= ~32;
   }
@@ -5249,6 +5637,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The exact Order expiration time. Should be set for the Good Till Date orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long ExpirationTimestamp {
     get { if ((_hasBits0 & 64) != 0) { return expirationTimestamp_; } else { return ExpirationTimestampDefaultValue; } }
     set {
@@ -5258,11 +5647,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "expirationTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasExpirationTimestamp {
     get { return (_hasBits0 & 64) != 0; }
   }
   /// <summary>Clears the value of the "expirationTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearExpirationTimestamp() {
     _hasBits0 &= ~64;
   }
@@ -5276,6 +5667,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The absolute Stop Loss price (e.g. 1.23456). Not supported for the MARKER orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double StopLoss {
     get { if ((_hasBits0 & 128) != 0) { return stopLoss_; } else { return StopLossDefaultValue; } }
     set {
@@ -5285,11 +5677,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "stopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopLoss {
     get { return (_hasBits0 & 128) != 0; }
   }
   /// <summary>Clears the value of the "stopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopLoss() {
     _hasBits0 &= ~128;
   }
@@ -5303,6 +5697,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The absolute Take Profit price (e.g. 1.23456). Not supported for the MARKER orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double TakeProfit {
     get { if ((_hasBits0 & 256) != 0) { return takeProfit_; } else { return TakeProfitDefaultValue; } }
     set {
@@ -5312,11 +5707,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "takeProfit" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTakeProfit {
     get { return (_hasBits0 & 256) != 0; }
   }
   /// <summary>Clears the value of the "takeProfit" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTakeProfit() {
     _hasBits0 &= ~256;
   }
@@ -5330,6 +5727,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// Slippage distance for the MARKET_RANGE and the STOP_LIMIT orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int SlippageInPoints {
     get { if ((_hasBits0 & 512) != 0) { return slippageInPoints_; } else { return SlippageInPointsDefaultValue; } }
     set {
@@ -5339,11 +5737,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "slippageInPoints" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSlippageInPoints {
     get { return (_hasBits0 & 512) != 0; }
   }
   /// <summary>Clears the value of the "slippageInPoints" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSlippageInPoints() {
     _hasBits0 &= ~512;
   }
@@ -5357,6 +5757,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The relative Stop Loss can be specified instead of the absolute one. Specified in 1/100000 of a unit of price. For BUY stopLoss = entryPrice - relativeStopLoss, for SELL stopLoss = entryPrice + relativeStopLoss.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long RelativeStopLoss {
     get { if ((_hasBits0 & 1024) != 0) { return relativeStopLoss_; } else { return RelativeStopLossDefaultValue; } }
     set {
@@ -5366,11 +5767,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "relativeStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasRelativeStopLoss {
     get { return (_hasBits0 & 1024) != 0; }
   }
   /// <summary>Clears the value of the "relativeStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearRelativeStopLoss() {
     _hasBits0 &= ~1024;
   }
@@ -5384,6 +5787,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// The relative Take Profit can be specified instead of the absolute one. Specified in 1/100000 of a unit of price. For BUY takeProfit = entryPrice + relativeTakeProfit, for SELL takeProfit = entryPrice - relativeTakeProfit.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long RelativeTakeProfit {
     get { if ((_hasBits0 & 2048) != 0) { return relativeTakeProfit_; } else { return RelativeTakeProfitDefaultValue; } }
     set {
@@ -5393,11 +5797,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "relativeTakeProfit" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasRelativeTakeProfit {
     get { return (_hasBits0 & 2048) != 0; }
   }
   /// <summary>Clears the value of the "relativeTakeProfit" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearRelativeTakeProfit() {
     _hasBits0 &= ~2048;
   }
@@ -5411,6 +5817,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// If TRUE then the Stop Loss is guaranteed. Available for the French Risk or the Guaranteed Stop Loss Accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool GuaranteedStopLoss {
     get { if ((_hasBits0 & 4096) != 0) { return guaranteedStopLoss_; } else { return GuaranteedStopLossDefaultValue; } }
     set {
@@ -5420,11 +5827,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "guaranteedStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasGuaranteedStopLoss {
     get { return (_hasBits0 & 4096) != 0; }
   }
   /// <summary>Clears the value of the "guaranteedStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearGuaranteedStopLoss() {
     _hasBits0 &= ~4096;
   }
@@ -5438,6 +5847,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// If TRUE then the Trailing Stop Loss is applied.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool TrailingStopLoss {
     get { if ((_hasBits0 & 8192) != 0) { return trailingStopLoss_; } else { return TrailingStopLossDefaultValue; } }
     set {
@@ -5447,11 +5857,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "trailingStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTrailingStopLoss {
     get { return (_hasBits0 & 8192) != 0; }
   }
   /// <summary>Clears the value of the "trailingStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTrailingStopLoss() {
     _hasBits0 &= ~8192;
   }
@@ -5465,6 +5877,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   /// Trigger method for the STOP or the STOP_LIMIT pending order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAOrderTriggerMethod StopTriggerMethod {
     get { if ((_hasBits0 & 16384) != 0) { return stopTriggerMethod_; } else { return StopTriggerMethodDefaultValue; } }
     set {
@@ -5474,21 +5887,25 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
   /// <summary>Gets whether the "stopTriggerMethod" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopTriggerMethod {
     get { return (_hasBits0 & 16384) != 0; }
   }
   /// <summary>Clears the value of the "stopTriggerMethod" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopTriggerMethod() {
     _hasBits0 &= ~16384;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAmendOrderReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAmendOrderReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -5515,6 +5932,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -5539,11 +5957,13 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -5616,6 +6036,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -5684,6 +6105,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -5738,6 +6160,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAmendOrderReq other) {
     if (other == null) {
       return;
@@ -5791,6 +6214,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -5868,6 +6292,7 @@ public sealed partial class ProtoOAAmendOrderReq : pb::IMessage<ProtoOAAmendOrde
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -5954,19 +6379,23 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAmendPositionSLTPReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAmendPositionSLTPReq() {
     OnConstruction();
   }
@@ -5974,6 +6403,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAmendPositionSLTPReq(ProtoOAAmendPositionSLTPReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -5988,6 +6418,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAmendPositionSLTPReq Clone() {
     return new ProtoOAAmendPositionSLTPReq(this);
   }
@@ -5998,6 +6429,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -6007,11 +6439,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -6025,6 +6459,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -6034,11 +6469,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -6052,6 +6489,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   /// The unique ID of the position to amend.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long PositionId {
     get { if ((_hasBits0 & 4) != 0) { return positionId_; } else { return PositionIdDefaultValue; } }
     set {
@@ -6061,11 +6499,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "positionId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPositionId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "positionId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPositionId() {
     _hasBits0 &= ~4;
   }
@@ -6079,6 +6519,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   /// Absolute Stop Loss price (1.23456 for example).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double StopLoss {
     get { if ((_hasBits0 & 8) != 0) { return stopLoss_; } else { return StopLossDefaultValue; } }
     set {
@@ -6088,11 +6529,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "stopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopLoss {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "stopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopLoss() {
     _hasBits0 &= ~8;
   }
@@ -6106,6 +6549,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   /// Absolute Take Profit price (1.26543 for example).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double TakeProfit {
     get { if ((_hasBits0 & 16) != 0) { return takeProfit_; } else { return TakeProfitDefaultValue; } }
     set {
@@ -6115,11 +6559,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "takeProfit" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTakeProfit {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "takeProfit" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTakeProfit() {
     _hasBits0 &= ~16;
   }
@@ -6133,6 +6579,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   ///If TRUE then the Stop Loss is guaranteed. Available for the French Risk or the Guaranteed Stop Loss Accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool GuaranteedStopLoss {
     get { if ((_hasBits0 & 32) != 0) { return guaranteedStopLoss_; } else { return GuaranteedStopLossDefaultValue; } }
     set {
@@ -6142,11 +6589,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "guaranteedStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasGuaranteedStopLoss {
     get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "guaranteedStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearGuaranteedStopLoss() {
     _hasBits0 &= ~32;
   }
@@ -6160,6 +6609,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   ///If TRUE then the Trailing Stop Loss is applied.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool TrailingStopLoss {
     get { if ((_hasBits0 & 64) != 0) { return trailingStopLoss_; } else { return TrailingStopLossDefaultValue; } }
     set {
@@ -6169,11 +6619,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "trailingStopLoss" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTrailingStopLoss {
     get { return (_hasBits0 & 64) != 0; }
   }
   /// <summary>Clears the value of the "trailingStopLoss" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTrailingStopLoss() {
     _hasBits0 &= ~64;
   }
@@ -6187,6 +6639,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   /// The Stop trigger method for the Stop Loss/Take Profit order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAOrderTriggerMethod StopLossTriggerMethod {
     get { if ((_hasBits0 & 128) != 0) { return stopLossTriggerMethod_; } else { return StopLossTriggerMethodDefaultValue; } }
     set {
@@ -6196,21 +6649,25 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
   /// <summary>Gets whether the "stopLossTriggerMethod" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopLossTriggerMethod {
     get { return (_hasBits0 & 128) != 0; }
   }
   /// <summary>Clears the value of the "stopLossTriggerMethod" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopLossTriggerMethod() {
     _hasBits0 &= ~128;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAmendPositionSLTPReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAmendPositionSLTPReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -6230,6 +6687,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -6247,11 +6705,13 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -6296,6 +6756,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -6336,6 +6797,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -6369,6 +6831,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAmendPositionSLTPReq other) {
     if (other == null) {
       return;
@@ -6401,6 +6864,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -6450,6 +6914,7 @@ public sealed partial class ProtoOAAmendPositionSLTPReq : pb::IMessage<ProtoOAAm
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -6508,19 +6973,23 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAClosePositionReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAClosePositionReq() {
     OnConstruction();
   }
@@ -6528,6 +6997,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAClosePositionReq(ProtoOAClosePositionReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -6538,6 +7008,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAClosePositionReq Clone() {
     return new ProtoOAClosePositionReq(this);
   }
@@ -6548,6 +7019,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -6557,11 +7029,13 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -6575,6 +7049,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -6584,11 +7059,13 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -6602,6 +7079,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   /// The unique ID of the position to close.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long PositionId {
     get { if ((_hasBits0 & 4) != 0) { return positionId_; } else { return PositionIdDefaultValue; } }
     set {
@@ -6611,11 +7089,13 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
   /// <summary>Gets whether the "positionId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPositionId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "positionId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPositionId() {
     _hasBits0 &= ~4;
   }
@@ -6629,6 +7109,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   /// Volume to close, represented in 0.01 of a unit (e.g. cents).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long Volume {
     get { if ((_hasBits0 & 8) != 0) { return volume_; } else { return VolumeDefaultValue; } }
     set {
@@ -6638,21 +7119,25 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
   /// <summary>Gets whether the "volume" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasVolume {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "volume" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearVolume() {
     _hasBits0 &= ~8;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAClosePositionReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAClosePositionReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -6668,6 +7153,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -6681,11 +7167,13 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -6714,6 +7202,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -6738,6 +7227,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -6759,6 +7249,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAClosePositionReq other) {
     if (other == null) {
       return;
@@ -6779,6 +7270,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -6812,6 +7304,7 @@ public sealed partial class ProtoOAClosePositionReq : pb::IMessage<ProtoOACloseP
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -6854,19 +7347,23 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOATrailingSLChangedEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATrailingSLChangedEvent() {
     OnConstruction();
   }
@@ -6874,6 +7371,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATrailingSLChangedEvent(ProtoOATrailingSLChangedEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -6886,6 +7384,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATrailingSLChangedEvent Clone() {
     return new ProtoOATrailingSLChangedEvent(this);
   }
@@ -6896,6 +7395,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -6905,11 +7405,13 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -6923,6 +7425,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -6932,11 +7435,13 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -6950,6 +7455,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   /// The unique ID of the position.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long PositionId {
     get { if ((_hasBits0 & 4) != 0) { return positionId_; } else { return PositionIdDefaultValue; } }
     set {
@@ -6959,11 +7465,13 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "positionId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPositionId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "positionId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPositionId() {
     _hasBits0 &= ~4;
   }
@@ -6977,6 +7485,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   /// The unique ID of the order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long OrderId {
     get { if ((_hasBits0 & 8) != 0) { return orderId_; } else { return OrderIdDefaultValue; } }
     set {
@@ -6986,11 +7495,13 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "orderId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasOrderId {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "orderId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearOrderId() {
     _hasBits0 &= ~8;
   }
@@ -7004,6 +7515,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   /// New value of the Stop Loss price.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public double StopPrice {
     get { if ((_hasBits0 & 16) != 0) { return stopPrice_; } else { return StopPriceDefaultValue; } }
     set {
@@ -7013,11 +7525,13 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "stopPrice" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasStopPrice {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "stopPrice" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearStopPrice() {
     _hasBits0 &= ~16;
   }
@@ -7031,6 +7545,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   /// The exact UTC time when the Stop Loss was updated.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long UtcLastUpdateTimestamp {
     get { if ((_hasBits0 & 32) != 0) { return utcLastUpdateTimestamp_; } else { return UtcLastUpdateTimestampDefaultValue; } }
     set {
@@ -7040,21 +7555,25 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "utcLastUpdateTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasUtcLastUpdateTimestamp {
     get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "utcLastUpdateTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearUtcLastUpdateTimestamp() {
     _hasBits0 &= ~32;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOATrailingSLChangedEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOATrailingSLChangedEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -7072,6 +7591,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -7087,11 +7607,13 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -7128,6 +7650,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -7160,6 +7683,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -7187,6 +7711,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOATrailingSLChangedEvent other) {
     if (other == null) {
       return;
@@ -7213,6 +7738,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -7254,6 +7780,7 @@ public sealed partial class ProtoOATrailingSLChangedEvent : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -7304,19 +7831,23 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAssetListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetListReq() {
     OnConstruction();
   }
@@ -7324,6 +7855,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetListReq(ProtoOAAssetListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -7332,6 +7864,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetListReq Clone() {
     return new ProtoOAAssetListReq(this);
   }
@@ -7342,6 +7875,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -7351,11 +7885,13 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -7369,6 +7905,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -7378,21 +7915,25 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAssetListReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAssetListReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -7406,6 +7947,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -7417,11 +7959,13 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -7442,6 +7986,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -7458,6 +8003,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -7473,6 +8019,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAssetListReq other) {
     if (other == null) {
       return;
@@ -7487,6 +8034,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -7512,6 +8060,7 @@ public sealed partial class ProtoOAAssetListReq : pb::IMessage<ProtoOAAssetListR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -7546,19 +8095,23 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAssetListRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetListRes() {
     OnConstruction();
   }
@@ -7566,6 +8119,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetListRes(ProtoOAAssetListRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -7575,6 +8129,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetListRes Clone() {
     return new ProtoOAAssetListRes(this);
   }
@@ -7585,6 +8140,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -7594,11 +8150,13 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -7612,6 +8170,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -7621,11 +8180,13 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -7639,16 +8200,19 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   /// The list of assets.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAAsset> Asset {
     get { return asset_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAssetListRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAssetListRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -7663,6 +8227,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -7675,11 +8240,13 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -7701,6 +8268,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -7718,6 +8286,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -7734,6 +8303,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAssetListRes other) {
     if (other == null) {
       return;
@@ -7749,6 +8319,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -7778,6 +8349,7 @@ public sealed partial class ProtoOAAssetListRes : pb::IMessage<ProtoOAAssetListR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -7816,19 +8388,23 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolsListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsListReq() {
     OnConstruction();
   }
@@ -7836,6 +8412,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsListReq(ProtoOASymbolsListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -7845,6 +8422,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsListReq Clone() {
     return new ProtoOASymbolsListReq(this);
   }
@@ -7855,6 +8433,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -7864,11 +8443,13 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -7882,6 +8463,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -7891,11 +8473,13 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -7905,7 +8489,11 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   private readonly static bool IncludeArchivedSymbolsDefaultValue = false;
 
   private bool includeArchivedSymbols_;
+  /// <summary>
+  /// Whether to include old archived symbols into response.
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool IncludeArchivedSymbols {
     get { if ((_hasBits0 & 4) != 0) { return includeArchivedSymbols_; } else { return IncludeArchivedSymbolsDefaultValue; } }
     set {
@@ -7915,21 +8503,25 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
   /// <summary>Gets whether the "includeArchivedSymbols" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasIncludeArchivedSymbols {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "includeArchivedSymbols" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearIncludeArchivedSymbols() {
     _hasBits0 &= ~4;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolsListReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolsListReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -7944,6 +8536,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -7956,11 +8549,13 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -7985,6 +8580,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -8005,6 +8601,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -8023,6 +8620,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolsListReq other) {
     if (other == null) {
       return;
@@ -8040,6 +8638,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -8069,6 +8668,7 @@ public sealed partial class ProtoOASymbolsListReq : pb::IMessage<ProtoOASymbolsL
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -8107,19 +8707,23 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolsListRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsListRes() {
     OnConstruction();
   }
@@ -8127,6 +8731,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsListRes(ProtoOASymbolsListRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -8137,6 +8742,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsListRes Clone() {
     return new ProtoOASymbolsListRes(this);
   }
@@ -8147,6 +8753,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -8156,11 +8763,13 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -8174,6 +8783,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -8183,11 +8793,13 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -8201,6 +8813,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   /// The list of symbols.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOALightSymbol> Symbol {
     get { return symbol_; }
   }
@@ -8214,16 +8827,19 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   /// The list of archived symbols.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAArchivedSymbol> ArchivedSymbol {
     get { return archivedSymbol_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolsListRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolsListRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -8239,6 +8855,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -8252,11 +8869,13 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -8279,6 +8898,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -8297,6 +8917,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -8314,6 +8935,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolsListRes other) {
     if (other == null) {
       return;
@@ -8330,6 +8952,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -8363,6 +8986,7 @@ public sealed partial class ProtoOASymbolsListRes : pb::IMessage<ProtoOASymbolsL
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -8405,19 +9029,23 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolByIdReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[20]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolByIdReq() {
     OnConstruction();
   }
@@ -8425,6 +9053,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolByIdReq(ProtoOASymbolByIdReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -8434,6 +9063,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolByIdReq Clone() {
     return new ProtoOASymbolByIdReq(this);
   }
@@ -8444,6 +9074,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -8453,11 +9084,13 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -8471,6 +9104,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -8480,11 +9114,13 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -8498,16 +9134,19 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   /// Unique identifier of the symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> SymbolId {
     get { return symbolId_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolByIdReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolByIdReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -8522,6 +9161,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -8534,11 +9174,13 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -8560,6 +9202,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -8577,6 +9220,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -8593,6 +9237,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolByIdReq other) {
     if (other == null) {
       return;
@@ -8608,6 +9253,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -8638,6 +9284,7 @@ public sealed partial class ProtoOASymbolByIdReq : pb::IMessage<ProtoOASymbolByI
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -8677,19 +9324,23 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolByIdRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[21]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolByIdRes() {
     OnConstruction();
   }
@@ -8697,6 +9348,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolByIdRes(ProtoOASymbolByIdRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -8707,6 +9359,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolByIdRes Clone() {
     return new ProtoOASymbolByIdRes(this);
   }
@@ -8717,6 +9370,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -8726,11 +9380,13 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -8744,6 +9400,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -8753,11 +9410,13 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -8771,6 +9430,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   /// Symbol entity with the full set of fields.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOASymbol> Symbol {
     get { return symbol_; }
   }
@@ -8784,16 +9444,19 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   /// Archived symbols.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAArchivedSymbol> ArchivedSymbol {
     get { return archivedSymbol_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolByIdRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolByIdRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -8809,6 +9472,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -8822,11 +9486,13 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -8849,6 +9515,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -8867,6 +9534,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -8884,6 +9552,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolByIdRes other) {
     if (other == null) {
       return;
@@ -8900,6 +9569,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -8933,6 +9603,7 @@ public sealed partial class ProtoOASymbolByIdRes : pb::IMessage<ProtoOASymbolByI
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -8975,19 +9646,23 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolsForConversionReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsForConversionReq() {
     OnConstruction();
   }
@@ -8995,6 +9670,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsForConversionReq(ProtoOASymbolsForConversionReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -9005,6 +9681,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsForConversionReq Clone() {
     return new ProtoOASymbolsForConversionReq(this);
   }
@@ -9015,6 +9692,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -9024,11 +9702,13 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -9042,6 +9722,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -9051,11 +9732,13 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -9069,6 +9752,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   /// The ID of the firs asset in the conversation chain. e.g.: for EUR/USD the firstAssetId is EUR ID and lastAssetId is USD ID.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long FirstAssetId {
     get { if ((_hasBits0 & 4) != 0) { return firstAssetId_; } else { return FirstAssetIdDefaultValue; } }
     set {
@@ -9078,11 +9762,13 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "firstAssetId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasFirstAssetId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "firstAssetId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearFirstAssetId() {
     _hasBits0 &= ~4;
   }
@@ -9096,6 +9782,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   /// The ID of the last asset in the conversation chain. e.g.: for EUR/USD the firstAssetId is EUR ID and lastAssetId is USD ID.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long LastAssetId {
     get { if ((_hasBits0 & 8) != 0) { return lastAssetId_; } else { return LastAssetIdDefaultValue; } }
     set {
@@ -9105,21 +9792,25 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "lastAssetId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasLastAssetId {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "lastAssetId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearLastAssetId() {
     _hasBits0 &= ~8;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolsForConversionReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolsForConversionReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -9135,6 +9826,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -9148,11 +9840,13 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -9181,6 +9875,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -9205,6 +9900,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -9226,6 +9922,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolsForConversionReq other) {
     if (other == null) {
       return;
@@ -9246,6 +9943,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -9279,6 +9977,7 @@ public sealed partial class ProtoOASymbolsForConversionReq : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -9321,19 +10020,23 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolsForConversionRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[23]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsForConversionRes() {
     OnConstruction();
   }
@@ -9341,6 +10044,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsForConversionRes(ProtoOASymbolsForConversionRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -9350,6 +10054,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolsForConversionRes Clone() {
     return new ProtoOASymbolsForConversionRes(this);
   }
@@ -9360,6 +10065,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -9369,11 +10075,13 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -9387,6 +10095,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -9396,11 +10105,13 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -9414,16 +10125,19 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   /// Conversion chain of the symbols (e.g. EUR/USD, USD/JPY, GBP/JPY -> EUR/GBP).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOALightSymbol> Symbol {
     get { return symbol_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolsForConversionRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolsForConversionRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -9438,6 +10152,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -9450,11 +10165,13 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -9476,6 +10193,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -9493,6 +10211,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -9509,6 +10228,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolsForConversionRes other) {
     if (other == null) {
       return;
@@ -9524,6 +10244,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -9553,6 +10274,7 @@ public sealed partial class ProtoOASymbolsForConversionRes : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -9591,19 +10313,23 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolChangedEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolChangedEvent() {
     OnConstruction();
   }
@@ -9611,6 +10337,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolChangedEvent(ProtoOASymbolChangedEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -9620,6 +10347,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolChangedEvent Clone() {
     return new ProtoOASymbolChangedEvent(this);
   }
@@ -9630,6 +10358,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -9639,11 +10368,13 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -9657,6 +10388,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -9666,11 +10398,13 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -9684,16 +10418,19 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> SymbolId {
     get { return symbolId_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolChangedEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolChangedEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -9708,6 +10445,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -9720,11 +10458,13 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -9746,6 +10486,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -9763,6 +10504,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -9779,6 +10521,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolChangedEvent other) {
     if (other == null) {
       return;
@@ -9794,6 +10537,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -9824,6 +10568,7 @@ public sealed partial class ProtoOASymbolChangedEvent : pb::IMessage<ProtoOASymb
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -9863,19 +10608,23 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAssetClassListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[25]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetClassListReq() {
     OnConstruction();
   }
@@ -9883,6 +10632,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetClassListReq(ProtoOAAssetClassListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -9891,6 +10641,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetClassListReq Clone() {
     return new ProtoOAAssetClassListReq(this);
   }
@@ -9901,6 +10652,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -9910,11 +10662,13 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -9928,6 +10682,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -9937,21 +10692,25 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAssetClassListReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAssetClassListReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -9965,6 +10724,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -9976,11 +10736,13 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -10001,6 +10763,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -10017,6 +10780,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -10032,6 +10796,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAssetClassListReq other) {
     if (other == null) {
       return;
@@ -10046,6 +10811,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -10071,6 +10837,7 @@ public sealed partial class ProtoOAAssetClassListReq : pb::IMessage<ProtoOAAsset
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -10105,19 +10872,23 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAssetClassListRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[26]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetClassListRes() {
     OnConstruction();
   }
@@ -10125,6 +10896,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetClassListRes(ProtoOAAssetClassListRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -10134,6 +10906,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAssetClassListRes Clone() {
     return new ProtoOAAssetClassListRes(this);
   }
@@ -10144,6 +10917,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -10153,11 +10927,13 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -10171,6 +10947,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -10180,11 +10957,13 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -10198,16 +10977,19 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   /// List of the asset classes.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAAssetClass> AssetClass {
     get { return assetClass_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAssetClassListRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAssetClassListRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -10222,6 +11004,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -10234,11 +11017,13 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -10260,6 +11045,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -10277,6 +11063,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -10293,6 +11080,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAssetClassListRes other) {
     if (other == null) {
       return;
@@ -10308,6 +11096,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -10337,6 +11126,7 @@ public sealed partial class ProtoOAAssetClassListRes : pb::IMessage<ProtoOAAsset
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -10375,19 +11165,23 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOATraderReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[27]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderReq() {
     OnConstruction();
   }
@@ -10395,6 +11189,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderReq(ProtoOATraderReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -10403,6 +11198,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderReq Clone() {
     return new ProtoOATraderReq(this);
   }
@@ -10413,6 +11209,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -10422,11 +11219,13 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -10440,6 +11239,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -10449,21 +11249,25 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOATraderReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOATraderReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -10477,6 +11281,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -10488,11 +11293,13 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -10513,6 +11320,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -10529,6 +11337,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -10544,6 +11353,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOATraderReq other) {
     if (other == null) {
       return;
@@ -10558,6 +11368,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -10583,6 +11394,7 @@ public sealed partial class ProtoOATraderReq : pb::IMessage<ProtoOATraderReq>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -10617,19 +11429,23 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOATraderRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[28]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderRes() {
     OnConstruction();
   }
@@ -10637,6 +11453,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderRes(ProtoOATraderRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -10646,6 +11463,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderRes Clone() {
     return new ProtoOATraderRes(this);
   }
@@ -10656,6 +11474,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -10665,11 +11484,13 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -10683,6 +11504,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -10692,11 +11514,13 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -10708,6 +11532,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   /// The Trader account information.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATrader Trader {
     get { return trader_; }
     set {
@@ -10716,11 +11541,13 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOATraderRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOATraderRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -10735,6 +11562,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -10747,11 +11575,13 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -10776,6 +11606,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -10796,6 +11627,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -10814,6 +11646,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOATraderRes other) {
     if (other == null) {
       return;
@@ -10834,6 +11667,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -10866,6 +11700,7 @@ public sealed partial class ProtoOATraderRes : pb::IMessage<ProtoOATraderRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -10907,19 +11742,23 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOATraderUpdatedEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[29]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderUpdatedEvent() {
     OnConstruction();
   }
@@ -10927,6 +11766,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderUpdatedEvent(ProtoOATraderUpdatedEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -10936,6 +11776,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOATraderUpdatedEvent Clone() {
     return new ProtoOATraderUpdatedEvent(this);
   }
@@ -10946,6 +11787,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -10955,11 +11797,13 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -10973,6 +11817,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -10982,11 +11827,13 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -10998,6 +11845,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   /// The Trader account information.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATrader Trader {
     get { return trader_; }
     set {
@@ -11006,11 +11854,13 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOATraderUpdatedEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOATraderUpdatedEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -11025,6 +11875,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -11037,11 +11888,13 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -11066,6 +11919,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -11086,6 +11940,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -11104,6 +11959,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOATraderUpdatedEvent other) {
     if (other == null) {
       return;
@@ -11124,6 +11980,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -11156,6 +12013,7 @@ public sealed partial class ProtoOATraderUpdatedEvent : pb::IMessage<ProtoOATrad
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -11197,19 +12055,23 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAReconcileReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAReconcileReq() {
     OnConstruction();
   }
@@ -11217,6 +12079,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAReconcileReq(ProtoOAReconcileReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -11225,6 +12088,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAReconcileReq Clone() {
     return new ProtoOAReconcileReq(this);
   }
@@ -11235,6 +12099,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -11244,11 +12109,13 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -11262,6 +12129,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -11271,21 +12139,25 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAReconcileReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAReconcileReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -11299,6 +12171,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -11310,11 +12183,13 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -11335,6 +12210,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -11351,6 +12227,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -11366,6 +12243,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAReconcileReq other) {
     if (other == null) {
       return;
@@ -11380,6 +12258,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -11405,6 +12284,7 @@ public sealed partial class ProtoOAReconcileReq : pb::IMessage<ProtoOAReconcileR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -11439,19 +12319,23 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAReconcileRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAReconcileRes() {
     OnConstruction();
   }
@@ -11459,6 +12343,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAReconcileRes(ProtoOAReconcileRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -11469,6 +12354,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAReconcileRes Clone() {
     return new ProtoOAReconcileRes(this);
   }
@@ -11479,6 +12365,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -11488,11 +12375,13 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -11506,6 +12395,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -11515,11 +12405,13 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -11533,6 +12425,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   /// The list of trader's account open positions.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAPosition> Position {
     get { return position_; }
   }
@@ -11546,16 +12439,19 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   /// The list of trader's account pending orders.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAOrder> Order {
     get { return order_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAReconcileRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAReconcileRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -11571,6 +12467,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -11584,11 +12481,13 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -11611,6 +12510,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -11629,6 +12529,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -11646,6 +12547,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAReconcileRes other) {
     if (other == null) {
       return;
@@ -11662,6 +12564,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -11695,6 +12598,7 @@ public sealed partial class ProtoOAReconcileRes : pb::IMessage<ProtoOAReconcileR
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -11737,19 +12641,23 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAOrderErrorEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAOrderErrorEvent() {
     OnConstruction();
   }
@@ -11757,6 +12665,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAOrderErrorEvent(ProtoOAOrderErrorEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -11769,6 +12678,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAOrderErrorEvent Clone() {
     return new ProtoOAOrderErrorEvent(this);
   }
@@ -11779,6 +12689,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -11788,11 +12699,13 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -11806,6 +12719,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   ///Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 4) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -11815,11 +12729,13 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~4;
   }
@@ -11833,6 +12749,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   /// The name of the ProtoErrorCode or the other custom ErrorCodes (e.g. ProtoCHErrorCode).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ErrorCode {
     get { return errorCode_ ?? ErrorCodeDefaultValue; }
     set {
@@ -11841,11 +12758,13 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
   /// <summary>Gets whether the "errorCode" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasErrorCode {
     get { return errorCode_ != null; }
   }
   /// <summary>Clears the value of the "errorCode" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearErrorCode() {
     errorCode_ = null;
   }
@@ -11859,6 +12778,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   /// The unique ID of the order.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long OrderId {
     get { if ((_hasBits0 & 2) != 0) { return orderId_; } else { return OrderIdDefaultValue; } }
     set {
@@ -11868,11 +12788,13 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
   /// <summary>Gets whether the "orderId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasOrderId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "orderId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearOrderId() {
     _hasBits0 &= ~2;
   }
@@ -11886,6 +12808,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   /// The unique ID of the position.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long PositionId {
     get { if ((_hasBits0 & 8) != 0) { return positionId_; } else { return PositionIdDefaultValue; } }
     set {
@@ -11895,11 +12818,13 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
   /// <summary>Gets whether the "positionId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPositionId {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "positionId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPositionId() {
     _hasBits0 &= ~8;
   }
@@ -11913,6 +12838,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   /// The error description.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Description {
     get { return description_ ?? DescriptionDefaultValue; }
     set {
@@ -11921,21 +12847,25 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
   /// <summary>Gets whether the "description" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasDescription {
     get { return description_ != null; }
   }
   /// <summary>Clears the value of the "description" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearDescription() {
     description_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAOrderErrorEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAOrderErrorEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -11953,6 +12883,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -11968,11 +12899,13 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -12009,6 +12942,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -12041,6 +12975,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -12068,6 +13003,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAOrderErrorEvent other) {
     if (other == null) {
       return;
@@ -12094,6 +13030,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -12135,6 +13072,7 @@ public sealed partial class ProtoOAOrderErrorEvent : pb::IMessage<ProtoOAOrderEr
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -12185,19 +13123,23 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOADealListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADealListReq() {
     OnConstruction();
   }
@@ -12205,6 +13147,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADealListReq(ProtoOADealListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -12216,6 +13159,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADealListReq Clone() {
     return new ProtoOADealListReq(this);
   }
@@ -12226,6 +13170,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -12235,11 +13180,13 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -12253,6 +13200,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -12262,11 +13210,13 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -12280,6 +13230,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   /// The UNIX time from which the search starts >=0 (1-1-1970). Validation: toTimestamp - fromTimestamp &lt;= 604800000 (1 week).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long FromTimestamp {
     get { if ((_hasBits0 & 4) != 0) { return fromTimestamp_; } else { return FromTimestampDefaultValue; } }
     set {
@@ -12289,11 +13240,13 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
   /// <summary>Gets whether the "fromTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasFromTimestamp {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "fromTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearFromTimestamp() {
     _hasBits0 &= ~4;
   }
@@ -12307,6 +13260,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   /// The UNIX time where to stop searching &lt;= 2147483646000 (19-1-2038).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long ToTimestamp {
     get { if ((_hasBits0 & 8) != 0) { return toTimestamp_; } else { return ToTimestampDefaultValue; } }
     set {
@@ -12316,11 +13270,13 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
   /// <summary>Gets whether the "toTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasToTimestamp {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "toTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearToTimestamp() {
     _hasBits0 &= ~8;
   }
@@ -12334,6 +13290,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   /// The maximum number of the deals to return.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int MaxRows {
     get { if ((_hasBits0 & 16) != 0) { return maxRows_; } else { return MaxRowsDefaultValue; } }
     set {
@@ -12343,21 +13300,25 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
   /// <summary>Gets whether the "maxRows" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasMaxRows {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "maxRows" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearMaxRows() {
     _hasBits0 &= ~16;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOADealListReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOADealListReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -12374,6 +13335,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -12388,11 +13350,13 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -12425,6 +13389,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -12453,6 +13418,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -12477,6 +13443,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOADealListReq other) {
     if (other == null) {
       return;
@@ -12500,6 +13467,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -12537,6 +13505,7 @@ public sealed partial class ProtoOADealListReq : pb::IMessage<ProtoOADealListReq
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -12583,19 +13552,23 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOADealListRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[34]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADealListRes() {
     OnConstruction();
   }
@@ -12603,6 +13576,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADealListRes(ProtoOADealListRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -12613,6 +13587,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADealListRes Clone() {
     return new ProtoOADealListRes(this);
   }
@@ -12623,6 +13598,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -12632,11 +13608,13 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -12650,6 +13628,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -12659,11 +13638,13 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -12677,6 +13658,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   /// The list of the deals.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOADeal> Deal {
     get { return deal_; }
   }
@@ -12690,6 +13672,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   /// If TRUE then the response will provide more than 10000 deals.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasMore {
     get { if ((_hasBits0 & 4) != 0) { return hasMore_; } else { return HasMoreDefaultValue; } }
     set {
@@ -12699,21 +13682,25 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
   /// <summary>Gets whether the "hasMore" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasHasMore {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "hasMore" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearHasMore() {
     _hasBits0 &= ~4;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOADealListRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOADealListRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -12729,6 +13716,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -12742,11 +13730,13 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -12772,6 +13762,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -12793,6 +13784,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -12812,6 +13804,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOADealListRes other) {
     if (other == null) {
       return;
@@ -12830,6 +13823,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -12863,6 +13857,7 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -12894,57 +13889,64 @@ public sealed partial class ProtoOADealListRes : pb::IMessage<ProtoOADealListRes
 }
 
 /// <summary>
-///* Request for getting the margin estimate. Can be used before sending a new order request. 
+///* Request for getting Trader's closed orders filtered by timestamp 
 /// </summary>
-public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpectedMarginReq>
+public sealed partial class ProtoOAOrderListReq : pb::IMessage<ProtoOAOrderListReq>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<ProtoOAExpectedMarginReq> _parser = new pb::MessageParser<ProtoOAExpectedMarginReq>(() => new ProtoOAExpectedMarginReq());
+  private static readonly pb::MessageParser<ProtoOAOrderListReq> _parser = new pb::MessageParser<ProtoOAOrderListReq>(() => new ProtoOAOrderListReq());
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<ProtoOAExpectedMarginReq> Parser { get { return _parser; } }
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ProtoOAOrderListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[35]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ProtoOAExpectedMarginReq() {
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAOrderListReq() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ProtoOAExpectedMarginReq(ProtoOAExpectedMarginReq other) : this() {
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAOrderListReq(ProtoOAOrderListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
     ctidTraderAccountId_ = other.ctidTraderAccountId_;
-    symbolId_ = other.symbolId_;
-    volume_ = other.volume_.Clone();
+    fromTimestamp_ = other.fromTimestamp_;
+    toTimestamp_ = other.toTimestamp_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ProtoOAExpectedMarginReq Clone() {
-    return new ProtoOAExpectedMarginReq(this);
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAOrderListReq Clone() {
+    return new ProtoOAOrderListReq(this);
   }
 
   /// <summary>Field number for the "payloadType" field.</summary>
   public const int PayloadTypeFieldNumber = 1;
-  private readonly static global::ProtoOAPayloadType PayloadTypeDefaultValue = global::ProtoOAPayloadType.ProtoOaExpectedMarginReq;
+  private readonly static global::ProtoOAPayloadType PayloadTypeDefaultValue = global::ProtoOAPayloadType.ProtoOaOrderListReq;
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -12954,11 +13956,13 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -12972,6 +13976,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -12981,11 +13986,735 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearCtidTraderAccountId() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "fromTimestamp" field.</summary>
+  public const int FromTimestampFieldNumber = 3;
+  private readonly static long FromTimestampDefaultValue = 0L;
+
+  private long fromTimestamp_;
+  /// <summary>
+  /// The UNIX time from which the search starts >=0 (1-1-1970). Validation: toTimestamp - fromTimestamp &lt;= 604800000 (1 week).
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long FromTimestamp {
+    get { if ((_hasBits0 & 4) != 0) { return fromTimestamp_; } else { return FromTimestampDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      fromTimestamp_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fromTimestamp" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasFromTimestamp {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "fromTimestamp" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearFromTimestamp() {
+    _hasBits0 &= ~4;
+  }
+
+  /// <summary>Field number for the "toTimestamp" field.</summary>
+  public const int ToTimestampFieldNumber = 4;
+  private readonly static long ToTimestampDefaultValue = 0L;
+
+  private long toTimestamp_;
+  /// <summary>
+  /// The UNIX time where to stop searching &lt;= 2147483646000 (19-1-2038).
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long ToTimestamp {
+    get { if ((_hasBits0 & 8) != 0) { return toTimestamp_; } else { return ToTimestampDefaultValue; } }
+    set {
+      _hasBits0 |= 8;
+      toTimestamp_ = value;
+    }
+  }
+  /// <summary>Gets whether the "toTimestamp" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasToTimestamp {
+    get { return (_hasBits0 & 8) != 0; }
+  }
+  /// <summary>Clears the value of the "toTimestamp" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearToTimestamp() {
+    _hasBits0 &= ~8;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ProtoOAOrderListReq);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ProtoOAOrderListReq other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PayloadType != other.PayloadType) return false;
+    if (CtidTraderAccountId != other.CtidTraderAccountId) return false;
+    if (FromTimestamp != other.FromTimestamp) return false;
+    if (ToTimestamp != other.ToTimestamp) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasPayloadType) hash ^= PayloadType.GetHashCode();
+    if (HasCtidTraderAccountId) hash ^= CtidTraderAccountId.GetHashCode();
+    if (HasFromTimestamp) hash ^= FromTimestamp.GetHashCode();
+    if (HasToTimestamp) hash ^= ToTimestamp.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    if (HasFromTimestamp) {
+      output.WriteRawTag(24);
+      output.WriteInt64(FromTimestamp);
+    }
+    if (HasToTimestamp) {
+      output.WriteRawTag(32);
+      output.WriteInt64(ToTimestamp);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    if (HasFromTimestamp) {
+      output.WriteRawTag(24);
+      output.WriteInt64(FromTimestamp);
+    }
+    if (HasToTimestamp) {
+      output.WriteRawTag(32);
+      output.WriteInt64(ToTimestamp);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasPayloadType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(CtidTraderAccountId);
+    }
+    if (HasFromTimestamp) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(FromTimestamp);
+    }
+    if (HasToTimestamp) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(ToTimestamp);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ProtoOAOrderListReq other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasPayloadType) {
+      PayloadType = other.PayloadType;
+    }
+    if (other.HasCtidTraderAccountId) {
+      CtidTraderAccountId = other.CtidTraderAccountId;
+    }
+    if (other.HasFromTimestamp) {
+      FromTimestamp = other.FromTimestamp;
+    }
+    if (other.HasToTimestamp) {
+      ToTimestamp = other.ToTimestamp;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 24: {
+          FromTimestamp = input.ReadInt64();
+          break;
+        }
+        case 32: {
+          ToTimestamp = input.ReadInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 24: {
+          FromTimestamp = input.ReadInt64();
+          break;
+        }
+        case 32: {
+          ToTimestamp = input.ReadInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+///* The response to the ProtoOAOrderListReq request. 
+/// </summary>
+public sealed partial class ProtoOAOrderListRes : pb::IMessage<ProtoOAOrderListRes>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ProtoOAOrderListRes> _parser = new pb::MessageParser<ProtoOAOrderListRes>(() => new ProtoOAOrderListRes());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ProtoOAOrderListRes> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[36]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAOrderListRes() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAOrderListRes(ProtoOAOrderListRes other) : this() {
+    _hasBits0 = other._hasBits0;
+    payloadType_ = other.payloadType_;
+    ctidTraderAccountId_ = other.ctidTraderAccountId_;
+    order_ = other.order_.Clone();
+    hasMore_ = other.hasMore_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAOrderListRes Clone() {
+    return new ProtoOAOrderListRes(this);
+  }
+
+  /// <summary>Field number for the "payloadType" field.</summary>
+  public const int PayloadTypeFieldNumber = 1;
+  private readonly static global::ProtoOAPayloadType PayloadTypeDefaultValue = global::ProtoOAPayloadType.ProtoOaOrderListRes;
+
+  private global::ProtoOAPayloadType payloadType_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ProtoOAPayloadType PayloadType {
+    get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      payloadType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "payloadType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasPayloadType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "payloadType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearPayloadType() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "ctidTraderAccountId" field.</summary>
+  public const int CtidTraderAccountIdFieldNumber = 2;
+  private readonly static long CtidTraderAccountIdDefaultValue = 0L;
+
+  private long ctidTraderAccountId_;
+  /// <summary>
+  /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long CtidTraderAccountId {
+    get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      ctidTraderAccountId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasCtidTraderAccountId {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearCtidTraderAccountId() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "order" field.</summary>
+  public const int OrderFieldNumber = 3;
+  private static readonly pb::FieldCodec<global::ProtoOAOrder> _repeated_order_codec
+      = pb::FieldCodec.ForMessage(26, global::ProtoOAOrder.Parser);
+  private readonly pbc::RepeatedField<global::ProtoOAOrder> order_ = new pbc::RepeatedField<global::ProtoOAOrder>();
+  /// <summary>
+  /// The list of the orders.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::ProtoOAOrder> Order {
+    get { return order_; }
+  }
+
+  /// <summary>Field number for the "hasMore" field.</summary>
+  public const int HasMoreFieldNumber = 4;
+  private readonly static bool HasMoreDefaultValue = false;
+
+  private bool hasMore_;
+  /// <summary>
+  /// If TRUE then the response will provide more than 10000 orders.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasMore {
+    get { if ((_hasBits0 & 4) != 0) { return hasMore_; } else { return HasMoreDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      hasMore_ = value;
+    }
+  }
+  /// <summary>Gets whether the "hasMore" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasHasMore {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "hasMore" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearHasMore() {
+    _hasBits0 &= ~4;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ProtoOAOrderListRes);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ProtoOAOrderListRes other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PayloadType != other.PayloadType) return false;
+    if (CtidTraderAccountId != other.CtidTraderAccountId) return false;
+    if(!order_.Equals(other.order_)) return false;
+    if (HasMore != other.HasMore) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasPayloadType) hash ^= PayloadType.GetHashCode();
+    if (HasCtidTraderAccountId) hash ^= CtidTraderAccountId.GetHashCode();
+    hash ^= order_.GetHashCode();
+    if (HasHasMore) hash ^= HasMore.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    order_.WriteTo(output, _repeated_order_codec);
+    if (HasHasMore) {
+      output.WriteRawTag(32);
+      output.WriteBool(HasMore);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    order_.WriteTo(ref output, _repeated_order_codec);
+    if (HasHasMore) {
+      output.WriteRawTag(32);
+      output.WriteBool(HasMore);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasPayloadType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(CtidTraderAccountId);
+    }
+    size += order_.CalculateSize(_repeated_order_codec);
+    if (HasHasMore) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ProtoOAOrderListRes other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasPayloadType) {
+      PayloadType = other.PayloadType;
+    }
+    if (other.HasCtidTraderAccountId) {
+      CtidTraderAccountId = other.CtidTraderAccountId;
+    }
+    order_.Add(other.order_);
+    if (other.HasHasMore) {
+      HasMore = other.HasMore;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 26: {
+          order_.AddEntriesFrom(input, _repeated_order_codec);
+          break;
+        }
+        case 32: {
+          HasMore = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 26: {
+          order_.AddEntriesFrom(ref input, _repeated_order_codec);
+          break;
+        }
+        case 32: {
+          HasMore = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+///* Request for getting the margin estimate. Can be used before sending a new order request. 
+/// </summary>
+public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpectedMarginReq>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ProtoOAExpectedMarginReq> _parser = new pb::MessageParser<ProtoOAExpectedMarginReq>(() => new ProtoOAExpectedMarginReq());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ProtoOAExpectedMarginReq> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[37]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAExpectedMarginReq() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAExpectedMarginReq(ProtoOAExpectedMarginReq other) : this() {
+    _hasBits0 = other._hasBits0;
+    payloadType_ = other.payloadType_;
+    ctidTraderAccountId_ = other.ctidTraderAccountId_;
+    symbolId_ = other.symbolId_;
+    volume_ = other.volume_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOAExpectedMarginReq Clone() {
+    return new ProtoOAExpectedMarginReq(this);
+  }
+
+  /// <summary>Field number for the "payloadType" field.</summary>
+  public const int PayloadTypeFieldNumber = 1;
+  private readonly static global::ProtoOAPayloadType PayloadTypeDefaultValue = global::ProtoOAPayloadType.ProtoOaExpectedMarginReq;
+
+  private global::ProtoOAPayloadType payloadType_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ProtoOAPayloadType PayloadType {
+    get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      payloadType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "payloadType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasPayloadType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "payloadType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearPayloadType() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "ctidTraderAccountId" field.</summary>
+  public const int CtidTraderAccountIdFieldNumber = 2;
+  private readonly static long CtidTraderAccountIdDefaultValue = 0L;
+
+  private long ctidTraderAccountId_;
+  /// <summary>
+  /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long CtidTraderAccountId {
+    get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      ctidTraderAccountId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasCtidTraderAccountId {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -12999,6 +14728,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 4) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -13008,11 +14738,13 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~4;
   }
@@ -13026,16 +14758,19 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   /// Volume represented in 0.01 of a unit (e.g. cents).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> Volume {
     get { return volume_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAExpectedMarginReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAExpectedMarginReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -13051,6 +14786,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -13064,11 +14800,13 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -13094,6 +14832,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -13115,6 +14854,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -13134,6 +14874,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAExpectedMarginReq other) {
     if (other == null) {
       return;
@@ -13152,6 +14893,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -13186,6 +14928,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -13218,7 +14961,7 @@ public sealed partial class ProtoOAExpectedMarginReq : pb::IMessage<ProtoOAExpec
 }
 
 /// <summary>
-///*The response to the ProtoOAExpectedMarginReq request. 
+///* The response to the ProtoOAExpectedMarginReq request. 
 /// </summary>
 public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpectedMarginRes>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -13229,19 +14972,23 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAExpectedMarginRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[36]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[38]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAExpectedMarginRes() {
     OnConstruction();
   }
@@ -13249,6 +14996,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAExpectedMarginRes(ProtoOAExpectedMarginRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -13259,6 +15007,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAExpectedMarginRes Clone() {
     return new ProtoOAExpectedMarginRes(this);
   }
@@ -13269,6 +15018,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -13278,11 +15028,13 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -13296,6 +15048,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -13305,11 +15058,13 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -13323,6 +15078,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   /// The buy and sell margin estimate.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAExpectedMargin> Margin {
     get { return margin_; }
   }
@@ -13336,6 +15092,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   /// Specifies the exponent of the monetary values. E.g. moneyDigits = 8 must be interpret as business value multiplied by 10^8, then real balance would be 10053099944 / 10^8 = 100.53099944. Affects margin.buyMargin, margin.sellMargin.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public uint MoneyDigits {
     get { if ((_hasBits0 & 4) != 0) { return moneyDigits_; } else { return MoneyDigitsDefaultValue; } }
     set {
@@ -13345,21 +15102,25 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
   /// <summary>Gets whether the "moneyDigits" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasMoneyDigits {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "moneyDigits" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearMoneyDigits() {
     _hasBits0 &= ~4;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAExpectedMarginRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAExpectedMarginRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -13375,6 +15136,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -13388,11 +15150,13 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -13418,6 +15182,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -13439,6 +15204,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -13458,6 +15224,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAExpectedMarginRes other) {
     if (other == null) {
       return;
@@ -13476,6 +15243,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -13509,6 +15277,7 @@ public sealed partial class ProtoOAExpectedMarginRes : pb::IMessage<ProtoOAExpec
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -13551,19 +15320,23 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAMarginChangedEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[37]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[39]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginChangedEvent() {
     OnConstruction();
   }
@@ -13571,6 +15344,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginChangedEvent(ProtoOAMarginChangedEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -13582,6 +15356,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginChangedEvent Clone() {
     return new ProtoOAMarginChangedEvent(this);
   }
@@ -13592,6 +15367,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -13601,11 +15377,13 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -13619,6 +15397,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -13628,11 +15407,13 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -13646,6 +15427,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   /// The unique ID of the position.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong PositionId {
     get { if ((_hasBits0 & 4) != 0) { return positionId_; } else { return PositionIdDefaultValue; } }
     set {
@@ -13655,11 +15437,13 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
   /// <summary>Gets whether the "positionId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPositionId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "positionId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPositionId() {
     _hasBits0 &= ~4;
   }
@@ -13673,6 +15457,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   /// The new value of the margin used.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong UsedMargin {
     get { if ((_hasBits0 & 8) != 0) { return usedMargin_; } else { return UsedMarginDefaultValue; } }
     set {
@@ -13682,11 +15467,13 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
   /// <summary>Gets whether the "usedMargin" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasUsedMargin {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "usedMargin" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearUsedMargin() {
     _hasBits0 &= ~8;
   }
@@ -13700,6 +15487,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   /// Specifies the exponent of the monetary values. E.g. moneyDigits = 8 must be interpret as business value multiplied by 10^8, then real balance would be 10053099944 / 10^8 = 100.53099944. Affects usedMargin.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public uint MoneyDigits {
     get { if ((_hasBits0 & 16) != 0) { return moneyDigits_; } else { return MoneyDigitsDefaultValue; } }
     set {
@@ -13709,21 +15497,25 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
   /// <summary>Gets whether the "moneyDigits" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasMoneyDigits {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "moneyDigits" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearMoneyDigits() {
     _hasBits0 &= ~16;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAMarginChangedEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAMarginChangedEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -13740,6 +15532,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -13754,11 +15547,13 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -13791,6 +15586,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -13819,6 +15615,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -13843,6 +15640,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAMarginChangedEvent other) {
     if (other == null) {
       return;
@@ -13866,6 +15664,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -13903,6 +15702,7 @@ public sealed partial class ProtoOAMarginChangedEvent : pb::IMessage<ProtoOAMarg
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -13949,19 +15749,23 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOACashFlowHistoryListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[38]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[40]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACashFlowHistoryListReq() {
     OnConstruction();
   }
@@ -13969,6 +15773,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACashFlowHistoryListReq(ProtoOACashFlowHistoryListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -13979,6 +15784,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACashFlowHistoryListReq Clone() {
     return new ProtoOACashFlowHistoryListReq(this);
   }
@@ -13989,6 +15795,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -13998,11 +15805,13 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -14016,6 +15825,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -14025,11 +15835,13 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -14043,6 +15855,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   /// The UNIX time from which the search starts >=0 (1-1-1970). Validation: toTimestamp - fromTimestamp &lt;= 604800000 (1 week).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long FromTimestamp {
     get { if ((_hasBits0 & 4) != 0) { return fromTimestamp_; } else { return FromTimestampDefaultValue; } }
     set {
@@ -14052,11 +15865,13 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "fromTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasFromTimestamp {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "fromTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearFromTimestamp() {
     _hasBits0 &= ~4;
   }
@@ -14070,6 +15885,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   /// The UNIX time where to stop searching &lt;= 2147483646000 (19-1-2038).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long ToTimestamp {
     get { if ((_hasBits0 & 8) != 0) { return toTimestamp_; } else { return ToTimestampDefaultValue; } }
     set {
@@ -14079,21 +15895,25 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "toTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasToTimestamp {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "toTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearToTimestamp() {
     _hasBits0 &= ~8;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOACashFlowHistoryListReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOACashFlowHistoryListReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -14109,6 +15929,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -14122,11 +15943,13 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -14155,6 +15978,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -14179,6 +16003,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -14200,6 +16025,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOACashFlowHistoryListReq other) {
     if (other == null) {
       return;
@@ -14220,6 +16046,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -14253,6 +16080,7 @@ public sealed partial class ProtoOACashFlowHistoryListReq : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -14295,19 +16123,23 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOACashFlowHistoryListRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[39]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[41]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACashFlowHistoryListRes() {
     OnConstruction();
   }
@@ -14315,6 +16147,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACashFlowHistoryListRes(ProtoOACashFlowHistoryListRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -14324,6 +16157,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOACashFlowHistoryListRes Clone() {
     return new ProtoOACashFlowHistoryListRes(this);
   }
@@ -14334,6 +16168,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -14343,11 +16178,13 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -14361,6 +16198,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -14370,11 +16208,13 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -14388,16 +16228,19 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   /// The list of deposit and withdrawal operations.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOADepositWithdraw> DepositWithdraw {
     get { return depositWithdraw_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOACashFlowHistoryListRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOACashFlowHistoryListRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -14412,6 +16255,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -14424,11 +16268,13 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -14450,6 +16296,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -14467,6 +16314,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -14483,6 +16331,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOACashFlowHistoryListRes other) {
     if (other == null) {
       return;
@@ -14498,6 +16347,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -14527,6 +16377,7 @@ public sealed partial class ProtoOACashFlowHistoryListRes : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -14565,19 +16416,23 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetAccountListByAccessTokenReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[40]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[42]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetAccountListByAccessTokenReq() {
     OnConstruction();
   }
@@ -14585,6 +16440,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetAccountListByAccessTokenReq(ProtoOAGetAccountListByAccessTokenReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -14593,6 +16449,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetAccountListByAccessTokenReq Clone() {
     return new ProtoOAGetAccountListByAccessTokenReq(this);
   }
@@ -14603,6 +16460,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -14612,11 +16470,13 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -14630,6 +16490,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   /// The Access Token issued for providing access to the Trader's Account.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string AccessToken {
     get { return accessToken_ ?? AccessTokenDefaultValue; }
     set {
@@ -14638,21 +16499,25 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   }
   /// <summary>Gets whether the "accessToken" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasAccessToken {
     get { return accessToken_ != null; }
   }
   /// <summary>Clears the value of the "accessToken" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearAccessToken() {
     accessToken_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetAccountListByAccessTokenReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetAccountListByAccessTokenReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -14666,6 +16531,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -14677,11 +16543,13 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -14702,6 +16570,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -14718,6 +16587,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -14733,6 +16603,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetAccountListByAccessTokenReq other) {
     if (other == null) {
       return;
@@ -14747,6 +16618,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -14772,6 +16644,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenReq : pb::IMessage
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -14806,19 +16679,23 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetAccountListByAccessTokenRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[41]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[43]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetAccountListByAccessTokenRes() {
     OnConstruction();
   }
@@ -14826,6 +16703,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetAccountListByAccessTokenRes(ProtoOAGetAccountListByAccessTokenRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -14836,6 +16714,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetAccountListByAccessTokenRes Clone() {
     return new ProtoOAGetAccountListByAccessTokenRes(this);
   }
@@ -14846,6 +16725,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -14855,11 +16735,13 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -14873,6 +16755,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   /// The Access Token issued for providing access to the Trader's Account.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string AccessToken {
     get { return accessToken_ ?? AccessTokenDefaultValue; }
     set {
@@ -14881,11 +16764,13 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
   /// <summary>Gets whether the "accessToken" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasAccessToken {
     get { return accessToken_ != null; }
   }
   /// <summary>Clears the value of the "accessToken" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearAccessToken() {
     accessToken_ = null;
   }
@@ -14899,6 +16784,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   /// SCOPE_VIEW, SCOPE_TRADE.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAClientPermissionScope PermissionScope {
     get { if ((_hasBits0 & 2) != 0) { return permissionScope_; } else { return PermissionScopeDefaultValue; } }
     set {
@@ -14908,11 +16794,13 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
   /// <summary>Gets whether the "permissionScope" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPermissionScope {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "permissionScope" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPermissionScope() {
     _hasBits0 &= ~2;
   }
@@ -14926,16 +16814,19 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   /// The list of the accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOACtidTraderAccount> CtidTraderAccount {
     get { return ctidTraderAccount_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetAccountListByAccessTokenRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetAccountListByAccessTokenRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -14951,6 +16842,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -14964,11 +16856,13 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -14994,6 +16888,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -15015,6 +16910,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -15034,6 +16930,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetAccountListByAccessTokenRes other) {
     if (other == null) {
       return;
@@ -15052,6 +16949,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -15085,6 +16983,7 @@ public sealed partial class ProtoOAGetAccountListByAccessTokenRes : pb::IMessage
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -15127,19 +17026,23 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOARefreshTokenReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[42]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[44]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOARefreshTokenReq() {
     OnConstruction();
   }
@@ -15147,6 +17050,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOARefreshTokenReq(ProtoOARefreshTokenReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -15155,6 +17059,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOARefreshTokenReq Clone() {
     return new ProtoOARefreshTokenReq(this);
   }
@@ -15165,6 +17070,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -15174,11 +17080,13 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -15192,6 +17100,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   /// The Refresh Token issued for updating Access Token.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string RefreshToken {
     get { return refreshToken_ ?? RefreshTokenDefaultValue; }
     set {
@@ -15200,21 +17109,25 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   }
   /// <summary>Gets whether the "refreshToken" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasRefreshToken {
     get { return refreshToken_ != null; }
   }
   /// <summary>Clears the value of the "refreshToken" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearRefreshToken() {
     refreshToken_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOARefreshTokenReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOARefreshTokenReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -15228,6 +17141,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -15239,11 +17153,13 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -15264,6 +17180,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -15280,6 +17197,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -15295,6 +17213,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOARefreshTokenReq other) {
     if (other == null) {
       return;
@@ -15309,6 +17228,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -15334,6 +17254,7 @@ public sealed partial class ProtoOARefreshTokenReq : pb::IMessage<ProtoOARefresh
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -15368,19 +17289,23 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOARefreshTokenRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[43]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[45]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOARefreshTokenRes() {
     OnConstruction();
   }
@@ -15388,6 +17313,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOARefreshTokenRes(ProtoOARefreshTokenRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -15399,6 +17325,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOARefreshTokenRes Clone() {
     return new ProtoOARefreshTokenRes(this);
   }
@@ -15409,6 +17336,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -15418,11 +17346,13 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -15436,6 +17366,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   /// The Access Token issued for providing access to the Trader's Account.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string AccessToken {
     get { return accessToken_ ?? AccessTokenDefaultValue; }
     set {
@@ -15444,11 +17375,13 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
   /// <summary>Gets whether the "accessToken" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasAccessToken {
     get { return accessToken_ != null; }
   }
   /// <summary>Clears the value of the "accessToken" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearAccessToken() {
     accessToken_ = null;
   }
@@ -15462,6 +17395,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   /// bearer
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string TokenType {
     get { return tokenType_ ?? TokenTypeDefaultValue; }
     set {
@@ -15470,11 +17404,13 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
   /// <summary>Gets whether the "tokenType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTokenType {
     get { return tokenType_ != null; }
   }
   /// <summary>Clears the value of the "tokenType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTokenType() {
     tokenType_ = null;
   }
@@ -15488,6 +17424,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   /// Access Token expiration in seconds
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long ExpiresIn {
     get { if ((_hasBits0 & 2) != 0) { return expiresIn_; } else { return ExpiresInDefaultValue; } }
     set {
@@ -15497,11 +17434,13 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
   /// <summary>Gets whether the "expiresIn" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasExpiresIn {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "expiresIn" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearExpiresIn() {
     _hasBits0 &= ~2;
   }
@@ -15512,6 +17451,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
 
   private string refreshToken_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string RefreshToken {
     get { return refreshToken_ ?? RefreshTokenDefaultValue; }
     set {
@@ -15520,21 +17460,25 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
   /// <summary>Gets whether the "refreshToken" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasRefreshToken {
     get { return refreshToken_ != null; }
   }
   /// <summary>Clears the value of the "refreshToken" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearRefreshToken() {
     refreshToken_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOARefreshTokenRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOARefreshTokenRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -15551,6 +17495,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -15565,11 +17510,13 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -15602,6 +17549,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -15630,6 +17578,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -15654,6 +17603,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOARefreshTokenRes other) {
     if (other == null) {
       return;
@@ -15677,6 +17627,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -15714,6 +17665,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -15760,19 +17712,23 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASubscribeSpotsReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[44]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[46]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeSpotsReq() {
     OnConstruction();
   }
@@ -15780,6 +17736,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeSpotsReq(ProtoOASubscribeSpotsReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -15789,6 +17746,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeSpotsReq Clone() {
     return new ProtoOASubscribeSpotsReq(this);
   }
@@ -15799,6 +17757,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -15808,11 +17767,13 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -15826,6 +17787,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -15835,11 +17797,13 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -15853,16 +17817,19 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> SymbolId {
     get { return symbolId_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASubscribeSpotsReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASubscribeSpotsReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -15877,6 +17844,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -15889,11 +17857,13 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -15915,6 +17885,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -15932,6 +17903,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -15948,6 +17920,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASubscribeSpotsReq other) {
     if (other == null) {
       return;
@@ -15963,6 +17936,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -15993,6 +17967,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -16032,19 +18007,23 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASubscribeSpotsRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[45]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[47]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeSpotsRes() {
     OnConstruction();
   }
@@ -16052,6 +18031,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeSpotsRes(ProtoOASubscribeSpotsRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -16060,6 +18040,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeSpotsRes Clone() {
     return new ProtoOASubscribeSpotsRes(this);
   }
@@ -16070,6 +18051,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -16079,11 +18061,13 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -16097,6 +18081,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -16106,21 +18091,25 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASubscribeSpotsRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASubscribeSpotsRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -16134,6 +18123,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -16145,11 +18135,13 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -16170,6 +18162,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -16186,6 +18179,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -16201,6 +18195,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASubscribeSpotsRes other) {
     if (other == null) {
       return;
@@ -16215,6 +18210,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -16240,6 +18236,7 @@ public sealed partial class ProtoOASubscribeSpotsRes : pb::IMessage<ProtoOASubsc
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -16274,19 +18271,23 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAUnsubscribeSpotsReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[46]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[48]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeSpotsReq() {
     OnConstruction();
   }
@@ -16294,6 +18295,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeSpotsReq(ProtoOAUnsubscribeSpotsReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -16303,6 +18305,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeSpotsReq Clone() {
     return new ProtoOAUnsubscribeSpotsReq(this);
   }
@@ -16313,6 +18316,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -16322,11 +18326,13 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -16340,6 +18346,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -16349,11 +18356,13 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -16367,16 +18376,19 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> SymbolId {
     get { return symbolId_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAUnsubscribeSpotsReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAUnsubscribeSpotsReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -16391,6 +18403,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -16403,11 +18416,13 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -16429,6 +18444,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -16446,6 +18462,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -16462,6 +18479,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAUnsubscribeSpotsReq other) {
     if (other == null) {
       return;
@@ -16477,6 +18495,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -16507,6 +18526,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsReq : pb::IMessage<ProtoOAUns
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -16546,19 +18566,23 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAUnsubscribeSpotsRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[47]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[49]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeSpotsRes() {
     OnConstruction();
   }
@@ -16566,6 +18590,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeSpotsRes(ProtoOAUnsubscribeSpotsRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -16574,6 +18599,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeSpotsRes Clone() {
     return new ProtoOAUnsubscribeSpotsRes(this);
   }
@@ -16584,6 +18610,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -16593,11 +18620,13 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -16611,6 +18640,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -16620,21 +18650,25 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAUnsubscribeSpotsRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAUnsubscribeSpotsRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -16648,6 +18682,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -16659,11 +18694,13 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -16684,6 +18721,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -16700,6 +18738,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -16715,6 +18754,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAUnsubscribeSpotsRes other) {
     if (other == null) {
       return;
@@ -16729,6 +18769,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -16754,6 +18795,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -16788,19 +18830,23 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASpotEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[48]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[50]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASpotEvent() {
     OnConstruction();
   }
@@ -16808,6 +18854,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASpotEvent(ProtoOASpotEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -16821,6 +18868,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASpotEvent Clone() {
     return new ProtoOASpotEvent(this);
   }
@@ -16831,6 +18879,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -16840,11 +18889,13 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -16858,6 +18909,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -16867,11 +18919,13 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -16885,6 +18939,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 4) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -16894,11 +18949,13 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~4;
   }
@@ -16912,6 +18969,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   /// Bid price. Specified in 1/100_000 of unit of a price. (e.g. 1.23 -> 123_000)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong Bid {
     get { if ((_hasBits0 & 8) != 0) { return bid_; } else { return BidDefaultValue; } }
     set {
@@ -16921,11 +18979,13 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
   /// <summary>Gets whether the "bid" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasBid {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "bid" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearBid() {
     _hasBits0 &= ~8;
   }
@@ -16939,6 +18999,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   /// Ask price. Specified in 1/100_000 of unit of a price.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong Ask {
     get { if ((_hasBits0 & 16) != 0) { return ask_; } else { return AskDefaultValue; } }
     set {
@@ -16948,11 +19009,13 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
   /// <summary>Gets whether the "ask" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasAsk {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "ask" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearAsk() {
     _hasBits0 &= ~16;
   }
@@ -16966,6 +19029,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   /// Returns live trend bar. Requires subscription on the trend bars.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOATrendbar> Trendbar {
     get { return trendbar_; }
   }
@@ -16979,6 +19043,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   ///Last session close. Specified in 1/100_000 of unit of a price.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong SessionClose {
     get { if ((_hasBits0 & 32) != 0) { return sessionClose_; } else { return SessionCloseDefaultValue; } }
     set {
@@ -16988,21 +19053,25 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
   /// <summary>Gets whether the "sessionClose" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSessionClose {
     get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "sessionClose" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSessionClose() {
     _hasBits0 &= ~32;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASpotEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASpotEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -17021,6 +19090,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -17037,11 +19107,13 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -17079,6 +19151,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -17112,6 +19185,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -17140,6 +19214,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASpotEvent other) {
     if (other == null) {
       return;
@@ -17167,6 +19242,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -17212,6 +19288,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -17266,19 +19343,23 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASubscribeLiveTrendbarReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[49]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[51]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeLiveTrendbarReq() {
     OnConstruction();
   }
@@ -17286,6 +19367,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeLiveTrendbarReq(ProtoOASubscribeLiveTrendbarReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -17296,6 +19378,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeLiveTrendbarReq Clone() {
     return new ProtoOASubscribeLiveTrendbarReq(this);
   }
@@ -17306,6 +19389,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -17315,11 +19399,13 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -17333,6 +19419,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -17342,11 +19429,13 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -17360,6 +19449,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   /// Specifies period of trend bar series (e.g. M1, M10, etc.).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATrendbarPeriod Period {
     get { if ((_hasBits0 & 4) != 0) { return period_; } else { return PeriodDefaultValue; } }
     set {
@@ -17369,11 +19459,13 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "period" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPeriod {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "period" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPeriod() {
     _hasBits0 &= ~4;
   }
@@ -17387,6 +19479,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 8) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -17396,21 +19489,25 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~8;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASubscribeLiveTrendbarReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASubscribeLiveTrendbarReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -17426,6 +19523,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -17439,11 +19537,13 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -17472,6 +19572,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -17496,6 +19597,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -17517,6 +19619,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASubscribeLiveTrendbarReq other) {
     if (other == null) {
       return;
@@ -17537,6 +19640,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -17570,6 +19674,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarReq : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -17612,19 +19717,23 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASubscribeLiveTrendbarRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[50]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[52]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeLiveTrendbarRes() {
     OnConstruction();
   }
@@ -17632,6 +19741,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeLiveTrendbarRes(ProtoOASubscribeLiveTrendbarRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -17640,6 +19750,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeLiveTrendbarRes Clone() {
     return new ProtoOASubscribeLiveTrendbarRes(this);
   }
@@ -17650,6 +19761,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -17659,11 +19771,13 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -17677,6 +19791,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -17686,21 +19801,25 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASubscribeLiveTrendbarRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASubscribeLiveTrendbarRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -17714,6 +19833,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -17725,11 +19845,13 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -17750,6 +19872,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -17766,6 +19889,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -17781,6 +19905,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASubscribeLiveTrendbarRes other) {
     if (other == null) {
       return;
@@ -17795,6 +19920,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -17820,6 +19946,7 @@ public sealed partial class ProtoOASubscribeLiveTrendbarRes : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -17854,19 +19981,23 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAUnsubscribeLiveTrendbarReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[51]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[53]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeLiveTrendbarReq() {
     OnConstruction();
   }
@@ -17874,6 +20005,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeLiveTrendbarReq(ProtoOAUnsubscribeLiveTrendbarReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -17884,6 +20016,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeLiveTrendbarReq Clone() {
     return new ProtoOAUnsubscribeLiveTrendbarReq(this);
   }
@@ -17894,6 +20027,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -17903,11 +20037,13 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -17921,6 +20057,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -17930,11 +20067,13 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -17948,6 +20087,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   /// Specifies period of trend bar series (e.g. M1, M10, etc.).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATrendbarPeriod Period {
     get { if ((_hasBits0 & 4) != 0) { return period_; } else { return PeriodDefaultValue; } }
     set {
@@ -17957,11 +20097,13 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
   /// <summary>Gets whether the "period" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPeriod {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "period" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPeriod() {
     _hasBits0 &= ~4;
   }
@@ -17975,6 +20117,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 8) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -17984,21 +20127,25 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~8;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAUnsubscribeLiveTrendbarReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAUnsubscribeLiveTrendbarReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -18014,6 +20161,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -18027,11 +20175,13 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -18060,6 +20210,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -18084,6 +20235,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -18105,6 +20257,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAUnsubscribeLiveTrendbarReq other) {
     if (other == null) {
       return;
@@ -18125,6 +20278,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -18158,6 +20312,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarReq : pb::IMessage<Pro
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -18200,19 +20355,23 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAUnsubscribeLiveTrendbarRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[52]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[54]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeLiveTrendbarRes() {
     OnConstruction();
   }
@@ -18220,6 +20379,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeLiveTrendbarRes(ProtoOAUnsubscribeLiveTrendbarRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -18228,6 +20388,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeLiveTrendbarRes Clone() {
     return new ProtoOAUnsubscribeLiveTrendbarRes(this);
   }
@@ -18238,6 +20399,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -18247,11 +20409,13 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -18265,6 +20429,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -18274,21 +20439,25 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAUnsubscribeLiveTrendbarRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAUnsubscribeLiveTrendbarRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -18302,6 +20471,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -18313,11 +20483,13 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -18338,6 +20510,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -18354,6 +20527,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -18369,6 +20543,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAUnsubscribeLiveTrendbarRes other) {
     if (other == null) {
       return;
@@ -18383,6 +20558,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -18408,6 +20584,7 @@ public sealed partial class ProtoOAUnsubscribeLiveTrendbarRes : pb::IMessage<Pro
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -18442,19 +20619,23 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetTrendbarsReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[53]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[55]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTrendbarsReq() {
     OnConstruction();
   }
@@ -18462,6 +20643,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTrendbarsReq(ProtoOAGetTrendbarsReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -18474,6 +20656,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTrendbarsReq Clone() {
     return new ProtoOAGetTrendbarsReq(this);
   }
@@ -18484,6 +20667,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -18493,11 +20677,13 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -18511,6 +20697,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -18520,11 +20707,13 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -18538,6 +20727,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   /// The exact time of starting the search in milliseconds. Must be bigger or equal to zero (1-1-1970). Validation: toTimestamp - fromTimestamp &lt;= X, where X depends on series period: M1, M2, M3, M4, M5: 302400000 (5 weeks); M10, M15, M30, H1: 21168000000 (35 weeks), H4, H12, D1: 31622400000 (1 year); W1, MN1: 158112000000 (5 years).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long FromTimestamp {
     get { if ((_hasBits0 & 4) != 0) { return fromTimestamp_; } else { return FromTimestampDefaultValue; } }
     set {
@@ -18547,11 +20737,13 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "fromTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasFromTimestamp {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "fromTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearFromTimestamp() {
     _hasBits0 &= ~4;
   }
@@ -18565,6 +20757,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   /// The exact time of finishing the search in milliseconds. Smaller or equal to 2147483646000 (19-1-2038).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long ToTimestamp {
     get { if ((_hasBits0 & 8) != 0) { return toTimestamp_; } else { return ToTimestampDefaultValue; } }
     set {
@@ -18574,11 +20767,13 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "toTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasToTimestamp {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "toTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearToTimestamp() {
     _hasBits0 &= ~8;
   }
@@ -18592,6 +20787,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   /// Specifies period of trend bar series (e.g. M1, M10, etc.).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATrendbarPeriod Period {
     get { if ((_hasBits0 & 16) != 0) { return period_; } else { return PeriodDefaultValue; } }
     set {
@@ -18601,11 +20797,13 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "period" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPeriod {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "period" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPeriod() {
     _hasBits0 &= ~16;
   }
@@ -18619,6 +20817,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 32) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -18628,21 +20827,25 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~32;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetTrendbarsReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetTrendbarsReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -18660,6 +20863,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -18675,11 +20879,13 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -18716,6 +20922,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -18748,6 +20955,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -18775,6 +20983,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetTrendbarsReq other) {
     if (other == null) {
       return;
@@ -18801,6 +21010,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -18842,6 +21052,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -18892,19 +21103,23 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetTrendbarsRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[54]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[56]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTrendbarsRes() {
     OnConstruction();
   }
@@ -18912,6 +21127,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTrendbarsRes(ProtoOAGetTrendbarsRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -18924,6 +21140,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTrendbarsRes Clone() {
     return new ProtoOAGetTrendbarsRes(this);
   }
@@ -18934,6 +21151,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -18943,11 +21161,13 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -18961,6 +21181,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -18970,11 +21191,13 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -18988,6 +21211,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   /// Specifies period of trend bar series (e.g. M1, M10, etc.).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOATrendbarPeriod Period {
     get { if ((_hasBits0 & 4) != 0) { return period_; } else { return PeriodDefaultValue; } }
     set {
@@ -18997,11 +21221,13 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "period" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPeriod {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "period" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPeriod() {
     _hasBits0 &= ~4;
   }
@@ -19015,6 +21241,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   /// Equals to toTimestamp from the request.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long Timestamp {
     get { if ((_hasBits0 & 8) != 0) { return timestamp_; } else { return TimestampDefaultValue; } }
     set {
@@ -19024,11 +21251,13 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "timestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasTimestamp {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "timestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearTimestamp() {
     _hasBits0 &= ~8;
   }
@@ -19042,6 +21271,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   /// The list of trend bars.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOATrendbar> Trendbar {
     get { return trendbar_; }
   }
@@ -19055,6 +21285,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 16) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -19064,21 +21295,25 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~16;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetTrendbarsRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetTrendbarsRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -19096,6 +21331,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -19111,11 +21347,13 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -19149,6 +21387,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -19178,6 +21417,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -19203,6 +21443,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetTrendbarsRes other) {
     if (other == null) {
       return;
@@ -19227,6 +21468,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -19268,6 +21510,7 @@ public sealed partial class ProtoOAGetTrendbarsRes : pb::IMessage<ProtoOAGetTren
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -19318,19 +21561,23 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetTickDataReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[55]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[57]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTickDataReq() {
     OnConstruction();
   }
@@ -19338,6 +21585,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTickDataReq(ProtoOAGetTickDataReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -19350,6 +21598,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTickDataReq Clone() {
     return new ProtoOAGetTickDataReq(this);
   }
@@ -19360,6 +21609,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -19369,11 +21619,13 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -19387,6 +21639,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -19396,11 +21649,13 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -19414,6 +21669,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long SymbolId {
     get { if ((_hasBits0 & 4) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -19423,11 +21679,13 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~4;
   }
@@ -19441,6 +21699,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   /// Bid/Ask (1/2).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAQuoteType Type {
     get { if ((_hasBits0 & 8) != 0) { return type_; } else { return TypeDefaultValue; } }
     set {
@@ -19450,11 +21709,13 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "type" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasType {
     get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "type" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearType() {
     _hasBits0 &= ~8;
   }
@@ -19468,6 +21729,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   /// The exact time of starting the search in milliseconds. Must be bigger of equal to zero (1-1-1970). Validation: toTimestamp - fromTimestamp &lt;= 604800000 (1 week).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long FromTimestamp {
     get { if ((_hasBits0 & 16) != 0) { return fromTimestamp_; } else { return FromTimestampDefaultValue; } }
     set {
@@ -19477,11 +21739,13 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "fromTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasFromTimestamp {
     get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "fromTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearFromTimestamp() {
     _hasBits0 &= ~16;
   }
@@ -19495,6 +21759,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   /// The exact time of finishing the search in milliseconds &lt;= 2147483646000 (19-1-2038).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long ToTimestamp {
     get { if ((_hasBits0 & 32) != 0) { return toTimestamp_; } else { return ToTimestampDefaultValue; } }
     set {
@@ -19504,21 +21769,25 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "toTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasToTimestamp {
     get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "toTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearToTimestamp() {
     _hasBits0 &= ~32;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetTickDataReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetTickDataReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -19536,6 +21805,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -19551,11 +21821,13 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -19592,6 +21864,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -19624,6 +21897,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -19651,6 +21925,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetTickDataReq other) {
     if (other == null) {
       return;
@@ -19677,6 +21952,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -19718,6 +21994,7 @@ public sealed partial class ProtoOAGetTickDataReq : pb::IMessage<ProtoOAGetTickD
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -19768,19 +22045,23 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetTickDataRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[56]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[58]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTickDataRes() {
     OnConstruction();
   }
@@ -19788,6 +22069,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTickDataRes(ProtoOAGetTickDataRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -19798,6 +22080,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetTickDataRes Clone() {
     return new ProtoOAGetTickDataRes(this);
   }
@@ -19808,6 +22091,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -19817,11 +22101,13 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -19835,6 +22121,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -19844,11 +22131,13 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -19862,6 +22151,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   /// The list of ticks.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOATickData> TickData {
     get { return tickData_; }
   }
@@ -19875,6 +22165,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   /// If TRUE then the number of records by filter is larger than chunkSize, the response contains the number of records that is equal to chunkSize.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasMore {
     get { if ((_hasBits0 & 4) != 0) { return hasMore_; } else { return HasMoreDefaultValue; } }
     set {
@@ -19884,21 +22175,25 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
   /// <summary>Gets whether the "hasMore" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasHasMore {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "hasMore" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearHasMore() {
     _hasBits0 &= ~4;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetTickDataRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetTickDataRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -19914,6 +22209,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -19927,11 +22223,13 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -19957,6 +22255,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -19978,6 +22277,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -19997,6 +22297,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetTickDataRes other) {
     if (other == null) {
       return;
@@ -20015,6 +22316,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -20048,6 +22350,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -20090,19 +22393,23 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetCtidProfileByTokenReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[57]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[59]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetCtidProfileByTokenReq() {
     OnConstruction();
   }
@@ -20110,6 +22417,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetCtidProfileByTokenReq(ProtoOAGetCtidProfileByTokenReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -20118,6 +22426,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetCtidProfileByTokenReq Clone() {
     return new ProtoOAGetCtidProfileByTokenReq(this);
   }
@@ -20128,6 +22437,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -20137,11 +22447,13 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -20155,6 +22467,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   /// The Access Token issued for providing access to the Trader's Account.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string AccessToken {
     get { return accessToken_ ?? AccessTokenDefaultValue; }
     set {
@@ -20163,21 +22476,25 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "accessToken" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasAccessToken {
     get { return accessToken_ != null; }
   }
   /// <summary>Clears the value of the "accessToken" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearAccessToken() {
     accessToken_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetCtidProfileByTokenReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetCtidProfileByTokenReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -20191,6 +22508,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -20202,11 +22520,13 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -20227,6 +22547,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -20243,6 +22564,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -20258,6 +22580,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetCtidProfileByTokenReq other) {
     if (other == null) {
       return;
@@ -20272,6 +22595,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -20297,6 +22621,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenReq : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -20331,19 +22656,23 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAGetCtidProfileByTokenRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[58]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[60]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetCtidProfileByTokenRes() {
     OnConstruction();
   }
@@ -20351,6 +22680,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetCtidProfileByTokenRes(ProtoOAGetCtidProfileByTokenRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -20359,6 +22689,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAGetCtidProfileByTokenRes Clone() {
     return new ProtoOAGetCtidProfileByTokenRes(this);
   }
@@ -20369,6 +22700,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -20378,11 +22710,13 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -20394,6 +22728,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   /// Trader's profile.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOACtidProfile Profile {
     get { return profile_; }
     set {
@@ -20402,11 +22737,13 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAGetCtidProfileByTokenRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAGetCtidProfileByTokenRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -20420,6 +22757,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -20431,11 +22769,13 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -20456,6 +22796,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -20472,6 +22813,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -20487,6 +22829,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAGetCtidProfileByTokenRes other) {
     if (other == null) {
       return;
@@ -20504,6 +22847,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -20532,6 +22876,7 @@ public sealed partial class ProtoOAGetCtidProfileByTokenRes : pb::IMessage<Proto
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -20569,19 +22914,23 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOADepthEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[59]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[61]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADepthEvent() {
     OnConstruction();
   }
@@ -20589,6 +22938,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADepthEvent(ProtoOADepthEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -20600,6 +22950,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOADepthEvent Clone() {
     return new ProtoOADepthEvent(this);
   }
@@ -20610,6 +22961,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -20619,11 +22971,13 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -20637,6 +22991,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -20646,11 +23001,13 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -20664,6 +23021,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong SymbolId {
     get { if ((_hasBits0 & 4) != 0) { return symbolId_; } else { return SymbolIdDefaultValue; } }
     set {
@@ -20673,11 +23031,13 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
   /// <summary>Gets whether the "symbolId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasSymbolId {
     get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "symbolId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSymbolId() {
     _hasBits0 &= ~4;
   }
@@ -20691,6 +23051,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   /// The list of changes in the depth of market quotes.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOADepthQuote> NewQuotes {
     get { return newQuotes_; }
   }
@@ -20704,16 +23065,19 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   /// The list of quotes to delete.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<ulong> DeletedQuotes {
     get { return deletedQuotes_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOADepthEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOADepthEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -20730,6 +23094,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -20744,11 +23109,13 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -20775,6 +23142,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -20797,6 +23165,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -20817,6 +23186,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOADepthEvent other) {
     if (other == null) {
       return;
@@ -20836,6 +23206,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -20874,6 +23245,7 @@ public sealed partial class ProtoOADepthEvent : pb::IMessage<ProtoOADepthEvent>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -20921,19 +23293,23 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASubscribeDepthQuotesReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[60]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[62]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeDepthQuotesReq() {
     OnConstruction();
   }
@@ -20941,6 +23317,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeDepthQuotesReq(ProtoOASubscribeDepthQuotesReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -20950,6 +23327,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeDepthQuotesReq Clone() {
     return new ProtoOASubscribeDepthQuotesReq(this);
   }
@@ -20960,6 +23338,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -20969,11 +23348,13 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -20987,6 +23368,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -20996,11 +23378,13 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -21014,16 +23398,19 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> SymbolId {
     get { return symbolId_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASubscribeDepthQuotesReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASubscribeDepthQuotesReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -21038,6 +23425,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -21050,11 +23438,13 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -21076,6 +23466,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -21093,6 +23484,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -21109,6 +23501,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASubscribeDepthQuotesReq other) {
     if (other == null) {
       return;
@@ -21124,6 +23517,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -21154,6 +23548,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesReq : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -21193,19 +23588,23 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASubscribeDepthQuotesRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[61]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[63]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeDepthQuotesRes() {
     OnConstruction();
   }
@@ -21213,6 +23612,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeDepthQuotesRes(ProtoOASubscribeDepthQuotesRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -21221,6 +23621,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASubscribeDepthQuotesRes Clone() {
     return new ProtoOASubscribeDepthQuotesRes(this);
   }
@@ -21231,6 +23632,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -21240,11 +23642,13 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -21258,6 +23662,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -21267,21 +23672,25 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASubscribeDepthQuotesRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASubscribeDepthQuotesRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -21295,6 +23704,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -21306,11 +23716,13 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -21331,6 +23743,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -21347,6 +23760,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -21362,6 +23776,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASubscribeDepthQuotesRes other) {
     if (other == null) {
       return;
@@ -21376,6 +23791,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -21401,6 +23817,7 @@ public sealed partial class ProtoOASubscribeDepthQuotesRes : pb::IMessage<ProtoO
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -21435,19 +23852,23 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAUnsubscribeDepthQuotesReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[62]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[64]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeDepthQuotesReq() {
     OnConstruction();
   }
@@ -21455,6 +23876,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeDepthQuotesReq(ProtoOAUnsubscribeDepthQuotesReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -21464,6 +23886,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeDepthQuotesReq Clone() {
     return new ProtoOAUnsubscribeDepthQuotesReq(this);
   }
@@ -21474,6 +23897,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -21483,11 +23907,13 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -21501,6 +23927,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -21510,11 +23937,13 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -21528,16 +23957,19 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   /// Unique identifier of the Symbol in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<long> SymbolId {
     get { return symbolId_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAUnsubscribeDepthQuotesReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAUnsubscribeDepthQuotesReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -21552,6 +23984,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -21564,11 +23997,13 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -21590,6 +24025,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -21607,6 +24043,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -21623,6 +24060,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAUnsubscribeDepthQuotesReq other) {
     if (other == null) {
       return;
@@ -21638,6 +24076,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -21668,6 +24107,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesReq : pb::IMessage<Prot
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -21707,19 +24147,23 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAUnsubscribeDepthQuotesRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[63]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[65]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeDepthQuotesRes() {
     OnConstruction();
   }
@@ -21727,6 +24171,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeDepthQuotesRes(ProtoOAUnsubscribeDepthQuotesRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -21735,6 +24180,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAUnsubscribeDepthQuotesRes Clone() {
     return new ProtoOAUnsubscribeDepthQuotesRes(this);
   }
@@ -21745,6 +24191,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -21754,11 +24201,13 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -21772,6 +24221,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -21781,21 +24231,25 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAUnsubscribeDepthQuotesRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAUnsubscribeDepthQuotesRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -21809,6 +24263,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -21820,11 +24275,13 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -21845,6 +24302,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -21861,6 +24319,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -21876,6 +24335,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAUnsubscribeDepthQuotesRes other) {
     if (other == null) {
       return;
@@ -21890,6 +24350,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -21915,6 +24376,7 @@ public sealed partial class ProtoOAUnsubscribeDepthQuotesRes : pb::IMessage<Prot
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -21949,19 +24411,23 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolCategoryListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[64]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[66]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolCategoryListReq() {
     OnConstruction();
   }
@@ -21969,6 +24435,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolCategoryListReq(ProtoOASymbolCategoryListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -21977,6 +24444,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolCategoryListReq Clone() {
     return new ProtoOASymbolCategoryListReq(this);
   }
@@ -21987,6 +24455,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -21996,11 +24465,13 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -22014,6 +24485,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -22023,21 +24495,25 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolCategoryListReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolCategoryListReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -22051,6 +24527,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -22062,11 +24539,13 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -22087,6 +24566,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -22103,6 +24583,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -22118,6 +24599,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolCategoryListReq other) {
     if (other == null) {
       return;
@@ -22132,6 +24614,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -22157,6 +24640,7 @@ public sealed partial class ProtoOASymbolCategoryListReq : pb::IMessage<ProtoOAS
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -22191,19 +24675,23 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOASymbolCategoryListRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[65]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[67]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolCategoryListRes() {
     OnConstruction();
   }
@@ -22211,6 +24699,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolCategoryListRes(ProtoOASymbolCategoryListRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -22220,6 +24709,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOASymbolCategoryListRes Clone() {
     return new ProtoOASymbolCategoryListRes(this);
   }
@@ -22230,6 +24720,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -22239,11 +24730,13 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -22257,6 +24750,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -22266,11 +24760,13 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -22284,16 +24780,19 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   /// The list of symbol categories.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOASymbolCategory> SymbolCategory {
     get { return symbolCategory_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOASymbolCategoryListRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOASymbolCategoryListRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -22308,6 +24807,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -22320,11 +24820,13 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -22346,6 +24848,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -22363,6 +24866,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -22379,6 +24883,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOASymbolCategoryListRes other) {
     if (other == null) {
       return;
@@ -22394,6 +24899,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -22423,6 +24929,7 @@ public sealed partial class ProtoOASymbolCategoryListRes : pb::IMessage<ProtoOAS
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -22461,19 +24968,23 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAccountLogoutReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[66]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[68]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountLogoutReq() {
     OnConstruction();
   }
@@ -22481,6 +24992,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountLogoutReq(ProtoOAAccountLogoutReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -22489,6 +25001,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountLogoutReq Clone() {
     return new ProtoOAAccountLogoutReq(this);
   }
@@ -22499,6 +25012,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -22508,11 +25022,13 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -22526,6 +25042,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   /// The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -22535,21 +25052,25 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAccountLogoutReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAccountLogoutReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -22563,6 +25084,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -22574,11 +25096,13 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -22599,6 +25123,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -22615,6 +25140,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -22630,6 +25156,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAccountLogoutReq other) {
     if (other == null) {
       return;
@@ -22644,6 +25171,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -22669,6 +25197,7 @@ public sealed partial class ProtoOAAccountLogoutReq : pb::IMessage<ProtoOAAccoun
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -22703,19 +25232,23 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAccountLogoutRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[67]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[69]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountLogoutRes() {
     OnConstruction();
   }
@@ -22723,6 +25256,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountLogoutRes(ProtoOAAccountLogoutRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -22731,6 +25265,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountLogoutRes Clone() {
     return new ProtoOAAccountLogoutRes(this);
   }
@@ -22741,6 +25276,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -22750,11 +25286,13 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -22768,6 +25306,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   /// The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -22777,21 +25316,25 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAccountLogoutRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAccountLogoutRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -22805,6 +25348,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -22816,11 +25360,13 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -22841,6 +25387,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -22857,6 +25404,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -22872,6 +25420,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAccountLogoutRes other) {
     if (other == null) {
       return;
@@ -22886,6 +25435,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -22911,6 +25461,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -22946,19 +25497,23 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAAccountDisconnectEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[68]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[70]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountDisconnectEvent() {
     OnConstruction();
   }
@@ -22966,6 +25521,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountDisconnectEvent(ProtoOAAccountDisconnectEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -22974,6 +25530,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAAccountDisconnectEvent Clone() {
     return new ProtoOAAccountDisconnectEvent(this);
   }
@@ -22984,6 +25541,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -22993,11 +25551,13 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -23011,6 +25571,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   /// The unique identifier of the trader's account in cTrader platform.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -23020,21 +25581,25 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAAccountDisconnectEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAAccountDisconnectEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -23048,6 +25613,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -23059,11 +25625,13 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -23084,6 +25652,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -23100,6 +25669,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -23115,6 +25685,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAAccountDisconnectEvent other) {
     if (other == null) {
       return;
@@ -23129,6 +25700,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -23154,6 +25726,7 @@ public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -23188,19 +25761,23 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAMarginCallListReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[69]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[71]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallListReq() {
     OnConstruction();
   }
@@ -23208,6 +25785,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallListReq(ProtoOAMarginCallListReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -23216,6 +25794,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallListReq Clone() {
     return new ProtoOAMarginCallListReq(this);
   }
@@ -23226,6 +25805,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -23235,11 +25815,13 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -23250,6 +25832,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
 
   private long ctidTraderAccountId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -23259,21 +25842,25 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAMarginCallListReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAMarginCallListReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -23287,6 +25874,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -23298,11 +25886,13 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -23323,6 +25913,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -23339,6 +25930,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -23354,6 +25946,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAMarginCallListReq other) {
     if (other == null) {
       return;
@@ -23368,6 +25961,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -23393,6 +25987,7 @@ public sealed partial class ProtoOAMarginCallListReq : pb::IMessage<ProtoOAMargi
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -23427,19 +26022,23 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAMarginCallListRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[70]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[72]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallListRes() {
     OnConstruction();
   }
@@ -23447,6 +26046,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallListRes(ProtoOAMarginCallListRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -23455,6 +26055,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallListRes Clone() {
     return new ProtoOAMarginCallListRes(this);
   }
@@ -23465,6 +26066,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -23474,11 +26076,13 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -23489,16 +26093,19 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
       = pb::FieldCodec.ForMessage(18, global::ProtoOAMarginCall.Parser);
   private readonly pbc::RepeatedField<global::ProtoOAMarginCall> marginCall_ = new pbc::RepeatedField<global::ProtoOAMarginCall>();
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::ProtoOAMarginCall> MarginCall {
     get { return marginCall_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAMarginCallListRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAMarginCallListRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -23512,6 +26119,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -23523,11 +26131,13 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -23545,6 +26155,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -23558,6 +26169,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -23571,6 +26183,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAMarginCallListRes other) {
     if (other == null) {
       return;
@@ -23583,6 +26196,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -23608,6 +26222,7 @@ public sealed partial class ProtoOAMarginCallListRes : pb::IMessage<ProtoOAMargi
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -23642,19 +26257,23 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAMarginCallUpdateReq> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[71]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[73]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateReq() {
     OnConstruction();
   }
@@ -23662,6 +26281,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateReq(ProtoOAMarginCallUpdateReq other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -23671,6 +26291,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateReq Clone() {
     return new ProtoOAMarginCallUpdateReq(this);
   }
@@ -23681,6 +26302,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -23690,11 +26312,13 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -23705,6 +26329,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
 
   private long ctidTraderAccountId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -23714,11 +26339,13 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -23727,6 +26354,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   public const int MarginCallFieldNumber = 3;
   private global::ProtoOAMarginCall marginCall_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAMarginCall MarginCall {
     get { return marginCall_; }
     set {
@@ -23735,11 +26363,13 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAMarginCallUpdateReq);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAMarginCallUpdateReq other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -23754,6 +26384,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -23766,11 +26397,13 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -23795,6 +26428,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -23815,6 +26449,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -23833,6 +26468,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAMarginCallUpdateReq other) {
     if (other == null) {
       return;
@@ -23853,6 +26489,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -23885,6 +26522,7 @@ public sealed partial class ProtoOAMarginCallUpdateReq : pb::IMessage<ProtoOAMar
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -23926,19 +26564,23 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAMarginCallUpdateRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[72]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[74]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateRes() {
     OnConstruction();
   }
@@ -23946,6 +26588,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateRes(ProtoOAMarginCallUpdateRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -23953,6 +26596,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateRes Clone() {
     return new ProtoOAMarginCallUpdateRes(this);
   }
@@ -23963,6 +26607,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -23972,21 +26617,25 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAMarginCallUpdateRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAMarginCallUpdateRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -23999,6 +26648,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -24009,11 +26659,13 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -24030,6 +26682,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -24042,6 +26695,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -24054,6 +26708,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAMarginCallUpdateRes other) {
     if (other == null) {
       return;
@@ -24065,6 +26720,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -24086,6 +26742,7 @@ public sealed partial class ProtoOAMarginCallUpdateRes : pb::IMessage<ProtoOAMar
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -24116,19 +26773,23 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAMarginCallUpdateEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[73]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[75]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateEvent() {
     OnConstruction();
   }
@@ -24136,6 +26797,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateEvent(ProtoOAMarginCallUpdateEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -24145,6 +26807,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallUpdateEvent Clone() {
     return new ProtoOAMarginCallUpdateEvent(this);
   }
@@ -24155,6 +26818,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -24164,11 +26828,13 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -24179,6 +26845,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
 
   private long ctidTraderAccountId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -24188,11 +26855,13 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -24201,6 +26870,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   public const int MarginCallFieldNumber = 3;
   private global::ProtoOAMarginCall marginCall_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAMarginCall MarginCall {
     get { return marginCall_; }
     set {
@@ -24209,11 +26879,13 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAMarginCallUpdateEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAMarginCallUpdateEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -24228,6 +26900,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -24240,11 +26913,13 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -24269,6 +26944,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -24289,6 +26965,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -24307,6 +26984,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAMarginCallUpdateEvent other) {
     if (other == null) {
       return;
@@ -24327,6 +27005,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -24359,6 +27038,7 @@ public sealed partial class ProtoOAMarginCallUpdateEvent : pb::IMessage<ProtoOAM
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -24400,19 +27080,23 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoOAMarginCallTriggerEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[74]; }
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[76]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallTriggerEvent() {
     OnConstruction();
   }
@@ -24420,6 +27104,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallTriggerEvent(ProtoOAMarginCallTriggerEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -24429,6 +27114,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoOAMarginCallTriggerEvent Clone() {
     return new ProtoOAMarginCallTriggerEvent(this);
   }
@@ -24439,6 +27125,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
 
   private global::ProtoOAPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -24448,11 +27135,13 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -24463,6 +27152,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
 
   private long ctidTraderAccountId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public long CtidTraderAccountId {
     get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
     set {
@@ -24472,11 +27162,13 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
   /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasCtidTraderAccountId {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearCtidTraderAccountId() {
     _hasBits0 &= ~2;
   }
@@ -24485,6 +27177,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   public const int MarginCallFieldNumber = 3;
   private global::ProtoOAMarginCall marginCall_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoOAMarginCall MarginCall {
     get { return marginCall_; }
     set {
@@ -24493,11 +27186,13 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoOAMarginCallTriggerEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoOAMarginCallTriggerEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -24512,6 +27207,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -24524,11 +27220,13 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -24553,6 +27251,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -24573,6 +27272,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -24591,6 +27291,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoOAMarginCallTriggerEvent other) {
     if (other == null) {
       return;
@@ -24611,6 +27312,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -24643,6 +27345,7 @@ public sealed partial class ProtoOAMarginCallTriggerEvent : pb::IMessage<ProtoOA
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {

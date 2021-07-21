@@ -53,19 +53,23 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoMessage> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiCommonMessagesReflection.Descriptor.MessageTypes[0]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoMessage() {
     OnConstruction();
   }
@@ -73,6 +77,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoMessage(ProtoMessage other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -82,6 +87,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoMessage Clone() {
     return new ProtoMessage(this);
   }
@@ -95,6 +101,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   /// Contains id of ProtoPayloadType or other custom PayloadTypes (e.g. ProtoOAPayloadType)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public uint PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -104,11 +111,13 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -122,6 +131,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   /// Serialized protobuf message that corresponds to payloadType
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pb::ByteString Payload {
     get { return payload_ ?? PayloadDefaultValue; }
     set {
@@ -130,11 +140,13 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
   /// <summary>Gets whether the "payload" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayload {
     get { return payload_ != null; }
   }
   /// <summary>Clears the value of the "payload" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayload() {
     payload_ = null;
   }
@@ -148,6 +160,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   /// Request message id, assigned by the client that will be returned in the response
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ClientMsgId {
     get { return clientMsgId_ ?? ClientMsgIdDefaultValue; }
     set {
@@ -156,21 +169,25 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
   /// <summary>Gets whether the "clientMsgId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasClientMsgId {
     get { return clientMsgId_ != null; }
   }
   /// <summary>Clears the value of the "clientMsgId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearClientMsgId() {
     clientMsgId_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoMessage);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoMessage other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -185,6 +202,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -197,11 +215,13 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -226,6 +246,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -246,6 +267,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -264,6 +286,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoMessage other) {
     if (other == null) {
       return;
@@ -281,6 +304,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -310,6 +334,7 @@ public sealed partial class ProtoMessage : pb::IMessage<ProtoMessage>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -345,19 +370,23 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoErrorRes> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiCommonMessagesReflection.Descriptor.MessageTypes[1]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoErrorRes() {
     OnConstruction();
   }
@@ -365,6 +394,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoErrorRes(ProtoErrorRes other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -375,6 +405,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoErrorRes Clone() {
     return new ProtoErrorRes(this);
   }
@@ -385,6 +416,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
 
   private global::ProtoPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -394,11 +426,13 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
@@ -412,6 +446,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   /// Contains name of ProtoErrorCode or other custom ErrorCodes (e.g. ProtoCHErrorCode)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string ErrorCode {
     get { return errorCode_ ?? ErrorCodeDefaultValue; }
     set {
@@ -420,11 +455,13 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
   /// <summary>Gets whether the "errorCode" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasErrorCode {
     get { return errorCode_ != null; }
   }
   /// <summary>Clears the value of the "errorCode" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearErrorCode() {
     errorCode_ = null;
   }
@@ -438,6 +475,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   /// Error description
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string Description {
     get { return description_ ?? DescriptionDefaultValue; }
     set {
@@ -446,11 +484,13 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
   /// <summary>Gets whether the "description" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasDescription {
     get { return description_ != null; }
   }
   /// <summary>Clears the value of the "description" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearDescription() {
     description_ = null;
   }
@@ -464,6 +504,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   /// CS-10489 Epoch timestamp in second
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong MaintenanceEndTimestamp {
     get { if ((_hasBits0 & 2) != 0) { return maintenanceEndTimestamp_; } else { return MaintenanceEndTimestampDefaultValue; } }
     set {
@@ -473,21 +514,25 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
   /// <summary>Gets whether the "maintenanceEndTimestamp" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasMaintenanceEndTimestamp {
     get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "maintenanceEndTimestamp" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearMaintenanceEndTimestamp() {
     _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoErrorRes);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoErrorRes other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -503,6 +548,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -516,11 +562,13 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -549,6 +597,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -573,6 +622,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -594,6 +644,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoErrorRes other) {
     if (other == null) {
       return;
@@ -614,6 +665,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -647,6 +699,7 @@ public sealed partial class ProtoErrorRes : pb::IMessage<ProtoErrorRes>
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
@@ -689,19 +742,23 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   private pb::UnknownFieldSet _unknownFields;
   private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<ProtoHeartbeatEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
     get { return global::OpenApiCommonMessagesReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   pbr::MessageDescriptor pb::IMessage.Descriptor {
     get { return Descriptor; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoHeartbeatEvent() {
     OnConstruction();
   }
@@ -709,6 +766,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoHeartbeatEvent(ProtoHeartbeatEvent other) : this() {
     _hasBits0 = other._hasBits0;
     payloadType_ = other.payloadType_;
@@ -716,6 +774,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProtoHeartbeatEvent Clone() {
     return new ProtoHeartbeatEvent(this);
   }
@@ -726,6 +785,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
 
   private global::ProtoPayloadType payloadType_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public global::ProtoPayloadType PayloadType {
     get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
     set {
@@ -735,21 +795,25 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   }
   /// <summary>Gets whether the "payloadType" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool HasPayloadType {
     get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "payloadType" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearPayloadType() {
     _hasBits0 &= ~1;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
     return Equals(other as ProtoHeartbeatEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public bool Equals(ProtoHeartbeatEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
@@ -762,6 +826,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
@@ -772,11 +837,13 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override string ToString() {
     return pb::JsonFormatter.ToDiagnosticString(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void WriteTo(pb::CodedOutputStream output) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
@@ -793,6 +860,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (HasPayloadType) {
       output.WriteRawTag(8);
@@ -805,6 +873,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
     if (HasPayloadType) {
@@ -817,6 +886,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(ProtoHeartbeatEvent other) {
     if (other == null) {
       return;
@@ -828,6 +898,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(pb::CodedInputStream input) {
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     input.ReadRawMessage(this);
@@ -849,6 +920,7 @@ public sealed partial class ProtoHeartbeatEvent : pb::IMessage<ProtoHeartbeatEve
 
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
