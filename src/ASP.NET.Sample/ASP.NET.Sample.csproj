@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Demo.Shared\Samples.Shared.csproj" />
     <ProjectReference Include="..\OpenAPI.Net\OpenAPI.Net.csproj" />
+    <ProjectReference Include="..\Samples.Shared\Samples.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
