@@ -48,7 +48,19 @@ namespace ConsoleDemo
 
             var scope = (Scope)Enum.Parse(typeof(Scope), scopeString, true);
 
+            Console.Write("Enter Client Type (WebSocket Or TCP): ");
+
+            var useWebScoket = Console.ReadLine().ToLowerInvariant() switch
+            {
+                "websocket" => true,
+                _ => false
+            };
+
+            ShowDashLine();
+
             var authUri = _app.GetAuthUri();
+
+            Console.WriteLine($"Authentication URI: {authUri}");
 
             System.Diagnostics.Process.Start("explorer.exe", $"\"{authUri}\"");
 
@@ -73,7 +85,7 @@ namespace ConsoleDemo
 
             var host = ApiInfo.GetHost(mode);
 
-            _client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            _client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebScoket);
 
             _disposables.Add(_client.Where(iMessage => iMessage is not ProtoHeartbeatEvent).Subscribe(OnMessageReceived, OnException));
             _disposables.Add(_client.OfType<ProtoOAErrorRes>().Subscribe(OnError));

@@ -9,7 +9,7 @@
     <PackageTags>cTrader, Open API, Spotware</PackageTags>
     <Description>A .NET RX library for Spotware Open API</Description>
     <PackageId>Spotware.OpenAPI.Net</PackageId>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <Platforms>AnyCPU</Platforms>
     <Company>Spotware</Company>
     <Authors>Spotware</Authors>
@@ -21,6 +21,7 @@
     <PackageReference Include="RestSharp" Version="106.12.0" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="5.0.2" />
+    <PackageReference Include="Websocket.Client" Version="4.3.38" />
   </ItemGroup>
 
 </Project>

@@ -10,6 +10,9 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Websocket.Client;
+using System.Net.WebSockets;
+using System.Reactive.Concurrency;
 
 namespace OpenAPI.Net
 {
@@ -25,13 +28,26 @@ namespace OpenAPI.Net
 
         private TcpClient _tcpClient;
 
+        private WebsocketClient _websocketClient;
+
         private SslStream _sslStream;
 
         private IDisposable _listenerDisposable;
 
         private IDisposable _heartbeatDisposable;
 
-        public OpenClient(string host, int port, TimeSpan heartbeatInerval)
+        private IDisposable _webSocketDisconnectionHappenedDisposable;
+
+        private IDisposable _webSocketMessageReceivedDisposable;
+
+        /// <summary>
+        /// Creates an instance of OpenClient which is not connected yet
+        /// </summary>
+        /// <param name="host">The host name of API endpoint</param>
+        /// <param name="port">The host port number</param>
+        /// <param name="heartbeatInerval">The time interval for sending heartbeats</param>
+        /// <param name="useWebSocket">By default OpenClient uses raw TCP connection, if you want to use web socket instead set this parameter to true</param>
+        public OpenClient(string host, int port, TimeSpan heartbeatInerval, bool useWebSocket = false)
         {
             Host = host ?? throw new ArgumentNullException(nameof(host));
 
@@ -40,11 +56,12 @@ namespace OpenAPI.Net
             Port = port;
 
             _heartbeatInerval = heartbeatInerval;
+            UseWebSocket = useWebSocket;
         }
 
         public string Host { get; }
         public int Port { get; }
-
+        public bool UseWebSocket { get; }
         public bool IsDisposed { get; private set; }
 
         public bool IsCompleted { get; private set; }
@@ -57,21 +74,59 @@ namespace OpenAPI.Net
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
+            if (UseWebSocket)
+            {
+                await ConnectWebScoket();
+            }
+            else
+            {
+                await ConnectTcp();
+            }
+
+            _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
+                .Subscribe(x => SendHeartbeat());
+        }
+
+        private async Task ConnectWebScoket()
+        {
+            var factory = new Func<ClientWebSocket>(() => new ClientWebSocket
+            {
+                Options =
+                {
+                    KeepAliveInterval = TimeSpan.FromSeconds(20)
+                }
+            });
+
+            var hostUri = new Uri($"wss://{Host}:{Port}");
+
+            _websocketClient = new WebsocketClient(hostUri, factory)
+            {
+                IsTextMessageConversionEnabled = false
+            };
+
+            _webSocketMessageReceivedDisposable = _websocketClient.MessageReceived.Select(msg => ProtoMessage.Parser.ParseFrom(msg.Binary))
+                .ObserveOn(TaskPoolScheduler.Default)
+                .Subscribe(OnNext);
+
+            _webSocketDisconnectionHappenedDisposable = _websocketClient.DisconnectionHappened.Subscribe(OnWebSocketDisconnectionHappened);
+
+            await _websocketClient.Start();
+        }
+
+        private async Task ConnectTcp()
+        {
             _tcpClient = new TcpClient { LingerState = new LingerOption(true, 10) };
 
             await _tcpClient.ConnectAsync(Host, Port).ConfigureAwait(false);
 
-            var stream = _tcpClient.GetStream();
-
-            _sslStream = new SslStream(stream, false);
+            _sslStream = new SslStream(_tcpClient.GetStream(), false);
 
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
 
-            _listenerDisposable = Observable.DoWhile(Observable.FromAsync(Read), () => !IsDisposed)
+            _listenerDisposable = Observable.DoWhile(Observable.FromAsync(ReadTcp), () => !IsDisposed)
                 .Where(message => message != null)
+                .ObserveOn(TaskPoolScheduler.Default)
                 .Subscribe(OnNext);
-            _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
-                .Subscribe(x => SendHeartbeat());
         }
 
         public IDisposable Subscribe(IObserver<IMessage> observer)
@@ -111,7 +166,14 @@ namespace OpenAPI.Net
 
                 LastSentMessageTime = DateTime.Now;
 
-                await Write(messageByte, length);
+                if (UseWebSocket)
+                {
+                    _websocketClient.Send(messageByte);
+                }
+                else
+                {
+                    await WriteTcp(messageByte, length);
+                }
             }
             catch (Exception ex)
             {
@@ -128,14 +190,25 @@ namespace OpenAPI.Net
             _heartbeatDisposable?.Dispose();
             _listenerDisposable?.Dispose();
 
-            _tcpClient?.Dispose();
+            if (UseWebSocket)
+            {
+                _webSocketMessageReceivedDisposable?.Dispose();
+
+                _webSocketDisconnectionHappenedDisposable?.Dispose();
+
+                _websocketClient?.Dispose();
+            }
+            else
+            {
+                _tcpClient?.Dispose();
+            }
 
             _streamWriteSemaphoreSlim?.Dispose();
 
             if (!IsTerminated) OnCompleted();
         }
 
-        private async Task<ProtoMessage> Read()
+        private async Task<ProtoMessage> ReadTcp()
         {
             try
             {
@@ -181,7 +254,7 @@ namespace OpenAPI.Net
             return null;
         }
 
-        private async Task Write(byte[] messageByte, byte[] length)
+        private async Task WriteTcp(byte[] messageByte, byte[] length)
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
@@ -214,6 +287,13 @@ namespace OpenAPI.Net
             if (DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
 
             await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
+        }
+
+        private void OnWebSocketDisconnectionHappened(DisconnectionInfo disconnectionInfo)
+        {
+            disconnectionInfo.CancelReconnection = true;
+
+            OnError(disconnectionInfo.Exception);
         }
 
         private void OnObserverDispose(IObserver<IMessage> observer)
