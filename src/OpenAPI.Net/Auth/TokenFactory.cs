@@ -1,6 +1,7 @@
 ﻿using OpenAPI.Net.Helpers;
-using RestSharp;
-using System.Net;
+using System;
+using System.Collections.Specialized;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -10,50 +11,51 @@ namespace OpenAPI.Net.Auth
     {
         public static async Task<Token> GetToken(string authCode, App app, string authUri = ApiInfo.AuthUrl)
         {
-            var client = new RestClient(authUri);
+            using var client = new HttpClient();
 
-            var request = GetTokenRequest(authCode, app);
-
-            var response = await client.ExecuteGetAsync(request).ConfigureAwait(false);
-
-            var token = DeserializeToken(response);
-
-            return token;
-        }
-
-        private static RestRequest GetTokenRequest(string authCode, App app)
-        {
-            var request = new RestRequest("token");
-
-            request.AddParameter("grant_type", "authorization_code");
-            request.AddParameter("code", authCode);
-            request.AddParameter("redirect_uri", app.RedirectUri);
-            request.AddParameter("client_id", app.ClientId);
-            request.AddParameter("client_secret", app.Secret);
-
-            return request;
-        }
-
-        private static Token DeserializeToken(IRestResponse response)
-        {
-            if (response.StatusCode == HttpStatusCode.OK && response.ResponseStatus == ResponseStatus.Completed)
+            var query = new NameValueCollection
             {
-                var token = JsonSerializer.Deserialize<Token>(response.Content);
+                { "grant_type", "authorization_code" },
+                { "code", authCode },
+                { "redirect_uri", app.RedirectUri },
+                { "client_id", app.ClientId },
+                { "client_secret", app.Secret }
+            }.ToQueryString();
 
-                if (string.IsNullOrWhiteSpace(token.ErrorCode))
+            var uri = new Uri($"{authUri}token{query}");
+
+            using var response = await client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var token = await DeserializeToken(response.Content);
+
+                if (string.IsNullOrWhiteSpace(token.ErrorCode) is false)
                 {
-                    if (string.IsNullOrWhiteSpace(token.AccessToken))
-                        throw new JsonException("Access token is not deserialized and is null");
-                    if (string.IsNullOrWhiteSpace(token.RefreshToken))
-                        throw new JsonException("Refresh token is not deserialized and is null");
+                    throw new HttpRequestException($"{token.ErrorCode}, {token.ErrorDescription}");
                 }
 
                 return token;
             }
-            else
+
+            throw new HttpRequestException($"{response.StatusCode}, The HTTP request for getting access token was not successful");
+        }
+
+        private static async Task<Token> DeserializeToken(HttpContent content)
+        {
+            var contentAsString = await content.ReadAsStringAsync();
+
+            var token = JsonSerializer.Deserialize<Token>(contentAsString);
+
+            if (string.IsNullOrWhiteSpace(token.ErrorCode))
             {
-                throw new WebException(response.ErrorMessage, response.ErrorException);
+                if (string.IsNullOrWhiteSpace(token.AccessToken))
+                    throw new JsonException("Access token is not deserialized and is null");
+                if (string.IsNullOrWhiteSpace(token.RefreshToken))
+                    throw new JsonException("Refresh token is not deserialized and is null");
             }
+
+            return token;
         }
     }
 }

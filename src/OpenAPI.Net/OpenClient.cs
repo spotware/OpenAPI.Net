@@ -89,17 +89,9 @@ namespace OpenAPI.Net
 
         private async Task ConnectWebScoket()
         {
-            var factory = new Func<ClientWebSocket>(() => new ClientWebSocket
-            {
-                Options =
-                {
-                    KeepAliveInterval = TimeSpan.FromSeconds(20)
-                }
-            });
-
             var hostUri = new Uri($"wss://{Host}:{Port}");
 
-            _websocketClient = new WebsocketClient(hostUri, factory)
+            _websocketClient = new WebsocketClient(hostUri, new Func<ClientWebSocket>(() => new ClientWebSocket()))
             {
                 IsTextMessageConversionEnabled = false
             };
@@ -110,7 +102,14 @@ namespace OpenAPI.Net
 
             _webSocketDisconnectionHappenedDisposable = _websocketClient.DisconnectionHappened.Subscribe(OnWebSocketDisconnectionHappened);
 
-            await _websocketClient.Start();
+            try
+            {
+                await _websocketClient.StartOrFail();
+            }
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
         }
 
         private async Task ConnectTcp()
