@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.Sample", "src\ASP.N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Shared", "src\Samples.Shared\Samples.Shared.csproj", "{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.WebSocket.Sample", "src\Blazor.WebSocket.Sample\Blazor.WebSocket.Sample.csproj", "{B9193566-628A-4572-B87E-0DDCD30EA409}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9193566-628A-4572-B87E-0DDCD30EA409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9193566-628A-4572-B87E-0DDCD30EA409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9193566-628A-4572-B87E-0DDCD30EA409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9193566-628A-4572-B87E-0DDCD30EA409}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{7027B55B-5C8E-484A-986F-F7F909DD80E3} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 		{1EC058DD-6106-42E4-B665-2074A89E3C2D} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
+		{B9193566-628A-4572-B87E-0DDCD30EA409} = {CA9847A3-3F18-46DF-9A95-D4D956B3AA84}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E05B0FF6-48DB-46F1-BD20-0D3980D5D6E4}

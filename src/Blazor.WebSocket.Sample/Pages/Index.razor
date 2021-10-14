@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+
+        var openClient = new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(15), useWebSocket: true);
+
+        openClient.Subscribe(message => Console.WriteLine(message), ex => Console.WriteLine(ex));
+
+        await openClient.Connect();
+
+        var applicationAuthReq = new ProtoOAApplicationAuthReq
+        {
+            ClientId = app.ClientId,
+            ClientSecret = app.Secret,
+        };
+
+        await openClient.SendMessage(applicationAuthReq, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
+    }
+}
