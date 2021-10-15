@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "unpkg",
+      "library": "@microsoft/signalr@latest",
+      "destination": "wwwroot/lib/microsoft/signalr/"
+    },
+    {
+      "library": "hammer.js@2.0.8",
+      "destination": "wwwroot/lib/hammer.js/",
+      "files": [
+        "hammer.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "chartjs-plugin-zoom@1.1.0",
+      "destination": "wwwroot/lib/chartjs-plugin-zoom/",
+      "files": [
+        "dist/chartjs-plugin-zoom.min.js"
+      ]
+    },
+    {
+      "library": "font-awesome@5.15.4",
+      "destination": "wwwroot/css/font-awesome/"
+    }
+  ]
+}

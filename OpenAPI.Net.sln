@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.Sample", "src\ASP.N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Shared", "src\Samples.Shared\Samples.Shared.csproj", "{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.WebSocket.Sample", "src\Blazor.WebSocket.Sample\Blazor.WebSocket.Sample.csproj", "{B9193566-628A-4572-B87E-0DDCD30EA409}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.WebSocket.Sample", "src\Blazor.WebSocket.Sample\Blazor.WebSocket.Sample.csproj", "{B9193566-628A-4572-B87E-0DDCD30EA409}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -16,9 +16,15 @@ namespace ASP.NET.Sample
 {
     public class Startup
     {
+        private readonly ApiCredentials _apiCredentials;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            var appSettingsDev = new ConfigurationBuilder().AddJsonFile("appsettings-dev.json").Build();
+
+            _apiCredentials = appSettingsDev.GetSection("ApiCredentials").Get<ApiCredentials>();
         }
 
         public IConfiguration Configuration { get; }
@@ -28,16 +34,12 @@ namespace ASP.NET.Sample
         {
             services.AddRazorPages();
 
-            var appSettingsDev = new ConfigurationBuilder().AddJsonFile("appsettings-dev.json").Build();
-
-            var apiCredentials = appSettingsDev.GetSection("ApiCredentials").Get<ApiCredentials>();
-
-            services.AddSingleton(apiCredentials);
-
             OpenClient liveClientFactory() => new(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
             OpenClient demoClientFactory() => new(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
 
-            var apiService = new OpenApiService(liveClientFactory, demoClientFactory, apiCredentials);
+            services.AddSingleton(_apiCredentials);
+
+            var apiService = new OpenApiService(liveClientFactory, demoClientFactory);
 
             services.AddSingleton<IOpenApiService>(apiService);
             services.AddSingleton<ITradingAccountsService>(new TradingAccountsService(apiService));

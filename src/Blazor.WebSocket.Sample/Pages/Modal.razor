@@ -1,0 +1,72 @@
+﻿<div class="modal @_modalClass" tabindex="-1" role="dialog" style="display:@_modalDisplay; overflow-y: auto;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content bg-dark  text-white">
+            <div class="modal-header">
+                <h5 class="modal-title">@Title</h5>
+
+                @if (ShowCloseButton)
+                {
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                }
+            </div>
+            <div class="modal-body">
+                @Body
+            </div>
+            <div class="modal-footer">
+                @Footer
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (_showBackdrop)
+{
+    <div class="modal-backdrop fade @_modalClass" style="display: @_modalDisplay;"></div>
+}
+
+@code {
+    [Parameter]
+    public RenderFragment Title { get; set; }
+
+    [Parameter]
+    public RenderFragment Body { get; set; }
+
+    [Parameter]
+    public RenderFragment Footer { get; set; }
+
+    [Parameter]
+    public bool ShowCloseButton { get; set; }
+
+    private string _modalDisplay = "none;";
+    private string _modalClass = "";
+    private bool _showBackdrop = false;
+
+    public async Task Open()
+    {
+        _modalDisplay = "block";
+
+        await Task.Delay(100);
+
+        _modalClass = "modal show";
+
+        _showBackdrop = true;
+
+        StateHasChanged();
+    }
+
+    public async Task Close()
+    {
+        _modalClass = "modal";
+
+        await Task.Delay(250);
+
+        _modalDisplay = "none";
+
+        _showBackdrop = false;
+
+        StateHasChanged();
+    }
+}

@@ -21,7 +21,7 @@ namespace Samples.Shared.Services
 
         event Action Connected;
 
-        Task Connect();
+        Task Connect(ApiCredentials apiCredentials);
 
         Task<ProtoOAAccountAuthRes> AuthorizeAccount(long accountId, bool isLive, string accessToken);
 
@@ -72,18 +72,18 @@ namespace Samples.Shared.Services
     {
         private readonly Func<OpenClient> _liveClientFactory;
         private readonly Func<OpenClient> _demoClientFactory;
-        private readonly ApiCredentials _apiCredentials;
         private readonly ConcurrentQueue<MessageQueueItem> _messagesQueue = new();
         private readonly System.Timers.Timer _sendMessageTimer;
 
         private OpenClient _liveClient;
         private OpenClient _demoClient;
 
-        public OpenApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, ApiCredentials apiCredentials, int maxMessagePerSecond = 45)
+        private ApiCredentials _apiCredentials;
+
+        public OpenApiService(Func<OpenClient> liveClientFactory, Func<OpenClient> demoClientFactory, int maxMessagePerSecond = 45)
         {
             _liveClientFactory = liveClientFactory ?? throw new ArgumentNullException(nameof(liveClientFactory));
             _demoClientFactory = demoClientFactory ?? throw new ArgumentNullException(nameof(demoClientFactory));
-            _apiCredentials = apiCredentials;
 
             _sendMessageTimer = new(1000.0 / maxMessagePerSecond);
 
@@ -99,8 +99,10 @@ namespace Samples.Shared.Services
 
         public event Action Connected;
 
-        public async Task Connect()
+        public async Task Connect(ApiCredentials apiCredentials)
         {
+            _apiCredentials = apiCredentials;
+
             OpenClient liveClient = null;
             OpenClient demoClient = null;
 
@@ -124,7 +126,7 @@ namespace Samples.Shared.Services
 
             _sendMessageTimer.Start();
 
-            await Task.WhenAll(AuthorizeApp(liveClient), AuthorizeApp(demoClient));
+            await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
 
             IsConnected = true;
 
@@ -152,7 +154,7 @@ namespace Samples.Shared.Services
 
             try
             {
-                await Connect();
+                await Connect(_apiCredentials);
             }
             catch
             {
@@ -162,7 +164,7 @@ namespace Samples.Shared.Services
             }
         }
 
-        private Task<ProtoOAApplicationAuthRes> AuthorizeApp(OpenClient client)
+        private Task<ProtoOAApplicationAuthRes> AuthorizeApp(OpenClient client, ApiCredentials apiCredentials)
         {
             var taskCompletionSource = new TaskCompletionSource<ProtoOAApplicationAuthRes>();
 
@@ -177,8 +179,8 @@ namespace Samples.Shared.Services
 
             var requestMessage = new ProtoOAApplicationAuthReq
             {
-                ClientId = _apiCredentials.ClientId,
-                ClientSecret = _apiCredentials.Secret,
+                ClientId = apiCredentials.ClientId,
+                ClientSecret = apiCredentials.Secret,
             };
 
             EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaApplicationAuthReq, client);
