@@ -108,9 +108,9 @@ namespace Samples.Shared.Services
 
             try
             {
-                liveClient = _liveClientFactory();
+                //liveClient = _liveClientFactory();
 
-                await liveClient.Connect();
+                //await liveClient.Connect();
 
                 demoClient = _demoClientFactory();
 
@@ -126,14 +126,15 @@ namespace Samples.Shared.Services
 
             _sendMessageTimer.Start();
 
-            await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
+            //await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
+            await AuthorizeApp(demoClient, _apiCredentials);
 
             IsConnected = true;
 
             _liveClient = liveClient;
             _demoClient = demoClient;
 
-            _liveClient.Subscribe(_ => { }, OnError);
+            //_liveClient.Subscribe(_ => { }, OnError);
             _demoClient.Subscribe(_ => { }, OnError);
 
             Connected?.Invoke();
@@ -184,6 +185,31 @@ namespace Samples.Shared.Services
             };
 
             EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaApplicationAuthReq, client);
+
+            return taskCompletionSource.Task;
+        }
+
+        public Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken)
+        {
+            var taskCompletionSource = new TaskCompletionSource<ProtoOACtidTraderAccount[]>();
+
+            IDisposable disposable = null;
+
+            disposable = _demoClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
+            {
+                taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
+
+                disposable?.Dispose();
+            });
+
+            _demoClient.Subscribe(message => Console.WriteLine(message), exception => Console.WriteLine(exception));
+
+            var requestMessage = new ProtoOAGetAccountListByAccessTokenReq
+            {
+                AccessToken = accessToken
+            };
+
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _demoClient);
 
             return taskCompletionSource.Task;
         }
@@ -327,11 +353,11 @@ namespace Samples.Shared.Services
 
             disposable = client.OfType<ProtoOASymbolsForConversionRes>().Where(response => response.CtidTraderAccountId == accountId)
                 .Subscribe(response =>
-            {
-                taskCompletionSource.SetResult(response.Symbol.ToArray());
+                {
+                    taskCompletionSource.SetResult(response.Symbol.ToArray());
 
-                disposable?.Dispose();
-            });
+                    disposable?.Dispose();
+                });
 
             var requestMessage = new ProtoOASymbolsForConversionReq
             {
@@ -341,29 +367,6 @@ namespace Samples.Shared.Services
             };
 
             EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaSymbolsForConversionReq, client);
-
-            return taskCompletionSource.Task;
-        }
-
-        public Task<ProtoOACtidTraderAccount[]> GetAccountsList(string accessToken)
-        {
-            var taskCompletionSource = new TaskCompletionSource<ProtoOACtidTraderAccount[]>();
-
-            IDisposable disposable = null;
-
-            disposable = _liveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
-            {
-                taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
-
-                disposable?.Dispose();
-            });
-
-            var requestMessage = new ProtoOAGetAccountListByAccessTokenReq
-            {
-                AccessToken = accessToken
-            };
-
-            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient);
 
             return taskCompletionSource.Task;
         }
@@ -1052,6 +1055,8 @@ namespace Samples.Shared.Services
             if (messageQueueItem.IsHistorical) await Task.Delay(250);
 
             _sendMessageTimer.Start();
+
+            Console.WriteLine("SendMessageTimerElapsed 2");
         }
 
         private class MessageQueueItem

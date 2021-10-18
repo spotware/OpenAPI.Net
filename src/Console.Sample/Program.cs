@@ -79,7 +79,7 @@ namespace ConsoleDemo
 
             _token = await TokenFactory.GetToken(authCode, _app);
 
-            Console.WriteLine("Access token generated");
+            Console.WriteLine($"Access token generated: {_token.AccessToken}");
 
             ShowDashLine();
 

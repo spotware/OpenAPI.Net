@@ -10,10 +10,13 @@
         </div>
         <div class="col d-grid gap-1">
             <select id="accounts-list" class="form-select">
-                @*@foreach (var account in Model.Accounts)
+                @if (Accounts is not null)
+                {
+                    foreach (var account in Accounts)
                     {
                         <option value="@account.TraderLogin" id="@account.CtidTraderAccountId">@account.TraderLogin</option>
-                    }*@
+                    }
+                }
             </select>
             <div class="table-wrapper-scroll-y" style="height: 60vh;">
                 <table class="table table-hover table-dark table-striped table-bordered" id="symbolsTable">
@@ -475,6 +478,8 @@
 
     public string AccessToken { get; set; }
 
+    public ProtoOACtidTraderAccount[] Accounts { get; set; }
+
     [Inject]
     private IOpenApiService ApiService { get; set; }
 
@@ -494,14 +499,50 @@
             Secret = ApplicationClientSecret
         };
 
-        await ApiService.Connect(apiCredentials);
+        var openClient = new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebSocket: true);
 
-        Console.WriteLine("Connect");
-        Console.WriteLine(ApplicationClientSecret);
+        openClient.Subscribe(message => Console.WriteLine(message), exception => Console.WriteLine(exception));
+
+        //await ApiService.Connect(apiCredentials);
+        await openClient.Connect();
+
+        await openClient.SendMessage(new ProtoOAApplicationAuthReq { ClientId = ApplicationClientId, ClientSecret = ApplicationClientSecret }, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
+
+        await Task.Delay(1000);
+
+        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+
+        await Task.Delay(1000);
+
+        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+
+        await Task.Delay(1000);
+
+        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+
+        await Task.Delay(1000);
+
+        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+
+        await Task.Delay(1000);
+
+        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+
+        await Task.Delay(1000);
+
+        //Console.WriteLine("Connected to API");
 
         await ApiCredentialsModal.Close();
 
-        await Task.CompletedTask;
+        //Console.WriteLine("Getting accounts");
+
+        //Accounts = await ApiService.GetAccountsList(AccessToken);
+
+        //await ApiService.AuthorizeAccount(3424324, false, AccessToken);
+
+        //Console.WriteLine($"Account: {Accounts.Length}");
+
+        //StateHasChanged();
     }
 
 }
