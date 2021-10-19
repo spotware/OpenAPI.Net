@@ -9,7 +9,7 @@
             <canvas id="chartCanvas"></canvas>
         </div>
         <div class="col d-grid gap-1">
-            <select id="accounts-list" class="form-select">
+            <select id="accounts-list" class="form-select" @onchange="AccountSelectionChanged">
                 @if (Accounts is not null)
                 {
                     foreach (var account in Accounts)
@@ -499,50 +499,40 @@
             Secret = ApplicationClientSecret
         };
 
-        var openClient = new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebSocket: true);
+        await ApiService.Connect(apiCredentials);
 
-        openClient.Subscribe(message => Console.WriteLine(message), exception => Console.WriteLine(exception));
-
-        //await ApiService.Connect(apiCredentials);
-        await openClient.Connect();
-
-        await openClient.SendMessage(new ProtoOAApplicationAuthReq { ClientId = ApplicationClientId, ClientSecret = ApplicationClientSecret }, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
-
-        await Task.Delay(1000);
-
-        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
-
-        await Task.Delay(1000);
-
-        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
-
-        await Task.Delay(1000);
-
-        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
-
-        await Task.Delay(1000);
-
-        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
-
-        await Task.Delay(1000);
-
-        await openClient.SendMessage(new ProtoOAGetAccountListByAccessTokenReq { AccessToken = AccessToken }, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
-
-        await Task.Delay(1000);
-
-        //Console.WriteLine("Connected to API");
+        Console.WriteLine("Connected to API");
 
         await ApiCredentialsModal.Close();
 
-        //Console.WriteLine("Getting accounts");
+        Console.WriteLine("Getting accounts");
 
-        //Accounts = await ApiService.GetAccountsList(AccessToken);
+        Accounts = await ApiService.GetAccountsList(AccessToken);
 
-        //await ApiService.AuthorizeAccount(3424324, false, AccessToken);
+        if (Accounts.Length > 0)
+        {
+            await ApiService.AuthorizeAccount((long)Accounts.First().CtidTraderAccountId, false, AccessToken);
+        }
 
-        //Console.WriteLine($"Account: {Accounts.Length}");
+        Console.WriteLine($"Account: {Accounts.Length}");
 
-        //StateHasChanged();
+        StateHasChanged();
+    }
+
+    private async Task AccountSelectionChanged(ChangeEventArgs e)
+    {
+        Console.WriteLine($"Selected account channged to {e.Value}");
+
+        if (e.Value is null) return;
+
+        var accountLogin = Convert.ToInt64(e.Value);
+
+        var account = Accounts.FirstOrDefault(account => account.TraderLogin == accountLogin);
+
+        if (account is not null)
+        {
+            await ApiService.AuthorizeAccount((long)account.CtidTraderAccountId, false, AccessToken);
+        }
     }
 
 }

@@ -1055,8 +1055,6 @@ namespace Samples.Shared.Services
             if (messageQueueItem.IsHistorical) await Task.Delay(250);
 
             _sendMessageTimer.Start();
-
-            Console.WriteLine("SendMessageTimerElapsed 2");
         }
 
         private class MessageQueueItem
