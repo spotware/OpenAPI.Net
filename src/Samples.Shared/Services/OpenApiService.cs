@@ -108,9 +108,9 @@ namespace Samples.Shared.Services
 
             try
             {
-                //liveClient = _liveClientFactory();
+                liveClient = _liveClientFactory();
 
-                //await liveClient.Connect();
+                await liveClient.Connect();
 
                 demoClient = _demoClientFactory();
 
@@ -126,7 +126,7 @@ namespace Samples.Shared.Services
 
             _sendMessageTimer.Start();
 
-            //await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
+            await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
             await AuthorizeApp(demoClient, _apiCredentials);
 
             IsConnected = true;
@@ -134,7 +134,7 @@ namespace Samples.Shared.Services
             _liveClient = liveClient;
             _demoClient = demoClient;
 
-            //_liveClient.Subscribe(_ => { }, OnError);
+            _liveClient.Subscribe(_ => { }, OnError);
             _demoClient.Subscribe(_ => { }, OnError);
 
             Connected?.Invoke();
