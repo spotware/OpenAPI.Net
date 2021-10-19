@@ -94,13 +94,12 @@ namespace OpenAPI.Net
             _websocketClient = new WebsocketClient(hostUri, new Func<ClientWebSocket>(() => new ClientWebSocket()))
             {
                 IsTextMessageConversionEnabled = false,
-                ErrorReconnectTimeout = null,
+                ReconnectTimeout = null,
                 IsReconnectionEnabled = false,
-                ReconnectTimeout = null
+                ErrorReconnectTimeout = null
             };
 
             _webSocketMessageReceivedDisposable = _websocketClient.MessageReceived.Select(msg => ProtoMessage.Parser.ParseFrom(msg.Binary))
-                .ObserveOn(TaskPoolScheduler.Default)
                 .Subscribe(OnNext);
 
             _webSocketDisconnectionHappenedDisposable = _websocketClient.DisconnectionHappened.Subscribe(OnWebSocketDisconnectionHappened);
@@ -295,7 +294,7 @@ namespace OpenAPI.Net
         {
             disconnectionInfo.CancelReconnection = true;
 
-            OnError(disconnectionInfo.Exception ?? new WebSocketException("Websocket got disconnected"));
+            OnError(disconnectionInfo.Exception);
         }
 
         private void OnObserverDispose(IObserver<IMessage> observer)
