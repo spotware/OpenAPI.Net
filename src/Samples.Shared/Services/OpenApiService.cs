@@ -127,6 +127,7 @@ namespace Samples.Shared.Services
             _sendMessageTimer.Start();
 
             await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
+            await AuthorizeApp(demoClient, _apiCredentials);
 
             IsConnected = true;
 
@@ -194,19 +195,21 @@ namespace Samples.Shared.Services
 
             IDisposable disposable = null;
 
-            disposable = _liveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
+            disposable = _demoClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
             {
                 taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
 
                 disposable?.Dispose();
             });
 
+            _demoClient.Subscribe(message => Console.WriteLine(message), exception => Console.WriteLine(exception));
+
             var requestMessage = new ProtoOAGetAccountListByAccessTokenReq
             {
                 AccessToken = accessToken
             };
 
-            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _demoClient);
 
             return taskCompletionSource.Task;
         }
