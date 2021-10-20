@@ -528,7 +528,7 @@
 
         if (Accounts.Any())
         {
-            SelectedAccountModel = await TradingAccountsService.GetAccountModelByLogin(Accounts.First().TraderLogin);
+            await AccountSelectionChanged(Accounts.First().TraderLogin);
         }
 
         Console.WriteLine($"Account: {Accounts.Count()}");
@@ -536,13 +536,47 @@
 
     private async Task AccountSelectionChanged(ChangeEventArgs e)
     {
-        Console.WriteLine($"Selected account channged to {e.Value}");
+        if (e.Value is null)
+        {
+            await AccountSelectionChanged(0);
+        }
+        else
+        {
+            var accountLogin = Convert.ToInt64(e.Value);
 
-        if (e.Value is null) return;
+            await AccountSelectionChanged(accountLogin);
+        }
+    }
 
-        var accountLogin = Convert.ToInt64(e.Value);
+    private async Task AccountSelectionChanged(long accountLogin)
+    {
+        Console.WriteLine($"Selected account channged to {accountLogin}");
+
+        if (SelectedAccountModel is not null)
+        {
+            TradingAccountsService.StopSymbolQuotes(SelectedAccountModel.Id);
+        }
+
+        if (accountLogin is 0) return;
 
         SelectedAccountModel = await TradingAccountsService.GetAccountModelByLogin(accountLogin);
+
+        _ = UpdateQuotes();
+    }
+
+    private async Task UpdateQuotes()
+    {
+        var symbolQuotesChannel = TradingAccountsService.GetSymbolsQuoteChannel(SelectedAccountModel.Id);
+
+        Console.WriteLine($"UpdateQuotes");
+
+        while (await symbolQuotesChannel.Reader.WaitToReadAsync())
+        {
+            while (symbolQuotesChannel.Reader.TryRead(out var quote))
+            {
+                await JS.InvokeVoidAsync("updateSymbolQuote", quote);
+            }
+        }
     }
 
 }

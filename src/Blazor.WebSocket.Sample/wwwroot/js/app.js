@@ -31,3 +31,11 @@ function isNumeric(evt) {
         if (theEvent.preventDefault) theEvent.preventDefault();
     }
 }
+
+window.updateSymbolQuote = (quote) => {
+    var bid = $('#symbolsTableBody > #' + quote.id + ' > #bid');
+    var ask = $('#symbolsTableBody > #' + quote.id + ' > #ask');
+
+    bid.html(quote.bid);
+    ask.html(quote.ask);
+};
