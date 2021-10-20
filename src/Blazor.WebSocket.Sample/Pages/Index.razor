@@ -8,7 +8,7 @@
         <div class="col-10" oncontextmenu="return false">
             <canvas id="chartCanvas"></canvas>
         </div>
-        <div class="col d-grid gap-1">
+        <div class="col">
             <select id="accounts-list" class="form-select" @onchange="AccountSelectionChanged">
                 @if (Accounts is not null)
                 {
@@ -18,7 +18,7 @@
                     }
                 }
             </select>
-            <div class="table-wrapper-scroll-y" style="height: 60vh;">
+            <div class="table-wrapper-scroll-y" style="height: 65vh;">
                 <table class="table table-hover table-dark table-striped table-bordered" id="symbolsTable">
                     <thead>
                         <tr>
@@ -27,7 +27,19 @@
                             <th scope="col">Ask</th>
                         </tr>
                     </thead>
-                    <tbody id="symbolsTableBody" />
+                    <tbody id="symbolsTableBody">
+                        @if (SelectedAccountModel is not null)
+                        {
+                            foreach (var symbol in SelectedAccountModel.Symbols)
+                            {
+                                <tr id="@symbol.Id">
+                                    <td id="name">@symbol.Name</td>
+                                    <td id="bid">@symbol.Bid</td>
+                                    <td id="ask">@symbol.Ask</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -472,16 +484,21 @@
 
     public Modal ApiCredentialsModal { get; set; }
 
-    public string ApplicationClientId { get; set; }
+    public string ApplicationClientId { get; set; } = "114_6487ns0byrok8s4osswkc0088wg0c408gokgw88gcw480c0kcc";
 
-    public string ApplicationClientSecret { get; set; }
+    public string ApplicationClientSecret { get; set; } = "381kqs4ae7ms0so4g88wgosk4wg8g4sk8owok4kso44os48gco";
 
-    public string AccessToken { get; set; }
+    public string AccessToken { get; set; } = "hWWLpuEux4ozDqhTiMtCvDk_m9OkQyNO5qXaxNYXahY";
 
-    public ProtoOACtidTraderAccount[] Accounts { get; set; }
+    public IEnumerable<ProtoOACtidTraderAccount> Accounts { get; set; }
+
+    public AccountModel SelectedAccountModel { get; set; }
 
     [Inject]
     private IOpenApiService ApiService { get; set; }
+
+    [Inject]
+    private ITradingAccountsService TradingAccountsService { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -507,16 +524,14 @@
 
         Console.WriteLine("Getting accounts");
 
-        Accounts = await ApiService.GetAccountsList(AccessToken);
+        Accounts = await TradingAccountsService.GetAccounts(AccessToken);
 
-        if (Accounts.Length > 0)
+        if (Accounts.Any())
         {
-            await ApiService.AuthorizeAccount((long)Accounts.First().CtidTraderAccountId, false, AccessToken);
+            SelectedAccountModel = await TradingAccountsService.GetAccountModelByLogin(Accounts.First().TraderLogin);
         }
 
-        Console.WriteLine($"Account: {Accounts.Length}");
-
-        StateHasChanged();
+        Console.WriteLine($"Account: {Accounts.Count()}");
     }
 
     private async Task AccountSelectionChanged(ChangeEventArgs e)
@@ -527,12 +542,7 @@
 
         var accountLogin = Convert.ToInt64(e.Value);
 
-        var account = Accounts.FirstOrDefault(account => account.TraderLogin == accountLogin);
-
-        if (account is not null)
-        {
-            await ApiService.AuthorizeAccount((long)account.CtidTraderAccountId, false, AccessToken);
-        }
+        SelectedAccountModel = await TradingAccountsService.GetAccountModelByLogin(accountLogin);
     }
 
 }

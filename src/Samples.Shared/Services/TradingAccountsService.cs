@@ -109,7 +109,7 @@ namespace Samples.Shared.Services
             _subscribedAccountErrorsChannels.Clear();
             _subscribedAccountInfoUpdateChannels.Clear();
 
-            Subscribe(_apiService.LiveObservable);
+            //Subscribe(_apiService.LiveObservable);
             Subscribe(_apiService.DemoObservable);
         }
 

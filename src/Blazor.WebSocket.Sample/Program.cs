@@ -29,7 +29,7 @@ namespace Blazor.WebSocket.Sample
             var apiService = new OpenApiService(liveClientFactory, demoClientFactory);
 
             builder.Services.AddSingleton<IOpenApiService>(apiService);
-            //builder.Services.AddSingleton<ITradingAccountsService>(new TradingAccountsService(apiService));
+            builder.Services.AddSingleton<ITradingAccountsService>(new TradingAccountsService(apiService));
 
             await builder.Build().RunAsync();
         }

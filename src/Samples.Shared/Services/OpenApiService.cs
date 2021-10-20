@@ -197,12 +197,11 @@ namespace Samples.Shared.Services
 
             disposable = _demoClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
             {
-                taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
+                //taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
+                taskCompletionSource.SetResult(response.CtidTraderAccount.Where(account => account.IsLive is false).ToArray());
 
                 disposable?.Dispose();
             });
-
-            _demoClient.Subscribe(message => Console.WriteLine(message), exception => Console.WriteLine(exception));
 
             var requestMessage = new ProtoOAGetAccountListByAccessTokenReq
             {
@@ -1018,7 +1017,9 @@ namespace Samples.Shared.Services
             _demoClient?.Dispose();
         }
 
-        private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
+        //private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
+
+        private OpenClient GetClient(bool isLive) => _demoClient;
 
         private void VerifyConnection()
         {
