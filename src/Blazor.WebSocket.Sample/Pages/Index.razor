@@ -32,7 +32,7 @@
                         {
                             foreach (var symbol in SelectedAccountModel.Symbols)
                             {
-                                <tr id="@symbol.Id">
+                                <tr id="@symbol.Id" @onclick="() => SymbolSelectionChanged(symbol)">
                                     <td id="name">@symbol.Name</td>
                                     <td id="bid">@symbol.Bid</td>
                                     <td id="ask">@symbol.Ask</td>
@@ -562,6 +562,11 @@
         SelectedAccountModel = await TradingAccountsService.GetAccountModelByLogin(accountLogin);
 
         _ = UpdateQuotes();
+
+        if (SelectedAccountModel.Symbols.Any())
+        {
+            await SymbolSelectionChanged(SelectedAccountModel.Symbols.First());
+        }
     }
 
     private async Task UpdateQuotes()
@@ -577,6 +582,15 @@
                 await JS.InvokeVoidAsync("updateSymbolQuote", quote);
             }
         }
+    }
+
+    private async Task SymbolSelectionChanged(SymbolModel symbol)
+    {
+        if (symbol is null || SelectedAccountModel is null) return;
+
+        var trendBars = await TradingAccountsService.GetSymbolTrendbars(SelectedAccountModel.Id, symbol.Id);
+
+        await JS.InvokeVoidAsync("createChart", $"{symbol.Name} Daily", trendBars.Ohlc);
     }
 
 }

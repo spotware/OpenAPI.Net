@@ -39,3 +39,68 @@ window.updateSymbolQuote = (quote) => {
     bid.html(quote.bid);
     ask.html(quote.ask);
 };
+
+var chart;
+
+window.createChart = (name, data) => {
+    if (chart == null) {
+        var ctx = document.getElementById('chartCanvas').getContext('2d');
+        ctx.canvas.width = 1000;
+        ctx.canvas.height = 250;
+
+        var chartConfig = {
+            type: 'candlestick',
+            data: {
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 0
+                },
+                hover: {
+                    animationDuration: 0
+                },
+                responsiveAnimationDuration: 0,
+                plugins: {
+                    zoom: {
+                        pan: {
+                            enabled: true,
+                            mode: 'xy',
+                            overScaleMode: 'y'
+                        },
+                        zoom: {
+                            wheel: {
+                                enabled: true,
+                            },
+                            pinch: {
+                                enabled: true,
+                            },
+                            mode: 'xy',
+                            overScaleMode: 'y'
+                        }
+                    }
+                }
+            }
+        };
+
+        chart = new Chart(ctx, chartConfig);
+    }
+
+    var newDataset = {
+        label: name,
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: data
+    };
+
+    if (chart.data.datasets.length > 0) chart.data.datasets.pop();
+
+    chart.data.datasets.push(newDataset);
+
+    chart.update();
+};
