@@ -37,4 +37,8 @@
     <ProjectReference Include="..\Samples.Shared\Samples.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

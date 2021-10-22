@@ -687,6 +687,16 @@ namespace Samples.Shared.Services
             }
         }
 
+        private void OnStreamError(Exception ex)
+        {
+            var errorChannels = _subscribedAccountErrorsChannels.Values.ToArray();
+
+            foreach (var channel in errorChannels)
+            {
+                channel.Writer.TryWrite(new(ex.Message, "Exception"));
+            }
+        }
+
         private void Subscribe(IObservable<IMessage> observable)
         {
             observable.OfType<ProtoOASpotEvent>().Subscribe(OnSpotEvent);
@@ -694,6 +704,7 @@ namespace Samples.Shared.Services
             observable.OfType<ProtoErrorRes>().Subscribe(OnErrorRes);
             observable.OfType<ProtoOAErrorRes>().Subscribe(OnOaErrorRes);
             observable.OfType<ProtoOAOrderErrorEvent>().Subscribe(OnOrderErrorRes);
+            observable.Subscribe(_ => { }, OnStreamError);
         }
     }
 }

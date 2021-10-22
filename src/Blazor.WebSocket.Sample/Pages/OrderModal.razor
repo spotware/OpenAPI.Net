@@ -1,0 +1,626 @@
+﻿@using Samples.Shared.Models
+@using OpenAPI.Net.Helpers;
+@using System.Globalization;
+@inject IJSRuntime JS
+@using Samples.Shared.Services
+
+<Modal @ref="Modal" ShowCloseButton="true" OnClose="OnClose">
+    <Title>
+        <h5 class="modal-title text-white" id="orderModalTitle">@Title</h5>
+    </Title>
+    <Body>
+        <ul class="nav nav-tabs" id="orderModalTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active text-muted" id="marketOrderTab" data-bs-toggle="tab" data-bs-target="#marketOrderTabContent" type="button" role="tab" aria-controls="marketOrderTabContent" aria-selected="true" @onclick="MarketOrderTabActivated">Market</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-muted" id="pendingOrderTab" data-bs-toggle="tab" data-bs-target="#pendingOrderTabContent" type="button" role="tab" aria-controls="pendingOrderTabContent" aria-selected="false" @onclick="PendingOrderTabActivated">Pending</button>
+            </li>
+        </ul>
+        <div class="tab-content m-0 p-2" id="orderModalTabContent">
+            <div class="tab-pane fade show active" id="marketOrderTabContent" role="tabpanel" aria-labelledby="marketOrderTab">
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <label for="marketOrderSymbolsList">Symbol</label>
+                        <select id="marketOrderSymbolsList" class="form-select" @onchange="MarketOrderSymbolChanged">
+                            @if (Account is not null)
+                            {
+                                foreach (var symbol in Account.Symbols)
+                                {
+                                    <option value="@symbol.Name" id="@symbol.Id">@symbol.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="marketOrderSymbolsList">Direction</label>
+                        <select id="marketOrderDirectionList" class="form-select" @onchange="MarketOrderDirectionChanged">
+                            <option value="Buy">Buy</option>
+                            <option value="Sell">Sell</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <label for="marketOrderVolumeInput">Volume (Units)</label>
+                        <input type="number" class="form-control" id="marketOrderVolumeInput" @onchange="MarketOrderVolumeChanged" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" min="0">
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="marketRange" @onchange="MarketOrderMarketRangeStateChanged">
+                            <label class="form-check-label" for="marketRange">Market Range</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" id="marketRangeInput" @onchange="MarketOrderMarketRangeChanged" value="10" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                            </div>
+                            <div class="col-2 p-1">
+                                <label>Pips</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="marketOrderStopLoss" @onchange="MarketOrderStopLossStateChanged">
+                            <label class="form-check-label" for="marketOrderStopLoss">Stop Loss</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" id="marketOrderStopLossInput" @onchange="MarketOrderStopLossChanged" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                            </div>
+                            <div class="col-2 p-1">
+                                <label for="marketOrderStopLossInput">Pips</label>
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="marketOrderTrailingStopLoss" @onchange="MarketOrderTrailingStopChanged" disabled>
+                            <label class="form-check-label" for="marketOrderTrailingStopLoss">Trailing Stop</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="marketOrderTakeProfit" @onchange="MarketOrderTakeProfitStateChanged">
+                            <label class="form-check-label" for="marketOrderTakeProfit">Take Profit</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" id="marketOrderTakeProfitInput" @onchange="MarketOrderTakeProfitChanged" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                            </div>
+                            <div class="col-2 p-1">
+                                <label for="marketOrderTakeProfitInput">Pips</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-white form-group">
+                    <textarea class="form-control" maxlength="100" id="marketOrderCommenttextarea" @onchange="MarketOrderCommentChanged" rows="3" placeholder="Comment..."></textarea>
+                </div>
+            </div>
+            <div class="tab-pane fade m-0 p-0" id="pendingOrderTabContent" role="tabpanel" aria-labelledby="pendingOrderTab">
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <label for="pendingOrderSymbolsList">Symbol</label>
+                        <select id="pendingOrderSymbolsList" class="form-select" @onchange="PendingOrderSymbolChanged">
+                            @if (Account is not null)
+                            {
+                                foreach (var symbol in Account.Symbols)
+                                {
+                                    <option value="@symbol.Name" id="@symbol.Id">@symbol.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="pendingOrderSymbolsList">Direction</label>
+                        <select id="pendingOrderDirectionList" class="form-select" @onchange="PendingOrderDirectionChanged">
+                            <option value="Buy">Buy</option>
+                            <option value="Sell">Sell</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <label for="pendingOrderTypeList">Type</label>
+                        <select id="pendingOrderTypeList" class="form-select" @onchange="PendingOrderTypeChanged">
+                            <option value="Limit">Limit</option>
+                            <option value="Stop">Stop</option>
+                            <option value="StopLimit">Stop Limit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <label for="pendingOrderVolumeInput">Volume (Units)</label>
+                        <input type="number" class="form-control" id="pendingOrderVolumeInput" @onchange="PendingOrderVolumeChanged" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" min="0">
+                    </div>
+                    <div class="col">
+                        <label for="pendingOrderPriceInput">Target Price</label>
+                        <input type="number" class="form-control" id="pendingOrderPriceInput" @onchange="PendingOrderPriceChanged" value="0" onkeypress="return isNumeric(event)" min="0">
+                    </div>
+                </div>
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <label for="pendingOrderLimitRangeInput">Limit Range (Pips)</label>
+                        <input type="number" class="form-control" id="pendingOrderLimitRangeInput" @onchange="PendingOrderLimitRangeChanged" onkeypress="return isNumeric(event)" min="0" value="10" disabled>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="pendingOrderExpiry" @onchange="PendingOrderExpiryStateChanged">
+                            <label class="form-check-label" for="pendingOrderExpiry">Expiry</label>
+                        </div>
+                        <input type="datetime-local" id="pendingOrderExpiryDateTime" @onchange="PendingOrderExpiryChanged" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="row no-gutters text-white form-group">
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="pendingOrderStopLoss" @onchange="PendingOrderStopLossStateChanged">
+                            <label class="form-check-label" for="pendingOrderStopLoss">Stop Loss</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" id="pendingOrderStopLossInput" @onchange="PendingOrderStopLossChanged" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                            </div>
+                            <div class="col-2 p-1">
+                                <label for="pendingOrderStopLossInput">Pips</label>
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="pendingOrderTrailingStopLoss" @onchange="PendingOrderTrailingStopChanged" disabled>
+                            <label class="form-check-label" for="pendingOrderTrailingStopLoss">Trailing Stop</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="pendingOrderTakeProfit" @onchange="PendingOrderTakeProfitStateChanged">
+                            <label class="form-check-label" for="pendingOrderTakeProfit">Take Profit</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" class="form-control" id="pendingOrderTakeProfitInput" @onchange="PendingOrderTakeProfitChanged" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
+                            </div>
+                            <div class="col-2 p-1">
+                                <label for="pendingOrderTakeProfitInput">Pips</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-white form-group">
+                    <textarea class="form-control" maxlength="100" id="pendingOrderCommenttextarea" rows="3" placeholder="Comment... " @onchange="PendingOrderCommentChanged"></textarea>
+                </div>
+            </div>
+        </div>
+    </Body>
+    <Footer>
+        <button type="button" class="btn btn-primary" id="orderModalButton" @onclick="Execute">@ButtonText</button>
+    </Footer>
+</Modal>
+
+@code {
+
+    [Parameter]
+    public AccountModel Account { get; set; }
+
+    public Modal Modal { get; set; }
+
+    public string Title { get; set; }
+
+    public string ButtonText { get; set; }
+
+    public bool IsModifying { get; set; }
+
+    public SymbolModel Symbol { get; set; }
+
+    public MarketOrderModel MarketOrder { get; set; }
+
+    public PendingOrderModel PendingOrder { get; set; }
+
+    public bool ShowPendingOrderTab { get; set; }
+
+    public bool IsMarketTabActive { get; set; }
+
+    [Inject]
+    private IOpenApiService ApiService { get; set; }
+
+    public async Task Open()
+    {
+        if (IsModifying is false)
+        {
+            if (PendingOrder is null)
+            {
+                PendingOrder = new PendingOrderModel
+                {
+                    Symbol = Symbol,
+                    Volume = Symbol.Data.MinVolume,
+                    TradeSide = ProtoOATradeSide.Buy
+                };
+            }
+            else
+            {
+                PendingOrder.Symbol = Symbol;
+                PendingOrder.Volume = Symbol.Data.MinVolume;
+            }
+
+            if (MarketOrder is null)
+            {
+                MarketOrder = new MarketOrderModel
+                {
+                    Symbol = Symbol,
+                    Volume = Symbol.Data.MinVolume,
+                    TradeSide = ProtoOATradeSide.Buy
+                };
+            }
+            else
+            {
+                MarketOrder.Symbol = Symbol;
+                MarketOrder.Volume = Symbol.Data.MinVolume;
+            }
+
+            await SetInputsValues();
+        }
+
+        if (ShowPendingOrderTab)
+        {
+            await JS.InvokeVoidAsync("showTab", "#pendingOrderTab");
+
+            IsMarketTabActive = false;
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("showTab", "#marketOrderTab");
+
+            IsMarketTabActive = true;
+        }
+
+        await Modal.Open();
+    }
+
+    public async Task Close()
+    {
+        await Modal.Close();
+    }
+
+    private async Task PendingOrderSymbolChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null) return;
+
+        var symbolName = e.Value.ToString();
+
+        var symbol = Account.Symbols.FirstOrDefault(symbol => symbol.Name.Equals(symbolName, StringComparison.OrdinalIgnoreCase));
+
+        if (symbol is not null)
+        {
+            PendingOrder.Symbol = symbol;
+
+            await UpdateVolumeInputAttributes("#pendingOrderVolumeInput", symbol);
+            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Symbol.Data.MinVolume));
+            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderPriceInput", PendingOrder.Symbol.Bid);
+
+        }
+    }
+
+    private void PendingOrderPriceChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.Price = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    private async Task PendingOrderTypeChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.ProtoType = e.Value.ToString().ToLowerInvariant() switch
+        {
+            "limit" => ProtoOAOrderType.Limit,
+            "stop" => ProtoOAOrderType.Stop,
+            "stoplimit" => ProtoOAOrderType.StopLimit,
+            _ => throw new ArgumentOutOfRangeException(e.Value.ToString())
+        };
+
+        if (PendingOrder.ProtoType == ProtoOAOrderType.StopLimit)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderLimitRangeInput");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderLimitRangeInput");
+        }
+    }
+
+    private void PendingOrderDirectionChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.TradeSide = e.Value.ToString().ToLowerInvariant() switch
+        {
+            "buy" => ProtoOATradeSide.Buy,
+            "sell" => ProtoOATradeSide.Sell,
+            _ => throw new ArgumentOutOfRangeException(e.Value.ToString())
+        };
+    }
+
+    private void PendingOrderVolumeChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.Volume = MonetaryConverter.ToMonetary(double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture));
+    }
+
+    private void PendingOrderLimitRangeChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.LimitRangeInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    private async Task PendingOrderExpiryStateChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.IsExpiryEnabled = bool.Parse(e.Value.ToString());
+
+        if (PendingOrder.IsExpiryEnabled)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderExpiryDateTime");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderExpiryDateTime");
+        }
+    }
+
+    private void PendingOrderExpiryChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        if (DateTimeOffset.TryParse(e.Value.ToString(), CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out var expiryTime))
+        {
+            PendingOrder.ExpiryTime = expiryTime;
+        }
+    }
+
+    private async Task PendingOrderStopLossStateChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.IsStopLossEnabled = bool.Parse(e.Value.ToString());
+
+        if (PendingOrder.IsStopLossEnabled)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderStopLossInput");
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderTrailingStopLoss");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderStopLossInput");
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderTrailingStopLoss");
+
+        }
+    }
+
+    private void PendingOrderStopLossChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.StopLossInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    private void PendingOrderTrailingStopChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.IsTrailingStopLossEnabled = bool.Parse(e.Value.ToString());
+    }
+
+    private async Task PendingOrderTakeProfitStateChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.IsTakeProfitEnabled = bool.Parse(e.Value.ToString());
+
+        if (PendingOrder.IsTakeProfitEnabled)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderTakeProfitInput");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderTakeProfitInput");
+        }
+    }
+
+    private void PendingOrderTakeProfitChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.TakeProfitInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    private void PendingOrderCommentChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || PendingOrder is null) return;
+
+        PendingOrder.Comment = e.Value.ToString();
+    }
+
+    private async Task MarketOrderSymbolChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null) return;
+
+        var symbolName = e.Value.ToString();
+
+        var symbol = Account.Symbols.FirstOrDefault(symbol => symbol.Name.Equals(symbolName, StringComparison.OrdinalIgnoreCase));
+
+        if (symbol is not null)
+        {
+            MarketOrder.Symbol = symbol;
+
+            await UpdateVolumeInputAttributes("#marketOrderVolumeInput", symbol);
+            await JS.InvokeVoidAsync("setInputValue", "#marketOrderVolumeInput", MonetaryConverter.FromMonetary(MarketOrder.Symbol.Data.MinVolume));
+        }
+    }
+
+    private void MarketOrderDirectionChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.TradeSide = e.Value.ToString().ToLowerInvariant() switch
+        {
+            "buy" => ProtoOATradeSide.Buy,
+            "sell" => ProtoOATradeSide.Sell,
+            _ => throw new ArgumentOutOfRangeException(e.Value.ToString())
+        };
+    }
+
+    private void MarketOrderVolumeChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.Volume = MonetaryConverter.ToMonetary(double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture));
+    }
+
+    private async Task MarketOrderMarketRangeStateChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.IsMarketRange = bool.Parse(e.Value.ToString());
+
+        if (MarketOrder.IsMarketRange)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#marketRangeInput");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#marketRangeInput");
+
+        }
+    }
+
+    private void MarketOrderMarketRangeChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.MarketRangeInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    private async Task MarketOrderStopLossStateChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.IsStopLossEnabled = bool.Parse(e.Value.ToString());
+
+        if (MarketOrder.IsStopLossEnabled)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderStopLossInput");
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderTrailingStopLoss");
+
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderStopLossInput");
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderTrailingStopLoss");
+        }
+    }
+
+    private void MarketOrderStopLossChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.StopLossInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    private void MarketOrderTrailingStopChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.IsTrailingStopLossEnabled = bool.Parse(e.Value.ToString());
+    }
+
+    private async Task MarketOrderTakeProfitStateChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.IsTakeProfitEnabled = bool.Parse(e.Value.ToString());
+
+        if (MarketOrder.IsTakeProfitEnabled)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderTakeProfitInput");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderTakeProfitInput");
+        }
+    }
+
+    private void MarketOrderTakeProfitChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.TakeProfitInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    private void MarketOrderCommentChanged(ChangeEventArgs e)
+    {
+        if (e.Value is null || MarketOrder is null) return;
+
+        MarketOrder.Comment = e.Value.ToString();
+    }
+
+    private async Task UpdateVolumeInputAttributes(string inputId, SymbolModel symbol)
+    {
+        await JS.InvokeVoidAsync("setNumericInputAttributes", inputId, MonetaryConverter.FromMonetary(symbol.Data.MinVolume),
+            MonetaryConverter.FromMonetary(symbol.Data.MaxVolume),
+            MonetaryConverter.FromMonetary(symbol.Data.StepVolume));
+    }
+
+    private async Task SetInputsValues()
+    {
+        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderSymbolsList", PendingOrder.Symbol.Name);
+        await UpdateVolumeInputAttributes("#pendingOrderVolumeInput", PendingOrder.Symbol);
+        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Symbol.Data.MinVolume));
+        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderPriceInput", PendingOrder.Symbol.Bid);
+        await JS.InvokeVoidAsync("setNumericInputAttributes", "#pendingOrderPriceInput", Symbol.PipSize, null, Symbol.PipSize);
+
+        await JS.InvokeVoidAsync("setInputValue", "#marketOrderSymbolsList", MarketOrder.Symbol.Name);
+        await UpdateVolumeInputAttributes("#marketOrderVolumeInput", MarketOrder.Symbol);
+        await JS.InvokeVoidAsync("setInputValue", "#marketOrderVolumeInput", MonetaryConverter.FromMonetary(MarketOrder.Symbol.Data.MinVolume));
+    }
+
+    private async Task Execute()
+    {
+        if (IsModifying)
+        {
+
+        }
+        else
+        {
+            if (IsMarketTabActive)
+            {
+                ApiService.CreateNewOrder(MarketOrder, Account.Id, Account.IsLive);
+            }
+            else
+            {
+                ApiService.CreateNewOrder(PendingOrder, Account.Id, Account.IsLive);
+            }
+        }
+
+        await Modal.Close();
+    }
+
+    private void MarketOrderTabActivated()
+    {
+        IsMarketTabActive = true;
+    }
+
+    private void PendingOrderTabActivated()
+    {
+        IsMarketTabActive = false;
+    }
+
+    private void OnClose()
+    {
+        IsModifying = false;
+    }
+}

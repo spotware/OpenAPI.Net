@@ -40,6 +40,38 @@ window.updateSymbolQuote = (quote) => {
     ask.html(quote.ask);
 };
 
+window.showTab = (id) => {
+    $(id).tab('show');
+};
+
+window.setInputValue = (id, value) => {
+    $(id).val(value).change();
+};
+
+window.getInputValue = (id) => {
+    return $(id).val();
+};
+
+window.getNumericInputValue = (id) => {
+    return parseFloat($(id).val());
+};
+
+window.enableInput = (id) => {
+    $(id).prop('disabled', false);
+};
+
+window.disableInput = (id) => {
+    $(id).prop('disabled', true);
+};
+
+window.setNumericInputAttributes = (id, min, max, step) => {
+    $(id).attr({
+        "max": max,
+        "min": min,
+        "step": step
+    }).change();
+};
+
 var chart;
 
 window.createChart = (name, data) => {

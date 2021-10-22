@@ -40,6 +40,9 @@
     [Parameter]
     public bool ShowCloseButton { get; set; }
 
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+
     private string _modalDisplay = "none;";
     private string _modalClass = "";
     private bool _showBackdrop = false;
@@ -50,7 +53,7 @@
 
         await Task.Delay(100);
 
-        _modalClass = "modal show";
+        _modalClass = "show";
 
         _showBackdrop = true;
 
@@ -59,7 +62,7 @@
 
     public async Task Close()
     {
-        _modalClass = "modal";
+        _modalClass = string.Empty;
 
         await Task.Delay(250);
 
@@ -68,5 +71,10 @@
         _showBackdrop = false;
 
         StateHasChanged();
+
+        if (OnClose.HasDelegate)
+        {
+            await OnClose.InvokeAsync();
+        }
     }
 }
