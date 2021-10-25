@@ -293,6 +293,7 @@
         if (symbol is not null)
         {
             PendingOrder.Symbol = symbol;
+            PendingOrder.Volume = PendingOrder.Symbol.Data.MinVolume;
 
             await UpdateVolumeInputAttributes("#pendingOrderVolumeInput", symbol);
             await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Symbol.Data.MinVolume));
@@ -456,6 +457,7 @@
         if (symbol is not null)
         {
             MarketOrder.Symbol = symbol;
+            MarketOrder.Volume = MarketOrder.Symbol.Data.MinVolume;
 
             await UpdateVolumeInputAttributes("#marketOrderVolumeInput", symbol);
             await JS.InvokeVoidAsync("setInputValue", "#marketOrderVolumeInput", MonetaryConverter.FromMonetary(MarketOrder.Symbol.Data.MinVolume));
@@ -490,11 +492,12 @@
         if (MarketOrder.IsMarketRange)
         {
             await JS.InvokeVoidAsync("enableInput", "#marketRangeInput");
+            MarketOrder.BaseSlippagePrice = MarketOrder.Symbol.Bid;
         }
         else
         {
             await JS.InvokeVoidAsync("disableInput", "#marketRangeInput");
-
+            MarketOrder.BaseSlippagePrice = default;
         }
     }
 
@@ -503,6 +506,7 @@
         if (e.Value is null || MarketOrder is null) return;
 
         MarketOrder.MarketRangeInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+        MarketOrder.BaseSlippagePrice = MarketOrder.Symbol.Bid;
     }
 
     private async Task MarketOrderStopLossStateChanged(ChangeEventArgs e)
@@ -582,6 +586,7 @@
         await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Symbol.Data.MinVolume));
         await JS.InvokeVoidAsync("setInputValue", "#pendingOrderPriceInput", PendingOrder.Symbol.Bid);
         await JS.InvokeVoidAsync("setNumericInputAttributes", "#pendingOrderPriceInput", Symbol.PipSize, null, Symbol.PipSize);
+        await JS.InvokeVoidAsync("setExpiryTimeMin");
 
         await JS.InvokeVoidAsync("setInputValue", "#marketOrderSymbolsList", MarketOrder.Symbol.Name);
         await UpdateVolumeInputAttributes("#marketOrderVolumeInput", MarketOrder.Symbol);

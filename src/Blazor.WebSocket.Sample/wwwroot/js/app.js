@@ -32,6 +32,29 @@ function isNumeric(evt) {
     }
 }
 
+function onError(error) {
+    console.error(`Error: ${error}`);
+
+    var toastTemplate = $('#toast-template').contents().clone(true, true);
+
+    toastTemplate.find('#toast-title').text('Error');
+    toastTemplate.find('#toast-title-small').text(error.hasOwnProperty('type') ? error.type : 'N/A');
+    toastTemplate.find('#toast-icon').addClass('fas fa-exclamation-triangle');
+    toastTemplate.find('.toast-body').text(error.hasOwnProperty('message') ? error.message : error);
+
+    var toast = toastTemplate.find(".toast");
+
+    $('#toasts-container').append(toastTemplate);
+
+    toast.toast({
+        delay: 60000
+    });
+
+    $('.toast').toast('show');
+
+    $('.toast').on('hidden.bs.toast', e => e.target.remove());
+}
+
 window.updateSymbolQuote = (quote) => {
     var bid = $('#symbolsTableBody > #' + quote.id + ' > #bid');
     var ask = $('#symbolsTableBody > #' + quote.id + ' > #ask');
@@ -70,6 +93,10 @@ window.setNumericInputAttributes = (id, min, max, step) => {
         "min": min,
         "step": step
     }).change();
+};
+
+window.setExpiryTimeMin = () => {
+    $('#pendingOrderExpiryDateTime').prop('min', new Date().toJSON().slice(0, 19));
 };
 
 var chart;

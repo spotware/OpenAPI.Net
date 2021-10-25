@@ -245,35 +245,31 @@
 
 <div id="toasts-container" aria-live="polite" aria-atomic="true" class="d-flex flex-column flex-wrap justify-content-start align-items-start" style="position: absolute; bottom: 0; right: 0;" />
 
-<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loadingModalTitle">Loading Data</h5>
-            </div>
-            <div class="modal-body">
-                <p>Please wait...</p>
-            </div>
-        </div>
-    </div>
-</div>
+<Modal @ref="LoadingModal" ShowCloseButton="false">
+    <Title>
+        <h5 class="modal-title">Loading Data</h5>
+    </Title>
+    <Body>
+        <p>Please wait...</p>
+    </Body>
+</Modal>
 
 <Modal @ref="ApiCredentialsModal" ShowCloseButton="false">
     <Title>
-        <h5 class="modal-title">Access Token</h5>
+        <h5 class="modal-title">API Credentials</h5>
     </Title>
     <Body>
         <div class="form-group">
             <div class="row">
-                <label for="applicationClientIdInput">Application Client ID</label>
+                <label for="applicationClientIdInput" class="p-0">Application Client ID</label>
                 <input type="text" class="form-control" @bind="@ApplicationClientId" id="applicationClientIdInput">
             </div>
             <div class="row">
-                <label for="applicationClientSecretInput">Application Client Secret</label>
+                <label for="applicationClientSecretInput" class="p-0">Application Client Secret</label>
                 <input type="text" class="form-control" @bind="@ApplicationClientSecret" id="applicationClientSecretInput">
             </div>
             <div class="row">
-                <label for="accessTokenInput">Access Token</label>
+                <label for="accessTokenInput" class="p-0">Access Token</label>
                 <input type="text" class="form-control" @bind="@AccessToken" id="accessTokenInput">
             </div>
         </div>
@@ -301,6 +297,8 @@
 {
 
     public Modal ApiCredentialsModal { get; set; }
+
+    public Modal LoadingModal { get; set; }
 
     public OrderModal OrderModal { get; set; }
 
@@ -331,6 +329,8 @@
 
     private async Task Connect()
     {
+        LoadingModal.Open();
+
         var apiCredentials = new ApiCredentials
         {
             ClientId = ApplicationClientId,
@@ -353,6 +353,8 @@
         }
 
         Console.WriteLine($"Account: {Accounts.Count()}");
+
+        LoadingModal.Close();
     }
 
     private async Task AccountSelectionChanged(ChangeEventArgs e)
@@ -382,12 +384,16 @@
 
         SelectedAccountModel = await TradingAccountsService.GetAccountModelByLogin(accountLogin);
 
+        if (SelectedAccountModel is null) return;
+
         _ = UpdateQuotes();
 
         if (SelectedAccountModel.Symbols.Any())
         {
             await SymbolSelectionChanged(SelectedAccountModel.Symbols.First());
         }
+
+        _ = StreamErrors();
     }
 
     private async Task UpdateQuotes()
@@ -424,6 +430,23 @@
         OrderModal.ShowPendingOrderTab = isPending;
 
         await OrderModal.Open();
+    }
+
+    private async Task StreamErrors()
+    {
+        var accountId = SelectedAccountModel.Id;
+
+        var errorChannel = TradingAccountsService.GetErrorsChannel(accountId);
+
+        while (await errorChannel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && (SelectedAccountModel is not null || accountId == SelectedAccountModel.Id))
+        {
+            while (errorChannel.Reader.TryRead(out var error))
+            {
+                await JS.InvokeVoidAsync("onError", error);
+            }
+        }
+
+        TradingAccountsService.StopErrors(accountId);
     }
 
 }
