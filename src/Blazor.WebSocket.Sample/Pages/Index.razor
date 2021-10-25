@@ -64,7 +64,7 @@
             <div class="tab-pane fade show active" id="positions" role="tabpanel" aria-labelledby="positions-tab">
                 <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
                     <button type="button" class="btn btn-secondary m-1" id="createMarketOrderButton" @onclick="() => ShowNewOrderModal(false)">Create New Order</button>
-                    <button type="button" class="btn btn-danger m-1" id="closeAllPositionsButton">Close All Positions</button>
+                    <button type="button" class="btn btn-danger m-1" id="closeAllPositionsButton" @onclick="CloseAllPositions">Close All Positions</button>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
                     <table class="table table-hover table-dark table-striped table-bordered">
@@ -89,14 +89,43 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody id="positions-table-body" />
+                        <tbody id="positions-table-body">
+                            @if (SelectedAccountModel is not null)
+                            {
+                                foreach (var position in SelectedAccountModel.Positions)
+                                {
+                                    <tr id="@position.Id">
+                                        <td id="id">@position.Id</td>
+                                        <td id="symbol">@position.Symbol.Name</td>
+                                        <td id="direction">@position.TradeSide</td>
+                                        <td id="volume">@MonetaryConverter.FromMonetary(position.Volume)</td>
+                                        <td id="created">@position.OpenTime</td>
+                                        <td id="entryPrice">@position.Price</td>
+                                        <td id="sl">@(position.StopLossInPrice == default ? string.Empty : position.StopLossInPrice)</td>
+                                        <td id="tp">@(position.TakeProfitInPrice == default ? string.Empty : position.TakeProfitInPrice)</td>
+                                        <td id="commission">@position.Commission</td>
+                                        <td id="swap">@position.Swap</td>
+                                        <td id="margin">@MonetaryConverter.FromMonetary(position.UsedMargin)</td>
+                                        <td id="pips">@position.Pips</td>
+                                        <td id="label">@position.Label</td>
+                                        <td id="comment">@position.Comment</td>
+                                        <td id="grossProfit">@position.GrossProfit</td>
+                                        <td id="netProfit">@position.NetProfit</td>
+                                        <td id="buttons">
+                                            <button type="button" @onclick="() => ModifyPosition(position)" class="btn btn-secondary mr-1" id="${position.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify"><i class="fas fa-edit"></i></button>
+                                            <button type="button" @onclick="() => ClosePosition(position)" class="btn btn-danger ml-1" id="${position.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Close"><i class="fas fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
             <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                 <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
                     <button type="button" class="btn btn-secondary m-1" id="createPendingOrderButton" @onclick="() => ShowNewOrderModal(true)">Create New Order</button>
-                    <button type="button" class="btn btn-danger m-1" id="cancelAllOrdersButton">Cancel All Orders</button>
+                    <button type="button" class="btn btn-danger m-1" id="cancelAllOrdersButton" @onclick="CancelAllOrders">Cancel All Orders</button>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
                     <table class="table table-hover table-dark table-striped table-bordered">
@@ -117,7 +146,32 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody id="orders-table-body" />
+                        <tbody id="orders-table-body">
+                            @if (SelectedAccountModel is not null)
+                            {
+                                foreach (var order in SelectedAccountModel.PendingOrders)
+                                {
+                                    <tr id="@order.Id">
+                                        <td id="id">@order.Id</td>
+                                        <td id="symbol">@order.Symbol.Name</td>
+                                        <td id="direction">@order.TradeSide</td>
+                                        <td id="volume">@MonetaryConverter.FromMonetary(order.Volume)</td>
+                                        <td id="type">@order.Type</td>
+                                        <td id="created">@order.OpenTime</td>
+                                        <td id="entryPrice">@order.Price</td>
+                                        <td id="sl">@(order.StopLossInPrice == default ? string.Empty : order.StopLossInPrice)</td>
+                                        <td id="tp">@(order.TakeProfitInPrice == default ? string.Empty : order.TakeProfitInPrice)</td>
+                                        <td id="expiry">@(order.IsExpiryEnabled ? order.ExpiryTime : string.Empty)</td>
+                                        <td id="label">@order.Label</td>
+                                        <td id="comment">@order.Comment</td>
+                                        <td id="buttons">
+                                            <button type="button" @onclick="() => ModifyOrder(order)" class="btn btn-secondary mr-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify"><i class="fas fa-edit"></i></button>
+                                            <button type="button" @onclick="() => CancelOrder(order)" class="btn btn-danger ml-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i class="fas fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -208,37 +262,38 @@
     <div class="row no-gutters text-white w-100 m-0 p-0" id="accountStats">
         <div class="col text-center">
             <p class="m-1">Balance</p>
-            <p id="balance" class="m-1"></p>
+
+            <p id="balance" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.Balance}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Equity</p>
-            <p id="equity" class="m-1"></p>
+            <p id="equity" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.Equity}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Margin Used</p>
-            <p id="marginUsed" class="m-1"></p>
+            <p id="marginUsed" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.MarginUsed}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Free Margin</p>
-            <p id="freeMargin" class="m-1"></p>
+            <p id="freeMargin" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.FreeMargin}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Margin Level</p>
-            <p id="marginLevel" class="m-1"></p>
+            <p id="marginLevel" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.MarginLevel}%" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Unr. Gross</p>
-            <p id="unrealizedGrossProfit" class="m-1"></p>
+            <p id="unrealizedGrossProfit" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.UnrealizedGrossProfit}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Unr. Net</p>
-            <p id="unrealizedNetProfit" class="m-1"></p>
+            <p id="unrealizedNetProfit" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.UnrealizedNetProfit}" : 0)</p>
         </div>
     </div>
 </div>
@@ -359,6 +414,8 @@
 
     private async Task AccountSelectionChanged(ChangeEventArgs e)
     {
+        LoadingModal.Open();
+
         if (e.Value is null)
         {
             await AccountSelectionChanged(0);
@@ -369,6 +426,8 @@
 
             await AccountSelectionChanged(accountLogin);
         }
+
+        LoadingModal.Close();
     }
 
     private async Task AccountSelectionChanged(long accountLogin)
@@ -393,7 +452,9 @@
             await SymbolSelectionChanged(SelectedAccountModel.Symbols.First());
         }
 
-        _ = StreamErrors();
+        _ = SubscribeToErrors();
+        _ = SubscribeToPositionUpdates();
+        _ = SubscribeToOrderUpdates();
     }
 
     private async Task UpdateQuotes()
@@ -432,15 +493,15 @@
         await OrderModal.Open();
     }
 
-    private async Task StreamErrors()
+    private async Task SubscribeToErrors()
     {
         var accountId = SelectedAccountModel.Id;
 
-        var errorChannel = TradingAccountsService.GetErrorsChannel(accountId);
+        var channel = TradingAccountsService.GetErrorsChannel(accountId);
 
-        while (await errorChannel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && (SelectedAccountModel is not null || accountId == SelectedAccountModel.Id))
+        while (await channel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && SelectedAccountModel is not null && accountId == SelectedAccountModel.Id)
         {
-            while (errorChannel.Reader.TryRead(out var error))
+            while (channel.Reader.TryRead(out var error))
             {
                 await JS.InvokeVoidAsync("onError", error);
             }
@@ -449,4 +510,77 @@
         TradingAccountsService.StopErrors(accountId);
     }
 
+    private async Task SubscribeToPositionUpdates()
+    {
+        var accountId = SelectedAccountModel.Id;
+
+        var channel = TradingAccountsService.GetPositionUpdatesChannel(accountId);
+
+        while (await channel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && SelectedAccountModel is not null && accountId == SelectedAccountModel.Id)
+        {
+            while (channel.Reader.TryRead(out var position))
+            {
+                StateHasChanged();
+            }
+        }
+
+        TradingAccountsService.StopErrors(accountId);
+    }
+
+    private async Task SubscribeToOrderUpdates()
+    {
+        var accountId = SelectedAccountModel.Id;
+
+        var channel = TradingAccountsService.GetOrderUpdatesChannel(accountId);
+
+        while (await channel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && SelectedAccountModel is not null && accountId == SelectedAccountModel.Id)
+        {
+            while (channel.Reader.TryRead(out var position))
+            {
+                StateHasChanged();
+            }
+        }
+
+        TradingAccountsService.StopErrors(accountId);
+    }
+
+    private void ClosePosition(MarketOrderModel marketOrder)
+    {
+        if (SelectedAccountModel is null || marketOrder is null) return;
+
+        TradingAccountsService.ClosePosition(SelectedAccountModel.Id, marketOrder.Id);
+    }
+
+    private void ModifyPosition(MarketOrderModel marketOrder)
+    {
+        if (SelectedAccountModel is null || marketOrder is null) return;
+
+    }
+
+    private void CloseAllPositions()
+    {
+        if (SelectedAccountModel is null) return;
+
+        TradingAccountsService.CloseAllPosition(SelectedAccountModel.Id);
+    }
+
+    private void ModifyOrder(PendingOrderModel pendingOrder)
+    {
+        if (SelectedAccountModel is null || pendingOrder is null) return;
+
+    }
+
+    private void CancelOrder(PendingOrderModel pendingOrder)
+    {
+        if (SelectedAccountModel is null || pendingOrder is null) return;
+
+        TradingAccountsService.CancelOrder(SelectedAccountModel.Id, pendingOrder.Id);
+    }
+
+    private void CancelAllOrders()
+    {
+        if (SelectedAccountModel is null) return;
+
+        TradingAccountsService.CancelAllOrders(SelectedAccountModel.Id);
+    }
 }
