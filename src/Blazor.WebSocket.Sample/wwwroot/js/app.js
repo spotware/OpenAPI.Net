@@ -67,6 +67,18 @@ window.showTab = (id) => {
     $(id).tab('show');
 };
 
+window.hideTab = (id) => {
+    $(id).removeClass('active');
+};
+
+window.disableTab = (id) => {
+    $(id).addClass('disabled');
+};
+
+window.enableTab = (id) => {
+    $(id).removeClass('disabled');
+};
+
 window.setInputValue = (id, value) => {
     $(id).val(value).change();
 };
@@ -85,6 +97,10 @@ window.enableInput = (id) => {
 
 window.disableInput = (id) => {
     $(id).prop('disabled', true);
+};
+
+window.setAttr = (id, attribute, value) => {
+    $(id).prop(attribute, value);
 };
 
 window.setNumericInputAttributes = (id, min, max, step) => {

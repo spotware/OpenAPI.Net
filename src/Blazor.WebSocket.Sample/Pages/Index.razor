@@ -361,7 +361,7 @@
 
     public string ApplicationClientSecret { get; set; } = "381kqs4ae7ms0so4g88wgosk4wg8g4sk8owok4kso44os48gco";
 
-    public string AccessToken { get; set; } = "hWWLpuEux4ozDqhTiMtCvDk_m9OkQyNO5qXaxNYXahY";
+    public string AccessToken { get; set; } = "5mEyxV8YCBpDRMBwSid-CjTUw8jUA0fw5k6jjg9aGBY";
 
     public IEnumerable<ProtoOACtidTraderAccount> Accounts { get; set; }
 
@@ -551,10 +551,18 @@
         TradingAccountsService.ClosePosition(SelectedAccountModel.Id, marketOrder.Id);
     }
 
-    private void ModifyPosition(MarketOrderModel marketOrder)
+    private async Task ModifyPosition(MarketOrderModel marketOrder)
     {
         if (SelectedAccountModel is null || marketOrder is null) return;
 
+        OrderModal.Title = "Modify Market Order";
+        OrderModal.ButtonText = "Modify Order";
+        OrderModal.IsModifying = true;
+        OrderModal.Symbol = marketOrder.Symbol;
+        OrderModal.ShowPendingOrderTab = false;
+        OrderModal.MarketOrder = marketOrder;
+
+        await OrderModal.Open();
     }
 
     private void CloseAllPositions()
@@ -564,10 +572,18 @@
         TradingAccountsService.CloseAllPosition(SelectedAccountModel.Id);
     }
 
-    private void ModifyOrder(PendingOrderModel pendingOrder)
+    private async Task ModifyOrder(PendingOrderModel pendingOrder)
     {
         if (SelectedAccountModel is null || pendingOrder is null) return;
 
+        OrderModal.Title = "Modify Pending Order";
+        OrderModal.ButtonText = "Modify Order";
+        OrderModal.IsModifying = true;
+        OrderModal.Symbol = pendingOrder.Symbol;
+        OrderModal.ShowPendingOrderTab = true;
+        OrderModal.PendingOrder = pendingOrder;
+
+        await OrderModal.Open();
     }
 
     private void CancelOrder(PendingOrderModel pendingOrder)

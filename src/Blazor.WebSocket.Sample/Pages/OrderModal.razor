@@ -11,7 +11,7 @@
     <Body>
         <ul class="nav nav-tabs" id="orderModalTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active text-muted" id="marketOrderTab" data-bs-toggle="tab" data-bs-target="#marketOrderTabContent" type="button" role="tab" aria-controls="marketOrderTabContent" aria-selected="true" @onclick="MarketOrderTabActivated">Market</button>
+                <button class="nav-link text-muted" id="marketOrderTab" data-bs-toggle="tab" data-bs-target="#marketOrderTabContent" type="button" role="tab" aria-controls="marketOrderTabContent" aria-selected="true" @onclick="MarketOrderTabActivated">Market</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link text-muted" id="pendingOrderTab" data-bs-toggle="tab" data-bs-target="#pendingOrderTabContent" type="button" role="tab" aria-controls="pendingOrderTabContent" aria-selected="false" @onclick="PendingOrderTabActivated">Pending</button>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="text-white form-group">
-                    <textarea class="form-control" maxlength="100" id="marketOrderCommenttextarea" @onchange="MarketOrderCommentChanged" rows="3" placeholder="Comment..."></textarea>
+                    <textarea class="form-control" maxlength="100" id="marketOrderCommentTextarea" @onchange="MarketOrderCommentChanged" rows="3" placeholder="Comment..."></textarea>
                 </div>
             </div>
             <div class="tab-pane fade m-0 p-0" id="pendingOrderTabContent" role="tabpanel" aria-labelledby="pendingOrderTab">
@@ -188,7 +188,7 @@
                     </div>
                 </div>
                 <div class="text-white form-group">
-                    <textarea class="form-control" maxlength="100" id="pendingOrderCommenttextarea" rows="3" placeholder="Comment... " @onchange="PendingOrderCommentChanged"></textarea>
+                    <textarea class="form-control" maxlength="100" id="pendingOrderCommentTextarea" rows="3" placeholder="Comment... " @onchange="PendingOrderCommentChanged"></textarea>
                 </div>
             </div>
         </div>
@@ -199,6 +199,12 @@
 </Modal>
 
 @code {
+
+    private bool _isMarketTabActive;
+
+    private MarketOrderModel _actualMarketOrder;
+
+    private PendingOrderModel _actualPendingOrder;
 
     [Parameter]
     public AccountModel Account { get; set; }
@@ -218,8 +224,6 @@
     public PendingOrderModel PendingOrder { get; set; }
 
     public bool ShowPendingOrderTab { get; set; }
-
-    public bool IsMarketTabActive { get; set; }
 
     [Inject]
     private IOpenApiService ApiService { get; set; }
@@ -257,21 +261,60 @@
                 MarketOrder.Symbol = Symbol;
                 MarketOrder.Volume = Symbol.Data.MinVolume;
             }
-
-            await SetInputsValues();
         }
+        else
+        {
+            if (MarketOrder is not null)
+            {
+                _actualMarketOrder = MarketOrder;
+
+                MarketOrder = _actualMarketOrder.Clone();
+            }
+
+            if (PendingOrder is not null)
+            {
+                _actualPendingOrder = PendingOrder;
+
+                PendingOrder = _actualPendingOrder.Clone();
+            }
+        }
+
+        await SetInputsValues();
+
+        await JS.InvokeVoidAsync("hideTab", "#pendingOrderTab");
+        await JS.InvokeVoidAsync("hideTab", "#marketOrderTab");
 
         if (ShowPendingOrderTab)
         {
             await JS.InvokeVoidAsync("showTab", "#pendingOrderTab");
 
-            IsMarketTabActive = false;
+            _isMarketTabActive = false;
         }
         else
         {
             await JS.InvokeVoidAsync("showTab", "#marketOrderTab");
 
-            IsMarketTabActive = true;
+            _isMarketTabActive = true;
+        }
+
+        if (PendingOrder is null)
+        {
+            await JS.InvokeVoidAsync("disableTab", "#pendingOrderTab");
+
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("enableTab", "#pendingOrderTab");
+        }
+
+        if (MarketOrder is null)
+        {
+            await JS.InvokeVoidAsync("disableTab", "#marketOrderTab");
+
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("enableTab", "#marketOrderTab");
         }
 
         await Modal.Open();
@@ -294,10 +337,11 @@
         {
             PendingOrder.Symbol = symbol;
             PendingOrder.Volume = PendingOrder.Symbol.Data.MinVolume;
+            PendingOrder.Price = symbol.Bid;
 
             await UpdateVolumeInputAttributes("#pendingOrderVolumeInput", symbol);
-            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Symbol.Data.MinVolume));
-            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderPriceInput", PendingOrder.Symbol.Bid);
+            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Volume));
+            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderPriceInput", PendingOrder.Price);
 
         }
     }
@@ -407,6 +451,7 @@
         if (e.Value is null || PendingOrder is null) return;
 
         PendingOrder.StopLossInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+        PendingOrder.StopLossInPrice = default;
     }
 
     private void PendingOrderTrailingStopChanged(ChangeEventArgs e)
@@ -437,6 +482,7 @@
         if (e.Value is null || PendingOrder is null) return;
 
         PendingOrder.TakeProfitInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+        PendingOrder.TakeProfitInPrice = default;
     }
 
     private void PendingOrderCommentChanged(ChangeEventArgs e)
@@ -460,7 +506,7 @@
             MarketOrder.Volume = MarketOrder.Symbol.Data.MinVolume;
 
             await UpdateVolumeInputAttributes("#marketOrderVolumeInput", symbol);
-            await JS.InvokeVoidAsync("setInputValue", "#marketOrderVolumeInput", MonetaryConverter.FromMonetary(MarketOrder.Symbol.Data.MinVolume));
+            await JS.InvokeVoidAsync("setInputValue", "#marketOrderVolumeInput", MonetaryConverter.FromMonetary(MarketOrder.Volume));
         }
     }
 
@@ -533,6 +579,7 @@
         if (e.Value is null || MarketOrder is null) return;
 
         MarketOrder.StopLossInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+        MarketOrder.StopLossInPrice = default;
     }
 
     private void MarketOrderTrailingStopChanged(ChangeEventArgs e)
@@ -563,6 +610,7 @@
         if (e.Value is null || MarketOrder is null) return;
 
         MarketOrder.TakeProfitInPips = double.Parse(e.Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+        MarketOrder.TakeProfitInPrice = default;
     }
 
     private void MarketOrderCommentChanged(ChangeEventArgs e)
@@ -581,27 +629,150 @@
 
     private async Task SetInputsValues()
     {
+        if (PendingOrder is not null)
+        {
+            await SetPendingOrderInputValues();
+        }
+
+        if (MarketOrder is not null)
+        {
+            await SetMarketOrderInputValues();
+        }
+    }
+
+    private async Task SetPendingOrderInputValues()
+    {
         await JS.InvokeVoidAsync("setInputValue", "#pendingOrderSymbolsList", PendingOrder.Symbol.Name);
         await UpdateVolumeInputAttributes("#pendingOrderVolumeInput", PendingOrder.Symbol);
-        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Symbol.Data.MinVolume));
-        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderPriceInput", PendingOrder.Symbol.Bid);
-        await JS.InvokeVoidAsync("setNumericInputAttributes", "#pendingOrderPriceInput", Symbol.PipSize, null, Symbol.PipSize);
+        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderVolumeInput", MonetaryConverter.FromMonetary(PendingOrder.Volume));
+        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderPriceInput", PendingOrder.Price);
+        await JS.InvokeVoidAsync("setNumericInputAttributes", "#pendingOrderPriceInput", PendingOrder.Symbol.PipSize, null, PendingOrder.Symbol.PipSize);
         await JS.InvokeVoidAsync("setExpiryTimeMin");
+        await JS.InvokeVoidAsync("setInputValue", "#pendingOrderDirectionList", PendingOrder.TradeSide == ProtoOATradeSide.Buy ? "Buy" : "Sell");
+        await JS.InvokeVoidAsync("setAttr", "#pendingOrderStopLoss", "checked", PendingOrder.IsStopLossEnabled);
 
+        if (PendingOrder.IsStopLossEnabled)
+        {
+            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderStopLossInput", PendingOrder.StopLossInPips);
+            await JS.InvokeVoidAsync("setAttr", "#pendingOrderTrailingStopLoss", "checked", PendingOrder.IsTrailingStopLossEnabled);
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderStopLossInput");
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderTrailingStopLoss");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderStopLossInput");
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderTrailingStopLoss");
+        }
+
+        await JS.InvokeVoidAsync("setAttr", "#pendingOrderTakeProfit", "checked", PendingOrder.IsTakeProfitEnabled);
+
+        if (PendingOrder.IsTakeProfitEnabled)
+        {
+            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderTakeProfitInput", PendingOrder.TakeProfitInPips);
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderTakeProfitInput");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderTakeProfitInput");
+        }
+
+        await JS.InvokeVoidAsync("setAttr", "#pendingOrderExpiry", "checked", PendingOrder.IsExpiryEnabled);
+
+        if (PendingOrder.IsExpiryEnabled)
+        {
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderExpiryDateTime");
+            await JS.InvokeVoidAsync("setInputValue", "#pendingOrderExpiryDateTime", PendingOrder.ExpiryTime.DateTime);
+        }
+
+        if (IsModifying)
+        {
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderSymbolsList");
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderCommentTextarea");
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderDirectionList");
+            await JS.InvokeVoidAsync("disableInput", "#pendingOrderTypeList");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderCommentTextarea");
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderSymbolsList");
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderDirectionList");
+            await JS.InvokeVoidAsync("enableInput", "#pendingOrderTypeList");
+        }
+    }
+
+    private async Task SetMarketOrderInputValues()
+    {
         await JS.InvokeVoidAsync("setInputValue", "#marketOrderSymbolsList", MarketOrder.Symbol.Name);
         await UpdateVolumeInputAttributes("#marketOrderVolumeInput", MarketOrder.Symbol);
-        await JS.InvokeVoidAsync("setInputValue", "#marketOrderVolumeInput", MonetaryConverter.FromMonetary(MarketOrder.Symbol.Data.MinVolume));
+        await JS.InvokeVoidAsync("setInputValue", "#marketOrderVolumeInput", MonetaryConverter.FromMonetary(MarketOrder.Volume));
+        await JS.InvokeVoidAsync("setInputValue", "#marketOrderDirectionList", MarketOrder.TradeSide == ProtoOATradeSide.Buy ? "Buy" : "Sell");
+        await JS.InvokeVoidAsync("setAttr", "#marketRange", "checked", MarketOrder.IsMarketRange);
+        await JS.InvokeVoidAsync("setInputValue", "#marketRangeInput", MarketOrder.MarketRangeInPips);
+        await JS.InvokeVoidAsync("setAttr", "#marketOrderStopLoss", "checked", MarketOrder.IsStopLossEnabled);
+
+        if (MarketOrder.IsStopLossEnabled)
+        {
+            await JS.InvokeVoidAsync("setInputValue", "#marketOrderStopLossInput", MarketOrder.StopLossInPips);
+            await JS.InvokeVoidAsync("setAttr", "#marketOrderTrailingStopLoss", "checked", MarketOrder.IsTrailingStopLossEnabled);
+
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderStopLossInput");
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderTrailingStopLoss");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderStopLossInput");
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderTrailingStopLoss");
+        }
+
+        await JS.InvokeVoidAsync("setAttr", "#marketOrderTakeProfit", "checked", MarketOrder.IsTakeProfitEnabled);
+
+        if (MarketOrder.IsTakeProfitEnabled)
+        {
+            await JS.InvokeVoidAsync("setInputValue", "#marketOrderTakeProfitInput", MarketOrder.TakeProfitInPips);
+
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderTakeProfitInput");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderTakeProfitInput");
+        }
+
+        if (IsModifying)
+        {
+            if (MarketOrder.IsMarketRange is false)
+            {
+                await JS.InvokeVoidAsync("disableInput", "#marketRange");
+                await JS.InvokeVoidAsync("disableInput", "#marketRangeInput");
+            }
+
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderSymbolsList");
+            await JS.InvokeVoidAsync("disableInput", "#marketOrderCommentTextarea");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderSymbolsList");
+            await JS.InvokeVoidAsync("enableInput", "#marketRange");
+            await JS.InvokeVoidAsync("enableInput", "#marketOrderCommentTextarea");
+        }
     }
 
     private async Task Execute()
     {
         if (IsModifying)
         {
+            if (_isMarketTabActive)
+            {
+                ApiService.ModifyPosition(_actualMarketOrder, MarketOrder, Account.Id, Account.IsLive);
 
+            }
+            else
+            {
+                ApiService.ModifyOrder(_actualPendingOrder, PendingOrder, Account.Id, Account.IsLive);
+            }
         }
         else
         {
-            if (IsMarketTabActive)
+            if (_isMarketTabActive)
             {
                 ApiService.CreateNewOrder(MarketOrder, Account.Id, Account.IsLive);
             }
@@ -616,16 +787,19 @@
 
     private void MarketOrderTabActivated()
     {
-        IsMarketTabActive = true;
+        _isMarketTabActive = true;
     }
 
     private void PendingOrderTabActivated()
     {
-        IsMarketTabActive = false;
+        _isMarketTabActive = false;
     }
 
     private void OnClose()
     {
         IsModifying = false;
+
+        MarketOrder = null;
+        PendingOrder = null;
     }
 }
