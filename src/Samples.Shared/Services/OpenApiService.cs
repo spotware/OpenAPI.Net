@@ -108,9 +108,9 @@ namespace Samples.Shared.Services
 
             try
             {
-                //liveClient = _liveClientFactory();
+                liveClient = _liveClientFactory();
 
-                //await liveClient.Connect();
+                await liveClient.Connect();
 
                 demoClient = _demoClientFactory();
 
@@ -126,7 +126,7 @@ namespace Samples.Shared.Services
 
             _sendMessageTimer.Start();
 
-            //await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
+            await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
             await AuthorizeApp(demoClient, _apiCredentials);
 
             IsConnected = true;
@@ -134,7 +134,7 @@ namespace Samples.Shared.Services
             _liveClient = liveClient;
             _demoClient = demoClient;
 
-            //_liveClient.Subscribe(_ => { }, OnError);
+            _liveClient.Subscribe(_ => { }, OnError);
             _demoClient.Subscribe(_ => { }, OnError);
 
             Connected?.Invoke();
@@ -195,10 +195,9 @@ namespace Samples.Shared.Services
 
             IDisposable disposable = null;
 
-            disposable = _demoClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
+            disposable = _liveClient.OfType<ProtoOAGetAccountListByAccessTokenRes>().Subscribe(response =>
             {
-                //taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
-                taskCompletionSource.SetResult(response.CtidTraderAccount.Where(account => account.IsLive is false).ToArray());
+                taskCompletionSource.SetResult(response.CtidTraderAccount.ToArray());
 
                 disposable?.Dispose();
             });
@@ -208,7 +207,7 @@ namespace Samples.Shared.Services
                 AccessToken = accessToken
             };
 
-            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _demoClient);
+            EnqueueMessage(requestMessage, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq, _liveClient);
 
             return taskCompletionSource.Task;
         }
@@ -1017,9 +1016,7 @@ namespace Samples.Shared.Services
             _demoClient?.Dispose();
         }
 
-        //private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
-
-        private OpenClient GetClient(bool isLive) => _demoClient;
+        private OpenClient GetClient(bool isLive) => isLive ? _liveClient : _demoClient;
 
         private void VerifyConnection()
         {

@@ -109,7 +109,7 @@ namespace Samples.Shared.Services
             _subscribedAccountErrorsChannels.Clear();
             _subscribedAccountInfoUpdateChannels.Clear();
 
-            //Subscribe(_apiService.LiveObservable);
+            Subscribe(_apiService.LiveObservable);
             Subscribe(_apiService.DemoObservable);
         }
 
@@ -431,6 +431,7 @@ namespace Samples.Shared.Services
                 trade.Volume = MonetaryConverter.FromMonetary(trade.Volume);
                 trade.FilledVolume = MonetaryConverter.FromMonetary(trade.FilledVolume);
                 trade.ClosedVolume = MonetaryConverter.FromMonetary(trade.ClosedVolume);
+                trade.ClosedBalance = MonetaryConverter.FromMonetary(trade.ClosedBalance);
             }
 
             return trades;

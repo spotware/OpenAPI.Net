@@ -457,7 +457,7 @@
                 <td id="closedBalance">${trade.closedBalance}</td>
                 <td id="commission">${trade.commission}</td>
                 <td id="executionPrice">${trade.executionPrice}</td>
-                <td id="executionPrice">${trade.isClosing == true ? "Yes" : "No"}</td>
+                <td id="closing">${trade.isClosing == true ? "Yes" : "No"}</td>
                 <td id="creationTime">${new Date(trade.creationTime).toLocaleString()}</td>
                 <td id="executionTime">${new Date(trade.executionTime).toLocaleString()}</td>
                 <td id="lastUpdateTime">${new Date(trade.lastUpdateTime).toLocaleString()}</td></tr>`;

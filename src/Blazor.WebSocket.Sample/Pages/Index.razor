@@ -99,7 +99,7 @@
                                         <td id="symbol">@position.Symbol.Name</td>
                                         <td id="direction">@position.TradeSide</td>
                                         <td id="volume">@MonetaryConverter.FromMonetary(position.Volume)</td>
-                                        <td id="created">@position.OpenTime</td>
+                                        <td id="created">@position.OpenTime.LocalDateTime</td>
                                         <td id="entryPrice">@position.Price</td>
                                         <td id="sl">@(position.StopLossInPrice == default ? string.Empty : position.StopLossInPrice)</td>
                                         <td id="tp">@(position.TakeProfitInPrice == default ? string.Empty : position.TakeProfitInPrice)</td>
@@ -157,7 +157,7 @@
                                         <td id="direction">@order.TradeSide</td>
                                         <td id="volume">@MonetaryConverter.FromMonetary(order.Volume)</td>
                                         <td id="type">@order.Type</td>
-                                        <td id="created">@order.OpenTime</td>
+                                        <td id="created">@order.OpenTime.LocalDateTime</td>
                                         <td id="entryPrice">@order.Price</td>
                                         <td id="sl">@(order.StopLossInPrice == default ? string.Empty : order.StopLossInPrice)</td>
                                         <td id="tp">@(order.TakeProfitInPrice == default ? string.Empty : order.TakeProfitInPrice)</td>
@@ -181,16 +181,16 @@
                         <label for="historyFromDateTime" class="m-2">From</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="historyFromDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="historyFromDateTime" class="form-control m-1" @bind="@_historyFromTime" min="@(SelectedAccountModel is null ? _historyFromTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-1" style="width: 3%">
                         <label for="historyToDateTime" class="m-2">To</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="historyToDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="historyToDateTime" class="form-control m-1" @bind="@_historyToTime" min="@(SelectedAccountModel is null ? _historyToTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-secondary m-1" id="loadHistoryButton">Load</button>
+                        <button type="button" class="btn btn-secondary m-1" @onclick="LoadHistory">Load</button>
                     </div>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
@@ -217,7 +217,34 @@
                                 <th scope="col">Last Updated</th>
                             </tr>
                         </thead>
-                        <tbody id="historyTableBody" />
+                        <tbody id="historyTableBody">
+                            @if (_history is not null)
+                            {
+                                foreach (var trade in _history)
+                                {
+                                    <tr id="@trade.Id">
+                                        <td id="id">@trade.Id</td>
+                                        <td id="orderId">@trade.OrderId</td>
+                                        <td id="positionId">@trade.PositionId</td>
+                                        <td id="symbol">@trade.SymbolName</td>
+                                        <td id="direction">@trade.Direction</td>
+                                        <td id="volume">@trade.Volume</td>
+                                        <td id="filledVolume">@trade.FilledVolume</td>
+                                        <td id="closedVolume">@trade.ClosedVolume</td>
+                                        <td id="status">@trade.Status</td>
+                                        <td id="grossProfit">@trade.GrossProfit</td>
+                                        <td id="swap">@trade.Swap</td>
+                                        <td id="closedBalance">@trade.ClosedBalance</td>
+                                        <td id="commission">@trade.Commission</td>
+                                        <td id="executionPrice">@trade.ExecutionPrice</td>
+                                        <td id="closing">@(trade.IsClosing == true ? "Yes" : "No")</td>
+                                        <td id="creationTime">@trade.CreationTime.LocalDateTime</td>
+                                        <td id="executionTime">@trade.ExecutionTime.LocalDateTime</td>
+                                        <td id="lastUpdateTime">@trade.LastUpdateTime.LocalDateTime</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -227,16 +254,16 @@
                         <label for="transactionsFromDateTime" class="m-2">From</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="transactionsFromDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="transactionsFromDateTime" class="form-control m-1" @bind="@_transactionsFromTime" min="@(SelectedAccountModel is null ? _transactionsFromTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-1" style="width: 3%">
                         <label for="transactionsToDateTime" class="m-2">To</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="transactionsToDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="transactionsToDateTime" class="form-control m-1" @bind="@_transactionsToTime" min="@(SelectedAccountModel is null ? _transactionsToTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-secondary m-1" id="loadTransactionsButton">Load</button>
+                        <button type="button" class="btn btn-secondary m-1" id="loadTransactionsButton" @onclick="LoadTransactions">Load</button>
                     </div>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
@@ -253,7 +280,24 @@
                                 <th scope="col">Time</th>
                             </tr>
                         </thead>
-                        <tbody id="transactionsTableBody" />
+                        <tbody id="transactionsTableBody">
+                            @if (_transactions is not null)
+                            {
+                                foreach (var transaction in _transactions)
+                                {
+                                    <tr id="@transaction.Id">
+                                        <td id="id">@transaction.Id</td>
+                                        <td id="type">@transaction.Type</td>
+                                        <td id="amount">@transaction.Delta</td>
+                                        <td id="balance">@transaction.Balance</td>
+                                        <td id="equity">@transaction.Equity</td>
+                                        <td id="version">@transaction.BalanceVersion</td>
+                                        <td id="note">@transaction.Note</td>
+                                        <td id="time">@transaction.Time.LocalDateTime</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -317,15 +361,15 @@
         <div class="form-group">
             <div class="row">
                 <label for="applicationClientIdInput" class="p-0">Application Client ID</label>
-                <input type="text" class="form-control" @bind="@ApplicationClientId" id="applicationClientIdInput">
+                <input type="text" class="form-control" @bind="@_applicationClientId" id="applicationClientIdInput">
             </div>
             <div class="row">
                 <label for="applicationClientSecretInput" class="p-0">Application Client Secret</label>
-                <input type="text" class="form-control" @bind="@ApplicationClientSecret" id="applicationClientSecretInput">
+                <input type="text" class="form-control" @bind="@_applicationClientSecret" id="applicationClientSecretInput">
             </div>
             <div class="row">
                 <label for="accessTokenInput" class="p-0">Access Token</label>
-                <input type="text" class="form-control" @bind="@AccessToken" id="accessTokenInput">
+                <input type="text" class="form-control" @bind="@_accessToken" id="accessTokenInput">
             </div>
         </div>
     </Body>
@@ -350,18 +394,21 @@
 
 @code
 {
+    private DateTime _historyFromTime, _historyToTime;
+    private DateTime _transactionsFromTime, _transactionsToTime;
+
+    private string _applicationClientId = "114_6487ns0byrok8s4osswkc0088wg0c408gokgw88gcw480c0kcc";
+    private string _applicationClientSecret = "381kqs4ae7ms0so4g88wgosk4wg8g4sk8owok4kso44os48gco";
+    private string _accessToken = "5mEyxV8YCBpDRMBwSid-CjTUw8jUA0fw5k6jjg9aGBY";
+
+    private IEnumerable<HistoricalTrade> _history;
+    private IEnumerable<Transaction> _transactions;
 
     public Modal ApiCredentialsModal { get; set; }
 
     public Modal LoadingModal { get; set; }
 
     public OrderModal OrderModal { get; set; }
-
-    public string ApplicationClientId { get; set; } = "114_6487ns0byrok8s4osswkc0088wg0c408gokgw88gcw480c0kcc";
-
-    public string ApplicationClientSecret { get; set; } = "381kqs4ae7ms0so4g88wgosk4wg8g4sk8owok4kso44os48gco";
-
-    public string AccessToken { get; set; } = "5mEyxV8YCBpDRMBwSid-CjTUw8jUA0fw5k6jjg9aGBY";
 
     public IEnumerable<ProtoOACtidTraderAccount> Accounts { get; set; }
 
@@ -384,37 +431,35 @@
 
     private async Task Connect()
     {
-        LoadingModal.Open();
+        await ApiCredentialsModal.Close();
+
+        await LoadingModal.Open();
 
         var apiCredentials = new ApiCredentials
         {
-            ClientId = ApplicationClientId,
-            Secret = ApplicationClientSecret
+            ClientId = _applicationClientId,
+            Secret = _applicationClientSecret
         };
 
         await ApiService.Connect(apiCredentials);
 
         Console.WriteLine("Connected to API");
 
-        await ApiCredentialsModal.Close();
+        Accounts = await TradingAccountsService.GetAccounts(_accessToken);
 
-        Console.WriteLine("Getting accounts");
-
-        Accounts = await TradingAccountsService.GetAccounts(AccessToken);
+        Console.WriteLine($"Accounts #: {Accounts.Count()}");
 
         if (Accounts.Any())
         {
             await AccountSelectionChanged(Accounts.First().TraderLogin);
         }
 
-        Console.WriteLine($"Account: {Accounts.Count()}");
-
-        LoadingModal.Close();
+        await LoadingModal.Close();
     }
 
     private async Task AccountSelectionChanged(ChangeEventArgs e)
     {
-        LoadingModal.Open();
+        await LoadingModal.Open();
 
         if (e.Value is null)
         {
@@ -427,7 +472,7 @@
             await AccountSelectionChanged(accountLogin);
         }
 
-        LoadingModal.Close();
+        await LoadingModal.Close();
     }
 
     private async Task AccountSelectionChanged(long accountLogin)
@@ -452,6 +497,16 @@
             await SymbolSelectionChanged(SelectedAccountModel.Symbols.First());
         }
 
+        _historyFromTime = SelectedAccountModel.RegistrationTime.LocalDateTime;
+        _historyToTime = DateTime.Now;
+        _history = null;
+
+        _transactionsFromTime = SelectedAccountModel.RegistrationTime.LocalDateTime;
+        _transactionsToTime = DateTime.Now;
+        _transactions = null;
+
+        StateHasChanged();
+
         _ = SubscribeToErrors();
         _ = SubscribeToPositionUpdates();
         _ = SubscribeToOrderUpdates();
@@ -460,8 +515,6 @@
     private async Task UpdateQuotes()
     {
         var symbolQuotesChannel = TradingAccountsService.GetSymbolsQuoteChannel(SelectedAccountModel.Id);
-
-        Console.WriteLine($"UpdateQuotes");
 
         while (await symbolQuotesChannel.Reader.WaitToReadAsync())
         {
@@ -599,4 +652,26 @@
 
         TradingAccountsService.CancelAllOrders(SelectedAccountModel.Id);
     }
-}
+
+    private async Task LoadHistory()
+    {
+        if (SelectedAccountModel is null) return;
+
+        await LoadingModal.Open();
+
+        _history = await TradingAccountsService.GetHistory(_historyFromTime, _historyToTime, SelectedAccountModel.Id);
+
+        await LoadingModal.Close();
+    }
+
+    private async Task LoadTransactions()
+    {
+        if (SelectedAccountModel is null) return;
+
+        await LoadingModal.Open();
+
+        _transactions = await TradingAccountsService.GetTransactions(_transactionsFromTime, _transactionsToTime, SelectedAccountModel.Id);
+
+        await LoadingModal.Close();
+    }
+} 
