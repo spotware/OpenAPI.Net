@@ -60,22 +60,15 @@ namespace OpenAPI.Net.Auth
                 throw new ArgumentNullException(nameof(authUri));
             }
 
-            var query = new NameValueCollection
-            {
-                { "grant_type", "authorization_code" },
-                { "code", authCode },
-                { "redirect_uri", app.RedirectUri },
-                { "client_id", app.ClientId },
-                { "client_secret", app.Secret }
-            }.ToQueryString();
-
-            var uri = new Uri($"{authUri}token{query}");
+            var uri = GetUri(authCode, app, authUri);
 
             using var response = await client.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
             {
-                var token = await DeserializeToken(response.Content);
+                var contentAsString = await response.Content.ReadAsStringAsync();
+
+                var token = DeserializeToken(contentAsString);
 
                 if (string.IsNullOrWhiteSpace(token.ErrorCode) is false)
                 {
@@ -88,11 +81,23 @@ namespace OpenAPI.Net.Auth
             throw new HttpRequestException($"{response.StatusCode}, The HTTP request for getting access token was not successful");
         }
 
-        private static async Task<Token> DeserializeToken(HttpContent content)
+        public static Uri GetUri(string authCode, App app, string authUri = ApiInfo.AuthUrl)
         {
-            var contentAsString = await content.ReadAsStringAsync();
+            var query = new NameValueCollection
+            {
+                { "grant_type", "authorization_code" },
+                { "code", authCode },
+                { "redirect_uri", app.RedirectUri },
+                { "client_id", app.ClientId },
+                { "client_secret", app.Secret }
+            }.ToQueryString();
 
-            var token = JsonSerializer.Deserialize<Token>(contentAsString);
+            return new Uri($"{authUri}token{query}");
+        }
+
+        public static Token DeserializeToken(string json)
+        {
+            var token = JsonSerializer.Deserialize<Token>(json);
 
             if (string.IsNullOrWhiteSpace(token.ErrorCode))
             {
