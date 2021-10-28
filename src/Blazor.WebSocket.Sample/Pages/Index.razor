@@ -477,8 +477,6 @@
 
     private async Task AccountSelectionChanged(long accountLogin)
     {
-        Console.WriteLine($"Selected account channged to {accountLogin}");
-
         if (SelectedAccountModel is not null)
         {
             TradingAccountsService.StopSymbolQuotes(SelectedAccountModel.Id);
