@@ -441,6 +441,8 @@
             Secret = _applicationClientSecret
         };
 
+        Console.WriteLine("Connecting to API");
+
         await ApiService.Connect(apiCredentials);
 
         Console.WriteLine("Connected to API");
