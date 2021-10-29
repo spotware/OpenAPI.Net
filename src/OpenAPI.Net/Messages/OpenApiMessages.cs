@@ -214,122 +214,123 @@ public static partial class OpenApiMessagesReflection {
           "b09BUmVmcmVzaFRva2VuUmVzEkQKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
           "dG9PQVBheWxvYWRUeXBlOhpQUk9UT19PQV9SRUZSRVNIX1RPS0VOX1JFUxIT",
           "CgthY2Nlc3NUb2tlbhgCIAIoCRIRCgl0b2tlblR5cGUYAyACKAkSEQoJZXhw",
-          "aXJlc0luGAQgAigDEhQKDHJlZnJlc2hUb2tlbhgFIAIoCSKRAQoYUHJvdG9P",
+          "aXJlc0luGAQgAigDEhQKDHJlZnJlc2hUb2tlbhgFIAIoCSKzAQoYUHJvdG9P",
           "QVN1YnNjcmliZVNwb3RzUmVxEkYKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
           "dG9PQVBheWxvYWRUeXBlOhxQUk9UT19PQV9TVUJTQ1JJQkVfU1BPVFNfUkVR",
           "EhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSEAoIc3ltYm9sSWQYAyAD",
-          "KAMifwoYUHJvdG9PQVN1YnNjcmliZVNwb3RzUmVzEkYKC3BheWxvYWRUeXBl",
-          "GAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhxQUk9UT19PQV9TVUJTQ1JJ",
-          "QkVfU1BPVFNfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMilQEK",
-          "GlByb3RvT0FVbnN1YnNjcmliZVNwb3RzUmVxEkgKC3BheWxvYWRUeXBlGAEg",
-          "ASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh5QUk9UT19PQV9VTlNVQlNDUklC",
-          "RV9TUE9UU19SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIQCghz",
-          "eW1ib2xJZBgDIAMoAyKDAQoaUHJvdG9PQVVuc3Vic2NyaWJlU3BvdHNSZXMS",
-          "SAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6HlBS",
-          "T1RPX09BX1VOU1VCU0NSSUJFX1NQT1RTX1JFUxIbChNjdGlkVHJhZGVyQWNj",
-          "b3VudElkGAIgAigDItQBChBQcm90b09BU3BvdEV2ZW50Ej0KC3BheWxvYWRU",
-          "eXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhNQUk9UT19PQV9TUE9U",
-          "X0VWRU5UEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSEAoIc3ltYm9s",
-          "SWQYAyACKAMSCwoDYmlkGAQgASgEEgsKA2FzaxgFIAEoBBIiCgh0cmVuZGJh",
-          "chgGIAMoCzIQLlByb3RvT0FUcmVuZGJhchIUCgxzZXNzaW9uQ2xvc2UYByAB",
-          "KAQiyAEKH1Byb3RvT0FTdWJzY3JpYmVMaXZlVHJlbmRiYXJSZXESTgoLcGF5",
-          "bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6JFBST1RPX09B",
-          "X1NVQlNDUklCRV9MSVZFX1RSRU5EQkFSX1JFURIbChNjdGlkVHJhZGVyQWNj",
+          "KAMSIAoYc3Vic2NyaWJlVG9TcG90VGltZXN0YW1wGAQgASgIIn8KGFByb3Rv",
+          "T0FTdWJzY3JpYmVTcG90c1JlcxJGCgtwYXlsb2FkVHlwZRgBIAEoDjITLlBy",
+          "b3RvT0FQYXlsb2FkVHlwZTocUFJPVE9fT0FfU1VCU0NSSUJFX1NQT1RTX1JF",
+          "UxIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDIpUBChpQcm90b09BVW5z",
+          "dWJzY3JpYmVTcG90c1JlcRJICgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3Rv",
+          "T0FQYXlsb2FkVHlwZToeUFJPVE9fT0FfVU5TVUJTQ1JJQkVfU1BPVFNfUkVR",
+          "EhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSEAoIc3ltYm9sSWQYAyAD",
+          "KAMigwEKGlByb3RvT0FVbnN1YnNjcmliZVNwb3RzUmVzEkgKC3BheWxvYWRU",
+          "eXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh5QUk9UT19PQV9VTlNV",
+          "QlNDUklCRV9TUE9UU19SRVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIo",
+          "AyLnAQoQUHJvdG9PQVNwb3RFdmVudBI9CgtwYXlsb2FkVHlwZRgBIAEoDjIT",
+          "LlByb3RvT0FQYXlsb2FkVHlwZToTUFJPVE9fT0FfU1BPVF9FVkVOVBIbChNj",
+          "dGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5bWJvbElkGAMgAigDEgsK",
+          "A2JpZBgEIAEoBBILCgNhc2sYBSABKAQSIgoIdHJlbmRiYXIYBiADKAsyEC5Q",
+          "cm90b09BVHJlbmRiYXISFAoMc2Vzc2lvbkNsb3NlGAcgASgEEhEKCXRpbWVz",
+          "dGFtcBgIIAEoAyLIAQofUHJvdG9PQVN1YnNjcmliZUxpdmVUcmVuZGJhclJl",
+          "cRJOCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTok",
+          "UFJPVE9fT0FfU1VCU0NSSUJFX0xJVkVfVFJFTkRCQVJfUkVREhsKE2N0aWRU",
+          "cmFkZXJBY2NvdW50SWQYAiACKAMSJgoGcGVyaW9kGAMgAigOMhYuUHJvdG9P",
+          "QVRyZW5kYmFyUGVyaW9kEhAKCHN5bWJvbElkGAQgAigDIo4BCh9Qcm90b09B",
+          "U3Vic2NyaWJlTGl2ZVRyZW5kYmFyUmVzEk4KC3BheWxvYWRUeXBlGAEgASgO",
+          "MhMuUHJvdG9PQVBheWxvYWRUeXBlOiRQUk9UT19PQV9TVUJTQ1JJQkVfTElW",
+          "RV9UUkVOREJBUl9SRVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAyLM",
+          "AQohUHJvdG9PQVVuc3Vic2NyaWJlTGl2ZVRyZW5kYmFyUmVxElAKC3BheWxv",
+          "YWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiZQUk9UT19PQV9V",
+          "TlNVQlNDUklCRV9MSVZFX1RSRU5EQkFSX1JFURIbChNjdGlkVHJhZGVyQWNj",
           "b3VudElkGAIgAigDEiYKBnBlcmlvZBgDIAIoDjIWLlByb3RvT0FUcmVuZGJh",
-          "clBlcmlvZBIQCghzeW1ib2xJZBgEIAIoAyKOAQofUHJvdG9PQVN1YnNjcmli",
-          "ZUxpdmVUcmVuZGJhclJlcxJOCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3Rv",
-          "T0FQYXlsb2FkVHlwZTokUFJPVE9fT0FfU1VCU0NSSUJFX0xJVkVfVFJFTkRC",
-          "QVJfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMizAEKIVByb3Rv",
-          "T0FVbnN1YnNjcmliZUxpdmVUcmVuZGJhclJlcRJQCgtwYXlsb2FkVHlwZRgB",
-          "IAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTomUFJPVE9fT0FfVU5TVUJTQ1JJ",
-          "QkVfTElWRV9UUkVOREJBUl9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgC",
-          "IAIoAxImCgZwZXJpb2QYAyACKA4yFi5Qcm90b09BVHJlbmRiYXJQZXJpb2QS",
-          "EAoIc3ltYm9sSWQYBCACKAMikgEKIVByb3RvT0FVbnN1YnNjcmliZUxpdmVU",
-          "cmVuZGJhclJlcxJQCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXls",
-          "b2FkVHlwZTomUFJPVE9fT0FfVU5TVUJTQ1JJQkVfTElWRV9UUkVOREJBUl9S",
-          "RVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAyLhAQoWUHJvdG9PQUdl",
-          "dFRyZW5kYmFyc1JlcRJECgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQ",
-          "YXlsb2FkVHlwZToaUFJPVE9fT0FfR0VUX1RSRU5EQkFSU19SRVESGwoTY3Rp",
-          "ZFRyYWRlckFjY291bnRJZBgCIAIoAxIVCg1mcm9tVGltZXN0YW1wGAMgAigD",
-          "EhMKC3RvVGltZXN0YW1wGAQgAigDEiYKBnBlcmlvZBgFIAIoDjIWLlByb3Rv",
-          "T0FUcmVuZGJhclBlcmlvZBIQCghzeW1ib2xJZBgGIAIoAyLsAQoWUHJvdG9P",
-          "QUdldFRyZW5kYmFyc1JlcxJECgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3Rv",
-          "T0FQYXlsb2FkVHlwZToaUFJPVE9fT0FfR0VUX1RSRU5EQkFSU19SRVMSGwoT",
-          "Y3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxImCgZwZXJpb2QYAyACKA4yFi5Q",
-          "cm90b09BVHJlbmRiYXJQZXJpb2QSEQoJdGltZXN0YW1wGAQgAigDEiIKCHRy",
-          "ZW5kYmFyGAUgAygLMhAuUHJvdG9PQVRyZW5kYmFyEhAKCHN5bWJvbElkGAYg",
-          "ASgDItgBChVQcm90b09BR2V0VGlja0RhdGFSZXESQwoLcGF5bG9hZFR5cGUY",
-          "ASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6GVBST1RPX09BX0dFVF9USUNL",
-          "REFUQV9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIQCghzeW1i",
-          "b2xJZBgDIAIoAxIfCgR0eXBlGAQgAigOMhEuUHJvdG9PQVF1b3RlVHlwZRIV",
-          "Cg1mcm9tVGltZXN0YW1wGAUgAigDEhMKC3RvVGltZXN0YW1wGAYgAigDIq4B",
-          "ChVQcm90b09BR2V0VGlja0RhdGFSZXMSQwoLcGF5bG9hZFR5cGUYASABKA4y",
-          "Ey5Qcm90b09BUGF5bG9hZFR5cGU6GVBST1RPX09BX0dFVF9USUNLREFUQV9S",
-          "RVMSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxIiCgh0aWNrRGF0YRgD",
-          "IAMoCzIQLlByb3RvT0FUaWNrRGF0YRIPCgdoYXNNb3JlGAQgAigIIogBCh9Q",
-          "cm90b09BR2V0Q3RpZFByb2ZpbGVCeVRva2VuUmVxElAKC3BheWxvYWRUeXBl",
-          "GAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiZQUk9UT19PQV9HRVRfQ1RJ",
-          "RF9QUk9GSUxFX0JZX1RPS0VOX1JFURITCgthY2Nlc3NUb2tlbhgCIAIoCSKZ",
-          "AQofUHJvdG9PQUdldEN0aWRQcm9maWxlQnlUb2tlblJlcxJQCgtwYXlsb2Fk",
-          "VHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTomUFJPVE9fT0FfR0VU",
-          "X0NUSURfUFJPRklMRV9CWV9UT0tFTl9SRVMSJAoHcHJvZmlsZRgCIAIoCzIT",
-          "LlByb3RvT0FDdGlkUHJvZmlsZSLEAQoRUHJvdG9PQURlcHRoRXZlbnQSPgoL",
-          "cGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6FFBST1RP",
-          "X09BX0RFUFRIX0VWRU5UEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMS",
-          "EAoIc3ltYm9sSWQYAyACKAQSJQoJbmV3UXVvdGVzGAQgAygLMhIuUHJvdG9P",
-          "QURlcHRoUXVvdGUSGQoNZGVsZXRlZFF1b3RlcxgFIAMoBEICEAEingEKHlBy",
-          "b3RvT0FTdWJzY3JpYmVEZXB0aFF1b3Rlc1JlcRJNCgtwYXlsb2FkVHlwZRgB",
-          "IAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTojUFJPVE9fT0FfU1VCU0NSSUJF",
-          "X0RFUFRIX1FVT1RFU19SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIo",
-          "AxIQCghzeW1ib2xJZBgDIAMoAyKMAQoeUHJvdG9PQVN1YnNjcmliZURlcHRo",
-          "UXVvdGVzUmVzEk0KC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxv",
-          "YWRUeXBlOiNQUk9UT19PQV9TVUJTQ1JJQkVfREVQVEhfUVVPVEVTX1JFUxIb",
-          "ChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDIqIBCiBQcm90b09BVW5zdWJz",
-          "Y3JpYmVEZXB0aFF1b3Rlc1JlcRJPCgtwYXlsb2FkVHlwZRgBIAEoDjITLlBy",
-          "b3RvT0FQYXlsb2FkVHlwZTolUFJPVE9fT0FfVU5TVUJTQ1JJQkVfREVQVEhf",
-          "UVVPVEVTX1JFURIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5",
-          "bWJvbElkGAMgAygDIpABCiBQcm90b09BVW5zdWJzY3JpYmVEZXB0aFF1b3Rl",
-          "c1JlcxJPCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlw",
-          "ZTolUFJPVE9fT0FfVU5TVUJTQ1JJQkVfREVQVEhfUVVPVEVTX1JFUxIbChNj",
-          "dGlkVHJhZGVyQWNjb3VudElkGAIgAigDIoMBChxQcm90b09BU3ltYm9sQ2F0",
-          "ZWdvcnlMaXN0UmVxEkYKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBh",
-          "eWxvYWRUeXBlOhxQUk9UT19PQV9TWU1CT0xfQ0FURUdPUllfUkVREhsKE2N0",
-          "aWRUcmFkZXJBY2NvdW50SWQYAiACKAMiswEKHFByb3RvT0FTeW1ib2xDYXRl",
-          "Z29yeUxpc3RSZXMSRgoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5",
-          "bG9hZFR5cGU6HFBST1RPX09BX1NZTUJPTF9DQVRFR09SWV9SRVMSGwoTY3Rp",
-          "ZFRyYWRlckFjY291bnRJZBgCIAIoAxIuCg5zeW1ib2xDYXRlZ29yeRgDIAMo",
-          "CzIWLlByb3RvT0FTeW1ib2xDYXRlZ29yeSJ9ChdQcm90b09BQWNjb3VudExv",
-          "Z291dFJlcRJFCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2Fk",
-          "VHlwZTobUFJPVE9fT0FfQUNDT1VOVF9MT0dPVVRfUkVREhsKE2N0aWRUcmFk",
-          "ZXJBY2NvdW50SWQYAiACKAMifQoXUHJvdG9PQUFjY291bnRMb2dvdXRSZXMS",
-          "RQoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6G1BS",
-          "T1RPX09BX0FDQ09VTlRfTE9HT1VUX1JFUxIbChNjdGlkVHJhZGVyQWNjb3Vu",
-          "dElkGAIgAigDIokBCh1Qcm90b09BQWNjb3VudERpc2Nvbm5lY3RFdmVudBJL",
-          "CgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTohUFJP",
-          "VE9fT0FfQUNDT1VOVF9ESVNDT05ORUNUX0VWRU5UEhsKE2N0aWRUcmFkZXJB",
-          "Y2NvdW50SWQYAiACKAMigAEKGFByb3RvT0FNYXJnaW5DYWxsTGlzdFJlcRJH",
-          "CgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTodUFJP",
-          "VE9fT0FfTUFSR0lOX0NBTExfTElTVF9SRVESGwoTY3RpZFRyYWRlckFjY291",
-          "bnRJZBgCIAIoAyKLAQoYUHJvdG9PQU1hcmdpbkNhbGxMaXN0UmVzEkcKC3Bh",
-          "eWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh1QUk9UT19P",
-          "QV9NQVJHSU5fQ0FMTF9MSVNUX1JFUxImCgptYXJnaW5DYWxsGAIgAygLMhIu",
-          "UHJvdG9PQU1hcmdpbkNhbGwirAEKGlByb3RvT0FNYXJnaW5DYWxsVXBkYXRl",
-          "UmVxEkkKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBl",
-          "Oh9QUk9UT19PQV9NQVJHSU5fQ0FMTF9VUERBVEVfUkVREhsKE2N0aWRUcmFk",
-          "ZXJBY2NvdW50SWQYAiACKAMSJgoKbWFyZ2luQ2FsbBgDIAIoCzISLlByb3Rv",
-          "T0FNYXJnaW5DYWxsImcKGlByb3RvT0FNYXJnaW5DYWxsVXBkYXRlUmVzEkkK",
-          "C3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOh9QUk9U",
-          "T19PQV9NQVJHSU5fQ0FMTF9VUERBVEVfUkVTIrABChxQcm90b09BTWFyZ2lu",
-          "Q2FsbFVwZGF0ZUV2ZW50EksKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9P",
-          "QVBheWxvYWRUeXBlOiFQUk9UT19PQV9NQVJHSU5fQ0FMTF9VUERBVEVfRVZF",
-          "TlQSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxImCgptYXJnaW5DYWxs",
-          "GAMgAigLMhIuUHJvdG9PQU1hcmdpbkNhbGwisgEKHVByb3RvT0FNYXJnaW5D",
-          "YWxsVHJpZ2dlckV2ZW50EkwKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9P",
-          "QVBheWxvYWRUeXBlOiJQUk9UT19PQV9NQVJHSU5fQ0FMTF9UUklHR0VSX0VW",
-          "RU5UEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSJgoKbWFyZ2luQ2Fs",
-          "bBgDIAIoCzISLlByb3RvT0FNYXJnaW5DYWxsQkIKH2NvbS54dHJhZGVyLnBy",
-          "b3RvY29sLm9wZW5hcGkudjJCGkNvbnRhaW5lck9wZW5BcGlWMk1lc3NhZ2Vz",
-          "UAGgAQE="));
+          "clBlcmlvZBIQCghzeW1ib2xJZBgEIAIoAyKSAQohUHJvdG9PQVVuc3Vic2Ny",
+          "aWJlTGl2ZVRyZW5kYmFyUmVzElAKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJv",
+          "dG9PQVBheWxvYWRUeXBlOiZQUk9UT19PQV9VTlNVQlNDUklCRV9MSVZFX1RS",
+          "RU5EQkFSX1JFUxIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDIvABChZQ",
+          "cm90b09BR2V0VHJlbmRiYXJzUmVxEkQKC3BheWxvYWRUeXBlGAEgASgOMhMu",
+          "UHJvdG9PQVBheWxvYWRUeXBlOhpQUk9UT19PQV9HRVRfVFJFTkRCQVJTX1JF",
+          "URIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhUKDWZyb21UaW1lc3Rh",
+          "bXAYAyACKAMSEwoLdG9UaW1lc3RhbXAYBCACKAMSJgoGcGVyaW9kGAUgAigO",
+          "MhYuUHJvdG9PQVRyZW5kYmFyUGVyaW9kEhAKCHN5bWJvbElkGAYgAigDEg0K",
+          "BWNvdW50GAcgASgNIuwBChZQcm90b09BR2V0VHJlbmRiYXJzUmVzEkQKC3Bh",
+          "eWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhpQUk9UT19P",
+          "QV9HRVRfVFJFTkRCQVJTX1JFUxIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIg",
+          "AigDEiYKBnBlcmlvZBgDIAIoDjIWLlByb3RvT0FUcmVuZGJhclBlcmlvZBIR",
+          "Cgl0aW1lc3RhbXAYBCACKAMSIgoIdHJlbmRiYXIYBSADKAsyEC5Qcm90b09B",
+          "VHJlbmRiYXISEAoIc3ltYm9sSWQYBiABKAMi2AEKFVByb3RvT0FHZXRUaWNr",
+          "RGF0YVJlcRJDCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2Fk",
+          "VHlwZToZUFJPVE9fT0FfR0VUX1RJQ0tEQVRBX1JFURIbChNjdGlkVHJhZGVy",
+          "QWNjb3VudElkGAIgAigDEhAKCHN5bWJvbElkGAMgAigDEh8KBHR5cGUYBCAC",
+          "KA4yES5Qcm90b09BUXVvdGVUeXBlEhUKDWZyb21UaW1lc3RhbXAYBSACKAMS",
+          "EwoLdG9UaW1lc3RhbXAYBiACKAMirgEKFVByb3RvT0FHZXRUaWNrRGF0YVJl",
+          "cxJDCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZToZ",
+          "UFJPVE9fT0FfR0VUX1RJQ0tEQVRBX1JFUxIbChNjdGlkVHJhZGVyQWNjb3Vu",
+          "dElkGAIgAigDEiIKCHRpY2tEYXRhGAMgAygLMhAuUHJvdG9PQVRpY2tEYXRh",
+          "Eg8KB2hhc01vcmUYBCACKAgiiAEKH1Byb3RvT0FHZXRDdGlkUHJvZmlsZUJ5",
+          "VG9rZW5SZXESUAoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9h",
+          "ZFR5cGU6JlBST1RPX09BX0dFVF9DVElEX1BST0ZJTEVfQllfVE9LRU5fUkVR",
+          "EhMKC2FjY2Vzc1Rva2VuGAIgAigJIpkBCh9Qcm90b09BR2V0Q3RpZFByb2Zp",
+          "bGVCeVRva2VuUmVzElAKC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBh",
+          "eWxvYWRUeXBlOiZQUk9UT19PQV9HRVRfQ1RJRF9QUk9GSUxFX0JZX1RPS0VO",
+          "X1JFUxIkCgdwcm9maWxlGAIgAigLMhMuUHJvdG9PQUN0aWRQcm9maWxlIsQB",
+          "ChFQcm90b09BRGVwdGhFdmVudBI+CgtwYXlsb2FkVHlwZRgBIAEoDjITLlBy",
+          "b3RvT0FQYXlsb2FkVHlwZToUUFJPVE9fT0FfREVQVEhfRVZFTlQSGwoTY3Rp",
+          "ZFRyYWRlckFjY291bnRJZBgCIAIoAxIQCghzeW1ib2xJZBgDIAIoBBIlCglu",
+          "ZXdRdW90ZXMYBCADKAsyEi5Qcm90b09BRGVwdGhRdW90ZRIZCg1kZWxldGVk",
+          "UXVvdGVzGAUgAygEQgIQASKeAQoeUHJvdG9PQVN1YnNjcmliZURlcHRoUXVv",
+          "dGVzUmVxEk0KC3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRU",
+          "eXBlOiNQUk9UT19PQV9TVUJTQ1JJQkVfREVQVEhfUVVPVEVTX1JFURIbChNj",
+          "dGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhAKCHN5bWJvbElkGAMgAygDIowB",
+          "Ch5Qcm90b09BU3Vic2NyaWJlRGVwdGhRdW90ZXNSZXMSTQoLcGF5bG9hZFR5",
+          "cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6I1BST1RPX09BX1NVQlND",
+          "UklCRV9ERVBUSF9RVU9URVNfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQY",
+          "AiACKAMiogEKIFByb3RvT0FVbnN1YnNjcmliZURlcHRoUXVvdGVzUmVxEk8K",
+          "C3BheWxvYWRUeXBlGAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiVQUk9U",
+          "T19PQV9VTlNVQlNDUklCRV9ERVBUSF9RVU9URVNfUkVREhsKE2N0aWRUcmFk",
+          "ZXJBY2NvdW50SWQYAiACKAMSEAoIc3ltYm9sSWQYAyADKAMikAEKIFByb3Rv",
+          "T0FVbnN1YnNjcmliZURlcHRoUXVvdGVzUmVzEk8KC3BheWxvYWRUeXBlGAEg",
+          "ASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOiVQUk9UT19PQV9VTlNVQlNDUklC",
+          "RV9ERVBUSF9RVU9URVNfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiAC",
+          "KAMigwEKHFByb3RvT0FTeW1ib2xDYXRlZ29yeUxpc3RSZXESRgoLcGF5bG9h",
+          "ZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6HFBST1RPX09BX1NZ",
+          "TUJPTF9DQVRFR09SWV9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIo",
+          "AyKzAQocUHJvdG9PQVN5bWJvbENhdGVnb3J5TGlzdFJlcxJGCgtwYXlsb2Fk",
+          "VHlwZRgBIAEoDjITLlByb3RvT0FQYXlsb2FkVHlwZTocUFJPVE9fT0FfU1lN",
+          "Qk9MX0NBVEVHT1JZX1JFUxIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigD",
+          "Ei4KDnN5bWJvbENhdGVnb3J5GAMgAygLMhYuUHJvdG9PQVN5bWJvbENhdGVn",
+          "b3J5In0KF1Byb3RvT0FBY2NvdW50TG9nb3V0UmVxEkUKC3BheWxvYWRUeXBl",
+          "GAEgASgOMhMuUHJvdG9PQVBheWxvYWRUeXBlOhtQUk9UT19PQV9BQ0NPVU5U",
+          "X0xPR09VVF9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAyJ9ChdQ",
+          "cm90b09BQWNjb3VudExvZ291dFJlcxJFCgtwYXlsb2FkVHlwZRgBIAEoDjIT",
+          "LlByb3RvT0FQYXlsb2FkVHlwZTobUFJPVE9fT0FfQUNDT1VOVF9MT0dPVVRf",
+          "UkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMiiQEKHVByb3RvT0FB",
+          "Y2NvdW50RGlzY29ubmVjdEV2ZW50EksKC3BheWxvYWRUeXBlGAEgASgOMhMu",
+          "UHJvdG9PQVBheWxvYWRUeXBlOiFQUk9UT19PQV9BQ0NPVU5UX0RJU0NPTk5F",
+          "Q1RfRVZFTlQSGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAyKAAQoYUHJv",
+          "dG9PQU1hcmdpbkNhbGxMaXN0UmVxEkcKC3BheWxvYWRUeXBlGAEgASgOMhMu",
+          "UHJvdG9PQVBheWxvYWRUeXBlOh1QUk9UT19PQV9NQVJHSU5fQ0FMTF9MSVNU",
+          "X1JFURIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDIosBChhQcm90b09B",
+          "TWFyZ2luQ2FsbExpc3RSZXMSRwoLcGF5bG9hZFR5cGUYASABKA4yEy5Qcm90",
+          "b09BUGF5bG9hZFR5cGU6HVBST1RPX09BX01BUkdJTl9DQUxMX0xJU1RfUkVT",
+          "EiYKCm1hcmdpbkNhbGwYAiADKAsyEi5Qcm90b09BTWFyZ2luQ2FsbCKsAQoa",
+          "UHJvdG9PQU1hcmdpbkNhbGxVcGRhdGVSZXESSQoLcGF5bG9hZFR5cGUYASAB",
+          "KA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6H1BST1RPX09BX01BUkdJTl9DQUxM",
+          "X1VQREFURV9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgCIAIoAxImCgpt",
+          "YXJnaW5DYWxsGAMgAigLMhIuUHJvdG9PQU1hcmdpbkNhbGwiZwoaUHJvdG9P",
+          "QU1hcmdpbkNhbGxVcGRhdGVSZXMSSQoLcGF5bG9hZFR5cGUYASABKA4yEy5Q",
+          "cm90b09BUGF5bG9hZFR5cGU6H1BST1RPX09BX01BUkdJTl9DQUxMX1VQREFU",
+          "RV9SRVMisAEKHFByb3RvT0FNYXJnaW5DYWxsVXBkYXRlRXZlbnQSSwoLcGF5",
+          "bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6IVBST1RPX09B",
+          "X01BUkdJTl9DQUxMX1VQREFURV9FVkVOVBIbChNjdGlkVHJhZGVyQWNjb3Vu",
+          "dElkGAIgAigDEiYKCm1hcmdpbkNhbGwYAyACKAsyEi5Qcm90b09BTWFyZ2lu",
+          "Q2FsbCKyAQodUHJvdG9PQU1hcmdpbkNhbGxUcmlnZ2VyRXZlbnQSTAoLcGF5",
+          "bG9hZFR5cGUYASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6IlBST1RPX09B",
+          "X01BUkdJTl9DQUxMX1RSSUdHRVJfRVZFTlQSGwoTY3RpZFRyYWRlckFjY291",
+          "bnRJZBgCIAIoAxImCgptYXJnaW5DYWxsGAMgAigLMhIuUHJvdG9PQU1hcmdp",
+          "bkNhbGxCQgofY29tLnh0cmFkZXIucHJvdG9jb2wub3BlbmFwaS52MkIaQ29u",
+          "dGFpbmVyT3BlbkFwaVYyTWVzc2FnZXNQAaABAQ=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::OpenApiModelMessagesReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -379,16 +380,16 @@ public static partial class OpenApiMessagesReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetAccountListByAccessTokenRes), global::ProtoOAGetAccountListByAccessTokenRes.Parser, new[]{ "PayloadType", "AccessToken", "PermissionScope", "CtidTraderAccount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOARefreshTokenReq), global::ProtoOARefreshTokenReq.Parser, new[]{ "PayloadType", "RefreshToken" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOARefreshTokenRes), global::ProtoOARefreshTokenRes.Parser, new[]{ "PayloadType", "AccessToken", "TokenType", "ExpiresIn", "RefreshToken" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOASubscribeSpotsReq), global::ProtoOASubscribeSpotsReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "SymbolId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOASubscribeSpotsReq), global::ProtoOASubscribeSpotsReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "SymbolId", "SubscribeToSpotTimestamp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOASubscribeSpotsRes), global::ProtoOASubscribeSpotsRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAUnsubscribeSpotsReq), global::ProtoOAUnsubscribeSpotsReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "SymbolId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAUnsubscribeSpotsRes), global::ProtoOAUnsubscribeSpotsRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOASpotEvent), global::ProtoOASpotEvent.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "SymbolId", "Bid", "Ask", "Trendbar", "SessionClose" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOASpotEvent), global::ProtoOASpotEvent.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "SymbolId", "Bid", "Ask", "Trendbar", "SessionClose", "Timestamp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOASubscribeLiveTrendbarReq), global::ProtoOASubscribeLiveTrendbarReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Period", "SymbolId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOASubscribeLiveTrendbarRes), global::ProtoOASubscribeLiveTrendbarRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAUnsubscribeLiveTrendbarReq), global::ProtoOAUnsubscribeLiveTrendbarReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Period", "SymbolId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAUnsubscribeLiveTrendbarRes), global::ProtoOAUnsubscribeLiveTrendbarRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetTrendbarsReq), global::ProtoOAGetTrendbarsReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "FromTimestamp", "ToTimestamp", "Period", "SymbolId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetTrendbarsReq), global::ProtoOAGetTrendbarsReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "FromTimestamp", "ToTimestamp", "Period", "SymbolId", "Count" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetTrendbarsRes), global::ProtoOAGetTrendbarsRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Period", "Timestamp", "Trendbar", "SymbolId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetTickDataReq), global::ProtoOAGetTickDataReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "SymbolId", "Type", "FromTimestamp", "ToTimestamp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetTickDataRes), global::ProtoOAGetTickDataRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "TickData", "HasMore" }, null, null, null, null),
@@ -17421,7 +17422,7 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
 
   private long expiresIn_;
   /// <summary>
-  /// Access Token expiration in seconds
+  /// Access Token expiration in seconds.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -17450,6 +17451,9 @@ public sealed partial class ProtoOARefreshTokenRes : pb::IMessage<ProtoOARefresh
   private readonly static string RefreshTokenDefaultValue = "";
 
   private string refreshToken_;
+  /// <summary>
+  /// Your new Refresh Token.
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string RefreshToken {
@@ -17742,6 +17746,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
     payloadType_ = other.payloadType_;
     ctidTraderAccountId_ = other.ctidTraderAccountId_;
     symbolId_ = other.symbolId_.Clone();
+    subscribeToSpotTimestamp_ = other.subscribeToSpotTimestamp_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -17822,6 +17827,36 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
     get { return symbolId_; }
   }
 
+  /// <summary>Field number for the "subscribeToSpotTimestamp" field.</summary>
+  public const int SubscribeToSpotTimestampFieldNumber = 4;
+  private readonly static bool SubscribeToSpotTimestampDefaultValue = false;
+
+  private bool subscribeToSpotTimestamp_;
+  /// <summary>
+  /// If TRUE you will also receive the timestamp in ProtoOASpotEvent.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SubscribeToSpotTimestamp {
+    get { if ((_hasBits0 & 4) != 0) { return subscribeToSpotTimestamp_; } else { return SubscribeToSpotTimestampDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      subscribeToSpotTimestamp_ = value;
+    }
+  }
+  /// <summary>Gets whether the "subscribeToSpotTimestamp" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasSubscribeToSpotTimestamp {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "subscribeToSpotTimestamp" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearSubscribeToSpotTimestamp() {
+    _hasBits0 &= ~4;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -17840,6 +17875,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
     if (PayloadType != other.PayloadType) return false;
     if (CtidTraderAccountId != other.CtidTraderAccountId) return false;
     if(!symbolId_.Equals(other.symbolId_)) return false;
+    if (SubscribeToSpotTimestamp != other.SubscribeToSpotTimestamp) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -17850,6 +17886,7 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
     if (HasPayloadType) hash ^= PayloadType.GetHashCode();
     if (HasCtidTraderAccountId) hash ^= CtidTraderAccountId.GetHashCode();
     hash ^= symbolId_.GetHashCode();
+    if (HasSubscribeToSpotTimestamp) hash ^= SubscribeToSpotTimestamp.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -17877,6 +17914,10 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
       output.WriteInt64(CtidTraderAccountId);
     }
     symbolId_.WriteTo(output, _repeated_symbolId_codec);
+    if (HasSubscribeToSpotTimestamp) {
+      output.WriteRawTag(32);
+      output.WriteBool(SubscribeToSpotTimestamp);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -17896,6 +17937,10 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
       output.WriteInt64(CtidTraderAccountId);
     }
     symbolId_.WriteTo(ref output, _repeated_symbolId_codec);
+    if (HasSubscribeToSpotTimestamp) {
+      output.WriteRawTag(32);
+      output.WriteBool(SubscribeToSpotTimestamp);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -17913,6 +17958,9 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
       size += 1 + pb::CodedOutputStream.ComputeInt64Size(CtidTraderAccountId);
     }
     size += symbolId_.CalculateSize(_repeated_symbolId_codec);
+    if (HasSubscribeToSpotTimestamp) {
+      size += 1 + 1;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -17932,6 +17980,9 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
       CtidTraderAccountId = other.CtidTraderAccountId;
     }
     symbolId_.Add(other.symbolId_);
+    if (other.HasSubscribeToSpotTimestamp) {
+      SubscribeToSpotTimestamp = other.SubscribeToSpotTimestamp;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -17960,6 +18011,10 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
           symbolId_.AddEntriesFrom(input, _repeated_symbolId_codec);
           break;
         }
+        case 32: {
+          SubscribeToSpotTimestamp = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -17986,6 +18041,10 @@ public sealed partial class ProtoOASubscribeSpotsReq : pb::IMessage<ProtoOASubsc
         case 26:
         case 24: {
           symbolId_.AddEntriesFrom(ref input, _repeated_symbolId_codec);
+          break;
+        }
+        case 32: {
+          SubscribeToSpotTimestamp = input.ReadBool();
           break;
         }
       }
@@ -18864,6 +18923,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
     ask_ = other.ask_;
     trendbar_ = other.trendbar_.Clone();
     sessionClose_ = other.sessionClose_;
+    timestamp_ = other.timestamp_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -19040,7 +19100,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
 
   private ulong sessionClose_;
   /// <summary>
-  ///Last session close. Specified in 1/100_000 of unit of a price.
+  /// Last session close. Specified in 1/100_000 of unit of a price.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -19062,6 +19122,36 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void ClearSessionClose() {
     _hasBits0 &= ~32;
+  }
+
+  /// <summary>Field number for the "timestamp" field.</summary>
+  public const int TimestampFieldNumber = 8;
+  private readonly static long TimestampDefaultValue = 0L;
+
+  private long timestamp_;
+  /// <summary>
+  /// The UNIX timestamp for spot.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long Timestamp {
+    get { if ((_hasBits0 & 64) != 0) { return timestamp_; } else { return TimestampDefaultValue; } }
+    set {
+      _hasBits0 |= 64;
+      timestamp_ = value;
+    }
+  }
+  /// <summary>Gets whether the "timestamp" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasTimestamp {
+    get { return (_hasBits0 & 64) != 0; }
+  }
+  /// <summary>Clears the value of the "timestamp" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearTimestamp() {
+    _hasBits0 &= ~64;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19086,6 +19176,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
     if (Ask != other.Ask) return false;
     if(!trendbar_.Equals(other.trendbar_)) return false;
     if (SessionClose != other.SessionClose) return false;
+    if (Timestamp != other.Timestamp) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -19100,6 +19191,7 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
     if (HasAsk) hash ^= Ask.GetHashCode();
     hash ^= trendbar_.GetHashCode();
     if (HasSessionClose) hash ^= SessionClose.GetHashCode();
+    if (HasTimestamp) hash ^= Timestamp.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -19143,6 +19235,10 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
       output.WriteRawTag(56);
       output.WriteUInt64(SessionClose);
     }
+    if (HasTimestamp) {
+      output.WriteRawTag(64);
+      output.WriteInt64(Timestamp);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -19178,6 +19274,10 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
       output.WriteRawTag(56);
       output.WriteUInt64(SessionClose);
     }
+    if (HasTimestamp) {
+      output.WriteRawTag(64);
+      output.WriteInt64(Timestamp);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -19206,6 +19306,9 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
     size += trendbar_.CalculateSize(_repeated_trendbar_codec);
     if (HasSessionClose) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SessionClose);
+    }
+    if (HasTimestamp) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(Timestamp);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -19237,6 +19340,9 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
     trendbar_.Add(other.trendbar_);
     if (other.HasSessionClose) {
       SessionClose = other.SessionClose;
+    }
+    if (other.HasTimestamp) {
+      Timestamp = other.Timestamp;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -19281,6 +19387,10 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
           SessionClose = input.ReadUInt64();
           break;
         }
+        case 64: {
+          Timestamp = input.ReadInt64();
+          break;
+        }
       }
     }
   #endif
@@ -19322,6 +19432,10 @@ public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
         }
         case 56: {
           SessionClose = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          Timestamp = input.ReadInt64();
           break;
         }
       }
@@ -20652,6 +20766,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
     toTimestamp_ = other.toTimestamp_;
     period_ = other.period_;
     symbolId_ = other.symbolId_;
+    count_ = other.count_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -20838,6 +20953,36 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
     _hasBits0 &= ~32;
   }
 
+  /// <summary>Field number for the "count" field.</summary>
+  public const int CountFieldNumber = 7;
+  private readonly static uint CountDefaultValue = 0;
+
+  private uint count_;
+  /// <summary>
+  /// Limit number of trend bars in response back from toTimestamp.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Count {
+    get { if ((_hasBits0 & 64) != 0) { return count_; } else { return CountDefaultValue; } }
+    set {
+      _hasBits0 |= 64;
+      count_ = value;
+    }
+  }
+  /// <summary>Gets whether the "count" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasCount {
+    get { return (_hasBits0 & 64) != 0; }
+  }
+  /// <summary>Clears the value of the "count" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearCount() {
+    _hasBits0 &= ~64;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -20859,6 +21004,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
     if (ToTimestamp != other.ToTimestamp) return false;
     if (Period != other.Period) return false;
     if (SymbolId != other.SymbolId) return false;
+    if (Count != other.Count) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -20872,6 +21018,7 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
     if (HasToTimestamp) hash ^= ToTimestamp.GetHashCode();
     if (HasPeriod) hash ^= Period.GetHashCode();
     if (HasSymbolId) hash ^= SymbolId.GetHashCode();
+    if (HasCount) hash ^= Count.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -20914,6 +21061,10 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
       output.WriteRawTag(48);
       output.WriteInt64(SymbolId);
     }
+    if (HasCount) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(Count);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -20948,6 +21099,10 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
       output.WriteRawTag(48);
       output.WriteInt64(SymbolId);
     }
+    if (HasCount) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(Count);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -20975,6 +21130,9 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
     }
     if (HasSymbolId) {
       size += 1 + pb::CodedOutputStream.ComputeInt64Size(SymbolId);
+    }
+    if (HasCount) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Count);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -21005,6 +21163,9 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
     }
     if (other.HasSymbolId) {
       SymbolId = other.SymbolId;
+    }
+    if (other.HasCount) {
+      Count = other.Count;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -21045,6 +21206,10 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
           SymbolId = input.ReadInt64();
           break;
         }
+        case 56: {
+          Count = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -21082,6 +21247,10 @@ public sealed partial class ProtoOAGetTrendbarsReq : pb::IMessage<ProtoOAGetTren
         }
         case 48: {
           SymbolId = input.ReadInt64();
+          break;
+        }
+        case 56: {
+          Count = input.ReadUInt32();
           break;
         }
       }
