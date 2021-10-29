@@ -20,13 +20,13 @@ namespace Samples.Shared.Models
 
         public double ClosedVolume { get; set; }
 
-        public long Swap { get; set; }
+        public double Swap { get; set; }
 
-        public long Commission { get; set; }
+        public double Commission { get; set; }
 
-        public long GrossProfit { get; set; }
+        public double GrossProfit { get; set; }
 
-        public long ClosedBalance { get; set; }
+        public double ClosedBalance { get; set; }
 
         public double ExecutionPrice { get; set; }
 

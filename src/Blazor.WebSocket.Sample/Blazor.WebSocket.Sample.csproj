@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\lib\Chart.js\chart-3.0.0-beta.9.js" />
     <Content Remove="wwwroot\lib\chartjs-adapter-luxon\chartjs-adapter-luxon-0.2.1.js" />
     <Content Remove="wwwroot\lib\chartjs-chart-financial\chartjs-chart-financial.js" />

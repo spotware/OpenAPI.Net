@@ -20,7 +20,8 @@ Then:
 	// If you want to access and work with live
 	// trading accounts then use live otherwise use demo
 	var host = ApiInfo.GetHost(mode);
-
+	// If you want to use web socket instead of TCP socket pass true for useWebSocket parameter of constructor
+	// web socket allows you to use the Open API on static server-less sites like Blazor WASM environment 
     var client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10));
 ```
 

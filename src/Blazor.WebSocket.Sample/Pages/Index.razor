@@ -1,5 +1,6 @@
 ﻿@using Samples.Shared.Services
 @using Samples.Shared.Models
+@using OpenAPI.Net.Helpers
 @page "/"
 @inject IJSRuntime JS
 
@@ -8,7 +9,7 @@
         <div class="col-10" oncontextmenu="return false">
             <canvas id="chartCanvas"></canvas>
         </div>
-        <div class="col d-grid gap-1">
+        <div class="col">
             <select id="accounts-list" class="form-select" @onchange="AccountSelectionChanged">
                 @if (Accounts is not null)
                 {
@@ -18,7 +19,7 @@
                     }
                 }
             </select>
-            <div class="table-wrapper-scroll-y" style="height: 60vh;">
+            <div class="table-wrapper-scroll-y">
                 <table class="table table-hover table-dark table-striped table-bordered" id="symbolsTable">
                     <thead>
                         <tr>
@@ -27,7 +28,19 @@
                             <th scope="col">Ask</th>
                         </tr>
                     </thead>
-                    <tbody id="symbolsTableBody" />
+                    <tbody id="symbolsTableBody">
+                        @if (SelectedAccountModel is not null)
+                        {
+                            foreach (var symbol in SelectedAccountModel.Symbols)
+                            {
+                                <tr id="@symbol.Id" @onclick="() => SymbolSelectionChanged(symbol)">
+                                    <td id="name">@symbol.Name</td>
+                                    <td id="bid">@symbol.Bid</td>
+                                    <td id="ask">@symbol.Ask</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -50,8 +63,8 @@
         <div class="tab-content m-0 p-0" id="accountTabContent">
             <div class="tab-pane fade show active" id="positions" role="tabpanel" aria-labelledby="positions-tab">
                 <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
-                    <button type="button" class="btn btn-secondary m-1" id="createMarketOrderButton">Create New Order</button>
-                    <button type="button" class="btn btn-danger m-1" id="closeAllPositionsButton">Close All Positions</button>
+                    <button type="button" class="btn btn-secondary m-1" id="createMarketOrderButton" @onclick="() => ShowNewOrderModal(false)">Create New Order</button>
+                    <button type="button" class="btn btn-danger m-1" id="closeAllPositionsButton" @onclick="CloseAllPositions">Close All Positions</button>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
                     <table class="table table-hover table-dark table-striped table-bordered">
@@ -76,14 +89,43 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody id="positions-table-body" />
+                        <tbody id="positions-table-body">
+                            @if (SelectedAccountModel is not null)
+                            {
+                                foreach (var position in SelectedAccountModel.Positions)
+                                {
+                                    <tr id="@position.Id">
+                                        <td id="id">@position.Id</td>
+                                        <td id="symbol">@position.Symbol.Name</td>
+                                        <td id="direction">@position.TradeSide</td>
+                                        <td id="volume">@MonetaryConverter.FromMonetary(position.Volume)</td>
+                                        <td id="created">@position.OpenTime.LocalDateTime</td>
+                                        <td id="entryPrice">@position.Price</td>
+                                        <td id="sl">@(position.StopLossInPrice == default ? string.Empty : position.StopLossInPrice)</td>
+                                        <td id="tp">@(position.TakeProfitInPrice == default ? string.Empty : position.TakeProfitInPrice)</td>
+                                        <td id="commission">@position.Commission</td>
+                                        <td id="swap">@position.Swap</td>
+                                        <td id="margin">@MonetaryConverter.FromMonetary(position.UsedMargin)</td>
+                                        <td id="pips">@position.Pips</td>
+                                        <td id="label">@position.Label</td>
+                                        <td id="comment">@position.Comment</td>
+                                        <td id="grossProfit">@position.GrossProfit</td>
+                                        <td id="netProfit">@position.NetProfit</td>
+                                        <td id="buttons">
+                                            <button type="button" @onclick="() => ModifyPosition(position)" class="btn btn-secondary mr-1" id="${position.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify"><i class="fas fa-edit"></i></button>
+                                            <button type="button" @onclick="() => ClosePosition(position)" class="btn btn-danger ml-1" id="${position.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Close"><i class="fas fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
             <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                 <div class="btn-toolbar ml-0 mt-1 mb-1 p-0" role="toolbar">
-                    <button type="button" class="btn btn-secondary m-1" id="createPendingOrderButton">Create New Order</button>
-                    <button type="button" class="btn btn-danger m-1" id="cancelAllOrdersButton">Cancel All Orders</button>
+                    <button type="button" class="btn btn-secondary m-1" id="createPendingOrderButton" @onclick="() => ShowNewOrderModal(true)">Create New Order</button>
+                    <button type="button" class="btn btn-danger m-1" id="cancelAllOrdersButton" @onclick="CancelAllOrders">Cancel All Orders</button>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
                     <table class="table table-hover table-dark table-striped table-bordered">
@@ -104,7 +146,32 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody id="orders-table-body" />
+                        <tbody id="orders-table-body">
+                            @if (SelectedAccountModel is not null)
+                            {
+                                foreach (var order in SelectedAccountModel.PendingOrders)
+                                {
+                                    <tr id="@order.Id">
+                                        <td id="id">@order.Id</td>
+                                        <td id="symbol">@order.Symbol.Name</td>
+                                        <td id="direction">@order.TradeSide</td>
+                                        <td id="volume">@MonetaryConverter.FromMonetary(order.Volume)</td>
+                                        <td id="type">@order.Type</td>
+                                        <td id="created">@order.OpenTime.LocalDateTime</td>
+                                        <td id="entryPrice">@order.Price</td>
+                                        <td id="sl">@(order.StopLossInPrice == default ? string.Empty : order.StopLossInPrice)</td>
+                                        <td id="tp">@(order.TakeProfitInPrice == default ? string.Empty : order.TakeProfitInPrice)</td>
+                                        <td id="expiry">@(order.IsExpiryEnabled ? order.ExpiryTime : string.Empty)</td>
+                                        <td id="label">@order.Label</td>
+                                        <td id="comment">@order.Comment</td>
+                                        <td id="buttons">
+                                            <button type="button" @onclick="() => ModifyOrder(order)" class="btn btn-secondary mr-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Modify"><i class="fas fa-edit"></i></button>
+                                            <button type="button" @onclick="() => CancelOrder(order)" class="btn btn-danger ml-1" id="${order.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i class="fas fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -114,16 +181,16 @@
                         <label for="historyFromDateTime" class="m-2">From</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="historyFromDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="historyFromDateTime" class="form-control m-1" @bind="@_historyFromTime" min="@(SelectedAccountModel is null ? _historyFromTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-1" style="width: 3%">
                         <label for="historyToDateTime" class="m-2">To</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="historyToDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="historyToDateTime" class="form-control m-1" @bind="@_historyToTime" min="@(SelectedAccountModel is null ? _historyToTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-secondary m-1" id="loadHistoryButton">Load</button>
+                        <button type="button" class="btn btn-secondary m-1" @onclick="LoadHistory">Load</button>
                     </div>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
@@ -150,7 +217,34 @@
                                 <th scope="col">Last Updated</th>
                             </tr>
                         </thead>
-                        <tbody id="historyTableBody" />
+                        <tbody id="historyTableBody">
+                            @if (_history is not null)
+                            {
+                                foreach (var trade in _history)
+                                {
+                                    <tr id="@trade.Id">
+                                        <td id="id">@trade.Id</td>
+                                        <td id="orderId">@trade.OrderId</td>
+                                        <td id="positionId">@trade.PositionId</td>
+                                        <td id="symbol">@trade.SymbolName</td>
+                                        <td id="direction">@trade.Direction</td>
+                                        <td id="volume">@trade.Volume</td>
+                                        <td id="filledVolume">@trade.FilledVolume</td>
+                                        <td id="closedVolume">@trade.ClosedVolume</td>
+                                        <td id="status">@trade.Status</td>
+                                        <td id="grossProfit">@trade.GrossProfit</td>
+                                        <td id="swap">@trade.Swap</td>
+                                        <td id="closedBalance">@trade.ClosedBalance</td>
+                                        <td id="commission">@trade.Commission</td>
+                                        <td id="executionPrice">@trade.ExecutionPrice</td>
+                                        <td id="closing">@(trade.IsClosing == true ? "Yes" : "No")</td>
+                                        <td id="creationTime">@trade.CreationTime.LocalDateTime</td>
+                                        <td id="executionTime">@trade.ExecutionTime.LocalDateTime</td>
+                                        <td id="lastUpdateTime">@trade.LastUpdateTime.LocalDateTime</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -160,16 +254,16 @@
                         <label for="transactionsFromDateTime" class="m-2">From</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="transactionsFromDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="transactionsFromDateTime" class="form-control m-1" @bind="@_transactionsFromTime" min="@(SelectedAccountModel is null ? _transactionsFromTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-1" style="width: 3%">
                         <label for="transactionsToDateTime" class="m-2">To</label>
                     </div>
                     <div class="col-2">
-                        <input type="datetime-local" id="transactionsToDateTime" class="form-control m-1">
+                        <input type="datetime-local" id="transactionsToDateTime" class="form-control m-1" @bind="@_transactionsToTime" min="@(SelectedAccountModel is null ? _transactionsToTime.ToString("s") : SelectedAccountModel.RegistrationTime.LocalDateTime.ToString("s"))" max="@DateTime.Now.ToString("s")">
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-secondary m-1" id="loadTransactionsButton">Load</button>
+                        <button type="button" class="btn btn-secondary m-1" id="loadTransactionsButton" @onclick="LoadTransactions">Load</button>
                     </div>
                 </div>
                 <div class="table-wrapper-scroll-y" style="height: 20vh;">
@@ -186,7 +280,24 @@
                                 <th scope="col">Time</th>
                             </tr>
                         </thead>
-                        <tbody id="transactionsTableBody" />
+                        <tbody id="transactionsTableBody">
+                            @if (_transactions is not null)
+                            {
+                                foreach (var transaction in _transactions)
+                                {
+                                    <tr id="@transaction.Id">
+                                        <td id="id">@transaction.Id</td>
+                                        <td id="type">@transaction.Type</td>
+                                        <td id="amount">@transaction.Delta</td>
+                                        <td id="balance">@transaction.Balance</td>
+                                        <td id="equity">@transaction.Equity</td>
+                                        <td id="version">@transaction.BalanceVersion</td>
+                                        <td id="note">@transaction.Note</td>
+                                        <td id="time">@transaction.Time.LocalDateTime</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -195,73 +306,70 @@
     <div class="row no-gutters text-white w-100 m-0 p-0" id="accountStats">
         <div class="col text-center">
             <p class="m-1">Balance</p>
-            <p id="balance" class="m-1"></p>
+
+            <p id="balance" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.Balance}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Equity</p>
-            <p id="equity" class="m-1"></p>
+            <p id="equity" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.Equity}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Margin Used</p>
-            <p id="marginUsed" class="m-1"></p>
+            <p id="marginUsed" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.MarginUsed}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Free Margin</p>
-            <p id="freeMargin" class="m-1"></p>
+            <p id="freeMargin" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.FreeMargin}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Margin Level</p>
-            <p id="marginLevel" class="m-1"></p>
+            <p id="marginLevel" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.MarginLevel}%" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Unr. Gross</p>
-            <p id="unrealizedGrossProfit" class="m-1"></p>
+            <p id="unrealizedGrossProfit" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.UnrealizedGrossProfit}" : 0)</p>
         </div>
 
         <div class="col text-center">
             <p class="m-1">Unr. Net</p>
-            <p id="unrealizedNetProfit" class="m-1"></p>
+            <p id="unrealizedNetProfit" class="m-1">@(SelectedAccountModel is not null ? $"{SelectedAccountModel.Currency} {SelectedAccountModel.UnrealizedNetProfit}" : 0)</p>
         </div>
     </div>
 </div>
 
 <div id="toasts-container" aria-live="polite" aria-atomic="true" class="d-flex flex-column flex-wrap justify-content-start align-items-start" style="position: absolute; bottom: 0; right: 0;" />
 
-<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loadingModalTitle">Loading Data</h5>
-            </div>
-            <div class="modal-body">
-                <p>Please wait...</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<Modal @ref="ApiCredentialsModal" ShowCloseButton="true">
+<Modal @ref="LoadingModal" ShowCloseButton="false">
     <Title>
-        <h5 class="modal-title">Access Token</h5>
+        <h5 class="modal-title">Loading Data</h5>
+    </Title>
+    <Body>
+        <p>Please wait...</p>
+    </Body>
+</Modal>
+
+<Modal @ref="ApiCredentialsModal" ShowCloseButton="false">
+    <Title>
+        <h5 class="modal-title">API Credentials</h5>
     </Title>
     <Body>
         <div class="form-group">
             <div class="row">
-                <label for="applicationClientIdInput">Application Client ID</label>
-                <input type="text" class="form-control" @bind="@ApplicationClientId" id="applicationClientIdInput">
+                <label for="applicationClientIdInput" class="p-0">Application Client ID</label>
+                <input type="text" class="form-control" @bind="@_applicationClientId" id="applicationClientIdInput">
             </div>
             <div class="row">
-                <label for="applicationClientSecretInput">Application Client Secret</label>
-                <input type="text" class="form-control" @bind="@ApplicationClientSecret" id="applicationClientSecretInput">
+                <label for="applicationClientSecretInput" class="p-0">Application Client Secret</label>
+                <input type="text" class="form-control" @bind="@_applicationClientSecret" id="applicationClientSecretInput">
             </div>
             <div class="row">
-                <label for="accessTokenInput">Access Token</label>
-                <input type="text" class="form-control" @bind="@AccessToken" id="accessTokenInput">
+                <label for="accessTokenInput" class="p-0">Access Token</label>
+                <input type="text" class="form-control" @bind="@_accessToken" id="accessTokenInput">
             </div>
         </div>
     </Body>
@@ -270,190 +378,7 @@
     </Footer>
 </Modal>
 
-<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content bg-dark">
-            <div class="modal-header">
-                <h5 class="modal-title text-white" id="orderModalTitle"></h5>
-                <button type="button" class="btn btn-secondary" id="closeOrderModalButton"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body m-0 p-0 pt-1 pb-1">
-                <ul class="nav nav-tabs" id="orderModalTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active text-muted" id="marketOrderTab" data-bs-toggle="tab" data-bs-target="#marketOrderTabContent" type="button" role="tab" aria-controls="marketOrderTabContent" aria-selected="true">Market</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link text-muted" id="pendingOrderTab" data-bs-toggle="tab" data-bs-target="#pendingOrderTabContent" type="button" role="tab" aria-controls="pendingOrderTabContent" aria-selected="false">Pending</button>
-                    </li>
-                </ul>
-                <div class="tab-content m-0 p-2" id="orderModalTabContent">
-                    <div class="tab-pane fade show active" id="marketOrderTabContent" role="tabpanel" aria-labelledby="marketOrderTab">
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <label for="marketOrderSymbolsList">Symbol</label>
-                                <select id="marketOrderSymbolsList" class="form-select">
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="marketOrderSymbolsList">Direction</label>
-                                <select id="marketOrderDirectionList" class="form-select">
-                                    <option value="Buy">Buy</option>
-                                    <option value="Sell">Sell</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <label for="marketOrderVolumeInput">Volume (Units)</label>
-                                <input type="number" class="form-control" id="marketOrderVolumeInput" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" min="0">
-                            </div>
-                            <div class="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="marketRange">
-                                    <label class="form-check-label" for="marketRange">Market Range</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="number" class="form-control" id="marketRangeInput" value="10" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
-                                    </div>
-                                    <div class="col-2 p-1">
-                                        <label>Pips</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="marketOrderStopLoss">
-                                    <label class="form-check-label" for="marketOrderStopLoss">Stop Loss</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="number" class="form-control" id="marketOrderStopLossInput" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
-                                    </div>
-                                    <div class="col-2 p-1">
-                                        <label for="marketOrderStopLossInput">Pips</label>
-                                    </div>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="marketOrderTrailingStopLoss" disabled>
-                                    <label class="form-check-label" for="marketOrderTrailingStopLoss">Trailing Stop</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="marketOrderTakeProfit">
-                                    <label class="form-check-label" for="marketOrderTakeProfit">Take Profit</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="number" class="form-control" id="marketOrderTakeProfitInput" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
-                                    </div>
-                                    <div class="col-2 p-1">
-                                        <label for="marketOrderTakeProfitInput">Pips</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-white form-group">
-                            <textarea class="form-control" maxlength="100" id="marketOrderCommenttextarea" rows="3" placeholder="Comment..."></textarea>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade m-0 p-0" id="pendingOrderTabContent" role="tabpanel" aria-labelledby="pendingOrderTab">
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <label for="pendingOrderSymbolsList">Symbol</label>
-                                <select id="pendingOrderSymbolsList" class="form-select">
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="pendingOrderSymbolsList">Direction</label>
-                                <select id="pendingOrderDirectionList" class="form-select">
-                                    <option value="Buy">Buy</option>
-                                    <option value="Sell">Sell</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <label for="pendingOrderTypeList">Type</label>
-                                <select id="pendingOrderTypeList" class="form-select">
-                                    <option value="Limit">Limit</option>
-                                    <option value="Stop">Stop</option>
-                                    <option value="StopLimit">Stop Limit</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <label for="pendingOrderVolumeInput">Volume (Units)</label>
-                                <input type="number" class="form-control" id="pendingOrderVolumeInput" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" min="0">
-                            </div>
-                            <div class="col">
-                                <label for="pendingOrderPriceInput">Target Price</label>
-                                <input type="number" class="form-control" id="pendingOrderPriceInput" value="0" onkeypress="return isNumeric(event)" min="0">
-                            </div>
-                        </div>
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <label for="pendingOrderLimitRangeInput">Limit Range (Pips)</label>
-                                <input type="number" class="form-control" id="pendingOrderLimitRangeInput" onkeypress="return isNumeric(event)" min="0" value="10" disabled>
-                            </div>
-                            <div class="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="pendingOrderExpiry">
-                                    <label class="form-check-label" for="pendingOrderExpiry">Expiry</label>
-                                </div>
-                                <input type="datetime-local" id="pendingOrderExpiryDateTime" class="form-control" disabled>
-                            </div>
-                        </div>
-                        <div class="row no-gutters text-white form-group">
-                            <div class="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="pendingOrderStopLoss">
-                                    <label class="form-check-label" for="pendingOrderStopLoss">Stop Loss</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="number" class="form-control" id="pendingOrderStopLossInput" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
-                                    </div>
-                                    <div class="col-2 p-1">
-                                        <label for="pendingOrderStopLossInput">Pips</label>
-                                    </div>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="pendingOrderTrailingStopLoss" disabled>
-                                    <label class="form-check-label" for="pendingOrderTrailingStopLoss">Trailing Stop</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="pendingOrderTakeProfit">
-                                    <label class="form-check-label" for="pendingOrderTakeProfit">Take Profit</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="number" class="form-control" id="pendingOrderTakeProfitInput" value="20" min="1" step="1" oninput="isNumberInRange(this)" onkeypress="return isNumeric(event)" disabled>
-                                    </div>
-                                    <div class="col-2 p-1">
-                                        <label for="pendingOrderTakeProfitInput">Pips</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-white form-group">
-                            <textarea class="form-control" maxlength="100" id="pendingOrderCommenttextarea" rows="3" placeholder="Comment..."></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="orderModalButton"></button>
-            </div>
-        </div>
-    </div>
-</div>
+<OrderModal Account="@SelectedAccountModel" @ref="OrderModal"></OrderModal>
 
 <template id="toast-template">
     <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -469,23 +394,36 @@
 
 @code
 {
+    private DateTime _historyFromTime, _historyToTime;
+    private DateTime _transactionsFromTime, _transactionsToTime;
+
+    private string _applicationClientId;
+    private string _applicationClientSecret;
+    private string _accessToken;
+
+    private IEnumerable<HistoricalTrade> _history;
+    private IEnumerable<Transaction> _transactions;
 
     public Modal ApiCredentialsModal { get; set; }
 
-    public string ApplicationClientId { get; set; }
+    public Modal LoadingModal { get; set; }
 
-    public string ApplicationClientSecret { get; set; }
+    public OrderModal OrderModal { get; set; }
 
-    public string AccessToken { get; set; }
+    public IEnumerable<ProtoOACtidTraderAccount> Accounts { get; set; }
 
-    public ProtoOACtidTraderAccount[] Accounts { get; set; }
+    public AccountModel SelectedAccountModel { get; set; }
+
+    public SymbolModel SelectedSymbol { get; set; }
 
     [Inject]
     private IOpenApiService ApiService { get; set; }
 
+    [Inject]
+    private ITradingAccountsService TradingAccountsService { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-
         await Task.Delay(1000);
 
         await ApiCredentialsModal.Open();
@@ -493,46 +431,247 @@
 
     private async Task Connect()
     {
+        await ApiCredentialsModal.Close();
+
+        await LoadingModal.Open();
+
         var apiCredentials = new ApiCredentials
         {
-            ClientId = ApplicationClientId,
-            Secret = ApplicationClientSecret
+            ClientId = _applicationClientId,
+            Secret = _applicationClientSecret
         };
+
+        Console.WriteLine("Connecting to API");
 
         await ApiService.Connect(apiCredentials);
 
         Console.WriteLine("Connected to API");
 
-        await ApiCredentialsModal.Close();
+        Accounts = await TradingAccountsService.GetAccounts(_accessToken);
 
-        Console.WriteLine("Getting accounts");
+        Console.WriteLine($"Accounts #: {Accounts.Count()}");
 
-        Accounts = await ApiService.GetAccountsList(AccessToken);
-
-        if (Accounts.Length > 0)
+        if (Accounts.Any())
         {
-            await ApiService.AuthorizeAccount((long)Accounts.First().CtidTraderAccountId, false, AccessToken);
+            await AccountSelectionChanged(Accounts.First().TraderLogin);
         }
 
-        Console.WriteLine($"Account: {Accounts.Length}");
-
-        StateHasChanged();
+        await LoadingModal.Close();
     }
 
     private async Task AccountSelectionChanged(ChangeEventArgs e)
     {
-        Console.WriteLine($"Selected account channged to {e.Value}");
+        await LoadingModal.Open();
 
-        if (e.Value is null) return;
-
-        var accountLogin = Convert.ToInt64(e.Value);
-
-        var account = Accounts.FirstOrDefault(account => account.TraderLogin == accountLogin);
-
-        if (account is not null)
+        if (e.Value is null)
         {
-            await ApiService.AuthorizeAccount((long)account.CtidTraderAccountId, false, AccessToken);
+            await AccountSelectionChanged(0);
+        }
+        else
+        {
+            var accountLogin = Convert.ToInt64(e.Value);
+
+            await AccountSelectionChanged(accountLogin);
+        }
+
+        await LoadingModal.Close();
+    }
+
+    private async Task AccountSelectionChanged(long accountLogin)
+    {
+        if (SelectedAccountModel is not null)
+        {
+            TradingAccountsService.StopSymbolQuotes(SelectedAccountModel.Id);
+        }
+
+        if (accountLogin is 0) return;
+
+        SelectedAccountModel = await TradingAccountsService.GetAccountModelByLogin(accountLogin);
+
+        if (SelectedAccountModel is null) return;
+
+        _ = UpdateQuotes();
+
+        if (SelectedAccountModel.Symbols.Any())
+        {
+            await SymbolSelectionChanged(SelectedAccountModel.Symbols.First());
+        }
+
+        _historyFromTime = SelectedAccountModel.RegistrationTime.LocalDateTime;
+        _historyToTime = DateTime.Now;
+        _history = null;
+
+        _transactionsFromTime = SelectedAccountModel.RegistrationTime.LocalDateTime;
+        _transactionsToTime = DateTime.Now;
+        _transactions = null;
+
+        StateHasChanged();
+
+        _ = SubscribeToErrors();
+        _ = SubscribeToPositionUpdates();
+        _ = SubscribeToOrderUpdates();
+    }
+
+    private async Task UpdateQuotes()
+    {
+        var symbolQuotesChannel = TradingAccountsService.GetSymbolsQuoteChannel(SelectedAccountModel.Id);
+
+        while (await symbolQuotesChannel.Reader.WaitToReadAsync())
+        {
+            while (symbolQuotesChannel.Reader.TryRead(out var quote))
+            {
+                await JS.InvokeVoidAsync("updateSymbolQuote", quote);
+            }
         }
     }
 
-}
+    private async Task SymbolSelectionChanged(SymbolModel symbol)
+    {
+        if (symbol is null || SelectedAccountModel is null) return;
+
+        SelectedSymbol = symbol;
+
+        var trendBars = await TradingAccountsService.GetSymbolTrendbars(SelectedAccountModel.Id, symbol.Id);
+
+        await JS.InvokeVoidAsync("createChart", $"{symbol.Name} Daily", trendBars.Ohlc);
+    }
+
+    private async Task ShowNewOrderModal(bool isPending)
+    {
+        OrderModal.Title = "Create New Order";
+        OrderModal.ButtonText = "Place Order";
+        OrderModal.Symbol = SelectedSymbol;
+        OrderModal.ShowPendingOrderTab = isPending;
+
+        await OrderModal.Open();
+    }
+
+    private async Task SubscribeToErrors()
+    {
+        var accountId = SelectedAccountModel.Id;
+
+        var channel = TradingAccountsService.GetErrorsChannel(accountId);
+
+        while (await channel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && SelectedAccountModel is not null && accountId == SelectedAccountModel.Id)
+        {
+            while (channel.Reader.TryRead(out var error))
+            {
+                await JS.InvokeVoidAsync("onError", error);
+            }
+        }
+
+        TradingAccountsService.StopErrors(accountId);
+    }
+
+    private async Task SubscribeToPositionUpdates()
+    {
+        var accountId = SelectedAccountModel.Id;
+
+        var channel = TradingAccountsService.GetPositionUpdatesChannel(accountId);
+
+        while (await channel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && SelectedAccountModel is not null && accountId == SelectedAccountModel.Id)
+        {
+            while (channel.Reader.TryRead(out var position))
+            {
+                StateHasChanged();
+            }
+        }
+
+        TradingAccountsService.StopErrors(accountId);
+    }
+
+    private async Task SubscribeToOrderUpdates()
+    {
+        var accountId = SelectedAccountModel.Id;
+
+        var channel = TradingAccountsService.GetOrderUpdatesChannel(accountId);
+
+        while (await channel.Reader.WaitToReadAsync(System.Threading.CancellationToken.None) && SelectedAccountModel is not null && accountId == SelectedAccountModel.Id)
+        {
+            while (channel.Reader.TryRead(out var position))
+            {
+                StateHasChanged();
+            }
+        }
+
+        TradingAccountsService.StopErrors(accountId);
+    }
+
+    private void ClosePosition(MarketOrderModel marketOrder)
+    {
+        if (SelectedAccountModel is null || marketOrder is null) return;
+
+        TradingAccountsService.ClosePosition(SelectedAccountModel.Id, marketOrder.Id);
+    }
+
+    private async Task ModifyPosition(MarketOrderModel marketOrder)
+    {
+        if (SelectedAccountModel is null || marketOrder is null) return;
+
+        OrderModal.Title = "Modify Market Order";
+        OrderModal.ButtonText = "Modify Order";
+        OrderModal.IsModifying = true;
+        OrderModal.Symbol = marketOrder.Symbol;
+        OrderModal.ShowPendingOrderTab = false;
+        OrderModal.MarketOrder = marketOrder;
+
+        await OrderModal.Open();
+    }
+
+    private void CloseAllPositions()
+    {
+        if (SelectedAccountModel is null) return;
+
+        TradingAccountsService.CloseAllPosition(SelectedAccountModel.Id);
+    }
+
+    private async Task ModifyOrder(PendingOrderModel pendingOrder)
+    {
+        if (SelectedAccountModel is null || pendingOrder is null) return;
+
+        OrderModal.Title = "Modify Pending Order";
+        OrderModal.ButtonText = "Modify Order";
+        OrderModal.IsModifying = true;
+        OrderModal.Symbol = pendingOrder.Symbol;
+        OrderModal.ShowPendingOrderTab = true;
+        OrderModal.PendingOrder = pendingOrder;
+
+        await OrderModal.Open();
+    }
+
+    private void CancelOrder(PendingOrderModel pendingOrder)
+    {
+        if (SelectedAccountModel is null || pendingOrder is null) return;
+
+        TradingAccountsService.CancelOrder(SelectedAccountModel.Id, pendingOrder.Id);
+    }
+
+    private void CancelAllOrders()
+    {
+        if (SelectedAccountModel is null) return;
+
+        TradingAccountsService.CancelAllOrders(SelectedAccountModel.Id);
+    }
+
+    private async Task LoadHistory()
+    {
+        if (SelectedAccountModel is null) return;
+
+        await LoadingModal.Open();
+
+        _history = await TradingAccountsService.GetHistory(_historyFromTime, _historyToTime, SelectedAccountModel.Id);
+
+        await LoadingModal.Close();
+    }
+
+    private async Task LoadTransactions()
+    {
+        if (SelectedAccountModel is null) return;
+
+        await LoadingModal.Open();
+
+        _transactions = await TradingAccountsService.GetTransactions(_transactionsFromTime, _transactionsToTime, SelectedAccountModel.Id);
+
+        await LoadingModal.Close();
+    }
+} 

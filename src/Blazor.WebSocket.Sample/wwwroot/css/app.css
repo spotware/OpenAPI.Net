@@ -2,6 +2,7 @@
     display: block;
     overflow: auto;
     position: relative;
+    max-height: 65vh;
 }
 
 #chartcontainer {
