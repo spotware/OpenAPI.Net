@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Websocket.Client;
 using System.Net.WebSockets;
 using System.Reactive.Concurrency;
+using System.Threading.Channels;
 
 namespace OpenAPI.Net
 {
@@ -22,9 +23,11 @@ namespace OpenAPI.Net
 
         private readonly ProtoHeartbeatEvent _heartbeatEvent = new ProtoHeartbeatEvent();
 
-        private readonly SemaphoreSlim _streamWriteSemaphoreSlim = new SemaphoreSlim(1, 1);
+        private readonly Channel<ProtoMessage> _messagesChannel = Channel.CreateUnbounded<ProtoMessage>();
 
         private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new ConcurrentDictionary<int, IObserver<IMessage>>();
+
+        private readonly CancellationTokenSource _messagesCancellationTokenSource = new CancellationTokenSource();
 
         private TcpClient _tcpClient;
 
@@ -59,17 +62,45 @@ namespace OpenAPI.Net
             UseWebSocket = useWebSocket;
         }
 
+        /// <summary>
+        /// The API endpoint host that the current client is connected to
+        /// </summary>
         public string Host { get; }
+
+        /// <summary>
+        /// The API host port that current client is connected to
+        /// </summary>
         public int Port { get; }
+
+        /// <summary>
+        /// If client is connected via websocket then this will return True, otherwise False
+        /// </summary>
         public bool UseWebSocket { get; }
+
+        /// <summary>
+        /// If client is disposed then this will return True, otherwise False
+        /// </summary>
         public bool IsDisposed { get; private set; }
 
+        /// <summary>
+        /// If client stream is completed without any error then it will return True, otherwise False
+        /// </summary>
         public bool IsCompleted { get; private set; }
 
+        /// <summary>
+        /// If there was any error (exception) on client stream then this will return True, otherwise False
+        /// </summary>
         public bool IsTerminated { get; private set; }
 
+        /// <summary>
+        /// The time client sent its last message
+        /// </summary>
         public DateTimeOffset LastSentMessageTime { get; private set; }
 
+        /// <summary>
+        /// Connects to the API based on you specified method (websocket or TCP)
+        /// </summary>
+        /// <returns>Task</returns>
         public async Task Connect()
         {
             ThrowObjectDisposedExceptionIfDisposed();
@@ -83,10 +114,16 @@ namespace OpenAPI.Net
                 await ConnectTcp();
             }
 
+            _ = StartSendingMessages(_messagesCancellationTokenSource.Token);
+
             _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
                 .Subscribe(x => SendHeartbeat());
         }
 
+        /// <summary>
+        /// Connects to API by using websocket
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task ConnectWebScoket()
         {
             var hostUri = new Uri($"wss://{Host}:{Port}");
@@ -114,6 +151,10 @@ namespace OpenAPI.Net
             }
         }
 
+        /// <summary>
+        /// Connects to API by using a TCP client
+        /// </summary>
+        /// <returns>Task</returns>
         private async Task ConnectTcp()
         {
             _tcpClient = new TcpClient { LingerState = new LingerOption(true, 10) };
@@ -130,6 +171,11 @@ namespace OpenAPI.Net
                 .Subscribe(OnNext);
         }
 
+        /// <summary>
+        /// Subscribe to client incoming messages
+        /// </summary>
+        /// <param name="observer">The observer that will receive the messages</param>
+        /// <returns>IDisposable</returns>
         public IDisposable Subscribe(IObserver<IMessage> observer)
         {
             ThrowObjectDisposedExceptionIfDisposed();
@@ -139,23 +185,56 @@ namespace OpenAPI.Net
             return Disposable.Create(() => OnObserverDispose(observer));
         }
 
-        public Task SendMessage<T>(T message, ProtoPayloadType payloadType, string clientMsgId = null) where T :
+        /// <summary>
+        /// This method will insert your message on messages queue, it will not send the message instantly
+        /// </summary>
+        /// <typeparam name="T">Message Type</typeparam>
+        /// <param name="message">Message</param>
+        /// <param name="payloadType">Message Payload Type (ProtoPayloadType)</param>
+        /// <param name="clientMsgId">The client message ID (optional)</param>
+        /// <returns>Task</returns>
+        public async Task SendMessage<T>(T message, ProtoPayloadType payloadType, string clientMsgId = null) where T :
             IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
-            return SendMessage(protoMessage);
+            await _messagesChannel.Writer.WriteAsync(protoMessage);
         }
 
-        public Task SendMessage<T>(T message, ProtoOAPayloadType payloadType, string clientMsgId = null) where T :
+        /// <summary>
+        /// This method will insert your message on messages queue, it will not send the message instantly
+        /// </summary>
+        /// <typeparam name="T">Message Type</typeparam>
+        /// <param name="message">Message</param>
+        /// <param name="payloadType">Message Payload Type (ProtoOAPayloadType)</param>
+        /// <param name="clientMsgId">The client message ID (optional)</param>
+        /// <returns>Task</returns>
+        public async Task SendMessage<T>(T message, ProtoOAPayloadType payloadType, string clientMsgId = null) where T :
             IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
-            return SendMessage(protoMessage);
+            await _messagesChannel.Writer.WriteAsync(protoMessage);
         }
 
+        /// <summary>
+        /// This method will insert your message on messages queue, it will not send the message instantly
+        /// </summary>
+        /// <param name="message">Message</param>
+        /// <returns>Task</returns>
         public async Task SendMessage(ProtoMessage message)
+        {
+            await _messagesChannel.Writer.WriteAsync(message);
+        }
+
+        /// <summary>
+        /// This method will send the passed message instantly
+        /// If the client was already in use it will terminate the stream and you will get an error on your observers
+        /// Use the other SendMessage methods to avoid issues with multiple threads trying to send message at the same time
+        /// </summary>
+        /// <param name="message">Message</param>
+        /// <returns>Task</returns>
+        public async Task SendMessageInstant(ProtoMessage message)
         {
             try
             {
@@ -182,6 +261,35 @@ namespace OpenAPI.Net
             }
         }
 
+        /// <summary>
+        /// This method will keep reading the messages channel and then it will send the read message
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token that will cancel the reading</param>
+        /// <returns>Task</returns>
+        private async Task StartSendingMessages(CancellationToken cancellationToken)
+        {
+            try
+            {
+                while (await _messagesChannel.Reader.WaitToReadAsync(cancellationToken) && IsDisposed is false && IsTerminated is false)
+                {
+                    while (_messagesChannel.Reader.TryRead(out var message))
+                    {
+                        await SendMessageInstant(message);
+                    }
+                }
+            }
+            catch (OperationCanceledException)
+            {
+            }
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
+        }
+
+        /// <summary>
+        /// Disposes the client and stops all running operations
+        /// </summary>
         public void Dispose()
         {
             if (IsDisposed) return;
@@ -190,6 +298,7 @@ namespace OpenAPI.Net
 
             _heartbeatDisposable?.Dispose();
             _listenerDisposable?.Dispose();
+            _messagesCancellationTokenSource.Cancel();
 
             if (UseWebSocket)
             {
@@ -204,11 +313,13 @@ namespace OpenAPI.Net
                 _tcpClient?.Dispose();
             }
 
-            _streamWriteSemaphoreSlim?.Dispose();
-
             if (!IsTerminated) OnCompleted();
         }
 
+        /// <summary>
+        /// This method will read the TCP stream for incoming messages
+        /// </summary>
+        /// <returns>Task<ProtoMessage></returns>
         private async Task<ProtoMessage> ReadTcp()
         {
             try
@@ -255,18 +366,18 @@ namespace OpenAPI.Net
             return null;
         }
 
+        /// <summary>
+        /// Writes the message bytes to TCP stream
+        /// </summary>
+        /// <param name="messageByte"></param>
+        /// <param name="length"></param>
+        /// <returns>Task</returns>
         private async Task WriteTcp(byte[] messageByte, byte[] length)
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
-            bool isSemaphoreEntered = false;
-
             try
             {
-                isSemaphoreEntered = await _streamWriteSemaphoreSlim.WaitAsync(TimeSpan.FromMinutes(1));
-
-                if (!isSemaphoreEntered) throw new TimeoutException(ErrorMessages.SemaphoreEnteryTimedOut);
-
                 await _sslStream.WriteAsync(length, 0, length.Length).ConfigureAwait(false);
 
                 await _sslStream.WriteAsync(messageByte, 0, messageByte.Length).ConfigureAwait(false);
@@ -277,12 +388,11 @@ namespace OpenAPI.Net
 
                 OnError(writeException);
             }
-            finally
-            {
-                if (isSemaphoreEntered && !IsDisposed) _streamWriteSemaphoreSlim.Release();
-            }
         }
 
+        /// <summary>
+        /// Sends heartbeat to API for keeping the connection alive
+        /// </summary>
         private async void SendHeartbeat()
         {
             if (DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
@@ -290,6 +400,10 @@ namespace OpenAPI.Net
             await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// This method will be called if the web socket connection got disconnected
+        /// </summary>
+        /// <param name="disconnectionInfo">The disconnection info</param>
         private void OnWebSocketDisconnectionHappened(DisconnectionInfo disconnectionInfo)
         {
             disconnectionInfo.CancelReconnection = true;
@@ -297,11 +411,19 @@ namespace OpenAPI.Net
             OnError(disconnectionInfo.Exception);
         }
 
+        /// <summary>
+        /// Removes the disposed ovserver from client observers collection
+        /// </summary>
+        /// <param name="observer"></param>
         private void OnObserverDispose(IObserver<IMessage> observer)
         {
             _observers.TryRemove(observer.GetHashCode(), out _);
         }
 
+        /// <summary>
+        /// Calls each observer OnNext with the message
+        /// </summary>
+        /// <param name="protoMessage">Message</param>
         private void OnNext(ProtoMessage protoMessage)
         {
             foreach (var (_, observer) in _observers)
@@ -323,6 +445,10 @@ namespace OpenAPI.Net
             }
         }
 
+        /// <summary>
+        /// Disposes the client and then calls each observer OnError after an exception thrown
+        /// </summary>
+        /// <param name="exception">Exception</param>
         private void OnError(Exception exception)
         {
             if (IsTerminated) return;
@@ -343,6 +469,9 @@ namespace OpenAPI.Net
             }
         }
 
+        /// <summary>
+        /// Completes each observer by calling their OnCompleted method
+        /// </summary>
         private void OnCompleted()
         {
             IsCompleted = true;
@@ -353,6 +482,9 @@ namespace OpenAPI.Net
             }
         }
 
+        /// <summary>
+        /// Throws ObjectDisposedException if the client was disposed
+        /// </summary>
         private void ThrowObjectDisposedExceptionIfDisposed()
         {
             if (IsDisposed) throw new ObjectDisposedException(GetType().FullName);

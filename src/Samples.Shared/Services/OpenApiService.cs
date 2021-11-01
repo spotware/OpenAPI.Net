@@ -127,7 +127,6 @@ namespace Samples.Shared.Services
             _sendMessageTimer.Start();
 
             await Task.WhenAll(AuthorizeApp(liveClient, _apiCredentials), AuthorizeApp(demoClient, _apiCredentials));
-            await AuthorizeApp(demoClient, _apiCredentials);
 
             IsConnected = true;
 
@@ -201,8 +200,6 @@ namespace Samples.Shared.Services
 
                 disposable?.Dispose();
             });
-
-            _demoClient.Subscribe(message => Console.WriteLine(message), exception => Console.WriteLine(exception));
 
             var requestMessage = new ProtoOAGetAccountListByAccessTokenReq
             {
