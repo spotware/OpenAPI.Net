@@ -269,7 +269,7 @@ namespace ConsoleDemo
             }
         }
 
-        private async static void RefreshToken()
+        private static async void RefreshToken()
         {
             Console.WriteLine("Refreshing access token...");
 
@@ -281,7 +281,7 @@ namespace ConsoleDemo
             await _client.SendMessage(refreshTokenReq, ProtoOAPayloadType.ProtoOaRefreshTokenReq);
         }
 
-        private async static void SubscribeToSymbolTrendBar(string[] commandSplit)
+        private static async void SubscribeToSymbolTrendBar(string[] commandSplit)
         {
             Console.WriteLine("Subscribing to symbol trend bar event...");
 
@@ -295,7 +295,7 @@ namespace ConsoleDemo
             await _client.SendMessage(subscribeLiveTrendbarReq, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq);
         }
 
-        private async static void SubscribeToSymbolSpot(string[] commandSplit)
+        private static async void SubscribeToSymbolSpot(string[] commandSplit)
         {
             Console.WriteLine("Subscribing to symbol spot event...");
 
@@ -309,7 +309,7 @@ namespace ConsoleDemo
             await _client.SendMessage(subscribeSpotsReq, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq);
         }
 
-        private async static void SymbolListRequest(string[] commandSplit)
+        private static async void SymbolListRequest(string[] commandSplit)
         {
             var accountId = long.Parse(commandSplit[1]);
 
@@ -323,7 +323,7 @@ namespace ConsoleDemo
             await _client.SendMessage(symbolsListReq, ProtoOAPayloadType.ProtoOaSymbolsListReq);
         }
 
-        private async static void ReconcileRequest(string[] commandSplit)
+        private static async void ReconcileRequest(string[] commandSplit)
         {
             var accountId = long.Parse(commandSplit[1]);
 
@@ -337,7 +337,7 @@ namespace ConsoleDemo
             await _client.SendMessage(reconcileReq, ProtoOAPayloadType.ProtoOaReconcileReq);
         }
 
-        private async static void AccountListRequest()
+        private static async void AccountListRequest()
         {
             Console.WriteLine("Sending account list req...");
 
@@ -349,7 +349,7 @@ namespace ConsoleDemo
             await _client.SendMessage(accountListByAccessTokenReq, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
         }
 
-        private async static void AccountAuthRequest(string[] commandSplit)
+        private static async void AccountAuthRequest(string[] commandSplit)
         {
             var accountId = long.Parse(commandSplit[1]);
 
