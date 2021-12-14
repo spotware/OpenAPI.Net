@@ -2,9 +2,9 @@
 
 [![NuGet version (Spotware.OpenAPI.Net)](https://buildstats.info/nuget/Spotware.OpenAPI.Net)](https://www.nuget.org/packages/Spotware.OpenAPI.Net/)
 
-Spotware Open API .NET Rx library
+cTrader Open API .NET Rx library
 
-This library allows you to easily use and integrate Spotware Open API on your .NET applications.
+This library allows you to easily use and integrate cTrader Open API on your .NET applications.
 
 Its written by using RX streams so it makes API usage very easy and allows you to do a lot with few lines of code.
 
