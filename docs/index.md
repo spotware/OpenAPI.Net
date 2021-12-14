@@ -4,7 +4,7 @@ Open API is part of Spotware cTrader package, it allows cTrader users to develop
 
 # What's OpenAPI.NET?
 
-OpenAPI.NET is a .NET library for interacting with Spotware Open API, it makes Open API usage easier and allows you to focus on your project instead of spending time to figuring out how to compile Google Protobuf message files or how to send/receive API messages.
+OpenAPI.NET is a .NET library for interacting with cTrader Open API, it makes Open API usage easier and allows you to focus on your project instead of spending time to figuring out how to compile Google Protobuf message files or how to send/receive API messages.
 
 # Installation
 
