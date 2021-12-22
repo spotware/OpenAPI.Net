@@ -43,14 +43,17 @@ namespace OpenAPI.Net
 
         private IDisposable _webSocketMessageReceivedDisposable;
 
+        private TimeSpan _requestDelay;
+
         /// <summary>
         /// Creates an instance of OpenClient which is not connected yet
         /// </summary>
         /// <param name="host">The host name of API endpoint</param>
         /// <param name="port">The host port number</param>
         /// <param name="heartbeatInerval">The time interval for sending heartbeats</param>
+        /// <param name="maxRequestPerSecond">The maximum number of requests client will send per second</param>
         /// <param name="useWebSocket">By default OpenClient uses raw TCP connection, if you want to use web socket instead set this parameter to true</param>
-        public OpenClient(string host, int port, TimeSpan heartbeatInerval, bool useWebSocket = false)
+        public OpenClient(string host, int port, TimeSpan heartbeatInerval, int maxRequestPerSecond = 40, bool useWebSocket = false)
         {
             Host = host ?? throw new ArgumentNullException(nameof(host));
 
@@ -59,6 +62,8 @@ namespace OpenAPI.Net
             Port = port;
 
             _heartbeatInerval = heartbeatInerval;
+            MaxRequestPerSecond = maxRequestPerSecond;
+            _requestDelay = TimeSpan.FromMilliseconds(1000 / MaxRequestPerSecond);
             UseWebSocket = useWebSocket;
         }
 
@@ -71,6 +76,11 @@ namespace OpenAPI.Net
         /// The API host port that current client is connected to
         /// </summary>
         public int Port { get; }
+
+        /// <summary>
+        /// The maximum number of requests client will send per second
+        /// </summary>
+        public int MaxRequestPerSecond { get; }
 
         /// <summary>
         /// If client is connected via websocket then this will return True, otherwise False
@@ -244,8 +254,6 @@ namespace OpenAPI.Net
 
                 Array.Reverse(length);
 
-                LastSentMessageTime = DateTime.Now;
-
                 if (UseWebSocket)
                 {
                     _websocketClient.Send(messageByte);
@@ -254,6 +262,8 @@ namespace OpenAPI.Net
                 {
                     await WriteTcp(messageByte, length);
                 }
+
+                LastSentMessageTime = DateTimeOffset.Now;
             }
             catch (Exception ex)
             {
@@ -274,6 +284,13 @@ namespace OpenAPI.Net
                 {
                     while (_messagesChannel.Reader.TryRead(out var message))
                     {
+                        var timeElapsedSinceLastMessageSent = DateTimeOffset.Now - LastSentMessageTime;
+
+                        if (timeElapsedSinceLastMessageSent < _requestDelay)
+                        {
+                            await Task.Delay(_requestDelay - timeElapsedSinceLastMessageSent);
+                        }
+
                         await SendMessageInstant(message);
                     }
                 }
