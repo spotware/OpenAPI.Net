@@ -85,7 +85,7 @@ namespace ConsoleDemo
 
             var host = ApiInfo.GetHost(mode);
 
-            _client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebScoket);
+            _client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebSocket: useWebScoket);
 
             _disposables.Add(_client.Where(iMessage => iMessage is not ProtoHeartbeatEvent).Subscribe(OnMessageReceived, OnException));
             _disposables.Add(_client.OfType<ProtoOAErrorRes>().Subscribe(OnError));
