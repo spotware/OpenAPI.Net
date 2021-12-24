@@ -208,7 +208,7 @@ namespace OpenAPI.Net
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
-            await _messagesChannel.Writer.WriteAsync(protoMessage);
+            await SendMessage(protoMessage);
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace OpenAPI.Net
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
-            await _messagesChannel.Writer.WriteAsync(protoMessage);
+            await SendMessage(protoMessage);
         }
 
         /// <summary>
@@ -315,7 +315,10 @@ namespace OpenAPI.Net
 
             _heartbeatDisposable?.Dispose();
             _listenerDisposable?.Dispose();
+
             _messagesCancellationTokenSource.Cancel();
+
+            _messagesChannel.Writer.TryComplete();
 
             if (UseWebSocket)
             {
