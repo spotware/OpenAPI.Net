@@ -109,6 +109,11 @@ namespace OpenAPI.Net
         public DateTimeOffset LastSentMessageTime { get; private set; }
 
         /// <summary>
+        /// The count of messages on queue to be sent
+        /// </summary>
+        public int MessagesQueueCount { get; private set; }
+
+        /// <summary>
         /// Connects to the API based on you specified method (websocket or TCP)
         /// </summary>
         /// <returns>Task</returns>
@@ -235,6 +240,8 @@ namespace OpenAPI.Net
         /// <returns>Task</returns>
         public async Task SendMessage(ProtoMessage message)
         {
+            MessagesQueueCount += 1;
+
             await _messagesChannel.Writer.WriteAsync(message);
         }
 
@@ -293,6 +300,8 @@ namespace OpenAPI.Net
                         }
 
                         await SendMessageInstant(message);
+
+                        if (MessagesQueueCount > 0) MessagesQueueCount -= 1;
                     }
                 }
             }
@@ -320,6 +329,8 @@ namespace OpenAPI.Net
             _messagesCancellationTokenSource.Cancel();
 
             _messagesChannel.Writer.TryComplete();
+
+            MessagesQueueCount = 0;
 
             if (UseWebSocket)
             {
