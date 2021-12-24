@@ -29,6 +29,8 @@ namespace OpenAPI.Net
 
         private readonly CancellationTokenSource _messagesCancellationTokenSource = new CancellationTokenSource();
 
+        private readonly TimeSpan _requestDelay;
+
         private TcpClient _tcpClient;
 
         private WebsocketClient _websocketClient;
@@ -43,7 +45,6 @@ namespace OpenAPI.Net
 
         private IDisposable _webSocketMessageReceivedDisposable;
 
-        private TimeSpan _requestDelay;
 
         /// <summary>
         /// Creates an instance of OpenClient which is not connected yet
