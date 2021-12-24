@@ -15,9 +15,9 @@ jobs:
       with:
         dotnet-version: '6.0.x'
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore src/OpenAPI.Net/OpenAPI.Net.csproj
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build src/OpenAPI.Net/OpenAPI.Net.csproj --configuration Release --no-restore
     - name: Publish on release
       uses: rohith/publish-nuget@v2
       with:
