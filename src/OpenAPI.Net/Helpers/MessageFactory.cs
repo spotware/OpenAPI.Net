@@ -4,18 +4,39 @@ namespace OpenAPI.Net.Helpers
 {
     public static class MessageFactory
     {
+        /// <summary>
+        /// Returns a ProtoMessage based on your provided parameters (for ProtoPayloadType message types)
+        /// </summary>
+        /// <typeparam name="T">The payload message type</typeparam>
+        /// <param name="message">The ProtoMessage message payload message</param>
+        /// <param name="payloadType">The ProtoMessage message payload type</param>
+        /// <param name="clientMessageId">The client message ID for ProtoMessage</param>
+        /// <returns>ProtoMessage</returns>
         public static ProtoMessage GetMessage<T>(this T message, ProtoPayloadType payloadType, string clientMessageId = null)
             where T : IMessage
         {
             return GetMessage((uint)payloadType, message.ToByteString(), clientMessageId);
         }
 
+        /// <summary>
+        /// Returns a ProtoMessage based on your provided parameters (for ProtoOAPayloadType message types)
+        /// </summary>
+        /// <typeparam name="T">The payload message type</typeparam>
+        /// <param name="message">The ProtoMessage message payload message</param>
+        /// <param name="payloadType">The ProtoMessage message payload type</param>
+        /// <param name="clientMessageId">The client message ID for ProtoMessage</param>
+        /// <returns>ProtoMessage</returns>
         public static ProtoMessage GetMessage<T>(this T message, ProtoOAPayloadType payloadType,
             string clientMessageId = null) where T : IMessage
         {
             return GetMessage((uint)payloadType, message.ToByteString(), clientMessageId);
         }
 
+        /// <summary>
+        /// Returns the message type that is inside a response/event ProtoMessage Payload
+        /// </summary>
+        /// <param name="protoMessage">The ProtoMessage</param>
+        /// <returns>IMessage</returns>
         public static IMessage GetMessage(ProtoMessage protoMessage)
         {
             var payload = protoMessage.Payload;
@@ -63,6 +84,7 @@ namespace OpenAPI.Net.Helpers
                 (int)ProtoOAPayloadType.ProtoOaMarginCallUpdateRes => ProtoOAMarginCallUpdateRes.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaMarginCallUpdateEvent => ProtoOAMarginCallUpdateEvent.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaMarginCallTriggerEvent => ProtoOAMarginCallTriggerEvent.Parser.ParseFrom(payload),
+                (int)ProtoOAPayloadType.ProtoOaGetDynamicLeverageRes => ProtoOAGetDynamicLeverageByIDRes.Parser.ParseFrom(payload),
                 _ => null
             };
         }
