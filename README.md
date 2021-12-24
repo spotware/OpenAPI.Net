@@ -14,9 +14,10 @@ Documentation: [https://spotware.github.io/OpenAPI.Net/](https://spotware.github
 
 ## Dependencies
 
-* <a href="https://github.com/protocolbuffers/protobuf">protobuf</a>
-* <a href="https://github.com/dotnet/reactive">Reactive</a>
-* <a href="https://www.nuget.org/packages/System.Text.Json/">System.Text.Json</a>
+* [protobuf](https://github.com/protocolbuffers/protobuf)
+* [Reactive](https://github.com/dotnet/reactive)
+* [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/)
+* [websocket-client](https://github.com/Marfusios/websocket-client)
 
 ## Licence
 
