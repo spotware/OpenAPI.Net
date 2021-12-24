@@ -1,8 +1,8 @@
-name: Publish Nuget Package When Released
+name: Publish Nuget Package When Pre-Released
 
 on:
   release:
-    types: [released]
+    types: [prereleased]
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Publish on release
+    - name: Publish on pre-release
       uses: rohith/publish-nuget@v2
       with:
           PROJECT_FILE_PATH: src/OpenAPI.Net/OpenAPI.Net.csproj

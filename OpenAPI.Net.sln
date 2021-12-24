@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31019.35
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA9847A3-3F18-46DF-9A95-D4D956B3AA84}"
 EndProject
@@ -15,7 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.Sample", "src\Conso
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0204E3DB-63E1-48B4-A767-6919BA8ECB07}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\docs_publish.yml = .github\workflows\docs_publish.yml
 		LICENSE = LICENSE
+		.github\workflows\publish_nuget_package_prereleased.yml = .github\workflows\publish_nuget_package_prereleased.yml
+		.github\workflows\publish_nuget_package_released.yml = .github\workflows\publish_nuget_package_released.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.Sample", "src\WPF.Sample\WPF.Sample.csproj", "{842C8FED-4CAC-4676-9922-D59F88CEADC5}"
