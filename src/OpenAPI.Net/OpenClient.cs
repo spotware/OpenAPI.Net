@@ -346,6 +346,8 @@ namespace OpenAPI.Net
             }
 
             if (!IsTerminated) OnCompleted();
+
+            _observers.Clear();
         }
 
         /// <summary>
