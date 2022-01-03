@@ -162,7 +162,15 @@ namespace Samples.Shared.Services
 
             await LogoutAccounts(accounts.Where(iAccount => _accounts.ContainsKey(Convert.ToInt64(iAccount.CtidTraderAccountId))));
 
-            await AuthorizeAccounts(accounts, accessToken);
+            foreach (var account in accounts)
+            {
+                var accountId = Convert.ToInt64(account.CtidTraderAccountId);
+
+                await _apiService.AuthorizeAccount(accountId, account.IsLive, accessToken);
+
+                _accounts.TryAdd(accountId, account);
+                _accountIds.TryAdd(account.TraderLogin, accountId);
+            }
 
             return accounts;
         }
@@ -643,16 +651,6 @@ namespace Samples.Shared.Services
                 orderUpdateChannel.Writer.TryWrite(PendingOrder.FromModel(order));
             }
         }
-
-        private Task AuthorizeAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts, string accessToken) => Task.WhenAll(accounts.Select(async account =>
-        {
-            var accountId = Convert.ToInt64(account.CtidTraderAccountId);
-
-            await _apiService.AuthorizeAccount(accountId, account.IsLive, accessToken);
-
-            _accounts.TryAdd(accountId, account);
-            _accountIds.TryAdd(account.TraderLogin, accountId);
-        }).ToArray());
 
         private Task LogoutAccounts(IEnumerable<ProtoOACtidTraderAccount> accounts) => Task.WhenAll(accounts.Select(async account =>
         {
