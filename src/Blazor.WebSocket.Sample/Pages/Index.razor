@@ -427,8 +427,6 @@
         await Task.Delay(1000);
 
         await ApiCredentialsModal.Open();
-
-        ApiService.Error += exception => Console.Error.WriteLine($"API Service Exception: {exception}");
     }
 
     private async Task Connect()

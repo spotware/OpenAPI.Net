@@ -258,17 +258,13 @@ namespace OpenAPI.Net
             {
                 var messageByte = message.ToByteArray();
 
-                var length = BitConverter.GetBytes(messageByte.Length);
-
-                Array.Reverse(length);
-
                 if (UseWebSocket)
                 {
                     _websocketClient.Send(messageByte);
                 }
                 else
                 {
-                    await WriteTcp(messageByte, length);
+                    await WriteTcp(messageByte);
                 }
 
                 LastSentMessageTime = DateTimeOffset.Now;
@@ -406,15 +402,15 @@ namespace OpenAPI.Net
         /// <param name="messageByte"></param>
         /// <param name="length"></param>
         /// <returns>Task</returns>
-        private async Task WriteTcp(byte[] messageByte, byte[] length)
+        private async Task WriteTcp(byte[] messageByte)
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
             try
             {
-                await _sslStream.WriteAsync(length, 0, length.Length).ConfigureAwait(false);
+                var data = BitConverter.GetBytes(messageByte.Length).Reverse().Concat(messageByte).ToArray();
 
-                await _sslStream.WriteAsync(messageByte, 0, messageByte.Length).ConfigureAwait(false);
+                await _sslStream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

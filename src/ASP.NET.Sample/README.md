@@ -16,6 +16,4 @@ The app will load your Open API application credentials and it will use it.
 
 You have to also add your web app host URL in your API application redirect URIs, otherwise the account authorization will not work and you will get an error.
 
-The application default URL is set to https://localhost:5001/ and http://localhost:5000/, add both to your API application redirect URIs.
-
 You can find the application URL on project/properties/launchSettings.json file, you can change it from there if you want to.
