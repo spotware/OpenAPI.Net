@@ -342,3 +342,4 @@ healthchecksdb
 /src/ASP.NET.Demo/appsettings-dev.json
 /src/Blazor.WebSocket.Sample/appsettings-dev.json
 /src/Blazor.WebSocket.Sample/appsettings.Development.json
+/src/ASP.NET.Sample/appsettings-dev.json
