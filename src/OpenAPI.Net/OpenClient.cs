@@ -181,10 +181,7 @@ namespace OpenAPI.Net
 
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
 
-            _listenerDisposable = Observable.DoWhile(Observable.FromAsync(ReadTcp), () => !IsDisposed)
-                .Where(message => message != null)
-                .ObserveOn(TaskPoolScheduler.Default)
-                .Subscribe(OnNext);
+            _ = ReadTcp();
         }
 
         /// <summary>
@@ -349,51 +346,54 @@ namespace OpenAPI.Net
         /// <summary>
         /// This method will read the TCP stream for incoming messages
         /// </summary>
-        /// <returns>Task<ProtoMessage></returns>
-        private async Task<ProtoMessage> ReadTcp()
+        /// <returns>Task</returns>
+        private async Task ReadTcp()
         {
-            try
+            while (!IsDisposed)
             {
-                var lengthArray = new byte[sizeof(int)];
-
-                var readBytes = 0;
-
-                do
+                try
                 {
-                    var count = lengthArray.Length - readBytes;
+                    var lengthArray = new byte[sizeof(int)];
 
-                    readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count).ConfigureAwait(false);
+                    var readBytes = 0;
+
+                    do
+                    {
+                        var count = lengthArray.Length - readBytes;
+
+                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count).ConfigureAwait(false);
+                    }
+                    while (readBytes < lengthArray.Length);
+
+                    Array.Reverse(lengthArray);
+
+                    var length = BitConverter.ToInt32(lengthArray, 0);
+
+                    if (length <= 0) continue;
+
+                    var data = new byte[length];
+
+                    readBytes = 0;
+
+                    do
+                    {
+                        var count = data.Length - readBytes;
+
+                        readBytes += await _sslStream.ReadAsync(data, readBytes, count).ConfigureAwait(false);
+                    }
+                    while (readBytes < length);
+
+                    var message = ProtoMessage.Parser.ParseFrom(data);
+
+                    OnNext(message);
                 }
-                while (readBytes < lengthArray.Length);
-
-                Array.Reverse(lengthArray);
-
-                var length = BitConverter.ToInt32(lengthArray, 0);
-
-                if (length <= 0) return null;
-
-                var data = new byte[length];
-
-                readBytes = 0;
-
-                do
+                catch (Exception ex)
                 {
-                    var count = data.Length - readBytes;
+                    var readException = new ReadException(ex);
 
-                    readBytes += await _sslStream.ReadAsync(data, readBytes, count).ConfigureAwait(false);
+                    OnError(readException);
                 }
-                while (readBytes < length);
-
-                return ProtoMessage.Parser.ParseFrom(data);
             }
-            catch (Exception ex)
-            {
-                var readException = new ReadException(ex);
-
-                OnError(readException);
-            }
-
-            return null;
         }
 
         /// <summary>
