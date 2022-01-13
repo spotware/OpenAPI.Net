@@ -12,7 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Websocket.Client;
 using System.Net.WebSockets;
-using System.Reactive.Concurrency;
 using System.Threading.Channels;
 
 namespace OpenAPI.Net
@@ -442,7 +441,7 @@ namespace OpenAPI.Net
         }
 
         /// <summary>
-        /// Removes the disposed ovserver from client observers collection
+        /// Removes the disposed observer from client observers collection
         /// </summary>
         /// <param name="observer"></param>
         private void OnObserverDispose(IObserver<IMessage> observer)
