@@ -4,7 +4,7 @@ When it comes to using Open API for trading or developing trading applications t
 
 OpenAPI.NET makes symbol tick/Pip value calculation as simple as possible by providing a set of helper methods that you can use to calculate not just tick/Pip value also other properties of symbols like tick/Pip size.
 
-We also have a <a href="https://github.com/afhacker/OpenAPI.Net/tree/master/src/Trading.UI.Demo">Demo WPF application</a> that has all the necessary code for calculating symbols tick/Pip value and other account statistics like equity, free margin, used margin, margin level, net profit, and gross profit.
+We also have a [WPF Sample application](https://github.com/spotware/OpenAPI.Net/tree/master/src/WPF.Sample) that has all the necessary code for calculating symbols tick/Pip value and other account statistics like equity, free margin, used margin, margin level, net profit, and gross profit.
 
 To calculate a symbol tick value:
 
@@ -71,5 +71,6 @@ If its not then we have to convert the symbol price to account deposit currency,
 
 Once we found the conversion symbol we then get its base asset from account assets collection and then we pass all data to the symbol GetTickValue extension method, this method is also part of SymbolExtensions class which is in "OpenAPI.Net.Helpers" name space.
 
-For a complete example please check our <a href="https://github.com/afhacker/OpenAPI.Net/tree/master/src/Trading.UI.Demo">WPF demo application</a>.
+For a complete example please check our [WPF Sample application](https://github.com/spotware/OpenAPI.Net/tree/master/src/WPF.Sample).
 
+Also check our [Blazor web assembly sample](https://github.com/spotware/OpenAPI.Net/tree/master/src/Blazor.WebSocket.Sample) which is deployed in [Github pages](https://spotware.github.io/openapi-blazor-wasm-sample/).
