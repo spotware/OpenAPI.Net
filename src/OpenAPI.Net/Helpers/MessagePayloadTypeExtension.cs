@@ -26,7 +26,7 @@ namespace OpenAPI.Net.Helpers
                 throw new InvalidOperationException($"Couldn't get the PayloadType of the message {message}", ex);
             }
 
-            return (uint)property.GetValue(message);
+            return Convert.ToUInt32(property.GetValue(message));
         }
     }
 }

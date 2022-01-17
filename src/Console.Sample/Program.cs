@@ -113,7 +113,7 @@ namespace ConsoleDemo
                 ClientSecret = _app.Secret,
             };
 
-            await _client.SendMessage(applicationAuthReq, ProtoOAPayloadType.ProtoOaApplicationAuthReq);
+            await _client.SendMessage(applicationAuthReq);
 
             await Task.Delay(5000);
 
@@ -278,7 +278,7 @@ namespace ConsoleDemo
                 RefreshToken = _token.RefreshToken
             };
 
-            await _client.SendMessage(refreshTokenReq, ProtoOAPayloadType.ProtoOaRefreshTokenReq);
+            await _client.SendMessage(refreshTokenReq);
         }
 
         private static async void SubscribeToSymbolTrendBar(string[] commandSplit)
@@ -292,7 +292,7 @@ namespace ConsoleDemo
                 SymbolId = long.Parse(commandSplit[4]),
             };
 
-            await _client.SendMessage(subscribeLiveTrendbarReq, ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq);
+            await _client.SendMessage(subscribeLiveTrendbarReq);
         }
 
         private static async void SubscribeToSymbolSpot(string[] commandSplit)
@@ -306,7 +306,7 @@ namespace ConsoleDemo
 
             subscribeSpotsReq.SymbolId.AddRange(commandSplit.Skip(3).Select(iSymbolId => long.Parse(iSymbolId)));
 
-            await _client.SendMessage(subscribeSpotsReq, ProtoOAPayloadType.ProtoOaSubscribeSpotsReq);
+            await _client.SendMessage(subscribeSpotsReq);
         }
 
         private static async void SymbolListRequest(string[] commandSplit)
@@ -320,7 +320,7 @@ namespace ConsoleDemo
                 CtidTraderAccountId = accountId,
             };
 
-            await _client.SendMessage(symbolsListReq, ProtoOAPayloadType.ProtoOaSymbolsListReq);
+            await _client.SendMessage(symbolsListReq);
         }
 
         private static async void ReconcileRequest(string[] commandSplit)
@@ -334,7 +334,7 @@ namespace ConsoleDemo
                 CtidTraderAccountId = accountId,
             };
 
-            await _client.SendMessage(reconcileReq, ProtoOAPayloadType.ProtoOaReconcileReq);
+            await _client.SendMessage(reconcileReq);
         }
 
         private static async void AccountListRequest()
@@ -346,7 +346,7 @@ namespace ConsoleDemo
                 AccessToken = _token.AccessToken,
             };
 
-            await _client.SendMessage(accountListByAccessTokenReq, ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq);
+            await _client.SendMessage(accountListByAccessTokenReq);
         }
 
         private static async void AccountAuthRequest(string[] commandSplit)
@@ -361,7 +361,7 @@ namespace ConsoleDemo
                 AccessToken = _token.AccessToken
             };
 
-            await _client.SendMessage(accountAuthReq, ProtoOAPayloadType.ProtoOaAccountAuthReq);
+            await _client.SendMessage(accountAuthReq);
         }
 
         private static void GetCommand()
