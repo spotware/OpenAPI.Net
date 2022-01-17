@@ -26,7 +26,7 @@ namespace OpenAPI.Net
 
         private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new ConcurrentDictionary<int, IObserver<IMessage>>();
 
-        private readonly CancellationTokenSource _messagesCancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
         private readonly TimeSpan _requestDelay;
 
@@ -35,8 +35,6 @@ namespace OpenAPI.Net
         private WebsocketClient _websocketClient;
 
         private SslStream _sslStream;
-
-        private IDisposable _listenerDisposable;
 
         private IDisposable _heartbeatDisposable;
 
@@ -129,7 +127,7 @@ namespace OpenAPI.Net
                 await ConnectTcp();
             }
 
-            _ = StartSendingMessages(_messagesCancellationTokenSource.Token);
+            _ = StartSendingMessages(_cancellationTokenSource.Token);
 
             _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
                 .Subscribe(x => SendHeartbeat());
@@ -180,7 +178,7 @@ namespace OpenAPI.Net
 
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
 
-            _ = ReadTcp();
+            _ = ReadTcp(_cancellationTokenSource.Token);
         }
 
         /// <summary>
@@ -195,6 +193,24 @@ namespace OpenAPI.Net
             _observers.AddOrUpdate(observer.GetHashCode(), observer, (key, oldObserver) => observer);
 
             return Disposable.Create(() => OnObserverDispose(observer));
+        }
+
+        /// <summary>
+        /// This method will insert your message on messages queue, it will not send the message instantly
+        /// By using this overload of SendMessage method you avoid passing the message payload type
+        /// and it gets the payload from message itself
+        /// </summary>
+        /// <typeparam name="T">Message Type</typeparam>
+        /// <param name="message">Message</param>
+        /// <param name="clientMsgId">The client message ID (optional)</param>
+        /// <exception cref="InvalidOperationException">If getting message payload type fails</exception>
+        /// <returns>Task</returns>
+        public async Task SendMessage<T>(T message, string clientMsgId = null) where T :
+            IMessage
+        {
+            var protoMessage = MessageFactory.GetMessage(message.GetPayloadType(), message.ToByteString(), clientMsgId);
+            
+            await SendMessage(protoMessage);
         }
 
         /// <summary>
@@ -316,9 +332,8 @@ namespace OpenAPI.Net
             IsDisposed = true;
 
             _heartbeatDisposable?.Dispose();
-            _listenerDisposable?.Dispose();
 
-            _messagesCancellationTokenSource.Cancel();
+            _cancellationTokenSource.Cancel();
 
             _messagesChannel.Writer.TryComplete();
 
@@ -346,7 +361,7 @@ namespace OpenAPI.Net
         /// This method will read the TCP stream for incoming messages
         /// </summary>
         /// <returns>Task</returns>
-        private async Task ReadTcp()
+        private async Task ReadTcp(CancellationToken cancellationToken)
         {
             while (!IsDisposed)
             {
@@ -360,7 +375,7 @@ namespace OpenAPI.Net
                     {
                         var count = lengthArray.Length - readBytes;
 
-                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count).ConfigureAwait(false);
+                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationToken).ConfigureAwait(false);
                     }
                     while (readBytes < lengthArray.Length);
 
@@ -378,13 +393,16 @@ namespace OpenAPI.Net
                     {
                         var count = data.Length - readBytes;
 
-                        readBytes += await _sslStream.ReadAsync(data, readBytes, count).ConfigureAwait(false);
+                        readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationToken).ConfigureAwait(false);
                     }
                     while (readBytes < length);
 
                     var message = ProtoMessage.Parser.ParseFrom(data);
 
                     OnNext(message);
+                }
+                catch (TaskCanceledException)
+                {
                 }
                 catch (Exception ex)
                 {

@@ -40,7 +40,7 @@ namespace OpenAPI.Net.Helpers
         public static IMessage GetMessage(ProtoMessage protoMessage)
         {
             var payload = protoMessage.Payload;
-
+            
             return protoMessage.PayloadType switch
             {
                 (int)ProtoOAPayloadType.ProtoOaErrorRes => ProtoOAErrorRes.Parser.ParseFrom(payload),
@@ -89,7 +89,14 @@ namespace OpenAPI.Net.Helpers
             };
         }
 
-        private static ProtoMessage GetMessage(uint payloadType, ByteString payload, string clientMessageId = null)
+        /// <summary>
+        /// Returns a ProtoMessage based on your provided parameters
+        /// </summary>
+        /// <param name="payloadType">The message payloadType as unint</param>
+        /// <param name="payload">The message payload as a ByteString</param>
+        /// <param name="clientMessageId">The client message ID for ProtoMessage</param>
+        /// <returns>ProtoMessage</returns>
+        public static ProtoMessage GetMessage(uint payloadType, ByteString payload, string clientMessageId = null)
         {
             var message = new ProtoMessage
             {
