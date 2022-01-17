@@ -363,9 +363,9 @@ namespace OpenAPI.Net
         /// <returns>Task</returns>
         private async Task ReadTcp(CancellationToken cancellationToken)
         {
-            while (!IsDisposed)
+            try
             {
-                try
+                while (!IsDisposed)
                 {
                     var lengthArray = new byte[sizeof(int)];
 
@@ -401,15 +401,15 @@ namespace OpenAPI.Net
 
                     OnNext(message);
                 }
-                catch (TaskCanceledException)
-                {
-                }
-                catch (Exception ex)
-                {
-                    var readException = new ReadException(ex);
+            }
+            catch (TaskCanceledException)
+            {
+            }
+            catch (Exception ex)
+            {
+                var readException = new ReadException(ex);
 
-                    OnError(readException);
-                }
+                OnError(readException);
             }
         }
 
