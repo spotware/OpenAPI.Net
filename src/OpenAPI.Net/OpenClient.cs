@@ -353,8 +353,6 @@ namespace OpenAPI.Net
             }
 
             if (!IsTerminated) OnCompleted();
-
-            _observers.Clear();
         }
 
         /// <summary>
@@ -514,6 +512,8 @@ namespace OpenAPI.Net
                 {
                 }
             }
+
+            _observers.Clear();
         }
 
         /// <summary>
