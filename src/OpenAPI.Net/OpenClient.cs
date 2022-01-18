@@ -114,7 +114,7 @@ namespace OpenAPI.Net
         /// Connects to the API based on you specified method (websocket or TCP)
         /// </summary>
         /// <exception cref="ObjectDisposedException">If client is disposed</exception>
-        /// <exception cref="ConnectionException">If connection attempt failed</exception>
+        /// <exception cref="ConnectionException">If connection attempt fails, the client will be disposed and this exception will be thrown</exception>
         /// <returns>Task</returns>
         public async Task Connect()
         {
@@ -138,6 +138,8 @@ namespace OpenAPI.Net
             }
             catch(Exception ex)
             {
+                Dispose();
+
                 var connectionException = new ConnectionException(ex);
 
                 throw connectionException;
