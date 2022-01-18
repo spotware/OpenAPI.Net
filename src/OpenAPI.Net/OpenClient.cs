@@ -400,7 +400,7 @@ namespace OpenAPI.Net
                     OnNext(message);
                 }
             }
-            catch (TaskCanceledException)
+            catch (Exception ex) when (ex is TaskCanceledException || ex is OperationCanceledException)
             {
             }
             catch (Exception ex)
