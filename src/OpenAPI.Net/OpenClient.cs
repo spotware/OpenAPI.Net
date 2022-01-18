@@ -113,78 +113,42 @@ namespace OpenAPI.Net
         /// <summary>
         /// Connects to the API based on you specified method (websocket or TCP)
         /// </summary>
+        /// <exception cref="ObjectDisposedException">If client is disposed</exception>
+        /// <exception cref="ConnectionException">If connection attempt failed</exception>
         /// <returns>Task</returns>
         public async Task Connect()
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
-            if (UseWebSocket)
-            {
-                await ConnectWebScoket();
-            }
-            else
-            {
-                await ConnectTcp();
-            }
-
-            _ = StartSendingMessages(_cancellationTokenSource.Token);
-
-            _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
-                .Subscribe(x => SendHeartbeat());
-        }
-
-        /// <summary>
-        /// Connects to API by using websocket
-        /// </summary>
-        /// <returns>Task</returns>
-        private async Task ConnectWebScoket()
-        {
-            var hostUri = new Uri($"wss://{Host}:{Port}");
-
-            _websocketClient = new WebsocketClient(hostUri, new Func<ClientWebSocket>(() => new ClientWebSocket()))
-            {
-                IsTextMessageConversionEnabled = false,
-                ReconnectTimeout = null,
-                IsReconnectionEnabled = false,
-                ErrorReconnectTimeout = null
-            };
-
-            _webSocketMessageReceivedDisposable = _websocketClient.MessageReceived.Select(msg => ProtoMessage.Parser.ParseFrom(msg.Binary))
-                .Subscribe(OnNext);
-
-            _webSocketDisconnectionHappenedDisposable = _websocketClient.DisconnectionHappened.Subscribe(OnWebSocketDisconnectionHappened);
-
             try
             {
-                await _websocketClient.StartOrFail();
+                if (UseWebSocket)
+                {
+                    await ConnectWebScoket();
+                }
+                else
+                {
+                    await ConnectTcp();
+                }
+
+                _ = StartSendingMessages(_cancellationTokenSource.Token);
+
+                _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
+                    .Subscribe(x => SendHeartbeat());
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                OnError(ex);
+                var connectionException = new ConnectionException(ex);
+
+                throw connectionException;
             }
-        }
-
-        /// <summary>
-        /// Connects to API by using a TCP client
-        /// </summary>
-        /// <returns>Task</returns>
-        private async Task ConnectTcp()
-        {
-            _tcpClient = new TcpClient { LingerState = new LingerOption(true, 10) };
-
-            await _tcpClient.ConnectAsync(Host, Port).ConfigureAwait(false);
-
-            _sslStream = new SslStream(_tcpClient.GetStream(), false);
-
-            await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
-
-            _ = ReadTcp(_cancellationTokenSource.Token);
         }
 
         /// <summary>
         /// Subscribe to client incoming messages
         /// </summary>
         /// <param name="observer">The observer that will receive the messages</param>
+        /// <exception cref="ObjectDisposedException">If client is disposed</exception>
         /// <returns>IDisposable</returns>
         public IDisposable Subscribe(IObserver<IMessage> observer)
         {
@@ -288,6 +252,87 @@ namespace OpenAPI.Net
         }
 
         /// <summary>
+        /// Disposes the client, releases all used resources, and stops all running operations
+        /// </summary>
+        public void Dispose()
+        {
+            if (IsDisposed) return;
+
+            IsDisposed = true;
+
+            _heartbeatDisposable?.Dispose();
+
+            _cancellationTokenSource.Cancel();
+
+            _messagesChannel.Writer.TryComplete();
+
+            MessagesQueueCount = 0;
+
+            if (UseWebSocket)
+            {
+                _webSocketMessageReceivedDisposable?.Dispose();
+
+                _webSocketDisconnectionHappenedDisposable?.Dispose();
+
+                _websocketClient?.Dispose();
+            }
+            else
+            {
+                _tcpClient?.Dispose();
+            }
+
+            if (!IsTerminated) OnCompleted();
+        }
+
+        /// <summary>
+        /// Connects to API by using websocket
+        /// </summary>
+        /// <returns>Task</returns>
+        private async Task ConnectWebScoket()
+        {
+            var hostUri = new Uri($"wss://{Host}:{Port}");
+
+            _websocketClient = new WebsocketClient(hostUri, new Func<ClientWebSocket>(() => new ClientWebSocket()))
+            {
+                IsTextMessageConversionEnabled = false,
+                ReconnectTimeout = null,
+                IsReconnectionEnabled = false,
+                ErrorReconnectTimeout = null
+            };
+
+            _webSocketMessageReceivedDisposable = _websocketClient.MessageReceived.Select(msg => ProtoMessage.Parser.ParseFrom(msg.Binary))
+                .Subscribe(OnNext);
+
+            _webSocketDisconnectionHappenedDisposable = _websocketClient.DisconnectionHappened.Subscribe(OnWebSocketDisconnectionHappened);
+
+            try
+            {
+                await _websocketClient.StartOrFail();
+            }
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
+        }
+
+        /// <summary>
+        /// Connects to API by using a TCP client
+        /// </summary>
+        /// <returns>Task</returns>
+        private async Task ConnectTcp()
+        {
+            _tcpClient = new TcpClient { LingerState = new LingerOption(true, 10) };
+
+            await _tcpClient.ConnectAsync(Host, Port).ConfigureAwait(false);
+
+            _sslStream = new SslStream(_tcpClient.GetStream(), false);
+
+            await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
+
+            _ = ReadTcp(_cancellationTokenSource.Token);
+        }
+
+        /// <summary>
         /// This method will keep reading the messages channel and then it will send the read message
         /// </summary>
         /// <param name="cancellationToken">The cancellation token that will cancel the reading</param>
@@ -320,39 +365,6 @@ namespace OpenAPI.Net
             {
                 OnError(ex);
             }
-        }
-
-        /// <summary>
-        /// Disposes the client and stops all running operations
-        /// </summary>
-        public void Dispose()
-        {
-            if (IsDisposed) return;
-
-            IsDisposed = true;
-
-            _heartbeatDisposable?.Dispose();
-
-            _cancellationTokenSource.Cancel();
-
-            _messagesChannel.Writer.TryComplete();
-
-            MessagesQueueCount = 0;
-
-            if (UseWebSocket)
-            {
-                _webSocketMessageReceivedDisposable?.Dispose();
-
-                _webSocketDisconnectionHappenedDisposable?.Dispose();
-
-                _websocketClient?.Dispose();
-            }
-            else
-            {
-                _tcpClient?.Dispose();
-            }
-
-            if (!IsTerminated) OnCompleted();
         }
 
         /// <summary>
