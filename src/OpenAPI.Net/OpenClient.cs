@@ -387,7 +387,9 @@ namespace OpenAPI.Net
                     {
                         var count = lengthArray.Length - readBytes;
 
-                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationToken).ConfigureAwait(false);
+                        var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
+
+                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationTokenSource.Token).ConfigureAwait(false);
                     }
                     while (readBytes < lengthArray.Length);
 
@@ -405,7 +407,9 @@ namespace OpenAPI.Net
                     {
                         var count = data.Length - readBytes;
 
-                        readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationToken).ConfigureAwait(false);
+                        var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
+
+                        readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationTokenSource.Token).ConfigureAwait(false);
                     }
                     while (readBytes < length);
 
