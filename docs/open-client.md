@@ -38,6 +38,10 @@ After you created the client you have to call its Connect method:
     await client.Connect();
 ```
 
+If connection fails it will dispose the client and it will throw a ConnectionException.
+
+If you call a disposed client Connect method it will throw a ObjectDisposedException.
+
 Now client is connected to API server and you can send/receive messages.
 
 The OpenClient (IOpenClient) implements IDisposable, so you can use it on a C# "using" block like file streams.
@@ -138,7 +142,7 @@ Now client will call and pass the exception to your OnError, also if your OnErro
 
 If you try to dispose a terminated client nothing will happen.
 
-Client most probably will throw one of these exceptions types:
+Client most probably will throw one of these exception types:
 
 * ReadException: This exception type will be thrown if something went wrong during reading of client TCP stream
 * ObserverException: This exception will be thrown if something went wrong during an observer (subscriber) OnNext method call, you can get the observer object via its Observer property
@@ -159,3 +163,5 @@ To avoid calling dispose method several times you can check the client IsDispose
 If a client got terminated by an exception and it called the OnError of observers then it will dispose itself and you don't have to call the dispose method inside your OnError handler.
 
 If the client is disposed without termination then it will call the observers OnCompleted handler.
+
+If you got a ConnectionException during the call on client Connect method then the client is already disposed, you don't have to call it's dispose method and you can't use that client instance anymore.
