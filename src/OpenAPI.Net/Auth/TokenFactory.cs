@@ -81,6 +81,13 @@ namespace OpenAPI.Net.Auth
             throw new HttpRequestException($"{response.StatusCode}, The HTTP request for getting access token was not successful");
         }
 
+        /// <summary>
+        /// Returns the URI for getting access token
+        /// </summary>
+        /// <param name="authCode">The authentication code</param>
+        /// <param name="app">API application</param>
+        /// <param name="authUri">The auth URI base path</param>
+        /// <returns>Uri</returns>
         public static Uri GetUri(string authCode, App app, string authUri = ApiInfo.AuthUrl)
         {
             var query = new NameValueCollection
@@ -95,6 +102,12 @@ namespace OpenAPI.Net.Auth
             return new Uri($"{authUri}token{query}");
         }
 
+        /// <summary>
+        /// Deserializes a JSON token response to Token object
+        /// </summary>
+        /// <param name="json">JSON response</param>
+        /// <returns>Token</returns>
+        /// <exception cref="JsonException"></exception>
         public static Token DeserializeToken(string json)
         {
             var token = JsonSerializer.Deserialize<Token>(json);

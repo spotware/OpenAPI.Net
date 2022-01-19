@@ -331,7 +331,7 @@ namespace OpenAPI.Net
 
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
 
-            _ = ReadTcp(_cancellationTokenSource.Token);
+            _ = ReadTcp();
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace OpenAPI.Net
         /// This method will read the TCP stream for incoming messages
         /// </summary>
         /// <returns>Task</returns>
-        private async Task ReadTcp(CancellationToken cancellationToken)
+        private async Task ReadTcp()
         {
             try
             {
@@ -387,7 +387,7 @@ namespace OpenAPI.Net
                     {
                         var count = lengthArray.Length - readBytes;
 
-                        var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
+                        using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
 
                         readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationTokenSource.Token).ConfigureAwait(false);
                     }
@@ -407,7 +407,7 @@ namespace OpenAPI.Net
                     {
                         var count = data.Length - readBytes;
 
-                        var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
+                        using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
 
                         readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationTokenSource.Token).ConfigureAwait(false);
                     }
