@@ -30,24 +30,6 @@ namespace ConsoleDemo
 
             var appSecret = Console.ReadLine();
 
-            Console.Write("Enter App Redirect URL: ");
-
-            var redirectUrl = Console.ReadLine();
-
-            _app = new App(appId, appSecret, redirectUrl);
-
-            Console.Write("Enter Connection Mode (Live or Demo): ");
-
-            var modeString = Console.ReadLine();
-
-            var mode = (Mode)Enum.Parse(typeof(Mode), modeString, true);
-
-            Console.Write("Enter Scope (Trading or Accounts): ");
-
-            var scopeString = Console.ReadLine();
-
-            var scope = (Scope)Enum.Parse(typeof(Scope), scopeString, true);
-
             Console.Write("Enter Client Type (WebSocket Or TCP): ");
 
             var useWebScoket = Console.ReadLine().ToLowerInvariant() switch
@@ -56,39 +38,79 @@ namespace ConsoleDemo
                 _ => false
             };
 
-            ShowDashLine();
+            Console.Write("Enter Connection Mode (Live or Demo): ");
 
-            var authUri = _app.GetAuthUri();
+            var modeString = Console.ReadLine();
 
-            Console.WriteLine($"Authentication URI: {authUri}");
+            var mode = (Mode)Enum.Parse(typeof(Mode), modeString, true);
 
-            System.Diagnostics.Process.Start("explorer.exe", $"\"{authUri}\"");
+            Console.Write("Do you have an access token (Y/N): ");
 
-            ShowDashLine();
+            var isTokenAvailable = Console.ReadLine().ToLowerInvariant() switch
+            {
+                "y" => true,
+                _ => false
+            };
 
-            Console.WriteLine("Follow the authentication steps on your browser, then copy the authentication code from redirect" +
-                " URL and paste it here.");
+            if (isTokenAvailable)
+            {
+                Console.Write("Your Access Token: ");
 
-            Console.WriteLine("The authentication code is at the end of redirect URL and it starts after '?code=' parameter.");
+                var accessToken = Console.ReadLine();
 
-            ShowDashLine();
+                _token = new Token
+                {
+                    AccessToken = accessToken
+                };
 
-            Console.Write("Enter Authentication Code: ");
+                _app = new App(appId, appSecret, string.Empty);
+            }
+            else
+            {
+                Console.Write("Enter App Redirect URL: ");
 
-            var authCode = Console.ReadLine();
+                var redirectUrl = Console.ReadLine();
 
-            _token = await TokenFactory.GetToken(authCode, _app);
+                _app = new App(appId, appSecret, redirectUrl);
 
-            Console.WriteLine($"Access token generated: {_token.AccessToken}");
+                Console.Write("Enter Scope (Trading or Accounts): ");
 
-            ShowDashLine();
+                var scopeString = Console.ReadLine();
+
+                var scope = (Scope)Enum.Parse(typeof(Scope), scopeString, true);
+
+                var authUri = _app.GetAuthUri();
+
+                ShowDashLine();
+
+                Console.WriteLine($"Authentication URI: {authUri}");
+
+                System.Diagnostics.Process.Start("explorer.exe", $"\"{authUri}\"");
+
+                Console.WriteLine("Follow the authentication steps on your browser, then copy the authentication code from redirect" +
+                    " URL and paste it here.");
+
+                Console.WriteLine("The authentication code is at the end of redirect URL and it starts after '?code=' parameter.");
+
+                ShowDashLine();
+
+                Console.Write("Enter Authentication Code: ");
+
+                var authCode = Console.ReadLine();
+
+                _token = await TokenFactory.GetToken(authCode, _app);
+
+                ShowDashLine();
+
+                Console.WriteLine($"Access token generated: {_token.AccessToken}");
+
+            }
 
             var host = ApiInfo.GetHost(mode);
 
             _client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebSocket: useWebScoket);
 
             _disposables.Add(_client.Where(iMessage => iMessage is not ProtoHeartbeatEvent).Subscribe(OnMessageReceived, OnException));
-            _disposables.Add(_client.OfType<ProtoOAErrorRes>().Subscribe(OnError));
             _disposables.Add(_client.OfType<ProtoOARefreshTokenRes>().Subscribe(OnRefreshTokenResponse));
 
             Console.WriteLine("Connecting Client...");
@@ -130,19 +152,12 @@ namespace ConsoleDemo
         {
             Console.WriteLine($"\nMessage Received:\n{message}");
 
-            ShowDashLine();
+            Console.WriteLine();
         }
 
         private static void OnException(Exception ex)
         {
             Console.WriteLine($"\nException\n: {ex}");
-
-            ShowDashLine();
-        }
-
-        private static void OnError(ProtoOAErrorRes e)
-        {
-            Console.WriteLine($"\nError:\n{e}");
 
             ShowDashLine();
         }
@@ -192,9 +207,11 @@ namespace ConsoleDemo
 
                         Console.WriteLine();
 
-                        Console.WriteLine("\nTo refresh access token, type: refreshtoken\n");
+                        Console.WriteLine("\nFor getting tick data: tickdata {Account ID} {Symbol ID} {Type (bid/ask)} {Number of Hours}\n");
 
-                        Console.WriteLine("\nTo exit the app and disconnect the client type: disconnect\n");
+                        Console.WriteLine("To refresh access token, type: refreshtoken\n");
+
+                        Console.WriteLine("To exit the app and disconnect the client type: disconnect\n");
 
                         Console.WriteLine("Commands aren't case sensitive\n");
 
@@ -218,6 +235,10 @@ namespace ConsoleDemo
 
                     case "subscribe":
                         ProcessSubscriptionCommand(commandSplit);
+                        break;
+
+                    case "tickdata":
+                        TickDataRequest(commandSplit);
                         break;
 
                     case "refreshtoken":
@@ -362,6 +383,32 @@ namespace ConsoleDemo
             };
 
             await _client.SendMessage(accountAuthReq);
+        }
+
+        private static async void TickDataRequest(string[] commandSplit)
+        {
+            var accountId = long.Parse(commandSplit[1]);
+            var symbolId = long.Parse(commandSplit[2]);
+            var type = commandSplit[3].ToLowerInvariant() switch
+            {
+                "bid" => ProtoOAQuoteType.Bid,
+                _ => ProtoOAQuoteType.Ask
+            };
+
+            var hours = long.Parse(commandSplit[4]);
+
+            Console.WriteLine("Sending tick data req...");
+
+            var tickDataReq = new ProtoOAGetTickDataReq
+            {
+                CtidTraderAccountId = accountId,
+                SymbolId = symbolId,
+                FromTimestamp = DateTimeOffset.UtcNow.AddHours(-hours).ToUnixTimeMilliseconds(),
+                ToTimestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                Type = type
+            };
+
+            await _client.SendMessage(tickDataReq);
         }
 
         private static void GetCommand()

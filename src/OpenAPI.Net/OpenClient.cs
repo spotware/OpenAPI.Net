@@ -242,7 +242,7 @@ namespace OpenAPI.Net
                 }
                 else
                 {
-                    await WriteTcp(messageByte);
+                    await WriteTcp(messageByte, _cancellationTokenSource.Token);
                 }
 
                 LastSentMessageTime = DateTimeOffset.Now;
@@ -331,7 +331,7 @@ namespace OpenAPI.Net
 
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
 
-            _ = ReadTcp();
+            _ = ReadTcp(_cancellationTokenSource.Token);
         }
 
         /// <summary>
@@ -372,8 +372,9 @@ namespace OpenAPI.Net
         /// <summary>
         /// This method will read the TCP stream for incoming messages
         /// </summary>
+        /// <param name="cancellationToken">The cancellation token that will be used on ReadAsync calls</param>
         /// <returns>Task</returns>
-        private async Task ReadTcp()
+        private async Task ReadTcp(CancellationToken cancellationToken)
         {
             try
             {
@@ -387,9 +388,7 @@ namespace OpenAPI.Net
                     {
                         var count = lengthArray.Length - readBytes;
 
-                        using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
-
-                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationTokenSource.Token).ConfigureAwait(false);
+                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationToken).ConfigureAwait(false);
                     }
                     while (readBytes < lengthArray.Length);
 
@@ -407,9 +406,7 @@ namespace OpenAPI.Net
                     {
                         var count = data.Length - readBytes;
 
-                        using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(20));
-
-                        readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationTokenSource.Token).ConfigureAwait(false);
+                        readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationToken).ConfigureAwait(false);
                     }
                     while (readBytes < length);
 
@@ -433,9 +430,9 @@ namespace OpenAPI.Net
         /// Writes the message bytes to TCP stream
         /// </summary>
         /// <param name="messageByte"></param>
-        /// <param name="length"></param>
+        /// <param name="cancellationToken">The cancellation token that will be used on calling stream methods</param>
         /// <returns>Task</returns>
-        private async Task WriteTcp(byte[] messageByte)
+        private async Task WriteTcp(byte[] messageByte, CancellationToken cancellationToken)
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
@@ -443,7 +440,9 @@ namespace OpenAPI.Net
             {
                 var data = BitConverter.GetBytes(messageByte.Length).Reverse().Concat(messageByte).ToArray();
 
-                await _sslStream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+                await _sslStream.WriteAsync(data, 0, data.Length, cancellationToken).ConfigureAwait(false);
+
+                await _sslStream.FlushAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
