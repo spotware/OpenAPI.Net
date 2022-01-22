@@ -284,6 +284,7 @@ namespace OpenAPI.Net
             }
             else
             {
+                _sslStream?.Dispose();
                 _tcpClient?.Dispose();
             }
 
