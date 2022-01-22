@@ -138,8 +138,6 @@ namespace OpenAPI.Net
             }
             catch(Exception ex)
             {
-                Dispose();
-
                 var connectionException = new ConnectionException(ex);
 
                 throw connectionException;
@@ -229,9 +227,13 @@ namespace OpenAPI.Net
         /// Use the other SendMessage methods to avoid issues with multiple threads trying to send message at the same time
         /// </summary>
         /// <param name="message">Message</param>
+        /// <exception cref="ObjectDisposedException">If client is already disposed</exception>
+        /// <exception cref="WriteException">If something went wrong while sending the message, please check the inner exception for more detail</exception>
         /// <returns>Task</returns>
         public async Task SendMessageInstant(ProtoMessage message)
         {
+            ThrowObjectDisposedExceptionIfDisposed();
+
             try
             {
                 var messageByte = message.ToByteArray();
@@ -249,7 +251,9 @@ namespace OpenAPI.Net
             }
             catch (Exception ex)
             {
-                OnError(ex);
+                var writeException = new WriteException(ex);
+
+                throw writeException;
             }
         }
 
@@ -307,14 +311,7 @@ namespace OpenAPI.Net
 
             _webSocketDisconnectionHappenedDisposable = _websocketClient.DisconnectionHappened.Subscribe(OnWebSocketDisconnectionHappened);
 
-            try
-            {
-                await _websocketClient.StartOrFail();
-            }
-            catch (Exception ex)
-            {
-                OnError(ex);
-            }
+            await _websocketClient.StartOrFail();
         }
 
         /// <summary>
@@ -354,7 +351,10 @@ namespace OpenAPI.Net
                             await Task.Delay(_requestDelay - timeElapsedSinceLastMessageSent);
                         }
 
-                        await SendMessageInstant(message);
+                        if (IsDisposed is false)
+                        {
+                            await SendMessageInstant(message);
+                        }
 
                         if (MessagesQueueCount > 0) MessagesQueueCount -= 1;
                     }
@@ -434,22 +434,11 @@ namespace OpenAPI.Net
         /// <returns>Task</returns>
         private async Task WriteTcp(byte[] messageByte, CancellationToken cancellationToken)
         {
-            ThrowObjectDisposedExceptionIfDisposed();
+            var data = BitConverter.GetBytes(messageByte.Length).Reverse().Concat(messageByte).ToArray();
 
-            try
-            {
-                var data = BitConverter.GetBytes(messageByte.Length).Reverse().Concat(messageByte).ToArray();
+            await _sslStream.WriteAsync(data, 0, data.Length, cancellationToken).ConfigureAwait(false);
 
-                await _sslStream.WriteAsync(data, 0, data.Length, cancellationToken).ConfigureAwait(false);
-
-                await _sslStream.FlushAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                var writeException = new WriteException(ex);
-
-                OnError(writeException);
-            }
+            await _sslStream.FlushAsync(cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
