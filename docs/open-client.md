@@ -38,7 +38,7 @@ After you created the client you have to call its Connect method:
     await client.Connect();
 ```
 
-If connection fails it will dispose the client and it will throw a ConnectionException.
+If connection fails it will throw a ConnectionException, check the inner exception to get the actual exception that was thrown.
 
 If you call a disposed client Connect method it will throw a ObjectDisposedException.
 
@@ -88,6 +88,10 @@ You have to provide the message payload type, you can use "ProtoOAPayloadType" o
 The last parameter of "SendMessage" method is client message ID, you don't have to pass it as the client message ID is optional, this message will be returned back on response.
 
 All open API messages have their own classes, just create an object of message class and send it.
+
+There are other SendMessage method overloads that you can use, all send message methods put your message on the messages queue channel.
+
+To send a message instantly you can use the SendMessageInstant method. 
 
 # Receiving Messages
 
