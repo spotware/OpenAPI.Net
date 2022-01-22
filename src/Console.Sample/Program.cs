@@ -209,6 +209,8 @@ namespace ConsoleDemo
 
                         Console.WriteLine("\nFor getting tick data: tickdata {Account ID} {Symbol ID} {Type (bid/ask)} {Number of Hours}\n");
 
+                        Console.WriteLine("For getting profile: profile\n");
+
                         Console.WriteLine("To refresh access token, type: refreshtoken\n");
 
                         Console.WriteLine("To exit the app and disconnect the client type: disconnect\n");
@@ -239,6 +241,10 @@ namespace ConsoleDemo
 
                     case "tickdata":
                         TickDataRequest(commandSplit);
+                        break;
+
+                    case "profile":
+                        ProfileRequest();
                         break;
 
                     case "refreshtoken":
@@ -292,97 +298,97 @@ namespace ConsoleDemo
 
         private static async void RefreshToken()
         {
-            Console.WriteLine("Refreshing access token...");
+            Console.WriteLine("Sending ProtoOARefreshTokenReq...");
 
-            var refreshTokenReq = new ProtoOARefreshTokenReq
+            var request = new ProtoOARefreshTokenReq
             {
                 RefreshToken = _token.RefreshToken
             };
 
-            await _client.SendMessage(refreshTokenReq);
+            await _client.SendMessage(request);
         }
 
         private static async void SubscribeToSymbolTrendBar(string[] commandSplit)
         {
-            Console.WriteLine("Subscribing to symbol trend bar event...");
+            Console.WriteLine("Sending ProtoOASubscribeLiveTrendbarReq...");
 
-            var subscribeLiveTrendbarReq = new ProtoOASubscribeLiveTrendbarReq()
+            var request = new ProtoOASubscribeLiveTrendbarReq()
             {
                 Period = (ProtoOATrendbarPeriod)Enum.Parse(typeof(ProtoOATrendbarPeriod), commandSplit[2], true),
                 CtidTraderAccountId = long.Parse(commandSplit[3]),
                 SymbolId = long.Parse(commandSplit[4]),
             };
 
-            await _client.SendMessage(subscribeLiveTrendbarReq);
+            await _client.SendMessage(request);
         }
 
         private static async void SubscribeToSymbolSpot(string[] commandSplit)
         {
-            Console.WriteLine("Subscribing to symbol spot event...");
+            Console.WriteLine("Sending ProtoOASubscribeSpotsReq...");
 
-            var subscribeSpotsReq = new ProtoOASubscribeSpotsReq()
+            var request = new ProtoOASubscribeSpotsReq()
             {
                 CtidTraderAccountId = long.Parse(commandSplit[2]),
             };
 
-            subscribeSpotsReq.SymbolId.AddRange(commandSplit.Skip(3).Select(iSymbolId => long.Parse(iSymbolId)));
+            request.SymbolId.AddRange(commandSplit.Skip(3).Select(iSymbolId => long.Parse(iSymbolId)));
 
-            await _client.SendMessage(subscribeSpotsReq);
+            await _client.SendMessage(request);
         }
 
         private static async void SymbolListRequest(string[] commandSplit)
         {
             var accountId = long.Parse(commandSplit[1]);
 
-            Console.WriteLine("Sending symbols list req...");
+            Console.WriteLine("Sending ProtoOASymbolsListReq...");
 
-            var symbolsListReq = new ProtoOASymbolsListReq
+            var request = new ProtoOASymbolsListReq
             {
                 CtidTraderAccountId = accountId,
             };
 
-            await _client.SendMessage(symbolsListReq);
+            await _client.SendMessage(request);
         }
 
         private static async void ReconcileRequest(string[] commandSplit)
         {
             var accountId = long.Parse(commandSplit[1]);
 
-            Console.WriteLine("Sending reconcile req...");
+            Console.WriteLine("Sending ProtoOAReconcileReq...");
 
-            var reconcileReq = new ProtoOAReconcileReq
+            var request = new ProtoOAReconcileReq
             {
                 CtidTraderAccountId = accountId,
             };
 
-            await _client.SendMessage(reconcileReq);
+            await _client.SendMessage(request);
         }
 
         private static async void AccountListRequest()
         {
-            Console.WriteLine("Sending account list req...");
+            Console.WriteLine("Sending ProtoOAGetAccountListByAccessTokenReq...");
 
-            var accountListByAccessTokenReq = new ProtoOAGetAccountListByAccessTokenReq
+            var request = new ProtoOAGetAccountListByAccessTokenReq
             {
                 AccessToken = _token.AccessToken,
             };
 
-            await _client.SendMessage(accountListByAccessTokenReq);
+            await _client.SendMessage(request);
         }
 
         private static async void AccountAuthRequest(string[] commandSplit)
         {
             var accountId = long.Parse(commandSplit[1]);
 
-            Console.WriteLine("Sending account auth req...");
+            Console.WriteLine("Sending ProtoOAAccountAuthReq...");
 
-            var accountAuthReq = new ProtoOAAccountAuthReq
+            var request = new ProtoOAAccountAuthReq
             {
                 CtidTraderAccountId = accountId,
                 AccessToken = _token.AccessToken
             };
 
-            await _client.SendMessage(accountAuthReq);
+            await _client.SendMessage(request);
         }
 
         private static async void TickDataRequest(string[] commandSplit)
@@ -397,9 +403,9 @@ namespace ConsoleDemo
 
             var hours = long.Parse(commandSplit[4]);
 
-            Console.WriteLine("Sending tick data req...");
+            Console.WriteLine("Sending ProtoOAGetTickDataReq...");
 
-            var tickDataReq = new ProtoOAGetTickDataReq
+            var request = new ProtoOAGetTickDataReq
             {
                 CtidTraderAccountId = accountId,
                 SymbolId = symbolId,
@@ -408,7 +414,19 @@ namespace ConsoleDemo
                 Type = type
             };
 
-            await _client.SendMessage(tickDataReq);
+            await _client.SendMessage(request);
+        }
+
+        private static async void ProfileRequest()
+        {
+            Console.WriteLine("Sending ProtoOAGetCtidProfileByTokenReq...");
+
+            var request = new ProtoOAGetCtidProfileByTokenReq
+            {
+                AccessToken = _token.AccessToken
+            };
+
+            await _client.SendMessage(request);
         }
 
         private static void GetCommand()
