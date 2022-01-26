@@ -6,9 +6,9 @@ namespace OpenAPI.Net.Exceptions
     /// The exception that is thrown while writing on network stream in OpenClient
     /// The innerException is the real exception that was thrown.
     /// </summary>
-    public class WriteException : Exception
+    public class SendException : Exception
     {
-        public WriteException(Exception innerException) : base("An exception occurred while writing on stream", innerException)
+        public SendException(Exception innerException) : base("An exception occurred while writing on stream", innerException)
         {
         }
     }

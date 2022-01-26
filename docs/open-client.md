@@ -148,15 +148,15 @@ If you try to dispose a terminated client nothing will happen.
 
 Client most probably will throw one of these exception types:
 
-* ReadException: This exception type will be thrown if something went wrong during reading of client TCP stream
+* ReceiveException: This exception type will be thrown if something went wrong while receiving data
 * ObserverException: This exception will be thrown if something went wrong during an observer (subscriber) OnNext method call, you can get the observer object via its Observer property
 
 Check the above exceptions "InnerException" property to get the actual exception.
 
 During call to any of client "SendMessage" methods you can expect one of these exceptions:
 
-* WriteException: This exception will be thrown if something went wrong during writing on client TCP stream, check the innerExceptio for gettign the actual exception
-* ObjectDisposedException: If you call send message of a disposed client then it will throw this excpetion
+* SendException: This exception will be thrown if something went wrong while sending data
+* ObjectDisposedException: If you call send message of a disposed client then it will throw this exception
 
 # Disposing Client
 

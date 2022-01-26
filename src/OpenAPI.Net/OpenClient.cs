@@ -228,7 +228,7 @@ namespace OpenAPI.Net
         /// </summary>
         /// <param name="message">Message</param>
         /// <exception cref="ObjectDisposedException">If client is already disposed</exception>
-        /// <exception cref="WriteException">If something went wrong while sending the message, please check the inner exception for more detail</exception>
+        /// <exception cref="SendException">If something went wrong while sending the message, please check the inner exception for more detail</exception>
         /// <returns>Task</returns>
         public async Task SendMessageInstant(ProtoMessage message)
         {
@@ -251,9 +251,9 @@ namespace OpenAPI.Net
             }
             catch (Exception ex)
             {
-                var writeException = new WriteException(ex);
+                var exception = new SendException(ex);
 
-                throw writeException;
+                throw exception;
             }
         }
 
@@ -421,9 +421,9 @@ namespace OpenAPI.Net
             }
             catch (Exception ex)
             {
-                var readException = new ReadException(ex);
+                var exception = new ReceiveException(ex);
 
-                OnError(readException);
+                OnError(exception);
             }
         }
 
