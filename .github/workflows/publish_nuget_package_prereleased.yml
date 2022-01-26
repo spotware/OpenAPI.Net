@@ -35,7 +35,7 @@ jobs:
     - name: Decrypt Certificate
       run: ./decrypt_certificate.sh
       env:
-          LARGE_SECRET_PASSPHRASE: ${{secrets.CERTIFICATE_GPG_PASSPHRASE}}
+          CERTIFICATE_GPG_PASSPHRASE: ${{secrets.CERTIFICATE_GPG_PASSPHRASE}}
 
     - name: Sign Package
       run: nuget sign **\*.nupkg -CertificatePath $HOME/secrets/certificate.pfx -Timestamper http://timestamp.digicert.com/
