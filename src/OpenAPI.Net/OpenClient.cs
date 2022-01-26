@@ -62,7 +62,7 @@ namespace OpenAPI.Net
             _heartbeatInerval = heartbeatInerval;
             MaxRequestPerSecond = maxRequestPerSecond;
             _requestDelay = TimeSpan.FromMilliseconds(1000 / MaxRequestPerSecond);
-            UseWebSocket = useWebSocket;
+            IsUsingWebSocket = useWebSocket;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace OpenAPI.Net
         /// <summary>
         /// If client is connected via websocket then this will return True, otherwise False
         /// </summary>
-        public bool UseWebSocket { get; }
+        public bool IsUsingWebSocket { get; }
 
         /// <summary>
         /// If client is disposed then this will return True, otherwise False
@@ -122,7 +122,7 @@ namespace OpenAPI.Net
 
             try
             {
-                if (UseWebSocket)
+                if (IsUsingWebSocket)
                 {
                     await ConnectWebScoket();
                 }
@@ -238,7 +238,7 @@ namespace OpenAPI.Net
             {
                 var messageByte = message.ToByteArray();
 
-                if (UseWebSocket)
+                if (IsUsingWebSocket)
                 {
                     _websocketClient.Send(messageByte);
                 }
@@ -274,7 +274,7 @@ namespace OpenAPI.Net
 
             MessagesQueueCount = 0;
 
-            if (UseWebSocket)
+            if (IsUsingWebSocket)
             {
                 _webSocketMessageReceivedDisposable?.Dispose();
 
