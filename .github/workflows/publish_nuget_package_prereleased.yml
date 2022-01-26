@@ -38,7 +38,7 @@ jobs:
           CERTIFICATE_GPG_PASSPHRASE: ${{secrets.CERTIFICATE_GPG_PASSPHRASE}}
 
     - name: Sign Package
-      run: nuget sign **\*.nupkg -CertificatePath $HOME/secrets/certificate.pfx -Timestamper http://timestamp.digicert.com/
+      run: nuget sign **\*.nupkg -CertificatePath $HOME/secrets/certificate.pfx -Timestamper http://timestamp.digicert.com/ -CertificatePassword ${{secrets.CERTIFICATE_PASSWORD}} -NonInteractive
 
     - name: Publish Package
       run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
