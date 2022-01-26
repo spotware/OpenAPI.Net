@@ -17,6 +17,9 @@ jobs:
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
+      with:
+        nuget-api-key: ${{secrets.NUGET_API_KEY}}
+        nuget-version: 'latest'
 
     - name: Restore dependencies
       run: nuget restore $PROJECT
@@ -37,11 +40,14 @@ jobs:
       env:
           CERTIFICATE_GPG_PASSPHRASE: ${{secrets.CERTIFICATE_GPG_PASSPHRASE}}
 
+    - name: Importing Certificate
+      run: sudo cp $HOME/secrets/certificate.pfx /usr/share/ca-certificates/certificate.pfx ; sudo dpkg-reconfigure ca-certificates ; sudo update-ca-certificates ; git config --global http.sslCAInfo /usr/share/ca-certificates/certificate.pfx
+
     - name: Sign Package
       run: nuget sign **\*.nupkg -CertificatePath $HOME/secrets/certificate.pfx -Timestamper http://timestamp.digicert.com/ -CertificatePassword ${{secrets.CERTIFICATE_PASSWORD}} -NonInteractive
 
     - name: Publish Package
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json'
 
-    - name: Publish symbols
-      run: nuget push **\*.snupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+    - name: Publish Symbols
+      run: nuget push **\*.snupkg -Source 'https://api.nuget.org/v3/index.json'
