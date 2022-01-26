@@ -28,7 +28,10 @@ jobs:
 
     - name: Build
       run: dotnet build $PROJECT --configuration $BUILD_CONFIG --no-restore
-      
+    
+    - name: Set Execution Permission For decrypt_certificate.sh
+      run: chmod +x ./decrypt_certificate.sh
+
     - name: Decrypt Certificate
       run: ./decrypt_certificate.sh
       env:
