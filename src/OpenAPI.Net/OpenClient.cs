@@ -444,10 +444,12 @@ namespace OpenAPI.Net
 
         /// <summary>
         /// Sends heartbeat to API for keeping the connection alive
+        /// If the client is not disposed yet and the time difference
+        /// between last sent message and now is greater than heart beat interval
         /// </summary>
         private async void SendHeartbeat()
         {
-            if (DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
+            if (IsDisposed || DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
 
             await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
         }
