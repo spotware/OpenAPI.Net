@@ -8,18 +8,45 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      BUILD_CONFIG: 'Release'
+      PROJECT: 'src/OpenAPI.Net/OpenAPI.Net.csproj'
+
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Get Build Version
+      run: |
+        Import-Module .\build\GetBuildVersion.psm1
+        Write-Host $Env:GITHUB_REF
+        $version = GetBuildVersion -VersionString $Env:GITHUB_REF
+        echo "BUILD_VERSION=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+      shell: pwsh
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+
+    - name: Restore dependencies
+      run: nuget restore $PROJECT
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x'
-    - name: Install dependencies
-      run: dotnet restore src/OpenAPI.Net/OpenAPI.Net.csproj
+
     - name: Build
-      run: dotnet build src/OpenAPI.Net/OpenAPI.Net.csproj --configuration Release --no-restore
-    - name: Publish on pre-release
-      uses: rohith/publish-nuget@v2
-      with:
-          PROJECT_FILE_PATH: src/OpenAPI.Net/OpenAPI.Net.csproj
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      run: dotnet build $PROJECT --configuration $BUILD_CONFIG --no-restore
+      
+    - name: Decrypt Certificate
+      run: ./decrypt_certificate.sh
+      env:
+          LARGE_SECRET_PASSPHRASE: ${{secrets.CERTIFICATE_GPG_PASSPHRASE}}
+
+    - name: Sign Package
+      run: nuget sign **\*.nupkg -CertificatePath $HOME/secrets/certificate.pfx -Timestamper http://timestamp.digicert.com/
+
+    - name: Publish Package
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+
+    - name: Publish symbols
+      run: nuget push **\*.snupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
