@@ -21,13 +21,13 @@ jobs:
         nuget-api-key: ${{secrets.NUGET_API_KEY}}
         nuget-version: 'latest'
 
-    - name: Restore dependencies
-      run: nuget restore $PROJECT
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore $PROJECT
 
     - name: Build
       run: dotnet build $PROJECT --configuration $BUILD_CONFIG --no-restore
