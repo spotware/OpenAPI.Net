@@ -1,12 +1,8 @@
 name: Publish Nuget Package When Pre-Released
 
-#on:
-#  release:
-#    types: [prereleased]
 on:
-  push:
-    branches:
-      - dev
+  release:
+    types: [prereleased]
 
 jobs:
   build:
