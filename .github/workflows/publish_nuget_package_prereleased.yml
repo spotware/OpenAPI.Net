@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     env:
       BUILD_CONFIG: 'Release'
@@ -31,20 +31,12 @@ jobs:
 
     - name: Build
       run: dotnet build $PROJECT --configuration $BUILD_CONFIG --no-restore
-    
-    - name: Set Execution Permission For decrypt_certificate.sh
-      run: chmod +x ./decrypt_certificate.sh
 
     - name: Decrypt Certificate
-      run: ./decrypt_certificate.sh
-      env:
-          CERTIFICATE_GPG_PASSPHRASE: ${{secrets.CERTIFICATE_GPG_PASSPHRASE}}
-
-    - name: Importing Certificate
-      run: sudo cp $HOME/secrets/certificate.pfx /usr/share/ca-certificates/certificate.pfx ; sudo dpkg-reconfigure ca-certificates ; sudo update-ca-certificates ; git config --global http.sslCAInfo /usr/share/ca-certificates/certificate.pfx
+      run: .\FileEncrypt.exe decrypt .\certificate.pfx.encrypted ${{secrets.CERTIFICATE_DECRYPTION_KEY}} ${{secrets.CERTIFICATE_DECRYPTION_IV}}
 
     - name: Sign Package
-      run: nuget sign **\*.nupkg -CertificatePath $HOME/secrets/certificate.pfx -Timestamper http://timestamp.digicert.com/ -CertificatePassword ${{secrets.CERTIFICATE_PASSWORD}} -NonInteractive
+      run: nuget sign **\*.nupkg -CertificatePath certificate.pfx -Timestamper http://timestamp.digicert.com/ -CertificatePassword ${{secrets.CERTIFICATE_PASSWORD}} -NonInteractive
 
     - name: Publish Package
       run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json'
