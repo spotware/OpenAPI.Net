@@ -1,8 +1,12 @@
 name: Publish Nuget Package When Pre-Released
 
+#on:
+#  release:
+#    types: [prereleased]
 on:
-  release:
-    types: [prereleased]
+  push:
+    branches:
+      - dev
 
 jobs:
   build:
@@ -26,7 +30,7 @@ jobs:
       run: dotnet restore ./src/OpenAPI.Net/OpenAPI.Net.csproj
 
     - name: Build
-      run: dotnet build $PROJECT --configuration Release --no-restore
+      run: dotnet build ./src/OpenAPI.Net/OpenAPI.Net.csproj --configuration Release --no-restore
 
     - name: Decrypt Certificate
       run: FileEncrypt decrypt .\certificate.pfx.encrypted ${{secrets.CERTIFICATE_DECRYPTION_KEY}} ${{secrets.CERTIFICATE_DECRYPTION_IV}}
