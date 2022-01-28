@@ -36,6 +36,3 @@ jobs:
 
     - name: Publish Package
       run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json'
-
-    - name: Publish Symbols
-      run: nuget push **\*.snupkg -Source 'https://api.nuget.org/v3/index.json'
