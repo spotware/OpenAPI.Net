@@ -272,6 +272,8 @@ namespace OpenAPI.Net
 
             _messagesChannel.Writer.TryComplete();
 
+            _cancellationTokenSource.Dispose();
+
             MessagesQueueCount = 0;
 
             if (IsUsingWebSocket)
@@ -390,6 +392,8 @@ namespace OpenAPI.Net
                         var count = lengthArray.Length - readBytes;
 
                         readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationToken).ConfigureAwait(false);
+
+                        if (readBytes == 0) new InvalidOperationException("Remote host closed the connection");
                     }
                     while (readBytes < lengthArray.Length);
 
@@ -408,6 +412,8 @@ namespace OpenAPI.Net
                         var count = data.Length - readBytes;
 
                         readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationToken).ConfigureAwait(false);
+
+                        if (readBytes == 0) new InvalidOperationException("Remote host closed the connection");
                     }
                     while (readBytes < length);
 
@@ -416,7 +422,7 @@ namespace OpenAPI.Net
                     OnNext(message);
                 }
             }
-            catch (Exception ex) when (ex is TaskCanceledException || ex is OperationCanceledException)
+            catch (Exception ex) when (ex is OperationCanceledException)
             {
             }
             catch (Exception ex)
