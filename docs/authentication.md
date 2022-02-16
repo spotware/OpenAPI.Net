@@ -1,10 +1,10 @@
-# API Application
+## API Application
 
 To use Spotware Open API you have to first create an open API application, send an activation request to Spotware for your application, and once it got activated you can start using the API through your application.
 
-To create an Open API application go to: <a href="https://connect.spotware.com/">https://connect.spotware.com/</a>
+To create an Open API application go to: [**openapi.ctrader.com**](https://openapi.ctrader.com/){:target="\_blank"}
 
-# Getting Auth Code
+## Getting Auth Code
 
 After Spotware activated your API application, you can start using it, the first step is to get an authentication code from user, to do that via OpenAPI.NET you can use the code below to get authentication URL:
 
@@ -43,7 +43,7 @@ As you can see "http://api.algodeveloper.com/redirects/" is my redirect URI and 
 
 To extract the authentication code from redirect URL you can use the AuthCode class.
 
-# Generating Access Token
+## Generating Access Token
 
 After you got the user authentication code, you can generate an access token, you have to do it instantly otherwise authentication code will expire after one minute.
 

@@ -1,4 +1,4 @@
-# Creating/Connecting Client
+## Creating/Connecting Client
 
 The open client is the object that you will use to send/receive messages to API.
 
@@ -66,7 +66,7 @@ Or you can:
 
 The OpenClient class has some useful public properties you can use to check the state of client.
 
-# Sending Messages
+## Sending Messages
 
 You can send all of the Open API supported messages easily via your OpenClient object, just create the message object and send it by calling client "SendMessage" method:
 
@@ -93,7 +93,7 @@ There are other SendMessage method overloads that you can use, all send message 
 
 To send a message instantly you can use the SendMessageInstant method. 
 
-# Receiving Messages
+## Receiving Messages
 
 The OpenClient (IOpenClient) class implements the RX "IObservable<IMessage>" interface, the "IMessage" is the base class of all Google Protobuf messages, this allows you to easily subscribe to any message type you want to receive:
 
@@ -133,7 +133,7 @@ If you want to receive a message with a client message ID (clientMsgId) then you
 
 Client only stream a ProtoMessage if its ClientMsgId is set or it couldn't parse the actual message, otherwise it will not stream it.
 
-# Handling Exceptions
+## Handling Exceptions
 
 If something went wrong or client lost connection to API you can get the thrown exception by subscribing to client stream OnError:
 
@@ -158,7 +158,7 @@ During call to any of client "SendMessage" methods you can expect one of these e
 * SendException: This exception will be thrown if something went wrong while sending data
 * ObjectDisposedException: If you call send message of a disposed client then it will throw this exception
 
-# Disposing Client
+## Disposing Client
 
 As mentioned the client object implements IDisposable interface, so you must dispose it after finishing your work.
 
