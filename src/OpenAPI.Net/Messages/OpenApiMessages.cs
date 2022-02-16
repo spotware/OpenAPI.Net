@@ -336,9 +336,18 @@ public static partial class OpenApiMessagesReflection {
           "R2V0RHluYW1pY0xldmVyYWdlQnlJRFJlcxJLCgtwYXlsb2FkVHlwZRgBIAEo",
           "DjITLlByb3RvT0FQYXlsb2FkVHlwZTohUFJPVE9fT0FfR0VUX0RZTkFNSUNf",
           "TEVWRVJBR0VfUkVTEhsKE2N0aWRUcmFkZXJBY2NvdW50SWQYAiACKAMSKQoI",
-          "bGV2ZXJhZ2UYAyACKAsyFy5Qcm90b09BRHluYW1pY0xldmVyYWdlQkIKH2Nv",
-          "bS54dHJhZGVyLnByb3RvY29sLm9wZW5hcGkudjJCGkNvbnRhaW5lck9wZW5B",
-          "cGlWMk1lc3NhZ2VzUAGgAQE="));
+          "bGV2ZXJhZ2UYAyACKAsyFy5Qcm90b09BRHluYW1pY0xldmVyYWdlIs4BCh5Q",
+          "cm90b09BRGVhbExpc3RCeVBvc2l0aW9uSWRSZXESTwoLcGF5bG9hZFR5cGUY",
+          "ASABKA4yEy5Qcm90b09BUGF5bG9hZFR5cGU6JVBST1RPX09BX0RFQUxfTElT",
+          "VF9CWV9QT1NJVElPTl9JRF9SRVESGwoTY3RpZFRyYWRlckFjY291bnRJZBgC",
+          "IAIoAxISCgpwb3NpdGlvbklkGAMgAigDEhUKDWZyb21UaW1lc3RhbXAYBCAC",
+          "KAMSEwoLdG9UaW1lc3RhbXAYBSACKAMiuwEKHlByb3RvT0FEZWFsTGlzdEJ5",
+          "UG9zaXRpb25JZFJlcxJPCgtwYXlsb2FkVHlwZRgBIAEoDjITLlByb3RvT0FQ",
+          "YXlsb2FkVHlwZTolUFJPVE9fT0FfREVBTF9MSVNUX0JZX1BPU0lUSU9OX0lE",
+          "X1JFUxIbChNjdGlkVHJhZGVyQWNjb3VudElkGAIgAigDEhoKBGRlYWwYAyAD",
+          "KAsyDC5Qcm90b09BRGVhbBIPCgdoYXNNb3JlGAQgAigIQkIKH2NvbS54dHJh",
+          "ZGVyLnByb3RvY29sLm9wZW5hcGkudjJCGkNvbnRhaW5lck9wZW5BcGlWMk1l",
+          "c3NhZ2VzUAGgAQE="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::OpenApiModelMessagesReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -420,7 +429,9 @@ public static partial class OpenApiMessagesReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAMarginCallUpdateEvent), global::ProtoOAMarginCallUpdateEvent.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "MarginCall" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAMarginCallTriggerEvent), global::ProtoOAMarginCallTriggerEvent.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "MarginCall" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetDynamicLeverageByIDReq), global::ProtoOAGetDynamicLeverageByIDReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "LeverageId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetDynamicLeverageByIDRes), global::ProtoOAGetDynamicLeverageByIDRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Leverage" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOAGetDynamicLeverageByIDRes), global::ProtoOAGetDynamicLeverageByIDRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Leverage" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOADealListByPositionIdReq), global::ProtoOADealListByPositionIdReq.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "PositionId", "FromTimestamp", "ToTimestamp" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoOADealListByPositionIdRes), global::ProtoOADealListByPositionIdRes.Parser, new[]{ "PayloadType", "CtidTraderAccountId", "Deal", "HasMore" }, null, null, null, null)
         }));
   }
   #endregion
@@ -18888,9 +18899,7 @@ public sealed partial class ProtoOAUnsubscribeSpotsRes : pb::IMessage<ProtoOAUns
 }
 
 /// <summary>
-///* Event that is sent when a new spot event is generated on the server side. 
-///Requires subscription on the spot events, see ProtoOASubscribeSpotsReq. 
-///First event, received after subscription will contain latest spot prices even if market is closed 
+///* Event that is sent when a new spot event is generated on the server side. Requires subscription on the spot events, see ProtoOASubscribeSpotsReq. First event, received after subscription will contain latest spot prices even if market is closed. 
 /// </summary>
 public sealed partial class ProtoOASpotEvent : pb::IMessage<ProtoOASpotEvent>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -22329,7 +22338,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
       = pb::FieldCodec.ForMessage(26, global::ProtoOATickData.Parser);
   private readonly pbc::RepeatedField<global::ProtoOATickData> tickData_ = new pbc::RepeatedField<global::ProtoOATickData>();
   /// <summary>
-  /// The list of ticks.
+  /// The list of ticks in chronological order. The first tick contains Unix timestamp in milliseconds while all subsequent ticks have the time difference in milliseconds between previous and the current one.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -25666,8 +25675,7 @@ public sealed partial class ProtoOAAccountLogoutRes : pb::IMessage<ProtoOAAccoun
 }
 
 /// <summary>
-///* Event that is sent when the established session for an account is dropped on the server side.
-///A new session must be authorized for the account.  
+///* Event that is sent when the established session for an account is dropped on the server side. A new session must be authorized for the account.  
 /// </summary>
 public sealed partial class ProtoOAAccountDisconnectEvent : pb::IMessage<ProtoOAAccountDisconnectEvent>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -28173,6 +28181,783 @@ public sealed partial class ProtoOAGetDynamicLeverageByIDRes : pb::IMessage<Prot
             Leverage = new global::ProtoOADynamicLeverage();
           }
           input.ReadMessage(Leverage);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+///* Request for retrieving the deals related to a position. 
+/// </summary>
+public sealed partial class ProtoOADealListByPositionIdReq : pb::IMessage<ProtoOADealListByPositionIdReq>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ProtoOADealListByPositionIdReq> _parser = new pb::MessageParser<ProtoOADealListByPositionIdReq>(() => new ProtoOADealListByPositionIdReq());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ProtoOADealListByPositionIdReq> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[79]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOADealListByPositionIdReq() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOADealListByPositionIdReq(ProtoOADealListByPositionIdReq other) : this() {
+    _hasBits0 = other._hasBits0;
+    payloadType_ = other.payloadType_;
+    ctidTraderAccountId_ = other.ctidTraderAccountId_;
+    positionId_ = other.positionId_;
+    fromTimestamp_ = other.fromTimestamp_;
+    toTimestamp_ = other.toTimestamp_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOADealListByPositionIdReq Clone() {
+    return new ProtoOADealListByPositionIdReq(this);
+  }
+
+  /// <summary>Field number for the "payloadType" field.</summary>
+  public const int PayloadTypeFieldNumber = 1;
+  private readonly static global::ProtoOAPayloadType PayloadTypeDefaultValue = global::ProtoOAPayloadType.ProtoOaDealListByPositionIdReq;
+
+  private global::ProtoOAPayloadType payloadType_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ProtoOAPayloadType PayloadType {
+    get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      payloadType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "payloadType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasPayloadType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "payloadType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearPayloadType() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "ctidTraderAccountId" field.</summary>
+  public const int CtidTraderAccountIdFieldNumber = 2;
+  private readonly static long CtidTraderAccountIdDefaultValue = 0L;
+
+  private long ctidTraderAccountId_;
+  /// <summary>
+  /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long CtidTraderAccountId {
+    get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      ctidTraderAccountId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasCtidTraderAccountId {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearCtidTraderAccountId() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "positionId" field.</summary>
+  public const int PositionIdFieldNumber = 3;
+  private readonly static long PositionIdDefaultValue = 0L;
+
+  private long positionId_;
+  /// <summary>
+  /// The unique ID of the position.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long PositionId {
+    get { if ((_hasBits0 & 4) != 0) { return positionId_; } else { return PositionIdDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      positionId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "positionId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasPositionId {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "positionId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearPositionId() {
+    _hasBits0 &= ~4;
+  }
+
+  /// <summary>Field number for the "fromTimestamp" field.</summary>
+  public const int FromTimestampFieldNumber = 4;
+  private readonly static long FromTimestampDefaultValue = 0L;
+
+  private long fromTimestamp_;
+  /// <summary>
+  /// The exact time of starting the search in milliseconds. Must be bigger of equal to zero (1-1-1970). Validation: toTimestamp - fromTimestamp &lt;= 604800000 (1 week).
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long FromTimestamp {
+    get { if ((_hasBits0 & 8) != 0) { return fromTimestamp_; } else { return FromTimestampDefaultValue; } }
+    set {
+      _hasBits0 |= 8;
+      fromTimestamp_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fromTimestamp" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasFromTimestamp {
+    get { return (_hasBits0 & 8) != 0; }
+  }
+  /// <summary>Clears the value of the "fromTimestamp" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearFromTimestamp() {
+    _hasBits0 &= ~8;
+  }
+
+  /// <summary>Field number for the "toTimestamp" field.</summary>
+  public const int ToTimestampFieldNumber = 5;
+  private readonly static long ToTimestampDefaultValue = 0L;
+
+  private long toTimestamp_;
+  /// <summary>
+  /// The exact time of finishing the search in milliseconds &lt;= 2147483646000 (19-1-2038).
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long ToTimestamp {
+    get { if ((_hasBits0 & 16) != 0) { return toTimestamp_; } else { return ToTimestampDefaultValue; } }
+    set {
+      _hasBits0 |= 16;
+      toTimestamp_ = value;
+    }
+  }
+  /// <summary>Gets whether the "toTimestamp" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasToTimestamp {
+    get { return (_hasBits0 & 16) != 0; }
+  }
+  /// <summary>Clears the value of the "toTimestamp" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearToTimestamp() {
+    _hasBits0 &= ~16;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ProtoOADealListByPositionIdReq);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ProtoOADealListByPositionIdReq other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PayloadType != other.PayloadType) return false;
+    if (CtidTraderAccountId != other.CtidTraderAccountId) return false;
+    if (PositionId != other.PositionId) return false;
+    if (FromTimestamp != other.FromTimestamp) return false;
+    if (ToTimestamp != other.ToTimestamp) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasPayloadType) hash ^= PayloadType.GetHashCode();
+    if (HasCtidTraderAccountId) hash ^= CtidTraderAccountId.GetHashCode();
+    if (HasPositionId) hash ^= PositionId.GetHashCode();
+    if (HasFromTimestamp) hash ^= FromTimestamp.GetHashCode();
+    if (HasToTimestamp) hash ^= ToTimestamp.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    if (HasPositionId) {
+      output.WriteRawTag(24);
+      output.WriteInt64(PositionId);
+    }
+    if (HasFromTimestamp) {
+      output.WriteRawTag(32);
+      output.WriteInt64(FromTimestamp);
+    }
+    if (HasToTimestamp) {
+      output.WriteRawTag(40);
+      output.WriteInt64(ToTimestamp);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    if (HasPositionId) {
+      output.WriteRawTag(24);
+      output.WriteInt64(PositionId);
+    }
+    if (HasFromTimestamp) {
+      output.WriteRawTag(32);
+      output.WriteInt64(FromTimestamp);
+    }
+    if (HasToTimestamp) {
+      output.WriteRawTag(40);
+      output.WriteInt64(ToTimestamp);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasPayloadType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(CtidTraderAccountId);
+    }
+    if (HasPositionId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(PositionId);
+    }
+    if (HasFromTimestamp) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(FromTimestamp);
+    }
+    if (HasToTimestamp) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(ToTimestamp);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ProtoOADealListByPositionIdReq other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasPayloadType) {
+      PayloadType = other.PayloadType;
+    }
+    if (other.HasCtidTraderAccountId) {
+      CtidTraderAccountId = other.CtidTraderAccountId;
+    }
+    if (other.HasPositionId) {
+      PositionId = other.PositionId;
+    }
+    if (other.HasFromTimestamp) {
+      FromTimestamp = other.FromTimestamp;
+    }
+    if (other.HasToTimestamp) {
+      ToTimestamp = other.ToTimestamp;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 24: {
+          PositionId = input.ReadInt64();
+          break;
+        }
+        case 32: {
+          FromTimestamp = input.ReadInt64();
+          break;
+        }
+        case 40: {
+          ToTimestamp = input.ReadInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 24: {
+          PositionId = input.ReadInt64();
+          break;
+        }
+        case 32: {
+          FromTimestamp = input.ReadInt64();
+          break;
+        }
+        case 40: {
+          ToTimestamp = input.ReadInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+///* Response to the ProtoOADealListByPositionIdReq request. 
+/// </summary>
+public sealed partial class ProtoOADealListByPositionIdRes : pb::IMessage<ProtoOADealListByPositionIdRes>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ProtoOADealListByPositionIdRes> _parser = new pb::MessageParser<ProtoOADealListByPositionIdRes>(() => new ProtoOADealListByPositionIdRes());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ProtoOADealListByPositionIdRes> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::OpenApiMessagesReflection.Descriptor.MessageTypes[80]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOADealListByPositionIdRes() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOADealListByPositionIdRes(ProtoOADealListByPositionIdRes other) : this() {
+    _hasBits0 = other._hasBits0;
+    payloadType_ = other.payloadType_;
+    ctidTraderAccountId_ = other.ctidTraderAccountId_;
+    deal_ = other.deal_.Clone();
+    hasMore_ = other.hasMore_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ProtoOADealListByPositionIdRes Clone() {
+    return new ProtoOADealListByPositionIdRes(this);
+  }
+
+  /// <summary>Field number for the "payloadType" field.</summary>
+  public const int PayloadTypeFieldNumber = 1;
+  private readonly static global::ProtoOAPayloadType PayloadTypeDefaultValue = global::ProtoOAPayloadType.ProtoOaDealListByPositionIdRes;
+
+  private global::ProtoOAPayloadType payloadType_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ProtoOAPayloadType PayloadType {
+    get { if ((_hasBits0 & 1) != 0) { return payloadType_; } else { return PayloadTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      payloadType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "payloadType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasPayloadType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "payloadType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearPayloadType() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "ctidTraderAccountId" field.</summary>
+  public const int CtidTraderAccountIdFieldNumber = 2;
+  private readonly static long CtidTraderAccountIdDefaultValue = 0L;
+
+  private long ctidTraderAccountId_;
+  /// <summary>
+  /// Unique identifier of the trader's account. Used to match responses to trader's accounts.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long CtidTraderAccountId {
+    get { if ((_hasBits0 & 2) != 0) { return ctidTraderAccountId_; } else { return CtidTraderAccountIdDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      ctidTraderAccountId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "ctidTraderAccountId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasCtidTraderAccountId {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "ctidTraderAccountId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearCtidTraderAccountId() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "deal" field.</summary>
+  public const int DealFieldNumber = 3;
+  private static readonly pb::FieldCodec<global::ProtoOADeal> _repeated_deal_codec
+      = pb::FieldCodec.ForMessage(26, global::ProtoOADeal.Parser);
+  private readonly pbc::RepeatedField<global::ProtoOADeal> deal_ = new pbc::RepeatedField<global::ProtoOADeal>();
+  /// <summary>
+  /// The list of deals.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::ProtoOADeal> Deal {
+    get { return deal_; }
+  }
+
+  /// <summary>Field number for the "hasMore" field.</summary>
+  public const int HasMoreFieldNumber = 4;
+  private readonly static bool HasMoreDefaultValue = false;
+
+  private bool hasMore_;
+  /// <summary>
+  /// If TRUE then the number of records by filter is larger than chunkSize, the response contains the number of records that is equal to chunkSize.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasMore {
+    get { if ((_hasBits0 & 4) != 0) { return hasMore_; } else { return HasMoreDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      hasMore_ = value;
+    }
+  }
+  /// <summary>Gets whether the "hasMore" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasHasMore {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "hasMore" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearHasMore() {
+    _hasBits0 &= ~4;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ProtoOADealListByPositionIdRes);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ProtoOADealListByPositionIdRes other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PayloadType != other.PayloadType) return false;
+    if (CtidTraderAccountId != other.CtidTraderAccountId) return false;
+    if(!deal_.Equals(other.deal_)) return false;
+    if (HasMore != other.HasMore) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasPayloadType) hash ^= PayloadType.GetHashCode();
+    if (HasCtidTraderAccountId) hash ^= CtidTraderAccountId.GetHashCode();
+    hash ^= deal_.GetHashCode();
+    if (HasHasMore) hash ^= HasMore.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    deal_.WriteTo(output, _repeated_deal_codec);
+    if (HasHasMore) {
+      output.WriteRawTag(32);
+      output.WriteBool(HasMore);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (HasPayloadType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      output.WriteRawTag(16);
+      output.WriteInt64(CtidTraderAccountId);
+    }
+    deal_.WriteTo(ref output, _repeated_deal_codec);
+    if (HasHasMore) {
+      output.WriteRawTag(32);
+      output.WriteBool(HasMore);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasPayloadType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PayloadType);
+    }
+    if (HasCtidTraderAccountId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(CtidTraderAccountId);
+    }
+    size += deal_.CalculateSize(_repeated_deal_codec);
+    if (HasHasMore) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ProtoOADealListByPositionIdRes other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasPayloadType) {
+      PayloadType = other.PayloadType;
+    }
+    if (other.HasCtidTraderAccountId) {
+      CtidTraderAccountId = other.CtidTraderAccountId;
+    }
+    deal_.Add(other.deal_);
+    if (other.HasHasMore) {
+      HasMore = other.HasMore;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 26: {
+          deal_.AddEntriesFrom(input, _repeated_deal_codec);
+          break;
+        }
+        case 32: {
+          HasMore = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PayloadType = (global::ProtoOAPayloadType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          CtidTraderAccountId = input.ReadInt64();
+          break;
+        }
+        case 26: {
+          deal_.AddEntriesFrom(ref input, _repeated_deal_codec);
+          break;
+        }
+        case 32: {
+          HasMore = input.ReadBool();
           break;
         }
       }
