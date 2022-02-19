@@ -331,7 +331,7 @@ namespace OpenAPI.Net
 
             await _sslStream.AuthenticateAsClientAsync(Host).ConfigureAwait(false);
 
-            _ = ReadTcp(_cancellationTokenSource.Token);
+            _ = Task.Run(() => ReadTcp(_cancellationTokenSource.Token));
         }
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace OpenAPI.Net
         /// </summary>
         /// <param name="cancellationToken">The cancellation token that will be used on ReadAsync calls</param>
         /// <returns>Task</returns>
-        private async Task ReadTcp(CancellationToken cancellationToken)
+        private async void ReadTcp(CancellationToken cancellationToken)
         {
             try
             {
