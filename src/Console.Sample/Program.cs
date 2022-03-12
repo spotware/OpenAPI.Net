@@ -18,7 +18,7 @@ namespace ConsoleDemo
 
         private static OpenClient _client;
 
-        private static readonly List<IDisposable> _disposables = new List<IDisposable>();
+        private static readonly List<IDisposable> _disposables = new();
 
         private static async Task Main()
         {
@@ -298,6 +298,13 @@ namespace ConsoleDemo
 
         private static async void RefreshToken()
         {
+            if (string.IsNullOrWhiteSpace(_token.RefreshToken))
+            {
+                Console.Write("Refresh Token: ");
+
+                _token.RefreshToken = Console.ReadLine();
+            }
+
             Console.WriteLine("Sending ProtoOARefreshTokenReq...");
 
             var request = new ProtoOARefreshTokenReq
