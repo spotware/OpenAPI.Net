@@ -169,8 +169,7 @@ namespace OpenAPI.Net
         /// <param name="clientMsgId">The client message ID (optional)</param>
         /// <exception cref="InvalidOperationException">If getting message payload type fails</exception>
         /// <returns>Task</returns>
-        public async Task SendMessage<T>(T message, string clientMsgId = null) where T :
-            IMessage
+        public async Task SendMessage<T>(T message, string clientMsgId = null) where T : IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message.GetPayloadType(), message.ToByteString(), clientMsgId);
             
@@ -185,8 +184,7 @@ namespace OpenAPI.Net
         /// <param name="payloadType">Message Payload Type (ProtoPayloadType)</param>
         /// <param name="clientMsgId">The client message ID (optional)</param>
         /// <returns>Task</returns>
-        public async Task SendMessage<T>(T message, ProtoPayloadType payloadType, string clientMsgId = null) where T :
-            IMessage
+        public async Task SendMessage<T>(T message, ProtoPayloadType payloadType, string clientMsgId = null) where T : IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
@@ -201,8 +199,7 @@ namespace OpenAPI.Net
         /// <param name="payloadType">Message Payload Type (ProtoOAPayloadType)</param>
         /// <param name="clientMsgId">The client message ID (optional)</param>
         /// <returns>Task</returns>
-        public async Task SendMessage<T>(T message, ProtoOAPayloadType payloadType, string clientMsgId = null) where T :
-            IMessage
+        public async Task SendMessage<T>(T message, ProtoOAPayloadType payloadType, string clientMsgId = null) where T : IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
@@ -457,7 +454,14 @@ namespace OpenAPI.Net
         {
             if (IsDisposed || DateTimeOffset.Now - LastSentMessageTime < _heartbeatInerval) return;
 
-            await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
+            try
+            {
+                await SendMessage(_heartbeatEvent, ProtoPayloadType.HeartbeatEvent).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
         }
 
         /// <summary>
