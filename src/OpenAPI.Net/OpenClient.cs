@@ -21,13 +21,13 @@ namespace OpenAPI.Net
     {
         private readonly TimeSpan _heartbeatInerval;
 
-        private readonly ProtoHeartbeatEvent _heartbeatEvent = new ProtoHeartbeatEvent();
+        private readonly ProtoHeartbeatEvent _heartbeatEvent = new();
 
         private readonly Channel<ProtoMessage> _messagesChannel = Channel.CreateUnbounded<ProtoMessage>();
 
-        private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new ConcurrentDictionary<int, IObserver<IMessage>>();
+        private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new();
 
-        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource _cancellationTokenSource = new();
 
         private readonly TimeSpan _requestDelay;
 

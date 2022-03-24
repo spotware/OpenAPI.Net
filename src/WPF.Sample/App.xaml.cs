@@ -54,8 +54,8 @@ namespace Trading.UI.Sample
             containerRegistry.RegisterDialog<AccountAuthView>();
 
             // Services
-            OpenClient liveClientFactory() => new OpenClient(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
-            OpenClient demoClientFactory() => new OpenClient(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            OpenClient liveClientFactory() => new(ApiInfo.LiveHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
+            OpenClient demoClientFactory() => new(ApiInfo.DemoHost, ApiInfo.Port, TimeSpan.FromSeconds(10));
 
             var apiService = new ApiService(liveClientFactory, demoClientFactory);
 

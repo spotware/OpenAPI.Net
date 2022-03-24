@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+	<TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/spotware/OpenAPI.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/spotware/OpenAPI.Net</RepositoryUrl>
-    <PackageTags>cTrader, Open API, Spotware</PackageTags>
-    <Description>A .NET RX library for Spotware Open API</Description>
-    <PackageId>Spotware.OpenAPI.Net</PackageId>
+    <PackageTags>cTrader, Open API, Spotware, cTrader</PackageTags>
+    <Description>A .NET RX library for cTrader Open API</Description>
+    <PackageId>cTrader.OpenAPI.Net</PackageId>
     <Version>1.4.0-rc0</Version>
     <Platforms>AnyCPU</Platforms>
     <Company>Spotware</Company>

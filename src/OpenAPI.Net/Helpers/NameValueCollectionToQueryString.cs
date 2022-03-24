@@ -10,7 +10,7 @@ namespace OpenAPI.Net.Helpers
         {
             if (collection == null) return string.Empty;
 
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
             foreach (string key in collection.Keys)
             {
