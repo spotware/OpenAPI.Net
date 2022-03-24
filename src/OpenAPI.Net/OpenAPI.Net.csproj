@@ -29,7 +29,6 @@
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.19.4" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
-    <PackageReference Include="System.Text.Json" Version="6.0.2" />
     <PackageReference Include="Websocket.Client" Version="4.4.43" />
   </ItemGroup>
 
