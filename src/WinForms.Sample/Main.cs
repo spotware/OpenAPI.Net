@@ -35,8 +35,8 @@ namespace WinForms.Sample
         //  private int _apiPort = 5035;
         private readonly OpenClient _client;
 
-        private static Queue _writeQueue = new Queue(); // not thread safe
-        private static Queue _readQueue = new Queue(); // not thread safe
+        private static Queue _writeQueue = new(); // not thread safe
+        private static Queue _readQueue = new(); // not thread safe
         private static Queue writeQueueSync = Queue.Synchronized(_writeQueue); // thread safe
         private static Queue readQueueSync = Queue.Synchronized(_readQueue); // thread safe
         private static volatile bool isShutdown;

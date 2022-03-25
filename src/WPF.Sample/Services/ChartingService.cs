@@ -12,7 +12,7 @@ namespace Trading.UI.Sample.Services
 
     public sealed class ChartingService : IChartingService
     {
-        private readonly List<IDisposable> _disposables = new List<IDisposable>();
+        private readonly List<IDisposable> _disposables = new();
 
         public void Dispose()
         {

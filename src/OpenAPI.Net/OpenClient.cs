@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Websocket.Client;
 using System.Net.WebSockets;
 using System.Threading.Channels;
+using System.Buffers;
 
 namespace OpenAPI.Net
 {
@@ -20,13 +21,13 @@ namespace OpenAPI.Net
     {
         private readonly TimeSpan _heartbeatInerval;
 
-        private readonly ProtoHeartbeatEvent _heartbeatEvent = new ProtoHeartbeatEvent();
+        private readonly ProtoHeartbeatEvent _heartbeatEvent = new();
 
         private readonly Channel<ProtoMessage> _messagesChannel = Channel.CreateUnbounded<ProtoMessage>();
 
-        private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new ConcurrentDictionary<int, IObserver<IMessage>>();
+        private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new();
 
-        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource _cancellationTokenSource = new();
 
         private readonly TimeSpan _requestDelay;
 
@@ -376,11 +377,12 @@ namespace OpenAPI.Net
         /// <returns>Task</returns>
         private async void ReadTcp(CancellationToken cancellationToken)
         {
+            var lengthArray = new byte[sizeof(int)];
+
             try
             {
                 while (!IsDisposed)
                 {
-                    var lengthArray = new byte[sizeof(int)];
 
                     var readBytes = 0;
 
@@ -400,7 +402,7 @@ namespace OpenAPI.Net
 
                     if (length <= 0) continue;
 
-                    var data = new byte[length];
+                    var data = ArrayPool<byte>.Shared.Rent(length);
 
                     readBytes = 0;
 
@@ -414,7 +416,9 @@ namespace OpenAPI.Net
                     }
                     while (readBytes < length);
 
-                    var message = ProtoMessage.Parser.ParseFrom(data);
+                    var message = ProtoMessage.Parser.ParseFrom(data, 0, length);
+
+                    ArrayPool<byte>.Shared.Return(data);
 
                     OnNext(message);
                 }
