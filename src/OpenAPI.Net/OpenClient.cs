@@ -377,32 +377,29 @@ namespace OpenAPI.Net
         /// <returns>Task</returns>
         private async void ReadTcp(CancellationToken cancellationToken)
         {
-            var lengthArray = new byte[sizeof(int)];
+            var dataLength = new byte[4];
 
             try
             {
                 while (!IsDisposed)
                 {
-
                     var readBytes = 0;
 
                     do
                     {
-                        var count = lengthArray.Length - readBytes;
+                        var count = dataLength.Length - readBytes;
 
-                        readBytes += await _sslStream.ReadAsync(lengthArray, readBytes, count, cancellationToken).ConfigureAwait(false);
+                        readBytes += await _sslStream.ReadAsync(dataLength, readBytes, count, cancellationToken).ConfigureAwait(false);
 
-                        if (readBytes == 0) new InvalidOperationException("Remote host closed the connection");
+                        if (readBytes == 0) throw new InvalidOperationException("Remote host closed the connection");
                     }
-                    while (readBytes < lengthArray.Length);
+                    while (readBytes < dataLength.Length);
 
-                    Array.Reverse(lengthArray);
-
-                    var length = BitConverter.ToInt32(lengthArray, 0);
+                    var length = GetLength(dataLength);
 
                     if (length <= 0) continue;
 
-                    var data = ArrayPool<byte>.Shared.Rent(length);
+                    var data = new byte[length];
 
                     readBytes = 0;
 
@@ -412,19 +409,14 @@ namespace OpenAPI.Net
 
                         readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationToken).ConfigureAwait(false);
 
-                        if (readBytes == 0) new InvalidOperationException("Remote host closed the connection");
+                        if (readBytes == 0) throw new InvalidOperationException("Remote host closed the connection");
                     }
                     while (readBytes < length);
 
                     var message = ProtoMessage.Parser.ParseFrom(data, 0, length);
 
-                    ArrayPool<byte>.Shared.Return(data);
-
                     OnNext(message);
                 }
-            }
-            catch (Exception ex) when (ex is OperationCanceledException)
-            {
             }
             catch (Exception ex)
             {
@@ -432,6 +424,20 @@ namespace OpenAPI.Net
 
                 OnError(exception);
             }
+        }
+
+        /// <summary>
+        /// Returns the length of a received message without causing extra allocation
+        /// </summary>
+        /// <param name="lengthBytes">The byte arrary of received lenght data</param>
+        /// <returns>int</returns>
+        private int GetLength(byte[] lengthBytes)
+        {
+            var lengthSpan = lengthBytes.AsSpan();
+            
+            lengthSpan.Reverse();
+
+            return BitConverter.ToInt32(lengthSpan);
         }
 
         /// <summary>
