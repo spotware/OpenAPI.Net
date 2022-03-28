@@ -378,6 +378,7 @@ namespace OpenAPI.Net
         private async void ReadTcp(CancellationToken cancellationToken)
         {
             var dataLength = new byte[4];
+            byte[] data = null;
 
             try
             {
@@ -399,13 +400,13 @@ namespace OpenAPI.Net
 
                     if (length <= 0) continue;
 
-                    var data = new byte[length];
+                    data = ArrayPool<byte>.Shared.Rent(length);
 
                     readBytes = 0;
 
                     do
                     {
-                        var count = data.Length - readBytes;
+                        var count = length - readBytes;
 
                         readBytes += await _sslStream.ReadAsync(data, readBytes, count, cancellationToken).ConfigureAwait(false);
 
@@ -415,11 +416,15 @@ namespace OpenAPI.Net
 
                     var message = ProtoMessage.Parser.ParseFrom(data, 0, length);
 
+                    ArrayPool<byte>.Shared.Return(data);
+
                     OnNext(message);
                 }
             }
             catch (Exception ex)
             {
+                if (data is not null) ArrayPool<byte>.Shared.Return(data);
+
                 var exception = new ReceiveException(ex);
 
                 OnError(exception);
