@@ -43,7 +43,6 @@ namespace OpenAPI.Net
 
         private IDisposable _webSocketMessageReceivedDisposable;
 
-
         /// <summary>
         /// Creates an instance of OpenClient which is not connected yet
         /// </summary>
@@ -56,7 +55,7 @@ namespace OpenAPI.Net
         {
             Host = host ?? throw new ArgumentNullException(nameof(host));
 
-            if (port < 0 || port > 65535) throw new ArgumentOutOfRangeException(nameof(port));
+            if (port is < 0 or > 65535) throw new ArgumentOutOfRangeException(nameof(port));
 
             Port = port;
 
@@ -137,7 +136,7 @@ namespace OpenAPI.Net
                 _heartbeatDisposable = Observable.Interval(_heartbeatInerval).DoWhile(() => !IsDisposed)
                     .Subscribe(x => SendHeartbeat());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var connectionException = new ConnectionException(ex);
 
@@ -173,7 +172,7 @@ namespace OpenAPI.Net
         public async Task SendMessage<T>(T message, string clientMsgId = null) where T : IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message.GetPayloadType(), message.ToByteString(), clientMsgId);
-            
+
             await SendMessage(protoMessage);
         }
 
@@ -439,7 +438,7 @@ namespace OpenAPI.Net
         private int GetLength(byte[] lengthBytes)
         {
             var lengthSpan = lengthBytes.AsSpan();
-            
+
             lengthSpan.Reverse();
 
             return BitConverter.ToInt32(lengthSpan);
