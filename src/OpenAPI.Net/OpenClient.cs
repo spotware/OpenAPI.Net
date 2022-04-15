@@ -81,7 +81,7 @@ namespace OpenAPI.Net
         public int MaxRequestPerSecond { get; }
 
         /// <summary>
-        /// If client is connected via websocket then this will return True, otherwise False
+        /// If client is connected via Websocket then this will return True, otherwise False
         /// </summary>
         public bool IsUsingWebSocket { get; }
 
@@ -111,7 +111,7 @@ namespace OpenAPI.Net
         public int MessagesQueueCount { get; private set; }
 
         /// <summary>
-        /// Connects to the API based on you specified method (websocket or TCP)
+        /// Connects to the API based on you specified method (Websocket or TCP)
         /// </summary>
         /// <exception cref="ObjectDisposedException">If client is disposed</exception>
         /// <exception cref="ConnectionException">If connection attempt fails, the client will be disposed and this exception will be thrown</exception>
@@ -154,9 +154,11 @@ namespace OpenAPI.Net
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
-            _observers.AddOrUpdate(observer.GetHashCode(), observer, (key, oldObserver) => observer);
+            var observerHashCode = observer.GetHashCode();
 
-            return Disposable.Create(() => OnObserverDispose(observer));
+            _ = _observers.AddOrUpdate(observerHashCode, observer, (key, oldObserver) => observer);
+
+            return Disposable.Create(() => OnObserverDispose(observerHashCode));
         }
 
         /// <summary>
@@ -267,7 +269,7 @@ namespace OpenAPI.Net
 
             _cancellationTokenSource.Cancel();
 
-            _messagesChannel.Writer.TryComplete();
+            _ = _messagesChannel.Writer.TryComplete();
 
             _cancellationTokenSource.Dispose();
 
@@ -291,7 +293,7 @@ namespace OpenAPI.Net
         }
 
         /// <summary>
-        /// Connects to API by using websocket
+        /// Connects to API by using Websocket
         /// </summary>
         /// <returns>Task</returns>
         private async Task ConnectWebScoket()
@@ -433,7 +435,7 @@ namespace OpenAPI.Net
         /// <summary>
         /// Returns the length of a received message without causing extra allocation
         /// </summary>
-        /// <param name="lengthBytes">The byte arrary of received lenght data</param>
+        /// <param name="lengthBytes">The byte array of received length data</param>
         /// <returns>int</returns>
         private int GetLength(byte[] lengthBytes)
         {
@@ -492,10 +494,10 @@ namespace OpenAPI.Net
         /// <summary>
         /// Removes the disposed observer from client observers collection
         /// </summary>
-        /// <param name="observer"></param>
-        private void OnObserverDispose(IObserver<IMessage> observer)
+        /// <param name="observerKey">The observer hash code key</param>
+        private void OnObserverDispose(int observerKey)
         {
-            _observers.TryRemove(observer.GetHashCode(), out _);
+            _ = _observers.TryRemove(observerKey, out _);
         }
 
         /// <summary>
