@@ -22338,7 +22338,7 @@ public sealed partial class ProtoOAGetTickDataRes : pb::IMessage<ProtoOAGetTickD
       = pb::FieldCodec.ForMessage(26, global::ProtoOATickData.Parser);
   private readonly pbc::RepeatedField<global::ProtoOATickData> tickData_ = new pbc::RepeatedField<global::ProtoOATickData>();
   /// <summary>
-  /// The list of ticks in chronological order. The first tick contains Unix timestamp in milliseconds while all subsequent ticks have the time difference in milliseconds between previous and the current one.
+  /// The list of ticks is in chronological order. The first tick contains Unix timestamp in milliseconds while all subsequent ticks have the time difference in milliseconds between the previous and the current one.
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
