@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 ## What's Open API?
 
 Open API is part of Spotware cTrader package, it allows cTrader users to develop trading applications by using their programming language of choice and its free for all cTrader users.
