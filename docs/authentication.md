@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 ## API Application
 
 To use Spotware Open API you have to first create an open API application, send an activation request to Spotware for your application, and once it got activated you can start using the API through your application.

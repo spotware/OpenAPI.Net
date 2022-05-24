@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 ## Creating/Connecting Client
 
 The open client is the object that you will use to send/receive messages to API.
