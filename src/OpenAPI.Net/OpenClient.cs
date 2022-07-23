@@ -14,10 +14,11 @@ using Websocket.Client;
 using System.Net.WebSockets;
 using System.Threading.Channels;
 using System.Buffers;
+using System.Net;
 
 namespace OpenAPI.Net
 {
-    public sealed class OpenClient : IDisposable, IObservable<IMessage>
+    public sealed partial class OpenClient : IDisposable, IObservable<IMessage>
     {
         private readonly TimeSpan _heartbeatInerval;
 
@@ -30,10 +31,11 @@ namespace OpenAPI.Net
         private readonly CancellationTokenSource _cancellationTokenSource = new();
 
         private readonly TimeSpan _requestDelay;
-
+        private readonly TimeSpan _requestHistoryDelay;
         private TcpClient _tcpClient;
 
         private WebsocketClient _websocketClient;
+        private IPEndPoint _localTcpIPEndPoint;
 
         private SslStream _sslStream;
 
@@ -50,8 +52,10 @@ namespace OpenAPI.Net
         /// <param name="port">The host port number</param>
         /// <param name="heartbeatInerval">The time interval for sending heartbeats</param>
         /// <param name="maxRequestPerSecond">The maximum number of requests client will send per second</param>
+        /// <param name="maxHistoryRequestPerSecond">The maximum number of history data requests client will send per second</param>
         /// <param name="useWebSocket">By default OpenClient uses raw TCP connection, if you want to use web socket instead set this parameter to true</param>
-        public OpenClient(string host, int port, TimeSpan heartbeatInerval, int maxRequestPerSecond = 40, bool useWebSocket = false)
+        /// <param name="localTcpIPEndPoint">When using TCP connection, if you have multiple ISP, you can select network adapter by its IP address</param>
+        public OpenClient(string host, int port, TimeSpan heartbeatInerval, int maxRequestPerSecond = 40, float maxHistoryRequestPerSecond = 4.5f, bool useWebSocket = false, IPEndPoint localTcpIPEndPoint = null)
         {
             Host = host ?? throw new ArgumentNullException(nameof(host));
 
@@ -61,7 +65,10 @@ namespace OpenAPI.Net
 
             _heartbeatInerval = heartbeatInerval;
             MaxRequestPerSecond = maxRequestPerSecond;
+            MaxHistoryRequestPerSecond = maxHistoryRequestPerSecond;
             _requestDelay = TimeSpan.FromMilliseconds(1000 / MaxRequestPerSecond);
+            _requestHistoryDelay = TimeSpan.FromMilliseconds(1000 / MaxHistoryRequestPerSecond);
+            _localTcpIPEndPoint = localTcpIPEndPoint;
             IsUsingWebSocket = useWebSocket;
         }
 
@@ -79,6 +86,11 @@ namespace OpenAPI.Net
         /// The maximum number of requests client will send per second
         /// </summary>
         public int MaxRequestPerSecond { get; }
+
+        /// <summary>
+        /// The maximum number of history data requests client will send per second
+        /// </summary>
+        public float MaxHistoryRequestPerSecond { get; }
 
         /// <summary>
         /// If client is connected via Websocket then this will return True, otherwise False
@@ -307,7 +319,7 @@ namespace OpenAPI.Net
                 IsReconnectionEnabled = false,
                 ErrorReconnectTimeout = null
             };
-
+            
             _webSocketMessageReceivedDisposable = _websocketClient.MessageReceived.Select(msg => ProtoMessage.Parser.ParseFrom(msg.Binary))
                 .Subscribe(OnNext);
 
@@ -322,7 +334,14 @@ namespace OpenAPI.Net
         /// <returns>Task</returns>
         private async Task ConnectTcp()
         {
-            _tcpClient = new TcpClient { LingerState = new LingerOption(true, 10) };
+            if (_localTcpIPEndPoint == null)
+            {
+                _tcpClient = new TcpClient() { LingerState = new LingerOption(true, 10) };
+            }
+            else
+            {
+                _tcpClient = new TcpClient(_localTcpIPEndPoint) { LingerState = new LingerOption(true, 10) };
+            }
 
             await _tcpClient.ConnectAsync(Host, Port).ConfigureAwait(false);
 
@@ -347,10 +366,20 @@ namespace OpenAPI.Net
                     while (_messagesChannel.Reader.TryRead(out var message))
                     {
                         var timeElapsedSinceLastMessageSent = DateTimeOffset.Now - LastSentMessageTime;
-
-                        if (timeElapsedSinceLastMessageSent < _requestDelay)
+                        TimeSpan requestDelay;
+                        if((ProtoOAPayloadType)message.PayloadType is 
+                            ProtoOAPayloadType.ProtoOaDealListReq or ProtoOAPayloadType.ProtoOaGetTrendbarsReq or
+                            ProtoOAPayloadType.ProtoOaGetTickdataReq or ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq)
                         {
-                            await Task.Delay(_requestDelay - timeElapsedSinceLastMessageSent);
+                            requestDelay = _requestHistoryDelay;
+                        }
+                        else
+                        {
+                            requestDelay = _requestDelay;
+                        }
+                        if (timeElapsedSinceLastMessageSent < requestDelay)
+                        {
+                            await Task.Delay(requestDelay - timeElapsedSinceLastMessageSent);
                         }
 
                         if (IsDisposed is false)
@@ -506,6 +535,11 @@ namespace OpenAPI.Net
         /// <param name="protoMessage">Message</param>
         private void OnNext(ProtoMessage protoMessage)
         {
+            if (protoMessage.HasClientMsgId)
+            {
+                var message = MessageFactory.GetMessage(protoMessage);
+                if (message != null) MessageForwardByClientMsgId(message, protoMessage.ClientMsgId);
+            }
             foreach (var (_, observer) in _observers)
             {
                 try
