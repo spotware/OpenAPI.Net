@@ -1,4 +1,6 @@
-﻿using Google.Protobuf;
+// Warning: Work in progress, Not tested
+
+using Google.Protobuf;
 using OpenAPI.Net.Auth;
 using OpenAPI.Net.Exceptions;
 using OpenAPI.Net.Helpers;
@@ -6,14 +8,7 @@ using OpenAPI.Net.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Net.WebSockets;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,49 +16,17 @@ namespace OpenAPI.Net
 {
     public sealed partial class OpenClient : IDisposable, IObservable<IMessage>
     {
-        private WebSocket _client;
-        private readonly Func<Uri, CancellationToken, Task<WebSocket>> _connectionFactory;
-        public void testNetwork()
-        {
-            foreach (var iface in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (iface.OperationalStatus == OperationalStatus.Up && iface.NetworkInterfaceType != NetworkInterfaceType.Loopback)
-                {
-                    Console.WriteLine("Interface: {0}\t{1}\t{2}", iface.Name, iface.NetworkInterfaceType, iface.OperationalStatus);
-                    foreach (var ua in iface.GetIPProperties().UnicastAddresses)
-                    {
-                        Console.WriteLine("Address: " + ua.Address);
-                        try
-                        {
-                            using (var client = new TcpClient(new IPEndPoint(ua.Address, 0)))
-                            {
-                                client.Connect("ns1.vianett.no", 80);
-                                var buf = Encoding.UTF8.GetBytes("GET / HTTP/1.1\r\nConnection: close\r\nHost: ns1.vianett.no\r\n\r\n");
-                                client.GetStream().Write(buf, 0, buf.Length);
-                                var sr = new StreamReader(client.GetStream());
-                                var all = sr.ReadToEnd();
-                                var match = Regex.Match(all, "(?mi)^X-YourIP: (?'a'.+)$");
-                                Console.WriteLine("Your address is " + (match.Success ? match.Groups["a"].Value : all));
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
-                }
-            }
-        }
         /// <summary>
-        /// Default Await Response Timeout in milliseconds, after that time
-        /// null message is returned from await Task<IMessage> methods.
+        /// Maximum response waiting time in milliseconds, after that time
+        /// throw TimeoutException.
         /// </summary>
-        public static uint DefaultAwaitResponseTimeout = 60000;
+        public static int MaximumResponseWaitTime = 60000;
         /// <summary>
+        /// lastTimeStamp for NewMessageUniqueID generator
         /// lastTimeStamp is expressed in 1/100th of seconds
         /// </summary>
         private static ulong lastTimeStamp = (ulong)(DateTime.UtcNow.Ticks / 100000);
-        public static ulong NewMessageUniqueID
+        private static ulong NewMessageUniqueID
         {
             get
             {
@@ -81,43 +44,29 @@ namespace OpenAPI.Net
         }
         private ConcurrentDictionary<ulong, ResultPointer> resultPointers = new ConcurrentDictionary<ulong, ResultPointer>();
 
-        /// <summary>
-        /// Request for a list of symbols available for a trading account.
-        /// Symbol entries are returned with the limited set of fields.
-        /// </summary>
-        /// <param name="cTraderAccountId"></param>
-        /// <param name="includeArchivedSymbols"></param>
-        /// <param name="timeout"></param>
-        /// <returns></returns>
-        public async Task<ProtoOASymbolsListRes> GetSymbolList(long cTraderAccountId, bool includeArchivedSymbols = false, int timeout = 0)
+        private async Task<IMessage> SendMessageWaitResponse(IMessage message)
         {
-            var request = new ProtoOASymbolsListReq
-            {
-                CtidTraderAccountId = cTraderAccountId,
-                IncludeArchivedSymbols = includeArchivedSymbols
-            };
-
-            IMessage message = await SendMessageWaitResponse(request, timeout);
-            ProtoOASymbolsListRes res = (ProtoOASymbolsListRes)message;
-            return res;
-        }
-
-        private async Task<IMessage> SendMessageWaitResponse(IMessage message, int timeout = 0)
-        {
-            if (timeout <= 0) timeout = (int)DefaultAwaitResponseTimeout;
             ulong id = NewMessageUniqueID;
-            ResultPointer rp = new ResultPointer();
-            _ = resultPointers.TryAdd(id, rp);
             string clientMsgId = id.ToString();
-            Console.WriteLine($"SendMessageWaitResponse:{clientMsgId}");
-            await SendMessage(message, clientMsgId);
-            if(!rp.WaitHandle.WaitOne(timeout))
+            IMessage resultMessage = null;
+            ResultPointer rp = new ResultPointer();
+            bool messageReceived = false;
+            try
             {
-                // timeout occured - Remove current ResultPointer
-                resultPointers.TryRemove(id, out ResultPointer rp2);
+                _ = resultPointers.TryAdd(id, rp);
+                await SendMessage(message, clientMsgId);
+                messageReceived = rp.WaitHandle.WaitOne(MaximumResponseWaitTime);
             }
-            IMessage resultMessage = rp.Message;
-            rp.Dispose();
+            finally
+            {
+                if (!messageReceived)
+                {
+                    // timeout or exception occured - Remove current ResultPointer
+                    resultPointers.TryRemove(id, out _);
+                }
+                resultMessage = rp.Message;
+                rp.Dispose();
+            }
             switch(resultMessage)
             {
                 case ProtoErrorRes protoErrorRes:
@@ -126,14 +75,14 @@ namespace OpenAPI.Net
                     throw new ProtoOAErrorResException(protoOAErrorRes);
                 case ProtoOAOrderErrorEvent protoOAOrderErrorEvent:
                     throw new ProtoOAOrderErrorEventException(protoOAOrderErrorEvent);
+                case null:
+                    throw new TimeoutException("Maximum response timeout reached.");
             }
             return resultMessage;
         }
-        private void MessageForwardByClientMsgId(IMessage message, string ClientMsgId)
+        private void MessageForwardByClientMsgId(IMessage message, string clientMsgId)
         {
-            Console.WriteLine($"MessageForwardByClientMsgId:{ClientMsgId}");
-            Console.WriteLine(message.GetType().Name);
-            if (ulong.TryParse(ClientMsgId, out ulong id))
+            if (ulong.TryParse(clientMsgId, out ulong id))
             {
                 if (resultPointers.TryRemove(id, out ResultPointer rp))
                 {
@@ -147,31 +96,57 @@ namespace OpenAPI.Net
                 //}
             }
         }
-        public async Task<Token> RefreshToken(Token token, int timeout = 0)
+        /// <summary>
+        /// Request to refresh the access token using refresh token of granted trader's account.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task<Token> RefreshToken(Token token)
         {
             var request = new ProtoOARefreshTokenReq()
             {
                 RefreshToken = token.RefreshToken
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOARefreshTokenRes res = (ProtoOARefreshTokenRes)message;
             token.AccessToken = res.AccessToken;
             return token;
         }
 
         /// <summary>
+        /// Request for a list of symbols available for a trading account.
+        /// Symbol entries are returned with the limited set of fields.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="includeArchivedSymbols"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
+        public async Task<ProtoOASymbolsListRes> GetSymbolList(long accountId, bool includeArchivedSymbols = false)
+        {
+            var request = new ProtoOASymbolsListReq
+            {
+                CtidTraderAccountId = accountId,
+                IncludeArchivedSymbols = includeArchivedSymbols
+            };
+
+            IMessage message = await SendMessageWaitResponse(request);
+            ProtoOASymbolsListRes res = (ProtoOASymbolsListRes)message;
+            return res;
+        }
+
+        /// <summary>
         /// Request for getting Trader's current open positions and pending orders data.
         /// </summary>
-        /// <param name="cTraderAccountId"></param>
-        public async Task<ProtoOAReconcileRes> GetOpenPositionsOrders(long cTraderAccountId, int timeout = 0)
+        /// <param name="accountId"></param>
+        public async Task<ProtoOAReconcileRes> GetOpenPositionsOrders(long accountId)
         {
             var request = new ProtoOAReconcileReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOAReconcileRes res = (ProtoOAReconcileRes)message;
             return res;
         }
@@ -179,16 +154,14 @@ namespace OpenAPI.Net
         /// Request for getting the list of granted trader's account for the access token.
         /// </summary>
         /// <param name="token"></param>
-        public async Task<ProtoOACtidTraderAccount[]> GetAccountList(Token token, int timeout = 0)
+        public async Task<ProtoOACtidTraderAccount[]> GetAccountList(Token token)
         {
-            Console.WriteLine("Sending ProtoOAGetAccountListByAccessTokenReq...");
-
             var request = new ProtoOAGetAccountListByAccessTokenReq
             {
                 AccessToken = token.AccessToken,
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOAGetAccountListByAccessTokenRes res = (ProtoOAGetAccountListByAccessTokenRes)message;
             return res.CtidTraderAccount.ToArray();
         }
@@ -197,17 +170,15 @@ namespace OpenAPI.Net
         /// </summary>
         /// <param name="clientId"></param>
         /// <param name="secret"></param>
-        public async Task<ProtoOAApplicationAuthRes> ApplicationAuthorize(string clientId, string secret, int timeout = 0)
+        public async Task<ProtoOAApplicationAuthRes> ApplicationAuthorize(string clientId, string secret)
         {
-            Console.WriteLine("Sending ProtoOAApplicationAuthReq...");
-
             var request = new ProtoOAApplicationAuthReq
             {
                 ClientId = clientId,
                 ClientSecret = secret
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOAApplicationAuthRes res = (ProtoOAApplicationAuthRes)message;
             return res;
         }
@@ -216,30 +187,33 @@ namespace OpenAPI.Net
         /// Requires established authorized connection with the client application
         ///  using ProtoOAApplicationAuthReq.
         /// </summary>
-        /// <param name="cTraderAccountId"></param>
+        /// <param name="accountId"></param>
         /// <param name="token"></param>
-        public async Task<ProtoOAAccountAuthRes> AccountAuthorize(long cTraderAccountId, Token token, int timeout = 0)
+        public async Task<ProtoOAAccountAuthRes> AccountAuthorize(long accountId, Token token)
         {
-            Console.WriteLine("Sending ProtoOAAccountAuthReq...");
-
             var request = new ProtoOAAccountAuthReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 AccessToken = token.AccessToken
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOAAccountAuthRes res = (ProtoOAAccountAuthRes)message;
             return res;
         }
-        public async Task<ProtoOAAccountLogoutRes> AccountLogout(long cTraderAccountId, int timeout = 0)
+        /// <summary>
+        /// Request for logout of trading account session.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAAccountLogoutRes> AccountLogout(long accountId)
         {
             var request = new ProtoOAAccountLogoutReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOAAccountLogoutRes res = (ProtoOAAccountLogoutRes)message;
             return res;
         }
@@ -247,83 +221,101 @@ namespace OpenAPI.Net
         /// <summary>
         /// Request for getting historical tick data for the symbol. Maximum is 1 week.
         /// </summary>
-        /// <param name="cTraderAccountId">Unique identifier of the trader's account. Used to match responses to trader's accounts.</param>
+        /// <param name="accountId">Unique identifier of the trader's account. Used to match responses to trader's accounts.</param>
         /// <param name="SymbolId">Unique identifier of the Symbol in cTrader platform.</param>
         /// <param name="FromDateTime">The exact UTC time of starting the search</param>
         /// <param name="ToDateTime">The exact UTC time of finishing the search</param>
         /// <param name="Type">Bid or Ask</param>
-        public async Task<ProtoOAGetTickDataRes> GetTickData(long cTraderAccountId, long SymbolId,
-            DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, ProtoOAQuoteType Type, int timeout = 0)
+        public async Task<ProtoOAGetTickDataRes> GetTickData(long accountId, long SymbolId,
+            DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, ProtoOAQuoteType Type)
         {
-            Console.WriteLine("Sending ProtoOAGetTickDataReq...");
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
             long toTime = ToDateTime.ToUnixTimeMilliseconds();
             long toMax = fromTime + 604800000;
             toTime = Math.Min(toTime, toMax);
             var request = new ProtoOAGetTickDataReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 SymbolId = SymbolId,
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
                 Type = Type
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOAGetTickDataRes res = (ProtoOAGetTickDataRes)message;
             return res;
         }
+
         /// <summary>
         /// Request for getting a full symbol entity.
         /// </summary>
-        /// <param name="cTraderAccountId"></param>
+        /// <param name="accountId"></param>
         /// <param name="SymbolIds"></param>
-        public async Task<ProtoOASymbolByIdRes> GetSymbolsFull(long cTraderAccountId,
-            IEnumerable<long> SymbolIds, int timeout = 0)
+        public async Task<ProtoOASymbolByIdRes> GetSymbolsFull(long accountId,
+            IEnumerable<long> SymbolIds)
         {
             var request = new ProtoOASymbolByIdReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
             };
             request.SymbolId.AddRange(SymbolIds);
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOASymbolByIdRes res = (ProtoOASymbolByIdRes)message;
             return res;
         }
-
-        public async Task<ProtoOACtidProfile> GetProfile(Token token, int timeout = 0)
+        /// <summary>
+        /// Request for getting details of Trader's profile.
+        /// Limited due to GDRP requirements.
+        /// </summary>
+        /// <param name="token">AccessToken</param>
+        /// <returns></returns>
+        public async Task<ProtoOACtidProfile> GetProfile(Token token)
         {
             var request = new ProtoOAGetCtidProfileByTokenReq
             {
                 AccessToken = token.AccessToken
             };
 
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOAGetCtidProfileByTokenRes res = (ProtoOAGetCtidProfileByTokenRes)message;
             return res.Profile;
         }
-
-        public async Task<ProtoOALightSymbol[]> GetSymbolsForConversion(long cTraderAccountId, long baseAssetId, long quoteAssetId, int timeout = 0)
+        /// <summary>
+        /// Request for getting a conversion chain between two assets that consists of several symbols.
+        /// Use when no direct quote is available
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="baseAssetId"></param>
+        /// <param name="quoteAssetId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOALightSymbol[]> GetSymbolsForConversion(long accountId, long baseAssetId, long quoteAssetId)
         {
             var request = new ProtoOASymbolsForConversionReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 FirstAssetId = baseAssetId,
                 LastAssetId = quoteAssetId
             };
-            IMessage message = await SendMessageWaitResponse(request, timeout);
+            IMessage message = await SendMessageWaitResponse(request);
             ProtoOASymbolsForConversionRes res = (ProtoOASymbolsForConversionRes)message;
             return res.Symbol.ToArray();
         }
-
-        public async Task<ProtoOAExecutionEvent> CreateNewOrder(OrderModel orderModel, long cTraderAccountId, int timeout = 0)
+        /// <summary>
+        /// Request for sending a new trading order.
+        /// Allowed only if the accessToken has the "trade" permissions for the trading account.
+        /// </summary>
+        /// <param name="orderModel"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAExecutionEvent> CreateNewOrder(OrderModel orderModel, long accountId)
         {
             ulong id = NewMessageUniqueID;
             string clientMsgId = id.ToString();
             var requestMessage = new ProtoOANewOrderReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 SymbolId = orderModel.Symbol.Id,
                 Volume = orderModel.Volume,
                 TradeSide = orderModel.TradeSide,
@@ -384,106 +376,77 @@ namespace OpenAPI.Net
             {
                 requestMessage.Comment = orderModel.Comment;
             }
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
-
-        public async Task<ProtoOAExecutionEvent> ClosePosition(long positionId, long volume, long cTraderAccountId, int timeout = 0)
+        /// <summary>
+        /// Request for closing or partially closing of an existing position.
+        /// Allowed only if the accessToken has "trade" permissions for the trading account.
+        /// </summary>
+        /// <param name="positionId"></param>
+        /// <param name="volume"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAExecutionEvent> ClosePosition(long positionId, long volume, long accountId)
         {
             var requestMessage = new ProtoOAClosePositionReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 PositionId = positionId,
                 Volume = volume
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
-        public async Task<ProtoOAExecutionEvent> CancelOrder(long orderId, long cTraderAccountId, int timeout = 0)
+        /// <summary>
+        /// Request for cancelling existing pending order.
+        /// Allowed only if the accessToken has "trade" permissions for the trading account.
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAExecutionEvent> CancelOrder(long orderId, long accountId)
         {
             var requestMessage = new ProtoOACancelOrderReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 OrderId = orderId
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
-        //public void ModifyPosition(MarketOrderModel oldOrder, MarketOrderModel newOrder, long cTraderAccountId, int timeout = 0)
-        //{
-        //    if (oldOrder.TradeData.TradeSide != newOrder.TradeSide)
-        //    {
-        //        ClosePosition(oldOrder.Id, oldOrder.Volume, cTraderAccountId, isLive);
-        //        newOrder.Id = default;
-        //        CreateNewOrder(newOrder, cTraderAccountId, isLive);
-        //    }
-        //    else
-        //    {
-        //        if (newOrder.Volume > oldOrder.Volume)
-        //        {
-        //            newOrder.Volume -= oldOrder.Volume;
-        //            CreateNewOrder(newOrder, cTraderAccountId, isLive);
-        //        }
-        //        else
-        //        {
-        //            if (newOrder.StopLossInPips != oldOrder.StopLossInPips || newOrder.IsStopLossEnabled != oldOrder.IsStopLossEnabled || newOrder.TakeProfitInPips != oldOrder.TakeProfitInPips || newOrder.IsTakeProfitEnabled != oldOrder.IsTakeProfitEnabled
-        //                || newOrder.IsTrailingStopLossEnabled != oldOrder.IsTrailingStopLossEnabled)
-        //            {
-        //                var amendPositionRequestMessage = new ProtoOAAmendPositionSLTPReq
-        //                {
-        //                    PositionId = oldOrder.Id,
-        //                    CtidTraderAccountId = cTraderAccountId,
-        //                    GuaranteedStopLoss = oldOrder.GuaranteedStopLoss,
-        //                };
-        //                if (newOrder.IsStopLossEnabled)
-        //                {
-        //                    if (newOrder.StopLossInPips != default && newOrder.StopLossInPrice == default)
-        //                    {
-        //                        newOrder.StopLossInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
-        //                            ? newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.StopLossInPips)
-        //                            : newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.StopLossInPips);
-        //                    }
-        //                    amendPositionRequestMessage.StopLoss = newOrder.StopLossInPrice;
-        //                    amendPositionRequestMessage.StopLossTriggerMethod = oldOrder.StopTriggerMethod;
-        //                    amendPositionRequestMessage.TrailingStopLoss = newOrder.IsTrailingStopLossEnabled;
-        //                }
-        //                if (newOrder.IsTakeProfitEnabled)
-        //                {
-        //                    if (newOrder.TakeProfitInPips != default && newOrder.TakeProfitInPrice == default)
-        //                    {
-        //                        newOrder.TakeProfitInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
-        //                            ? newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.TakeProfitInPips)
-        //                            : newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.TakeProfitInPips);
-        //                    }
-        //                    amendPositionRequestMessage.TakeProfit = newOrder.TakeProfitInPrice;
-        //                }
-        //            }
-        //            if (newOrder.Volume < oldOrder.Volume)
-        //            {
-        //                ClosePosition(oldOrder.Id, oldOrder.Volume - newOrder.Volume, cTraderAccountId, isLive);
-        //            }
-        //        }
-        //    }
-        //}
-        public async Task<ProtoOATrader> GetTrader(long cTraderAccountId, int timeout = 0)
+        /// <summary>
+        /// Request for getting data of Trader's Account.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOATrader> GetTrader(long accountId)
         {
             var requestMessage = new ProtoOATraderReq
             {
-                CtidTraderAccountId = cTraderAccountId
+                CtidTraderAccountId = accountId
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOATraderRes res = (ProtoOATraderRes)message;
             return res.Trader;
         }
-        public async Task<ProtoOAExecutionEvent> ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long cTraderAccountId, int timeout = 0)
+        /// <summary>
+        /// Request for modifying the existing pending order.
+        /// Allowed only if the Access Token has "trade" permissions for the trading account.
+        /// </summary>
+        /// <param name="oldOrder"></param>
+        /// <param name="newOrder"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAExecutionEvent> ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId)
         {
             var requestMessage = new ProtoOAAmendOrderReq
             {
                 OrderId = oldOrder.Id,
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 Volume = newOrder.Volume,
             };
             if (newOrder.IsStopLossEnabled)
@@ -524,11 +487,18 @@ namespace OpenAPI.Net
                     if (slippageinPoint < int.MaxValue) requestMessage.SlippageInPoints = (int)slippageinPoint;
                 }
             }
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
-        public async Task<HistoricalTrade[]> GetHistoricalTrades(long cTraderAccountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, int timeout = 0)
+        /// <summary>
+        /// Request for getting Trader's deals historical data (execution details).
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="FromDateTime"></param>
+        /// <param name="ToDateTime"></param>
+        /// <returns></returns>
+        public async Task<HistoricalTrade[]> GetHistoricalTrades(long accountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime)
         {
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
             long toTime = ToDateTime.ToUnixTimeMilliseconds();
@@ -538,16 +508,23 @@ namespace OpenAPI.Net
             {
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
-                CtidTraderAccountId = cTraderAccountId
+                CtidTraderAccountId = accountId
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOADealListRes res = (ProtoOADealListRes)message;
             HistoricalTrade[] trades = res.Deal
                 .Select(deal => new HistoricalTrade(deal))
                 .ToArray();
             return trades;
         }
-        public async Task<Transaction[]> GetTransactions(long cTraderAccountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, int timeout = 0)
+        /// <summary>
+        /// Request for getting Trader's historical data of deposits and withdrawals.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="FromDateTime"></param>
+        /// <param name="ToDateTime"></param>
+        /// <returns></returns>
+        public async Task<Transaction[]> GetTransactions(long accountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime)
         {
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
             long toTime = ToDateTime.ToUnixTimeMilliseconds();
@@ -557,65 +534,93 @@ namespace OpenAPI.Net
             {
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
-                CtidTraderAccountId = cTraderAccountId
+                CtidTraderAccountId = accountId
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOACashFlowHistoryListRes res = (ProtoOACashFlowHistoryListRes)message;
             Transaction[] transactions = res.DepositWithdraw
                 .Select(dw => new Transaction(dw))
                 .ToArray();
             return transactions;
         }
-        public async Task<ProtoOASubscribeSpotsRes> SubscribeToSpots(long cTraderAccountId, IEnumerable<long> symbolIds, int timeout = 0)
+        /// <summary>
+        /// Request for subscribing on spot events of the specified symbol.
+        /// TODO:EventHandler
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="symbolIds"></param>
+        /// <returns></returns>
+        public async Task<ProtoOASubscribeSpotsRes> SubscribeToSpots(long accountId, IEnumerable<long> symbolIds)
         {
             var requestMessage = new ProtoOASubscribeSpotsReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
             };
             requestMessage.SymbolId.AddRange(symbolIds);
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOASubscribeSpotsRes res = (ProtoOASubscribeSpotsRes)message;
             return res;
         }
-        public async Task<ProtoOAUnsubscribeSpotsRes> UnsubscribeFromSpots(long cTraderAccountId, IEnumerable<long> symbolIds, int timeout = 0)
+        /// <summary>
+        /// Request for unsubscribing from the spot events of the specified symbol.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="symbolIds"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAUnsubscribeSpotsRes> UnsubscribeFromSpots(long accountId, IEnumerable<long> symbolIds)
         {
             var requestMessage = new ProtoOAUnsubscribeSpotsReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
             };
             requestMessage.SymbolId.AddRange(symbolIds);
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAUnsubscribeSpotsRes res = (ProtoOAUnsubscribeSpotsRes)message;
             return res;
         }
-        public async Task<ProtoOASubscribeLiveTrendbarRes> SubscribeToLiveTrendbar(long cTraderAccountId, long symbolId, ProtoOATrendbarPeriod period, int timeout = 0)
+        /// <summary>
+        /// Request for subscribing for live trend bars.
+        /// TODO:EventHandler
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="symbolId"></param>
+        /// <param name="period"></param>
+        /// <returns></returns>
+        public async Task<ProtoOASubscribeLiveTrendbarRes> SubscribeToLiveTrendbar(long accountId, long symbolId, ProtoOATrendbarPeriod period)
         {
             var requestMessage = new ProtoOASubscribeLiveTrendbarReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 Period = period,
                 SymbolId = symbolId
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOASubscribeLiveTrendbarRes res = (ProtoOASubscribeLiveTrendbarRes)message;
             return res;
         }
-        public async Task<ProtoOAUnsubscribeLiveTrendbarRes> UnsubscribeFromLiveTrendbar(long cTraderAccountId, long symbolId, ProtoOATrendbarPeriod period, int timeout = 0)
+        /// <summary>
+        /// Request for unsubscribing from the live trend bars.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="symbolId"></param>
+        /// <param name="period"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAUnsubscribeLiveTrendbarRes> UnsubscribeFromLiveTrendbar(long accountId, long symbolId, ProtoOATrendbarPeriod period)
         {
             var requestMessage = new ProtoOAUnsubscribeLiveTrendbarReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 Period = period,
                 SymbolId = symbolId
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAUnsubscribeLiveTrendbarRes res = (ProtoOAUnsubscribeLiveTrendbarRes)message;
             return res;
         }
         /// <summary>
         /// Request for getting historical trend bars for the symbol.
         /// </summary>
-        /// <param name="cTraderAccountId">Unique identifier of the trader's account. Used to match responses to trader's accounts.</param>
+        /// <param name="accountId">Unique identifier of the trader's account. Used to match responses to trader's accounts.</param>
         /// <param name="symbolId">Unique identifier of the Symbol in cTrader platform.</param>
         /// <param name="period">Specifies period of trend bar series (e.g. M1, M10, etc.).</param>
         /// <param name="from">The exact UTC time of starting the search.
@@ -626,7 +631,7 @@ namespace OpenAPI.Net
         /// W1, MN1: 158112000000 (5 years).</param>
         /// <param name="to">The exact UTC time of finishing the search</param>
         /// <param name="count">Limit number of trend bars in response back from ToDateTime.</param>
-        public async Task<ProtoOATrendbar[]> GetTrendbars(long cTraderAccountId, long symbolId, ProtoOATrendbarPeriod period, DateTimeOffset from = default, DateTimeOffset to = default, uint count = default, int timeout = 0)
+        public async Task<ProtoOATrendbar[]> GetTrendbars(long accountId, long symbolId, ProtoOATrendbarPeriod period, DateTimeOffset from = default, DateTimeOffset to = default, uint count = default)
         {
             var periodMaximum = period.GetMaximumTime();
             if(from == default & to == default)
@@ -640,23 +645,28 @@ namespace OpenAPI.Net
             {
                 FromTimestamp = from.ToUnixTimeMilliseconds(),
                 ToTimestamp = to.ToUnixTimeMilliseconds(),
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
                 Period = period,
                 SymbolId = symbolId
             };
             if(count != default) requestMessage.Count = count;
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAGetTrendbarsRes res = (ProtoOAGetTrendbarsRes)message;
             ProtoOATrendbar[] trendBars = res.Trendbar.ToArray();
             return trendBars;
         }
-        public async Task<ProtoOAAsset[]> GetAssets(long cTraderAccountId, int timeout = 0)
+        /// <summary>
+        /// Request for the list of assets available for a trader's account.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAAsset[]> GetAssets(long accountId)
         {
             var requestMessage = new ProtoOAAssetListReq
             {
-                CtidTraderAccountId = cTraderAccountId,
+                CtidTraderAccountId = accountId,
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage, timeout);
+            IMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAAssetListRes res = (ProtoOAAssetListRes)message;
             ProtoOAAsset[] assets = res.Asset.ToArray();
             return assets;
