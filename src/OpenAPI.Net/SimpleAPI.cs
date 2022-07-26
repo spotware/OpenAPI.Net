@@ -1,4 +1,4 @@
-﻿// Warning: Work in progress, Not tested
+// Warning: Work in progress, Not tested
 
 using Google.Protobuf;
 using OpenAPI.Net.Auth;
