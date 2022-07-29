@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace OpenAPI.Net
 {
-    public sealed partial class OpenClient : IDisposable, IObservable<IMessage>
+    public sealed partial class OpenClient
     {
         /// <summary>
         /// Maximum response waiting time in milliseconds, after that time
@@ -44,17 +44,17 @@ namespace OpenAPI.Net
         }
         private ConcurrentDictionary<ulong, ResultPointer> resultPointers = new ConcurrentDictionary<ulong, ResultPointer>();
 
-        private async Task<IMessage> SendMessageWaitResponse(IMessage message)
+        private async Task<IOAMessage> SendMessageWaitResponse(IOAMessage message)
         {
             ulong id = NewMessageUniqueID;
             string clientMsgId = id.ToString();
-            IMessage resultMessage = null;
+            IOAMessage resultMessage = null;
             ResultPointer rp = new ResultPointer();
             bool messageReceived = false;
             try
             {
                 _ = resultPointers.TryAdd(id, rp);
-                await SendMessage(message, clientMsgId);
+                await SendMessage(message, message.PayloadType, clientMsgId);
                 messageReceived = rp.WaitHandle.WaitOne(MaximumResponseWaitTime);
             }
             finally
@@ -67,7 +67,7 @@ namespace OpenAPI.Net
                 resultMessage = rp.Message;
                 rp.Dispose();
             }
-            switch(resultMessage)
+            switch((IMessage)resultMessage)
             {
                 case ProtoErrorRes protoErrorRes:
                     throw new ProtoErrorResException(protoErrorRes);
@@ -86,7 +86,7 @@ namespace OpenAPI.Net
             {
                 if (resultPointers.TryRemove(id, out ResultPointer rp))
                 {
-                    rp.Message = message;
+                    rp.Message = (IOAMessage)message;
                     rp.WaitHandle.Set();
                 }
                 //else
@@ -105,10 +105,11 @@ namespace OpenAPI.Net
         {
             var request = new ProtoOARefreshTokenReq()
             {
-                RefreshToken = token.RefreshToken
+                RefreshToken = token.RefreshToken,
+                PayloadType = ProtoOAPayloadType.ProtoOaRefreshTokenReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOARefreshTokenRes res = (ProtoOARefreshTokenRes)message;
             token.AccessToken = res.AccessToken;
             return token;
@@ -127,10 +128,11 @@ namespace OpenAPI.Net
             var request = new ProtoOASymbolsListReq
             {
                 CtidTraderAccountId = accountId,
-                IncludeArchivedSymbols = includeArchivedSymbols
+                IncludeArchivedSymbols = includeArchivedSymbols,
+                PayloadType = ProtoOAPayloadType.ProtoOaSymbolsListReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOASymbolsListRes res = (ProtoOASymbolsListRes)message;
             return res;
         }
@@ -144,24 +146,26 @@ namespace OpenAPI.Net
             var request = new ProtoOAReconcileReq
             {
                 CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaReconcileReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAReconcileRes res = (ProtoOAReconcileRes)message;
             return res;
         }
         /// <summary>
         /// Request for getting the list of granted trader's account for the access token.
         /// </summary>
-        /// <param name="token"></param>
+        /// <param name="token">AccessToken</param>
         public async Task<ProtoOACtidTraderAccount[]> GetAccountList(Token token)
         {
             var request = new ProtoOAGetAccountListByAccessTokenReq
             {
                 AccessToken = token.AccessToken,
+                PayloadType = ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAGetAccountListByAccessTokenRes res = (ProtoOAGetAccountListByAccessTokenRes)message;
             return res.CtidTraderAccount.ToArray();
         }
@@ -175,10 +179,11 @@ namespace OpenAPI.Net
             var request = new ProtoOAApplicationAuthReq
             {
                 ClientId = clientId,
-                ClientSecret = secret
+                ClientSecret = secret,
+                PayloadType = ProtoOAPayloadType.ProtoOaApplicationAuthReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAApplicationAuthRes res = (ProtoOAApplicationAuthRes)message;
             return res;
         }
@@ -194,10 +199,11 @@ namespace OpenAPI.Net
             var request = new ProtoOAAccountAuthReq
             {
                 CtidTraderAccountId = accountId,
-                AccessToken = token.AccessToken
+                AccessToken = token.AccessToken,
+                PayloadType = ProtoOAPayloadType.ProtoOaAccountAuthReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAAccountAuthRes res = (ProtoOAAccountAuthRes)message;
             return res;
         }
@@ -211,9 +217,10 @@ namespace OpenAPI.Net
             var request = new ProtoOAAccountLogoutReq
             {
                 CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaAccountLogoutReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAAccountLogoutRes res = (ProtoOAAccountLogoutRes)message;
             return res;
         }
@@ -239,10 +246,11 @@ namespace OpenAPI.Net
                 SymbolId = SymbolId,
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
-                Type = Type
+                Type = Type,
+                PayloadType = ProtoOAPayloadType.ProtoOaGetTickdataReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAGetTickDataRes res = (ProtoOAGetTickDataRes)message;
             return res;
         }
@@ -252,19 +260,20 @@ namespace OpenAPI.Net
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="SymbolIds"></param>
-        public async Task<ProtoOASymbolByIdRes> GetSymbolsFull(long accountId,
-            IEnumerable<long> SymbolIds)
+        public async Task<ProtoOASymbolByIdRes> GetSymbolsFull(long accountId, IEnumerable<long> SymbolIds)
         {
             var request = new ProtoOASymbolByIdReq
             {
                 CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaSymbolByIdReq
             };
             request.SymbolId.AddRange(SymbolIds);
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOASymbolByIdRes res = (ProtoOASymbolByIdRes)message;
             return res;
         }
+
         /// <summary>
         /// Request for getting details of Trader's profile.
         /// Limited due to GDRP requirements.
@@ -275,10 +284,11 @@ namespace OpenAPI.Net
         {
             var request = new ProtoOAGetCtidProfileByTokenReq
             {
-                AccessToken = token.AccessToken
+                AccessToken = token.AccessToken,
+                PayloadType = ProtoOAPayloadType.ProtoOaGetCtidProfileByTokenReq
             };
 
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAGetCtidProfileByTokenRes res = (ProtoOAGetCtidProfileByTokenRes)message;
             return res.Profile;
         }
@@ -296,9 +306,10 @@ namespace OpenAPI.Net
             {
                 CtidTraderAccountId = accountId,
                 FirstAssetId = baseAssetId,
-                LastAssetId = quoteAssetId
+                LastAssetId = quoteAssetId,
+                PayloadType = ProtoOAPayloadType.ProtoOaSymbolsForConversionReq
             };
-            IMessage message = await SendMessageWaitResponse(request);
+            IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOASymbolsForConversionRes res = (ProtoOASymbolsForConversionRes)message;
             return res.Symbol.ToArray();
         }
@@ -319,6 +330,7 @@ namespace OpenAPI.Net
                 SymbolId = orderModel.Symbol.Id,
                 Volume = orderModel.Volume,
                 TradeSide = orderModel.TradeSide,
+                PayloadType = ProtoOAPayloadType.ProtoOaNewOrderReq
             };
             if (orderModel is MarketOrderModel marketOrder)
             {
@@ -376,7 +388,7 @@ namespace OpenAPI.Net
             {
                 requestMessage.Comment = orderModel.Comment;
             }
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
@@ -394,9 +406,10 @@ namespace OpenAPI.Net
             {
                 CtidTraderAccountId = accountId,
                 PositionId = positionId,
-                Volume = volume
+                Volume = volume,
+                PayloadType = ProtoOAPayloadType.ProtoOaClosePositionReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
@@ -412,9 +425,10 @@ namespace OpenAPI.Net
             var requestMessage = new ProtoOACancelOrderReq
             {
                 CtidTraderAccountId = accountId,
-                OrderId = orderId
+                OrderId = orderId,
+                PayloadType = ProtoOAPayloadType.ProtoOaCancelOrderReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
@@ -427,9 +441,10 @@ namespace OpenAPI.Net
         {
             var requestMessage = new ProtoOATraderReq
             {
-                CtidTraderAccountId = accountId
+                CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaTraderReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOATraderRes res = (ProtoOATraderRes)message;
             return res.Trader;
         }
@@ -448,6 +463,7 @@ namespace OpenAPI.Net
                 OrderId = oldOrder.Id,
                 CtidTraderAccountId = accountId,
                 Volume = newOrder.Volume,
+                PayloadType = ProtoOAPayloadType.ProtoOaAmendOrderReq
             };
             if (newOrder.IsStopLossEnabled)
             {
@@ -487,7 +503,7 @@ namespace OpenAPI.Net
                     if (slippageinPoint < int.MaxValue) requestMessage.SlippageInPoints = (int)slippageinPoint;
                 }
             }
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
             return res;
         }
@@ -508,9 +524,10 @@ namespace OpenAPI.Net
             {
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
-                CtidTraderAccountId = accountId
+                CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaDealListReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOADealListRes res = (ProtoOADealListRes)message;
             HistoricalTrade[] trades = res.Deal
                 .Select(deal => new HistoricalTrade(deal))
@@ -534,9 +551,10 @@ namespace OpenAPI.Net
             {
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
-                CtidTraderAccountId = accountId
+                CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOACashFlowHistoryListRes res = (ProtoOACashFlowHistoryListRes)message;
             Transaction[] transactions = res.DepositWithdraw
                 .Select(dw => new Transaction(dw))
@@ -555,9 +573,10 @@ namespace OpenAPI.Net
             var requestMessage = new ProtoOASubscribeSpotsReq
             {
                 CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaSubscribeSpotsReq
             };
             requestMessage.SymbolId.AddRange(symbolIds);
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOASubscribeSpotsRes res = (ProtoOASubscribeSpotsRes)message;
             return res;
         }
@@ -572,9 +591,10 @@ namespace OpenAPI.Net
             var requestMessage = new ProtoOAUnsubscribeSpotsReq
             {
                 CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq
             };
             requestMessage.SymbolId.AddRange(symbolIds);
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAUnsubscribeSpotsRes res = (ProtoOAUnsubscribeSpotsRes)message;
             return res;
         }
@@ -592,9 +612,10 @@ namespace OpenAPI.Net
             {
                 CtidTraderAccountId = accountId,
                 Period = period,
-                SymbolId = symbolId
+                SymbolId = symbolId,
+                PayloadType = ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOASubscribeLiveTrendbarRes res = (ProtoOASubscribeLiveTrendbarRes)message;
             return res;
         }
@@ -611,12 +632,54 @@ namespace OpenAPI.Net
             {
                 CtidTraderAccountId = accountId,
                 Period = period,
-                SymbolId = symbolId
+                SymbolId = symbolId,
+                PayloadType = ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAUnsubscribeLiveTrendbarRes res = (ProtoOAUnsubscribeLiveTrendbarRes)message;
             return res;
         }
+
+
+        /// <summary>
+        /// Request for subscribing on spot events of the specified symbol.
+        /// TODO:EventHandler
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="symbolIds"></param>
+        /// <returns></returns>
+        public async Task<ProtoOASubscribeDepthQuotesRes> SubscribeToDepths(long accountId, IEnumerable<long> symbolIds)
+        {
+            var requestMessage = new ProtoOASubscribeDepthQuotesReq
+            {
+                CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaSubscribeDepthQuotesReq
+            };
+            requestMessage.SymbolId.AddRange(symbolIds);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
+            ProtoOASubscribeDepthQuotesRes res = (ProtoOASubscribeDepthQuotesRes)message;
+            return res;
+        }
+        /// <summary>
+        /// Request for unsubscribing from the depth of market of the specified symbol.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="symbolIds"></param>
+        /// <returns></returns>
+        public async Task<ProtoOAUnsubscribeDepthQuotesRes> UnsubscribeFromDepths(long accountId, IEnumerable<long> symbolIds)
+        {
+            var requestMessage = new ProtoOAUnsubscribeDepthQuotesReq
+            {
+                CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaUnsubscribeDepthQuotesReq
+            };
+            requestMessage.SymbolId.AddRange(symbolIds);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
+            ProtoOAUnsubscribeDepthQuotesRes res = (ProtoOAUnsubscribeDepthQuotesRes)message;
+            return res;
+        }
+
+
         /// <summary>
         /// Request for getting historical trend bars for the symbol.
         /// </summary>
@@ -647,10 +710,11 @@ namespace OpenAPI.Net
                 ToTimestamp = to.ToUnixTimeMilliseconds(),
                 CtidTraderAccountId = accountId,
                 Period = period,
-                SymbolId = symbolId
+                SymbolId = symbolId,
+                PayloadType = ProtoOAPayloadType.ProtoOaGetTrendbarsReq
             };
             if(count != default) requestMessage.Count = count;
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAGetTrendbarsRes res = (ProtoOAGetTrendbarsRes)message;
             ProtoOATrendbar[] trendBars = res.Trendbar.ToArray();
             return trendBars;
@@ -665,11 +729,27 @@ namespace OpenAPI.Net
             var requestMessage = new ProtoOAAssetListReq
             {
                 CtidTraderAccountId = accountId,
+                PayloadType = ProtoOAPayloadType.ProtoOaAssetListReq
             };
-            IMessage message = await SendMessageWaitResponse(requestMessage);
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
             ProtoOAAssetListRes res = (ProtoOAAssetListRes)message;
             ProtoOAAsset[] assets = res.Asset.ToArray();
             return assets;
+        }
+        /// <summary>
+        /// Request for getting the proxy version.
+        /// Can be used to check the current version of the Open API scheme.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ProtoOAVersionRes> GetVersion()
+        {
+            var requestMessage = new ProtoOAVersionReq()
+            {
+                PayloadType = ProtoOAPayloadType.ProtoOaVersionReq
+            };
+            IOAMessage message = await SendMessageWaitResponse(requestMessage);
+            ProtoOAVersionRes res = (ProtoOAVersionRes)message;
+            return res;
         }
     }
 }

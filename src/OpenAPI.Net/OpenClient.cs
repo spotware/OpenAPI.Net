@@ -183,9 +183,9 @@ namespace OpenAPI.Net
         /// <param name="clientMsgId">The client message ID (optional)</param>
         /// <exception cref="InvalidOperationException">If getting message payload type fails</exception>
         /// <returns>Task</returns>
-        public async Task SendMessage<T>(T message, string clientMsgId = null) where T : IMessage
+        public async Task SendMessage<T>(T message, string clientMsgId = null) where T : IOAMessage
         {
-            var protoMessage = MessageFactory.GetMessage(message.GetPayloadType(), message.ToByteString(), clientMsgId);
+            var protoMessage = MessageFactory.GetMessage((uint)message.PayloadType, message.ToByteString(), clientMsgId);
 
             await SendMessage(protoMessage);
         }
@@ -535,6 +535,8 @@ namespace OpenAPI.Net
         /// <param name="protoMessage">Message</param>
         private void OnNext(ProtoMessage protoMessage)
         {
+            var message0 = MessageFactory.GetMessage(protoMessage);
+            MessageEventHandlersAsync(message0);
             if (protoMessage.HasClientMsgId)
             {
                 var message = MessageFactory.GetMessage(protoMessage);
