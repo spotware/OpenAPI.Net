@@ -2,7 +2,7 @@
 
 [![NuGet version (cTrader.OpenAPI.Net)](https://buildstats.info/nuget/cTrader.OpenAPI.Net)](https://www.nuget.org/packages/cTrader.OpenAPI.Net/)
 
-cTrader Open API .NET Rx library
+cTrader Open API .NET Rx library (Experimental version!)
 
 This library allows you to easily use and integrate cTrader Open API on your .NET applications.
 
