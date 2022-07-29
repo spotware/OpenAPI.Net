@@ -6,7 +6,7 @@ namespace OpenAPI.Net.Helpers
 {
     internal class ResultPointer : IDisposable
     {
-        public IMessage Message;
+        public IOAMessage Message;
         public AutoResetEvent WaitHandle = new AutoResetEvent(false);
 
         public void Dispose()

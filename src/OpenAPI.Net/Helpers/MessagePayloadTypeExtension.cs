@@ -15,18 +15,26 @@ namespace OpenAPI.Net.Helpers
         /// <exception cref="InvalidOperationException"></exception>
         public static uint GetPayloadType<T>(this T message) where T : IMessage
         {
-            PropertyInfo property;
-
-            try
+            switch (message)
             {
-                property = message.GetType().GetProperty("PayloadType");
+                case IOAMessage m1:
+                    return (uint)m1.PayloadType;
+                case IMessageExt m2:
+                    return (uint)m2.PayloadType;
+                case IProtoMessage m3:
+                    return m3.PayloadType;
+                default:
+                    PropertyInfo property;
+                    try
+                    {
+                        property = message.GetType().GetProperty("PayloadType");
+                    }
+                    catch (Exception ex) when (ex is AmbiguousMatchException || ex is ArgumentNullException)
+                    {
+                        throw new InvalidOperationException($"Couldn't get the PayloadType of the message {message}", ex);
+                    }
+                    return Convert.ToUInt32(property.GetValue(message));
             }
-            catch (Exception ex) when (ex is AmbiguousMatchException || ex is ArgumentNullException)
-            {
-                throw new InvalidOperationException($"Couldn't get the PayloadType of the message {message}", ex);
-            }
-
-            return Convert.ToUInt32(property.GetValue(message));
         }
     }
 }

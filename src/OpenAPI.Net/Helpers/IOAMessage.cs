@@ -15,7 +15,7 @@ namespace OpenAPI.Net.Helpers
         public bool HasPayloadType { get; }
     }
 }
-#region IOpenAPIMessageDeclarations
+#region IOAMessageDeclarations
 public sealed partial class ProtoOAApplicationAuthReq : IOAMessage { }
 public sealed partial class ProtoOAApplicationAuthRes : IOAMessage { }
 public sealed partial class ProtoOAAccountAuthReq : IOAMessage { }
