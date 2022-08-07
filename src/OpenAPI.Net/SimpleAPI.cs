@@ -225,6 +225,19 @@ namespace OpenAPI.Net
             return res;
         }
 
+        public async Task<ProtoOAGetDynamicLeverageByIDRes> GetDynamicLeverageByID(long accountId, long leverageId)
+        {
+            var request = new ProtoOAGetDynamicLeverageByIDReq
+            {
+                CtidTraderAccountId = accountId,
+                LeverageId = leverageId,
+                PayloadType = ProtoOAPayloadType.ProtoOaGetDynamicLeverageReq
+            };
+
+            IOAMessage message = await SendMessageWaitResponse(request);
+            ProtoOAGetDynamicLeverageByIDRes res = (ProtoOAGetDynamicLeverageByIDRes)message;
+            return res;
+        }
         /// <summary>
         /// Request for getting historical tick data for the symbol. Maximum is 1 week.
         /// </summary>
@@ -233,7 +246,7 @@ namespace OpenAPI.Net
         /// <param name="FromDateTime">The exact UTC time of starting the search</param>
         /// <param name="ToDateTime">The exact UTC time of finishing the search</param>
         /// <param name="Type">Bid or Ask</param>
-        public async Task<ProtoOAGetTickDataRes> GetTickData(long accountId, long SymbolId,
+        public async Task<ProtoOATickData[]> GetTickData(long accountId, long SymbolId,
             DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, ProtoOAQuoteType Type)
         {
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
@@ -252,7 +265,13 @@ namespace OpenAPI.Net
 
             IOAMessage message = await SendMessageWaitResponse(request);
             ProtoOAGetTickDataRes res = (ProtoOAGetTickDataRes)message;
-            return res;
+            var tickData = res.TickData.ToArray();
+            for (int i = 1; i < tickData.Length; i++)
+            {
+                tickData[i].Tick += tickData[i - 1].Tick;
+                tickData[i].Timestamp += tickData[i - 1].Timestamp;
+            }
+            return tickData;
         }
 
         /// <summary>
