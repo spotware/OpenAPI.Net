@@ -20,7 +20,7 @@ namespace OpenAPI.Net
         /// Maximum response waiting time in milliseconds, after that time
         /// throw TimeoutException.
         /// </summary>
-        public static int MaximumResponseWaitTime = 60000;
+        public static int MaximumResponseWaitTime = 20000;
         /// <summary>
         /// lastTimeStamp for NewMessageUniqueID generator
         /// lastTimeStamp is expressed in 1/100th of seconds
@@ -239,7 +239,7 @@ namespace OpenAPI.Net
             return res;
         }
         /// <summary>
-        /// Request for getting historical tick data for the symbol. Maximum is 1 week.
+        /// Request for getting historical tick data for the symbol.
         /// </summary>
         /// <param name="accountId">Unique identifier of the trader's account. Used to match responses to trader's accounts.</param>
         /// <param name="SymbolId">Unique identifier of the Symbol in cTrader platform.</param>
@@ -249,29 +249,49 @@ namespace OpenAPI.Net
         public async Task<ProtoOATickData[]> GetTickData(long accountId, long SymbolId,
             DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, ProtoOAQuoteType Type)
         {
+            List<ProtoOATickData> tickData = new();
+            ProtoOAGetTickDataRes res;
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
             long toTime = ToDateTime.ToUnixTimeMilliseconds();
-            long toMax = fromTime + 604800000;
-            toTime = Math.Min(toTime, toMax);
-            var request = new ProtoOAGetTickDataReq
+            long fromTime2;
+            do
             {
-                CtidTraderAccountId = accountId,
-                SymbolId = SymbolId,
-                FromTimestamp = fromTime,
-                ToTimestamp = toTime,
-                Type = Type,
-                PayloadType = ProtoOAPayloadType.ProtoOaGetTickdataReq
-            };
+                long fromMin = toTime - 604800000;
+                fromTime2 = Math.Max(fromTime, fromMin);
+                var request = new ProtoOAGetTickDataReq
+                {
+                    CtidTraderAccountId = accountId,
+                    SymbolId = SymbolId,
+                    FromTimestamp = fromTime2,
+                    ToTimestamp = toTime,
+                    Type = Type,
+                    PayloadType = ProtoOAPayloadType.ProtoOaGetTickdataReq
+                };
 
-            IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAGetTickDataRes res = (ProtoOAGetTickDataRes)message;
-            var tickData = res.TickData.ToArray();
-            for (int i = 1; i < tickData.Length; i++)
-            {
-                tickData[i].Tick += tickData[i - 1].Tick;
-                tickData[i].Timestamp += tickData[i - 1].Timestamp;
-            }
-            return tickData;
+                IOAMessage message = await SendMessageWaitResponse(request);
+                res = (ProtoOAGetTickDataRes)message;
+                var chunkData = res.TickData.ToList();
+                if (chunkData.Count > 1)
+                {
+                    for (int i = 1; i < chunkData.Count; i++)
+                    {
+                        chunkData[i].Tick += chunkData[i - 1].Tick;
+                        chunkData[i].Timestamp += chunkData[i - 1].Timestamp;
+                    }
+                }
+                tickData.AddRange(chunkData);
+                if (chunkData.Count > 0)
+                {
+                    toTime = chunkData.Last().Timestamp - 1;
+                }
+                else
+                {
+                    toTime = toTime - 604800000;
+                    if (toTime <= fromTime)
+                        break;
+                }
+            } while (res.HasMore | fromTime2 > fromTime);
+            return tickData.ToArray();
         }
 
         /// <summary>
