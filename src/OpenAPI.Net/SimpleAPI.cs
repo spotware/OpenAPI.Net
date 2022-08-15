@@ -8,6 +8,7 @@ using OpenAPI.Net.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,12 +21,12 @@ namespace OpenAPI.Net
         /// Maximum response waiting time in milliseconds, after that time
         /// throw TimeoutException.
         /// </summary>
-        public static int MaximumResponseWaitTime = 20000;
+        public static int MaximumResponseWaitTime = 30000;
         /// <summary>
         /// lastTimeStamp for NewMessageUniqueID generator
-        /// lastTimeStamp is expressed in 1/100th of seconds
+        /// lastTimeStamp is expressed in milliseconds
         /// </summary>
-        private static ulong lastTimeStamp = (ulong)(DateTime.UtcNow.Ticks / 100000);
+        private static ulong lastTimeStamp = (ulong)(DateTime.UtcNow.Ticks / 10000);
         private static ulong NewMessageUniqueID
         {
             get
@@ -34,7 +35,7 @@ namespace OpenAPI.Net
                 do
                 {
                     original = lastTimeStamp;
-                    ulong now = 100 * (ulong)(DateTime.UtcNow.Ticks / 100000);
+                    ulong now = (ulong)(DateTime.UtcNow.Ticks / 10000);
                     newValue = Math.Max(now, original + 1);
                 } while (Interlocked.CompareExchange
                              (ref lastTimeStamp, newValue, original) != original);
@@ -44,45 +45,58 @@ namespace OpenAPI.Net
         }
         private ConcurrentDictionary<ulong, ResultPointer> resultPointers = new ConcurrentDictionary<ulong, ResultPointer>();
 
-        private async Task<IOAMessage> SendMessageWaitResponse(IOAMessage message)
+        private async Task<IOAMessage> SendMessageWaitResponse(IOAMessage message, uint retryCount = 0)
         {
             ulong id = NewMessageUniqueID;
-            string clientMsgId = id.ToString();
+            string clientMsgId = id.ToString("X");
             IOAMessage resultMessage = null;
             ResultPointer rp = new ResultPointer();
             bool messageReceived = false;
-            try
+            resultPointers.TryAdd(id, rp);
+            for (uint retry = 0; retry <= retryCount; retry++)
             {
-                _ = resultPointers.TryAdd(id, rp);
-                await SendMessage(message, message.PayloadType, clientMsgId);
-                messageReceived = rp.WaitHandle.WaitOne(MaximumResponseWaitTime);
-            }
-            finally
-            {
-                if (!messageReceived)
+                try
                 {
-                    // timeout or exception occured - Remove current ResultPointer
-                    resultPointers.TryRemove(id, out _);
+                    await SendMessage(message, message.PayloadType, clientMsgId);
+                    messageReceived = rp.WaitHandle.WaitOne(MaximumResponseWaitTime);
                 }
-                resultMessage = rp.Message;
-                rp.Dispose();
-            }
-            switch((IMessage)resultMessage)
-            {
-                case ProtoErrorRes protoErrorRes:
-                    throw new ProtoErrorResException(protoErrorRes);
-                case ProtoOAErrorRes protoOAErrorRes:
-                    throw new ProtoOAErrorResException(protoOAErrorRes);
-                case ProtoOAOrderErrorEvent protoOAOrderErrorEvent:
-                    throw new ProtoOAOrderErrorEventException(protoOAOrderErrorEvent);
-                case null:
-                    throw new TimeoutException("Maximum response timeout reached.");
+                catch
+                {
+                    resultPointers.TryRemove(id, out _);
+                    rp.Dispose();
+                    throw;
+                }
+                finally
+                {
+                    resultMessage = rp?.Message;
+                    if (!messageReceived & retry == retryCount)
+                    {
+                        // timeout occured - Remove current ResultPointer
+                        resultPointers.TryRemove(id, out _);
+                        rp?.Dispose();
+                    }
+                }
+                switch ((IMessage)resultMessage)
+                {
+                    case ProtoErrorRes protoErrorRes:
+                        throw new ProtoErrorResException(protoErrorRes);
+                    case ProtoOAErrorRes protoOAErrorRes:
+                        throw new ProtoOAErrorResException(protoOAErrorRes);
+                    case ProtoOAOrderErrorEvent protoOAOrderErrorEvent:
+                        throw new ProtoOAOrderErrorEventException(protoOAOrderErrorEvent);
+                    case null:
+                        if (retry < retryCount)
+                           continue;
+                        throw new TimeoutException("Maximum response timeout reached.");
+                    default:
+                        return resultMessage;
+                }
             }
             return resultMessage;
         }
         private void MessageForwardByClientMsgId(IMessage message, string clientMsgId)
         {
-            if (ulong.TryParse(clientMsgId, out ulong id))
+            if (ulong.TryParse(clientMsgId, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out ulong id))
             {
                 if (resultPointers.TryRemove(id, out ResultPointer rp))
                 {
@@ -268,7 +282,7 @@ namespace OpenAPI.Net
                     PayloadType = ProtoOAPayloadType.ProtoOaGetTickdataReq
                 };
 
-                IOAMessage message = await SendMessageWaitResponse(request);
+                IOAMessage message = await SendMessageWaitResponse(request, 2);
                 res = (ProtoOAGetTickDataRes)message;
                 var chunkData = res.TickData.ToList();
                 if (chunkData.Count > 1)
