@@ -375,8 +375,6 @@ namespace OpenAPI.Net
         /// <returns></returns>
         public async Task<ProtoOAExecutionEvent> CreateNewOrder(OrderModel orderModel, long accountId)
         {
-            ulong id = NewMessageUniqueID;
-            string clientMsgId = id.ToString();
             var requestMessage = new ProtoOANewOrderReq
             {
                 CtidTraderAccountId = accountId,
