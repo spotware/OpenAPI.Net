@@ -12,7 +12,7 @@ namespace OpenAPI.Net.Models
         {
         }
 
-        public MarketOrderModel(ProtoOAPosition position, SymbolModel symbol) => Update(position, symbol);
+        public MarketOrderModel(ProtoOA.Model.Position position, SymbolModel symbol) => Update(position, symbol);
 
         public double MarketRangeInPips { get; set; } = 10;
 
@@ -57,9 +57,9 @@ namespace OpenAPI.Net.Models
         public double CommissionMonetary { get; set; }
         public double DoubleCommissionMonetary { get; private set; }
 
-        public ProtoOAPositionStatus Status { get; set; }
+        public ProtoOA.Enums.PositionStatus Status { get; set; }
 
-        public ProtoOAOrderTriggerMethod StopTriggerMethod { get; set; }
+        public ProtoOA.Enums.OrderTriggerMethod StopTriggerMethod { get; set; }
 
         public double Pips { get; set; }
 
@@ -68,7 +68,7 @@ namespace OpenAPI.Net.Models
         public double GrossProfit { get; set; }
         public double BaseSlippagePrice { get; set; }
 
-        public void Update(ProtoOAPosition position, SymbolModel symbol)
+        public void Update(ProtoOA.Model.Position position, SymbolModel symbol)
         {
             Symbol = symbol;
             TradeSide = position.TradeData.TradeSide;
@@ -124,7 +124,7 @@ namespace OpenAPI.Net.Models
 
         public void OnSymbolTick()
         {
-            if (TradeSide == ProtoOATradeSide.Buy)
+            if (TradeSide == ProtoOA.Enums.TradeSide.Buy)
             {
                 Pips = Symbol.Data.GetPipsFromPrice(Symbol.Bid - Price);
             }

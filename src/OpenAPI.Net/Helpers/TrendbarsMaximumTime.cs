@@ -1,33 +1,34 @@
-﻿using System;
+﻿using ProtoOA.Enums;
+using System;
 
 namespace OpenAPI.Net.Helpers
 {
     public static class TrendbarsMaximumTime
     {
-        public static TimeSpan GetMaximumTime(this ProtoOATrendbarPeriod period)
+        public static TimeSpan GetMaximumTime(this TrendbarPeriod period)
         {
             switch (period)
             {
-                case ProtoOATrendbarPeriod.M1:
-                case ProtoOATrendbarPeriod.M2:
-                case ProtoOATrendbarPeriod.M3:
-                case ProtoOATrendbarPeriod.M4:
-                case ProtoOATrendbarPeriod.M5:
+                case TrendbarPeriod.M1:
+                case TrendbarPeriod.M2:
+                case TrendbarPeriod.M3:
+                case TrendbarPeriod.M4:
+                case TrendbarPeriod.M5:
                     return TimeSpan.FromMilliseconds(302400000);
 
-                case ProtoOATrendbarPeriod.M10:
-                case ProtoOATrendbarPeriod.M15:
-                case ProtoOATrendbarPeriod.M30:
-                case ProtoOATrendbarPeriod.H1:
+                case TrendbarPeriod.M10:
+                case TrendbarPeriod.M15:
+                case TrendbarPeriod.M30:
+                case TrendbarPeriod.H1:
                     return TimeSpan.FromMilliseconds(21168000000);
 
-                case ProtoOATrendbarPeriod.H4:
-                case ProtoOATrendbarPeriod.H12:
-                case ProtoOATrendbarPeriod.D1:
+                case TrendbarPeriod.H4:
+                case TrendbarPeriod.H12:
+                case TrendbarPeriod.D1:
                     return TimeSpan.FromMilliseconds(31622400000);
 
-                case ProtoOATrendbarPeriod.W1:
-                case ProtoOATrendbarPeriod.Mn1:
+                case TrendbarPeriod.W1:
+                case TrendbarPeriod.Mn1:
                     return TimeSpan.FromMilliseconds(158112000000);
 
                 default:

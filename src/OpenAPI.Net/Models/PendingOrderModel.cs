@@ -10,26 +10,26 @@ namespace OpenAPI.Net.Models
         {
         }
 
-        public PendingOrderModel(ProtoOAOrder order, SymbolModel symbol) => Update(order, symbol);
+        public PendingOrderModel(ProtoOA.Model.Order order, SymbolModel symbol) => Update(order, symbol);
 
         public bool IsFilledOrCanceled { get; set; }
 
         public PendingOrderType Type { get; set; }
 
-        public ProtoOAOrderType ProtoType
+        public ProtoOA.Enums.OrderType ProtoType
         {
             get => Type switch
             {
-                PendingOrderType.Limit => ProtoOAOrderType.Limit,
-                PendingOrderType.Stop => ProtoOAOrderType.Stop,
-                PendingOrderType.StopLimit => ProtoOAOrderType.StopLimit,
+                PendingOrderType.Limit => ProtoOA.Enums.OrderType.Limit,
+                PendingOrderType.Stop => ProtoOA.Enums.OrderType.Stop,
+                PendingOrderType.StopLimit => ProtoOA.Enums.OrderType.StopLimit,
                 _ => throw new InvalidOperationException($"Order type {Type} is not valid")
             };
             set => Type = value switch
             {
-                ProtoOAOrderType.Limit => PendingOrderType.Limit,
-                ProtoOAOrderType.Stop => PendingOrderType.Stop,
-                ProtoOAOrderType.StopLimit => PendingOrderType.StopLimit,
+                ProtoOA.Enums.OrderType.Limit => PendingOrderType.Limit,
+                ProtoOA.Enums.OrderType.Stop => PendingOrderType.Stop,
+                ProtoOA.Enums.OrderType.StopLimit => PendingOrderType.StopLimit,
                 _ => throw new InvalidOperationException($"Order type {value} is not valid")
             };
         }
@@ -40,11 +40,11 @@ namespace OpenAPI.Net.Models
 
         public DateTimeOffset ExpiryTime { get; set; }
 
-        public ProtoOAOrderStatus Status { get; set; }
+        public ProtoOA.Enums.OrderStatus Status { get; set; }
 
         public PendingOrderModel Clone() => MemberwiseClone() as PendingOrderModel;
 
-        public void Update(ProtoOAOrder order, SymbolModel symbol)
+        public void Update(ProtoOA.Model.Order order, SymbolModel symbol)
         {
             Symbol = symbol;
             Volume = order.TradeData.Volume;
@@ -83,7 +83,7 @@ namespace OpenAPI.Net.Models
                 IsStopLossEnabled = true;
 
                 StopLossInPips = Symbol.Data.GetPipsFromRelative(order.RelativeStopLoss);
-                StopLossInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.Data.AddPipsToPrice(Price, StopLossInPips) : Symbol.Data.SubtractPipsFromPrice(Price, StopLossInPips);
+                StopLossInPrice = TradeSide == ProtoOA.Enums.TradeSide.Sell ? Symbol.Data.AddPipsToPrice(Price, StopLossInPips) : Symbol.Data.SubtractPipsFromPrice(Price, StopLossInPips);
 
                 IsTrailingStopLossEnabled = order.TrailingStopLoss;
             }
@@ -110,7 +110,7 @@ namespace OpenAPI.Net.Models
                 IsTakeProfitEnabled = true;
 
                 TakeProfitInPips = Symbol.Data.GetPipsFromRelative(order.RelativeTakeProfit);
-                TakeProfitInPrice = TradeSide == ProtoOATradeSide.Sell ? Symbol.Data.SubtractPipsFromPrice(Price, TakeProfitInPips) : Symbol.Data.AddPipsToPrice(Price, TakeProfitInPips);
+                TakeProfitInPrice = TradeSide == ProtoOA.Enums.TradeSide.Sell ? Symbol.Data.SubtractPipsFromPrice(Price, TakeProfitInPips) : Symbol.Data.AddPipsToPrice(Price, TakeProfitInPips);
             }
             else if (order.HasTakeProfit)
             {

@@ -6,7 +6,7 @@ namespace OpenAPI.Net.Models
     {
         public long Id { get; set; }
 
-        public ProtoOAChangeBalanceType Type { get; set; }
+        public ProtoOA.Enums.ChangeBalanceType Type { get; set; }
 
         public double Balance { get; set; }
 
@@ -20,7 +20,7 @@ namespace OpenAPI.Net.Models
 
         public string Note { get; set; }
         public Transaction() { }
-        public Transaction(ProtoOADepositWithdraw depositWithdraw)
+        public Transaction(ProtoOA.Model.DepositWithdraw depositWithdraw)
         {
             Id = depositWithdraw.BalanceHistoryId;
             Type = depositWithdraw.OperationType;

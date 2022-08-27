@@ -15,10 +15,12 @@ using System.Net.WebSockets;
 using System.Threading.Channels;
 using System.Buffers;
 using System.Net;
+using ProtoOA.CommonMessages;
+using ProtoOA.Enums;
 
 namespace OpenAPI.Net
 {
-    public sealed partial class OpenClient : IDisposable, IObservable<IMessage>
+    public sealed partial class OpenClient : IDisposable//, IObservable<IMessage>
     {
         private readonly TimeSpan _heartbeatInerval;
 
@@ -26,7 +28,7 @@ namespace OpenAPI.Net
 
         private readonly Channel<ProtoMessage> _messagesChannel = Channel.CreateUnbounded<ProtoMessage>();
 
-        private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new();
+        //private readonly ConcurrentDictionary<int, IObserver<IMessage>> _observers = new();
 
         private readonly CancellationTokenSource _cancellationTokenSource = new();
 
@@ -156,22 +158,22 @@ namespace OpenAPI.Net
             }
         }
 
-        /// <summary>
-        /// Subscribe to client incoming messages
-        /// </summary>
-        /// <param name="observer">The observer that will receive the messages</param>
-        /// <exception cref="ObjectDisposedException">If client is disposed</exception>
-        /// <returns>IDisposable</returns>
-        public IDisposable Subscribe(IObserver<IMessage> observer)
-        {
-            ThrowObjectDisposedExceptionIfDisposed();
+        ///// <summary>
+        ///// Subscribe to client incoming messages
+        ///// </summary>
+        ///// <param name="observer">The observer that will receive the messages</param>
+        ///// <exception cref="ObjectDisposedException">If client is disposed</exception>
+        ///// <returns>IDisposable</returns>
+        //public IDisposable Subscribe(IObserver<IMessage> observer)
+        //{
+        //    ThrowObjectDisposedExceptionIfDisposed();
 
-            var observerHashCode = observer.GetHashCode();
+        //    var observerHashCode = observer.GetHashCode();
 
-            _ = _observers.AddOrUpdate(observerHashCode, observer, (key, oldObserver) => observer);
+        //    _ = _observers.AddOrUpdate(observerHashCode, observer, (key, oldObserver) => observer);
 
-            return Disposable.Create(() => OnObserverDispose(observerHashCode));
-        }
+        //    return Disposable.Create(() => OnObserverDispose(observerHashCode));
+        //}
 
         /// <summary>
         /// This method will insert your message on messages queue, it will not send the message instantly
@@ -183,7 +185,7 @@ namespace OpenAPI.Net
         /// <param name="clientMsgId">The client message ID (optional)</param>
         /// <exception cref="InvalidOperationException">If getting message payload type fails</exception>
         /// <returns>Task</returns>
-        public async Task SendMessage<T>(T message, string clientMsgId = null) where T : IOAMessage
+        internal async Task SendMessage<T>(T message, string clientMsgId = null) where T : IOAMessage
         {
             var protoMessage = MessageFactory.GetMessage((uint)message.PayloadType, message.ToByteString(), clientMsgId);
 
@@ -198,7 +200,7 @@ namespace OpenAPI.Net
         /// <param name="payloadType">Message Payload Type (ProtoPayloadType)</param>
         /// <param name="clientMsgId">The client message ID (optional)</param>
         /// <returns>Task</returns>
-        public async Task SendMessage<T>(T message, ProtoPayloadType payloadType, string clientMsgId = null) where T : IMessage
+        internal async Task SendMessage<T>(T message, ProtoPayloadType payloadType, string clientMsgId = null) where T : IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
@@ -210,10 +212,10 @@ namespace OpenAPI.Net
         /// </summary>
         /// <typeparam name="T">Message Type</typeparam>
         /// <param name="message">Message</param>
-        /// <param name="payloadType">Message Payload Type (ProtoOAPayloadType)</param>
+        /// <param name="payloadType">Message Payload Type (ProtoOA.Enums.PayloadType)</param>
         /// <param name="clientMsgId">The client message ID (optional)</param>
         /// <returns>Task</returns>
-        public async Task SendMessage<T>(T message, ProtoOAPayloadType payloadType, string clientMsgId = null) where T : IMessage
+        internal async Task SendMessage<T>(T message, ProtoOA.Enums.PayloadType payloadType, string clientMsgId = null) where T : IMessage
         {
             var protoMessage = MessageFactory.GetMessage(message, payloadType, clientMsgId);
 
@@ -225,7 +227,7 @@ namespace OpenAPI.Net
         /// </summary>
         /// <param name="message">Message</param>
         /// <returns>Task</returns>
-        public async Task SendMessage(ProtoMessage message)
+        internal async Task SendMessage(ProtoMessage message)
         {
             MessagesQueueCount += 1;
 
@@ -241,7 +243,7 @@ namespace OpenAPI.Net
         /// <exception cref="ObjectDisposedException">If client is already disposed</exception>
         /// <exception cref="SendException">If something went wrong while sending the message, please check the inner exception for more detail</exception>
         /// <returns>Task</returns>
-        public async Task SendMessageInstant(ProtoMessage message)
+        internal async Task SendMessageInstant(ProtoMessage message)
         {
             ThrowObjectDisposedExceptionIfDisposed();
 
@@ -367,9 +369,9 @@ namespace OpenAPI.Net
                     {
                         var timeElapsedSinceLastMessageSent = DateTimeOffset.Now - LastSentMessageTime;
                         TimeSpan requestDelay;
-                        if((ProtoOAPayloadType)message.PayloadType is 
-                            ProtoOAPayloadType.ProtoOaDealListReq or ProtoOAPayloadType.ProtoOaGetTrendbarsReq or
-                            ProtoOAPayloadType.ProtoOaGetTickdataReq or ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq)
+                        if((ProtoOA.Enums.PayloadType)message.PayloadType is 
+                            ProtoOA.Enums.PayloadType.ProtoOaDealListReq or ProtoOA.Enums.PayloadType.ProtoOaGetTrendbarsReq or
+                            ProtoOA.Enums.PayloadType.ProtoOaGetTickdataReq or ProtoOA.Enums.PayloadType.ProtoOaCashFlowHistoryListReq)
                         {
                             requestDelay = _requestHistoryDelay;
                         }
@@ -520,14 +522,14 @@ namespace OpenAPI.Net
             OnError(disconnectionInfo.Exception);
         }
 
-        /// <summary>
-        /// Removes the disposed observer from client observers collection
-        /// </summary>
-        /// <param name="observerKey">The observer hash code key</param>
-        private void OnObserverDispose(int observerKey)
-        {
-            _ = _observers.TryRemove(observerKey, out _);
-        }
+        ///// <summary>
+        ///// Removes the disposed observer from client observers collection
+        ///// </summary>
+        ///// <param name="observerKey">The observer hash code key</param>
+        //private void OnObserverDispose(int observerKey)
+        //{
+        //    _ = _observers.TryRemove(observerKey, out _);
+        //}
 
         /// <summary>
         /// Calls each observer OnNext with the message
@@ -537,28 +539,29 @@ namespace OpenAPI.Net
         {
             var message0 = MessageFactory.GetMessage(protoMessage);
             MessageEventHandlersAsync(message0);
+            MessageObservableEventHandlers(message0);
             if (protoMessage.HasClientMsgId)
             {
                 var message = MessageFactory.GetMessage(protoMessage);
                 if (message != null) MessageForwardByClientMsgId(message, protoMessage.ClientMsgId);
             }
-            foreach (var (_, observer) in _observers)
-            {
-                try
-                {
-                    var message = MessageFactory.GetMessage(protoMessage);
+            //foreach (var (_, observer) in _observers)
+            //{
+            //    try
+            //    {
+            //        var message = MessageFactory.GetMessage(protoMessage);
 
-                    if (protoMessage.HasClientMsgId || message == null) observer.OnNext(protoMessage);
+            //        if (protoMessage.HasClientMsgId || message == null) observer.OnNext(protoMessage);
 
-                    if (message != null) observer.OnNext(message);
-                }
-                catch (Exception ex)
-                {
-                    var observerException = new ObserverException(ex, observer);
+            //        if (message != null) observer.OnNext(message);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        var observerException = new ObserverException(ex, observer);
 
-                    OnError(observerException);
-                }
-            }
+            //        OnError(observerException);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -570,21 +573,21 @@ namespace OpenAPI.Net
             if (IsTerminated) return;
 
             IsTerminated = true;
-
+            DisposeObservableEventHandlers(exception);
             Dispose();
 
-            foreach (var (_, observer) in _observers)
-            {
-                try
-                {
-                    observer.OnError(exception);
-                }
-                catch (Exception ex) when (ex == exception)
-                {
-                }
-            }
+            //foreach (var (_, observer) in _observers)
+            //{
+            //    try
+            //    {
+            //        observer.OnError(exception);
+            //    }
+            //    catch (Exception ex) when (ex == exception)
+            //    {
+            //    }
+            //}
 
-            _observers.Clear();
+            //_observers.Clear();
         }
 
         /// <summary>
@@ -594,10 +597,10 @@ namespace OpenAPI.Net
         {
             IsCompleted = true;
 
-            foreach (var (_, observer) in _observers)
-            {
-                observer.OnCompleted();
-            }
+            //foreach (var (_, observer) in _observers)
+            //{
+            //    observer.OnCompleted();
+            //}
         }
 
         /// <summary>

@@ -1,0 +1,46 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".g.cs" #>
+<#
+string[] sourceCodeRows = File.ReadAllLines(@"src\OpenAPI.Net\Messages\OpenApiCommonMessages.cs");
+bool isFileHeader = true;
+foreach(string row in sourceCodeRows)
+{
+	if(isFileHeader)
+	{
+		if(row.StartsWith("//"))
+		{ #>
+<#= row #>
+<#		}
+		else
+		{
+			isFileHeader = false; #>
+using ProtoOA;
+using ProtoOA.Enums;
+
+namespace ProtoOA.CommonMessages
+{
+<#		}
+
+	}
+	if(!isFileHeader)
+	{
+		string rowMod = row;
+		rowMod = rowMod.Replace("global::ProtoPayloadType", "ProtoPayloadType");
+		rowMod = rowMod.Replace("global::ProtoMessage", "ProtoMessage");
+		rowMod = rowMod.Replace("global::ProtoErrorRes", "ProtoErrorRes");
+		rowMod = rowMod.Replace("global::ProtoHeartbeatEvent", "ProtoHeartbeatEvent");
+		//rowMod = rowMod.Replace("ProtoOA", "");
+		rowMod = rowMod.Replace("global::OpenApiCommonModelMessagesReflection", "OpenApiCommonModelMessagesReflection");
+		rowMod = rowMod.Replace("global::OpenApiCommonMessagesReflection", "OpenApiCommonMessagesReflection");
+		#>
+  <#= rowMod #>
+<#
+	}
+}
+#>
+}

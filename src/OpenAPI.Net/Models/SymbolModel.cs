@@ -10,13 +10,13 @@ namespace OpenAPI.Net.Models
 
         public double Ask { get; private set; }
 
-        public ProtoOALightSymbol LightSymbol { get; init; }
+        public ProtoOA.Model.LightSymbol LightSymbol { get; init; }
 
-        public ProtoOASymbol Data { get; init; }
+        public ProtoOA.Model.Symbol Data { get; init; }
 
-        public ProtoOAAsset BaseAsset { get; init; }
+        public ProtoOA.Model.Asset BaseAsset { get; init; }
 
-        public ProtoOAAsset QuoteAsset { get; init; }
+        public ProtoOA.Model.Asset QuoteAsset { get; init; }
 
         public List<SymbolModel> ConversionSymbols { get; } = new List<SymbolModel>();
 

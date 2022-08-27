@@ -47,7 +47,7 @@ namespace OpenAPI.Net.Models
         public string Status { get; set; }
 
         public bool IsClosing { get; set; }
-        public HistoricalTrade(ProtoOADeal deal)
+        public HistoricalTrade(ProtoOA.Model.Deal deal)
         {
             Id = deal.DealId;
             SymbolId = deal.SymbolId;

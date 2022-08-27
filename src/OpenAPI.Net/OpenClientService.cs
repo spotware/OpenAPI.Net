@@ -1,5 +1,3 @@
-// Warning: Work in progress, Not tested
-
 using Google.Protobuf;
 using OpenAPI.Net.Auth;
 using OpenAPI.Net.Exceptions;
@@ -12,6 +10,12 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtoOA.Request;
+using ProtoOA.Enums;
+using ProtoOA.Response;
+using ProtoOA.CommonMessages;
+using ProtoOA.Event;
+using ProtoOA.Model;
 
 namespace OpenAPI.Net
 {
@@ -80,10 +84,10 @@ namespace OpenAPI.Net
                 {
                     case ProtoErrorRes protoErrorRes:
                         throw new ProtoErrorResException(protoErrorRes);
-                    case ProtoOAErrorRes protoOAErrorRes:
-                        throw new ProtoOAErrorResException(protoOAErrorRes);
-                    case ProtoOAOrderErrorEvent protoOAOrderErrorEvent:
-                        throw new ProtoOAOrderErrorEventException(protoOAOrderErrorEvent);
+                    case ErrorRes protoOAErrorRes:
+                        throw new ErrorResException(protoOAErrorRes);
+                    case OrderErrorEvent protoOAOrderErrorEvent:
+                        throw new OrderErrorEventException(protoOAOrderErrorEvent);
                     case null:
                         if (retry < retryCount)
                            continue;
@@ -117,14 +121,14 @@ namespace OpenAPI.Net
         /// <returns></returns>
         public async Task<Token> RefreshToken(Token token)
         {
-            var request = new ProtoOARefreshTokenReq()
+            var request = new RefreshTokenReq()
             {
                 RefreshToken = token.RefreshToken,
-                PayloadType = ProtoOAPayloadType.ProtoOaRefreshTokenReq
+                PayloadType = PayloadType.ProtoOaRefreshTokenReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOARefreshTokenRes res = (ProtoOARefreshTokenRes)message;
+            RefreshTokenRes res = (RefreshTokenRes)message;
             token.AccessToken = res.AccessToken;
             return token;
         }
@@ -137,120 +141,138 @@ namespace OpenAPI.Net
         /// <param name="includeArchivedSymbols"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public async Task<ProtoOASymbolsListRes> GetSymbolList(long accountId, bool includeArchivedSymbols = false)
+        public async Task<SymbolsListRes> GetSymbolList(long accountId, bool includeArchivedSymbols = false)
         {
-            var request = new ProtoOASymbolsListReq
+            var request = new SymbolsListReq
             {
                 CtidTraderAccountId = accountId,
                 IncludeArchivedSymbols = includeArchivedSymbols,
-                PayloadType = ProtoOAPayloadType.ProtoOaSymbolsListReq
+                PayloadType = PayloadType.ProtoOaSymbolsListReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOASymbolsListRes res = (ProtoOASymbolsListRes)message;
-            return res;
+            SymbolsListRes res = (SymbolsListRes)message;
+            return new SymbolsListRes(res);
         }
-
         /// <summary>
         /// Request for getting Trader's current open positions and pending orders data.
+        /// Same as GetOpenPositionsOrders
         /// </summary>
         /// <param name="accountId"></param>
-        public async Task<ProtoOAReconcileRes> GetOpenPositionsOrders(long accountId)
+        public async Task<ReconcileRes> GetReconcile(long accountId)
         {
-            var request = new ProtoOAReconcileReq
+            return await GetOpenPositionsOrders(accountId);
+        }
+        /// <summary>
+        /// Request for getting Trader's current open positions and pending orders data.
+        /// Same as GetReconcile
+        /// </summary>
+        /// <param name="accountId"></param>
+        public async Task<ReconcileRes> GetOpenPositionsOrders(long accountId)
+        {
+            var request = new ReconcileReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaReconcileReq
+                PayloadType = PayloadType.ProtoOaReconcileReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAReconcileRes res = (ProtoOAReconcileRes)message;
-            return res;
+            ReconcileRes res = (ReconcileRes)message;
+            return new ReconcileRes(res);
         }
         /// <summary>
         /// Request for getting the list of granted trader's account for the access token.
         /// </summary>
         /// <param name="token">AccessToken</param>
-        public async Task<ProtoOACtidTraderAccount[]> GetAccountList(Token token)
+        public async Task<CtidTraderAccount[]> GetAccountList(Token token)
         {
-            var request = new ProtoOAGetAccountListByAccessTokenReq
+            var request = new GetAccountListByAccessTokenReq
             {
                 AccessToken = token.AccessToken,
-                PayloadType = ProtoOAPayloadType.ProtoOaGetAccountsByAccessTokenReq
+                PayloadType = PayloadType.ProtoOaGetAccountsByAccessTokenReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAGetAccountListByAccessTokenRes res = (ProtoOAGetAccountListByAccessTokenRes)message;
-            return res.CtidTraderAccount.ToArray();
+            GetAccountListByAccessTokenRes res = (GetAccountListByAccessTokenRes)message;
+            return res.CtidTraderAccount.Select(o => new CtidTraderAccount(o)).ToArray();
+        }
+
+        /// <summary>
+        /// Request for the authorizing Application.
+        /// </summary>
+        /// <param name="app"></param>
+        public async Task<ApplicationAuthRes> ApplicationAuthorize(App app)
+        {
+            return await ApplicationAuthorize(app.ClientId, app.Secret);
         }
         /// <summary>
         /// Request for the authorizing Application.
         /// </summary>
         /// <param name="clientId"></param>
         /// <param name="secret"></param>
-        public async Task<ProtoOAApplicationAuthRes> ApplicationAuthorize(string clientId, string secret)
+        public async Task<ApplicationAuthRes> ApplicationAuthorize(string clientId, string secret)
         {
-            var request = new ProtoOAApplicationAuthReq
+            var request = new ApplicationAuthReq
             {
                 ClientId = clientId,
                 ClientSecret = secret,
-                PayloadType = ProtoOAPayloadType.ProtoOaApplicationAuthReq
+                PayloadType = PayloadType.ProtoOaApplicationAuthReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAApplicationAuthRes res = (ProtoOAApplicationAuthRes)message;
-            return res;
+            ApplicationAuthRes res = (ApplicationAuthRes)message;
+            return new ApplicationAuthRes(res);
         }
         /// <summary>
         /// Request for the authorizing trading account session.
         /// Requires established authorized connection with the client application
-        ///  using ProtoOAApplicationAuthReq.
+        ///  using ApplicationAuthReq.
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="token"></param>
-        public async Task<ProtoOAAccountAuthRes> AccountAuthorize(long accountId, Token token)
+        public async Task<AccountAuthRes> AccountAuthorize(long accountId, Token token)
         {
-            var request = new ProtoOAAccountAuthReq
+            var request = new AccountAuthReq
             {
                 CtidTraderAccountId = accountId,
                 AccessToken = token.AccessToken,
-                PayloadType = ProtoOAPayloadType.ProtoOaAccountAuthReq
+                PayloadType = PayloadType.ProtoOaAccountAuthReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAAccountAuthRes res = (ProtoOAAccountAuthRes)message;
-            return res;
+            AccountAuthRes res = (AccountAuthRes)message;
+            return new AccountAuthRes(res);
         }
         /// <summary>
         /// Request for logout of trading account session.
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProtoOAAccountLogoutRes> AccountLogout(long accountId)
+        public async Task<AccountLogoutRes> AccountLogout(long accountId)
         {
-            var request = new ProtoOAAccountLogoutReq
+            var request = new AccountLogoutReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaAccountLogoutReq
+                PayloadType = PayloadType.ProtoOaAccountLogoutReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAAccountLogoutRes res = (ProtoOAAccountLogoutRes)message;
-            return res;
+            AccountLogoutRes res = (AccountLogoutRes)message;
+            return new AccountLogoutRes(res);
         }
 
-        public async Task<ProtoOAGetDynamicLeverageByIDRes> GetDynamicLeverageByID(long accountId, long leverageId)
+        public async Task<GetDynamicLeverageByIDRes> GetDynamicLeverageByID(long accountId, long leverageId)
         {
-            var request = new ProtoOAGetDynamicLeverageByIDReq
+            var request = new GetDynamicLeverageByIDReq
             {
                 CtidTraderAccountId = accountId,
                 LeverageId = leverageId,
-                PayloadType = ProtoOAPayloadType.ProtoOaGetDynamicLeverageReq
+                PayloadType = PayloadType.ProtoOaGetDynamicLeverageReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAGetDynamicLeverageByIDRes res = (ProtoOAGetDynamicLeverageByIDRes)message;
-            return res;
+            GetDynamicLeverageByIDRes res = (GetDynamicLeverageByIDRes)message;
+            return new GetDynamicLeverageByIDRes(res);
         }
         /// <summary>
         /// Request for getting historical tick data for the symbol.
@@ -260,11 +282,11 @@ namespace OpenAPI.Net
         /// <param name="FromDateTime">The exact UTC time of starting the search</param>
         /// <param name="ToDateTime">The exact UTC time of finishing the search</param>
         /// <param name="Type">Bid or Ask</param>
-        public async Task<ProtoOATickData[]> GetTickData(long accountId, long SymbolId,
-            DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, ProtoOAQuoteType Type)
+        public async Task<TickData[]> GetTickData(long accountId, long SymbolId,
+            DateTimeOffset FromDateTime, DateTimeOffset ToDateTime, QuoteType Type)
         {
-            List<ProtoOATickData> tickData = new();
-            ProtoOAGetTickDataRes res;
+            List<TickData> tickData = new();
+            GetTickDataRes res;
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
             long toTime = ToDateTime.ToUnixTimeMilliseconds();
             long fromTime2;
@@ -272,18 +294,18 @@ namespace OpenAPI.Net
             {
                 long fromMin = toTime - 604800000;
                 fromTime2 = Math.Max(fromTime, fromMin);
-                var request = new ProtoOAGetTickDataReq
+                var request = new GetTickDataReq
                 {
                     CtidTraderAccountId = accountId,
                     SymbolId = SymbolId,
                     FromTimestamp = fromTime2,
                     ToTimestamp = toTime,
-                    Type = Type,
-                    PayloadType = ProtoOAPayloadType.ProtoOaGetTickdataReq
+                    Type = (QuoteType)Type,
+                    PayloadType = PayloadType.ProtoOaGetTickdataReq
                 };
 
                 IOAMessage message = await SendMessageWaitResponse(request, 2);
-                res = (ProtoOAGetTickDataRes)message;
+                res = (GetTickDataRes)message;
                 var chunkData = res.TickData.ToList();
                 if (chunkData.Count > 1)
                 {
@@ -305,7 +327,7 @@ namespace OpenAPI.Net
                         break;
                 }
             } while (res.HasMore | fromTime2 > fromTime);
-            return tickData.ToArray();
+            return tickData.Select(o => new TickData(o)).ToArray();
         }
 
         /// <summary>
@@ -313,18 +335,18 @@ namespace OpenAPI.Net
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="SymbolIds"></param>
-        public async Task<ProtoOASymbolByIdRes> GetSymbolsFull(long accountId, IEnumerable<long> SymbolIds)
+        public async Task<SymbolByIdRes> GetSymbolsFull(long accountId, IEnumerable<long> SymbolIds)
         {
-            var request = new ProtoOASymbolByIdReq
+            var request = new SymbolByIdReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaSymbolByIdReq
+                PayloadType = PayloadType.ProtoOaSymbolByIdReq
             };
             request.SymbolId.AddRange(SymbolIds);
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOASymbolByIdRes res = (ProtoOASymbolByIdRes)message;
-            return res;
+            SymbolByIdRes res = (SymbolByIdRes)message;
+            return new SymbolByIdRes(res);
         }
 
         /// <summary>
@@ -333,17 +355,17 @@ namespace OpenAPI.Net
         /// </summary>
         /// <param name="token">AccessToken</param>
         /// <returns></returns>
-        public async Task<ProtoOACtidProfile> GetProfile(Token token)
+        public async Task<CtidProfile> GetProfile(Token token)
         {
-            var request = new ProtoOAGetCtidProfileByTokenReq
+            var request = new GetCtidProfileByTokenReq
             {
                 AccessToken = token.AccessToken,
-                PayloadType = ProtoOAPayloadType.ProtoOaGetCtidProfileByTokenReq
+                PayloadType = PayloadType.ProtoOaGetCtidProfileByTokenReq
             };
 
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOAGetCtidProfileByTokenRes res = (ProtoOAGetCtidProfileByTokenRes)message;
-            return res.Profile;
+            GetCtidProfileByTokenRes res = (GetCtidProfileByTokenRes)message;
+            return new CtidProfile(res.Profile);
         }
         /// <summary>
         /// Request for getting a conversion chain between two assets that consists of several symbols.
@@ -353,18 +375,18 @@ namespace OpenAPI.Net
         /// <param name="baseAssetId"></param>
         /// <param name="quoteAssetId"></param>
         /// <returns></returns>
-        public async Task<ProtoOALightSymbol[]> GetSymbolsForConversion(long accountId, long baseAssetId, long quoteAssetId)
+        public async Task<LightSymbol[]> GetSymbolsForConversion(long accountId, long baseAssetId, long quoteAssetId)
         {
-            var request = new ProtoOASymbolsForConversionReq
+            var request = new SymbolsForConversionReq
             {
                 CtidTraderAccountId = accountId,
                 FirstAssetId = baseAssetId,
                 LastAssetId = quoteAssetId,
-                PayloadType = ProtoOAPayloadType.ProtoOaSymbolsForConversionReq
+                PayloadType = PayloadType.ProtoOaSymbolsForConversionReq
             };
             IOAMessage message = await SendMessageWaitResponse(request);
-            ProtoOASymbolsForConversionRes res = (ProtoOASymbolsForConversionRes)message;
-            return res.Symbol.ToArray();
+            SymbolsForConversionRes res = (SymbolsForConversionRes)message;
+            return res.Symbol.Select(o => new LightSymbol(o)).ToArray();
         }
         /// <summary>
         /// Request for sending a new trading order.
@@ -373,28 +395,28 @@ namespace OpenAPI.Net
         /// <param name="orderModel"></param>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProtoOAExecutionEvent> CreateNewOrder(OrderModel orderModel, long accountId)
+        public async Task<ExecutionEvent> CreateNewOrder(OrderModel orderModel, long accountId)
         {
-            var requestMessage = new ProtoOANewOrderReq
+            var requestMessage = new NewOrderReq
             {
                 CtidTraderAccountId = accountId,
                 SymbolId = orderModel.Symbol.Id,
                 Volume = orderModel.Volume,
                 TradeSide = orderModel.TradeSide,
-                PayloadType = ProtoOAPayloadType.ProtoOaNewOrderReq
+                PayloadType = PayloadType.ProtoOaNewOrderReq
             };
             if (orderModel is MarketOrderModel marketOrder)
             {
                 if (marketOrder.IsMarketRange)
                 {
-                    requestMessage.OrderType = ProtoOAOrderType.MarketRange;
+                    requestMessage.OrderType = OrderType.MarketRange;
                     requestMessage.BaseSlippagePrice = marketOrder.BaseSlippagePrice;
                     var slippageinPoint = orderModel.Symbol.Data.GetPointsFromPips(marketOrder.MarketRangeInPips);
                     if (slippageinPoint < int.MaxValue) requestMessage.SlippageInPoints = (int)slippageinPoint;
                 }
                 else
                 {
-                    requestMessage.OrderType = ProtoOAOrderType.Market;
+                    requestMessage.OrderType = OrderType.Market;
                 }
                 if (marketOrder.Id != default)
                 {
@@ -404,14 +426,14 @@ namespace OpenAPI.Net
             else if (orderModel is PendingOrderModel pendingOrder)
             {
                 requestMessage.OrderType = pendingOrder.ProtoType;
-                if (requestMessage.OrderType == ProtoOAOrderType.Limit)
+                if (requestMessage.OrderType == OrderType.Limit)
                 {
                     requestMessage.LimitPrice = pendingOrder.Price;
                 }
                 else
                 {
                     requestMessage.StopPrice = pendingOrder.Price;
-                    if (requestMessage.OrderType == ProtoOAOrderType.StopLimit)
+                    if (requestMessage.OrderType == OrderType.StopLimit)
                     {
                         var slippageinPoint = pendingOrder.Symbol.Data.GetPointsFromPips(pendingOrder.LimitRangeInPips);
                         if (slippageinPoint < int.MaxValue) requestMessage.SlippageInPoints = (int)slippageinPoint;
@@ -440,8 +462,8 @@ namespace OpenAPI.Net
                 requestMessage.Comment = orderModel.Comment;
             }
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
-            return res;
+            ExecutionEvent res = (ExecutionEvent)message;
+            return new ExecutionEvent(res);
         }
         /// <summary>
         /// Request for closing or partially closing of an existing position.
@@ -451,18 +473,18 @@ namespace OpenAPI.Net
         /// <param name="volume"></param>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProtoOAExecutionEvent> ClosePosition(long positionId, long volume, long accountId)
+        public async Task<ExecutionEvent> ClosePosition(long positionId, long volume, long accountId)
         {
-            var requestMessage = new ProtoOAClosePositionReq
+            var requestMessage = new ClosePositionReq
             {
                 CtidTraderAccountId = accountId,
                 PositionId = positionId,
                 Volume = volume,
-                PayloadType = ProtoOAPayloadType.ProtoOaClosePositionReq
+                PayloadType = PayloadType.ProtoOaClosePositionReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
-            return res;
+            ExecutionEvent res = (ExecutionEvent)message;
+            return new ExecutionEvent(res);
         }
         /// <summary>
         /// Request for cancelling existing pending order.
@@ -471,33 +493,33 @@ namespace OpenAPI.Net
         /// <param name="orderId"></param>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProtoOAExecutionEvent> CancelOrder(long orderId, long accountId)
+        public async Task<ExecutionEvent> CancelOrder(long orderId, long accountId)
         {
-            var requestMessage = new ProtoOACancelOrderReq
+            var requestMessage = new CancelOrderReq
             {
                 CtidTraderAccountId = accountId,
                 OrderId = orderId,
-                PayloadType = ProtoOAPayloadType.ProtoOaCancelOrderReq
+                PayloadType = PayloadType.ProtoOaCancelOrderReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
-            return res;
+            ExecutionEvent res = (ExecutionEvent)message;
+            return new ExecutionEvent(res);
         }
         /// <summary>
         /// Request for getting data of Trader's Account.
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProtoOATrader> GetTrader(long accountId)
+        public async Task<Trader> GetTrader(long accountId)
         {
-            var requestMessage = new ProtoOATraderReq
+            var requestMessage = new TraderReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaTraderReq
+                PayloadType = PayloadType.ProtoOaTraderReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOATraderRes res = (ProtoOATraderRes)message;
-            return res.Trader;
+            TraderRes res = (TraderRes)message;
+            return new Trader(res.Trader);
         }
         /// <summary>
         /// Request for modifying the existing pending order.
@@ -507,20 +529,20 @@ namespace OpenAPI.Net
         /// <param name="newOrder"></param>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProtoOAExecutionEvent> ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId)
+        public async Task<ExecutionEvent> ModifyOrder(PendingOrderModel oldOrder, PendingOrderModel newOrder, long accountId)
         {
-            var requestMessage = new ProtoOAAmendOrderReq
+            var requestMessage = new AmendOrderReq
             {
                 OrderId = oldOrder.Id,
                 CtidTraderAccountId = accountId,
                 Volume = newOrder.Volume,
-                PayloadType = ProtoOAPayloadType.ProtoOaAmendOrderReq
+                PayloadType = PayloadType.ProtoOaAmendOrderReq
             };
             if (newOrder.IsStopLossEnabled)
             {
                 if (newOrder.StopLossInPips != default && newOrder.StopLossInPrice == default)
                 {
-                    newOrder.StopLossInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                    newOrder.StopLossInPrice = newOrder.TradeSide == TradeSide.Sell
                         ? newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.StopLossInPips)
                         : newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.StopLossInPips);
                 }
@@ -531,7 +553,7 @@ namespace OpenAPI.Net
             {
                 if (newOrder.TakeProfitInPips != default && newOrder.TakeProfitInPrice == default)
                 {
-                    newOrder.TakeProfitInPrice = newOrder.TradeSide == ProtoOATradeSide.Sell
+                    newOrder.TakeProfitInPrice = newOrder.TradeSide == TradeSide.Sell
                         ? newOrder.Symbol.Data.SubtractPipsFromPrice(newOrder.Price, newOrder.TakeProfitInPips)
                         : newOrder.Symbol.Data.AddPipsToPrice(newOrder.Price, newOrder.TakeProfitInPips);
                 }
@@ -555,8 +577,8 @@ namespace OpenAPI.Net
                 }
             }
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAExecutionEvent res = (ProtoOAExecutionEvent)message;
-            return res;
+            ExecutionEvent res = (ExecutionEvent)message;
+            return new ExecutionEvent(res);
         }
         /// <summary>
         /// Request for getting Trader's deals historical data (execution details).
@@ -565,25 +587,25 @@ namespace OpenAPI.Net
         /// <param name="FromDateTime"></param>
         /// <param name="ToDateTime"></param>
         /// <returns></returns>
-        public async Task<HistoricalTrade[]> GetHistoricalTrades(long accountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime)
+        public async Task<DealListRes> GetHistoricalTrades(long accountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime)
         {
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
             long toTime = ToDateTime.ToUnixTimeMilliseconds();
             long toMax = fromTime + 604800000;
             toTime = Math.Min(toTime, toMax);
-            var requestMessage = new ProtoOADealListReq
+            var requestMessage = new DealListReq
             {
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaDealListReq
+                PayloadType = PayloadType.ProtoOaDealListReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOADealListRes res = (ProtoOADealListRes)message;
-            HistoricalTrade[] trades = res.Deal
-                .Select(deal => new HistoricalTrade(deal))
-                .ToArray();
-            return trades;
+            DealListRes res = (DealListRes)message;
+            //HistoricalTrade[] trades = res.Deal
+            //    .Select(deal => new HistoricalTrade(deal))
+            //    .ToArray();
+            return new DealListRes(res);
         }
         /// <summary>
         /// Request for getting Trader's historical data of deposits and withdrawals.
@@ -592,44 +614,44 @@ namespace OpenAPI.Net
         /// <param name="FromDateTime"></param>
         /// <param name="ToDateTime"></param>
         /// <returns></returns>
-        public async Task<Transaction[]> GetTransactions(long accountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime)
+        public async Task<CashFlowHistoryListRes> GetTransactions(long accountId, DateTimeOffset FromDateTime, DateTimeOffset ToDateTime)
         {
             long fromTime = FromDateTime.ToUnixTimeMilliseconds();
             long toTime = ToDateTime.ToUnixTimeMilliseconds();
             long toMax = fromTime + 604800000;
             toTime = Math.Min(toTime, toMax);
-            var requestMessage = new ProtoOACashFlowHistoryListReq
+            var requestMessage = new CashFlowHistoryListReq
             {
                 FromTimestamp = fromTime,
                 ToTimestamp = toTime,
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaCashFlowHistoryListReq
+                PayloadType = PayloadType.ProtoOaCashFlowHistoryListReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOACashFlowHistoryListRes res = (ProtoOACashFlowHistoryListRes)message;
-            Transaction[] transactions = res.DepositWithdraw
-                .Select(dw => new Transaction(dw))
-                .ToArray();
-            return transactions;
+            CashFlowHistoryListRes res = (CashFlowHistoryListRes)message;
+            //Transaction[] transactions = res.DepositWithdraw
+            //    .Select(dw => new Transaction(dw))
+            //    .ToArray();
+            return new CashFlowHistoryListRes(res);
         }
         /// <summary>
         /// Request for subscribing on spot events of the specified symbol.
-        /// TODO:EventHandler
+        /// You need to subscribe to OpenClient.SpotEvent or OpenClient.SpotObservable to get the data
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="symbolIds"></param>
         /// <returns></returns>
-        public async Task<ProtoOASubscribeSpotsRes> SubscribeToSpots(long accountId, IEnumerable<long> symbolIds)
+        public async Task<SubscribeSpotsRes> SubscribeToSpots(long accountId, IEnumerable<long> symbolIds)
         {
-            var requestMessage = new ProtoOASubscribeSpotsReq
+            var requestMessage = new SubscribeSpotsReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaSubscribeSpotsReq
+                PayloadType = PayloadType.ProtoOaSubscribeSpotsReq
             };
             requestMessage.SymbolId.AddRange(symbolIds);
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOASubscribeSpotsRes res = (ProtoOASubscribeSpotsRes)message;
-            return res;
+            SubscribeSpotsRes res = (SubscribeSpotsRes)message;
+            return new SubscribeSpotsRes(res);
         }
         /// <summary>
         /// Request for unsubscribing from the spot events of the specified symbol.
@@ -637,38 +659,38 @@ namespace OpenAPI.Net
         /// <param name="accountId"></param>
         /// <param name="symbolIds"></param>
         /// <returns></returns>
-        public async Task<ProtoOAUnsubscribeSpotsRes> UnsubscribeFromSpots(long accountId, IEnumerable<long> symbolIds)
+        public async Task<UnsubscribeSpotsRes> UnsubscribeFromSpots(long accountId, IEnumerable<long> symbolIds)
         {
-            var requestMessage = new ProtoOAUnsubscribeSpotsReq
+            var requestMessage = new UnsubscribeSpotsReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaUnsubscribeSpotsReq
+                PayloadType = PayloadType.ProtoOaUnsubscribeSpotsReq
             };
             requestMessage.SymbolId.AddRange(symbolIds);
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAUnsubscribeSpotsRes res = (ProtoOAUnsubscribeSpotsRes)message;
-            return res;
+            UnsubscribeSpotsRes res = (UnsubscribeSpotsRes)message;
+            return new UnsubscribeSpotsRes(res);
         }
         /// <summary>
         /// Request for subscribing for live trend bars.
-        /// TODO:EventHandler
+        /// You need to subscribe to OpenClient.SpotEvent or OpenClient.SpotObservable to get the data
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="symbolId"></param>
         /// <param name="period"></param>
         /// <returns></returns>
-        public async Task<ProtoOASubscribeLiveTrendbarRes> SubscribeToLiveTrendbar(long accountId, long symbolId, ProtoOATrendbarPeriod period)
+        public async Task<SubscribeLiveTrendbarRes> SubscribeToLiveTrendbar(long accountId, long symbolId, TrendbarPeriod period)
         {
-            var requestMessage = new ProtoOASubscribeLiveTrendbarReq
+            var requestMessage = new SubscribeLiveTrendbarReq
             {
                 CtidTraderAccountId = accountId,
-                Period = period,
+                Period = (TrendbarPeriod)period,
                 SymbolId = symbolId,
-                PayloadType = ProtoOAPayloadType.ProtoOaSubscribeLiveTrendbarReq
+                PayloadType = PayloadType.ProtoOaSubscribeLiveTrendbarReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOASubscribeLiveTrendbarRes res = (ProtoOASubscribeLiveTrendbarRes)message;
-            return res;
+            SubscribeLiveTrendbarRes res = (SubscribeLiveTrendbarRes)message;
+            return new SubscribeLiveTrendbarRes(res);
         }
         /// <summary>
         /// Request for unsubscribing from the live trend bars.
@@ -677,18 +699,18 @@ namespace OpenAPI.Net
         /// <param name="symbolId"></param>
         /// <param name="period"></param>
         /// <returns></returns>
-        public async Task<ProtoOAUnsubscribeLiveTrendbarRes> UnsubscribeFromLiveTrendbar(long accountId, long symbolId, ProtoOATrendbarPeriod period)
+        public async Task<UnsubscribeLiveTrendbarRes> UnsubscribeFromLiveTrendbar(long accountId, long symbolId, TrendbarPeriod period)
         {
-            var requestMessage = new ProtoOAUnsubscribeLiveTrendbarReq
+            var requestMessage = new UnsubscribeLiveTrendbarReq
             {
                 CtidTraderAccountId = accountId,
-                Period = period,
+                Period = (TrendbarPeriod)period,
                 SymbolId = symbolId,
-                PayloadType = ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq
+                PayloadType = PayloadType.ProtoOaUnsubscribeLiveTrendbarReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAUnsubscribeLiveTrendbarRes res = (ProtoOAUnsubscribeLiveTrendbarRes)message;
-            return res;
+            UnsubscribeLiveTrendbarRes res = (UnsubscribeLiveTrendbarRes)message;
+            return new UnsubscribeLiveTrendbarRes(res);
         }
 
 
@@ -699,17 +721,17 @@ namespace OpenAPI.Net
         /// <param name="accountId"></param>
         /// <param name="symbolIds"></param>
         /// <returns></returns>
-        public async Task<ProtoOASubscribeDepthQuotesRes> SubscribeToDepths(long accountId, IEnumerable<long> symbolIds)
+        public async Task<SubscribeDepthQuotesRes> SubscribeToDepths(long accountId, IEnumerable<long> symbolIds)
         {
-            var requestMessage = new ProtoOASubscribeDepthQuotesReq
+            var requestMessage = new SubscribeDepthQuotesReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaSubscribeDepthQuotesReq
+                PayloadType = PayloadType.ProtoOaSubscribeDepthQuotesReq
             };
             requestMessage.SymbolId.AddRange(symbolIds);
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOASubscribeDepthQuotesRes res = (ProtoOASubscribeDepthQuotesRes)message;
-            return res;
+            SubscribeDepthQuotesRes res = (SubscribeDepthQuotesRes)message;
+            return new SubscribeDepthQuotesRes(res);
         }
         /// <summary>
         /// Request for unsubscribing from the depth of market of the specified symbol.
@@ -717,17 +739,17 @@ namespace OpenAPI.Net
         /// <param name="accountId"></param>
         /// <param name="symbolIds"></param>
         /// <returns></returns>
-        public async Task<ProtoOAUnsubscribeDepthQuotesRes> UnsubscribeFromDepths(long accountId, IEnumerable<long> symbolIds)
+        public async Task<UnsubscribeDepthQuotesRes> UnsubscribeFromDepths(long accountId, IEnumerable<long> symbolIds)
         {
-            var requestMessage = new ProtoOAUnsubscribeDepthQuotesReq
+            var requestMessage = new UnsubscribeDepthQuotesReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaUnsubscribeDepthQuotesReq
+                PayloadType = PayloadType.ProtoOaUnsubscribeDepthQuotesReq
             };
             requestMessage.SymbolId.AddRange(symbolIds);
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAUnsubscribeDepthQuotesRes res = (ProtoOAUnsubscribeDepthQuotesRes)message;
-            return res;
+            UnsubscribeDepthQuotesRes res = (UnsubscribeDepthQuotesRes)message;
+            return new UnsubscribeDepthQuotesRes(res);
         }
 
 
@@ -745,7 +767,7 @@ namespace OpenAPI.Net
         /// W1, MN1: 158112000000 (5 years).</param>
         /// <param name="to">The exact UTC time of finishing the search</param>
         /// <param name="count">Limit number of trend bars in response back from ToDateTime.</param>
-        public async Task<ProtoOATrendbar[]> GetTrendbars(long accountId, long symbolId, ProtoOATrendbarPeriod period, DateTimeOffset from = default, DateTimeOffset to = default, uint count = default)
+        public async Task<GetTrendbarsRes> GetTrendbars(long accountId, long symbolId, TrendbarPeriod period, DateTimeOffset from = default, DateTimeOffset to = default, uint count = default)
         {
             var periodMaximum = period.GetMaximumTime();
             if(from == default & to == default)
@@ -755,52 +777,50 @@ namespace OpenAPI.Net
             if (to == default) to = from.Add(periodMaximum);
             if (from == default) from = to.Add(-periodMaximum);
             if (to - from > periodMaximum | to < from) throw new ArgumentOutOfRangeException(nameof(to), "The time range is not valid");
-            var requestMessage = new ProtoOAGetTrendbarsReq
+            var requestMessage = new GetTrendbarsReq
             {
                 FromTimestamp = from.ToUnixTimeMilliseconds(),
                 ToTimestamp = to.ToUnixTimeMilliseconds(),
                 CtidTraderAccountId = accountId,
-                Period = period,
+                Period = (TrendbarPeriod)period,
                 SymbolId = symbolId,
-                PayloadType = ProtoOAPayloadType.ProtoOaGetTrendbarsReq
+                PayloadType = PayloadType.ProtoOaGetTrendbarsReq
             };
             if(count != default) requestMessage.Count = count;
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAGetTrendbarsRes res = (ProtoOAGetTrendbarsRes)message;
-            ProtoOATrendbar[] trendBars = res.Trendbar.ToArray();
-            return trendBars;
+            GetTrendbarsRes res = (GetTrendbarsRes)message;
+            return new GetTrendbarsRes(res);
         }
         /// <summary>
         /// Request for the list of assets available for a trader's account.
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProtoOAAsset[]> GetAssets(long accountId)
+        public async Task<AssetListRes> GetAssets(long accountId)
         {
-            var requestMessage = new ProtoOAAssetListReq
+            var requestMessage = new AssetListReq
             {
                 CtidTraderAccountId = accountId,
-                PayloadType = ProtoOAPayloadType.ProtoOaAssetListReq
+                PayloadType = PayloadType.ProtoOaAssetListReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAAssetListRes res = (ProtoOAAssetListRes)message;
-            ProtoOAAsset[] assets = res.Asset.ToArray();
-            return assets;
+            AssetListRes res = (AssetListRes)message;
+            return new AssetListRes(res);
         }
         /// <summary>
         /// Request for getting the proxy version.
         /// Can be used to check the current version of the Open API scheme.
         /// </summary>
         /// <returns></returns>
-        public async Task<ProtoOAVersionRes> GetVersion()
+        public async Task<VersionRes> GetVersion()
         {
-            var requestMessage = new ProtoOAVersionReq()
+            var requestMessage = new VersionReq()
             {
-                PayloadType = ProtoOAPayloadType.ProtoOaVersionReq
+                PayloadType = PayloadType.ProtoOaVersionReq
             };
             IOAMessage message = await SendMessageWaitResponse(requestMessage);
-            ProtoOAVersionRes res = (ProtoOAVersionRes)message;
-            return res;
+            VersionRes res = (VersionRes)message;
+            return new VersionRes(res);
         }
     }
 }

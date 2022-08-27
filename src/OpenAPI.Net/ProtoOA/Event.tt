@@ -1,0 +1,110 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".g.cs" #>
+<#
+string[] sourceCodeRows = File.ReadAllLines(@"src\OpenAPI.Net\Messages\OpenApiMessages.cs");
+bool isFileHeader = true;
+bool isRegionMessages = false;
+bool skip = true;
+string classDefinition = string.Empty;
+foreach(string row in sourceCodeRows)
+{
+	if(isFileHeader)
+	{
+		if(row.StartsWith("//"))
+		{ #>
+<#= row #>
+<#		}
+		else
+		{
+			isFileHeader = false; #>
+
+using ProtoOA.Enums;
+using ProtoOA.Model;
+
+namespace ProtoOA.Event
+{
+<#		}
+
+	}
+	if(!isFileHeader)
+	{
+		if(row == "#endregion")
+		{
+			if(!skip & isRegionMessages)
+			{ #>
+    <#= classDefinition #>
+<#			}
+			isRegionMessages = false;
+		}
+		string rowMod = row;
+		if(row.Contains("GeneratedClrTypeInfo(typeof"))
+		{
+			if(row.Contains("Event)"))
+			{
+				rowMod = rowMod.Replace("global::ProtoOA", "");
+			}
+			else
+			{
+				rowMod = "          null,";
+			}
+		}
+		else
+		{
+			rowMod = rowMod.Replace("global::ProtoOAHoliday", "Model.Holiday");
+			rowMod = rowMod.Replace("global::ProtoOAAsset", "Model.Asset");
+			rowMod = rowMod.Replace("global::ProtoOAArchivedSymbol", "Model.ArchivedSymbol");
+			rowMod = rowMod.Replace("global::ProtoOASymbol", "Model.Symbol");
+			rowMod = rowMod.Replace("global::ProtoOAPosition", "Model.Position");
+			rowMod = rowMod.Replace("global::ProtoOAOrder", "Model.Order");
+			rowMod = rowMod.Replace("global::ProtoOADepositWithdraw", "Model.DepositWithdraw");
+			rowMod = rowMod.Replace("global::ProtoOADeal", "Model.Deal");
+			rowMod = rowMod.Replace("global::ProtoOACtidTraderAccount", "Model.CtidTraderAccount");
+			rowMod = rowMod.Replace("global::ProtoOATrendbar", "Model.Trendbar");
+			rowMod = rowMod.Replace("Model.TrendbarPeriod", "TrendbarPeriod");
+			rowMod = rowMod.Replace("global::ProtoOATickData", "Model.TickData");
+			rowMod = rowMod.Replace("global::ProtoOAMarginCall", "Model.MarginCall");
+			
+			rowMod = rowMod.Replace("global::ProtoOAPayloadType", "Enums.PayloadType");
+			rowMod = rowMod.Replace("global::OpenApiModelMessagesReflection", "OpenApiModelMessagesReflection");
+			rowMod = rowMod.Replace("global::OpenApiMessagesReflection", "OpenApiMessagesReflection");
+			rowMod = rowMod.Replace("global::ProtoOA", "");
+			rowMod = rowMod.Replace("ProtoOA", "");
+		}
+		if(isRegionMessages)
+		{
+			if(row == "/// <summary>")
+			{
+				if(!skip)
+				{ #>
+<#= classDefinition #>
+<#				}
+				classDefinition = string.Empty;
+				skip = true;
+			}
+			else
+			{
+				if(row.StartsWith("public sealed partial class") & row.EndsWith("Event>"))
+				{
+					skip = false;
+					//rowMod = rowMod.Replace("Event", "");
+				}
+			}
+			classDefinition += "  " + rowMod + System.Environment.NewLine;
+		}
+		else
+		{ #>
+  <#= rowMod #>
+<#		}
+		if(row == "#region Messages")
+		{
+			isRegionMessages = true;
+		}
+	}
+}
+#>
+}

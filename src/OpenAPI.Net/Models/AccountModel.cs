@@ -12,15 +12,15 @@ namespace OpenAPI.Net.Models
 
         public SymbolModel[] Symbols { get; init; }
 
-        public ProtoOATrader Trader { get; init; }
+        public ProtoOA.Model.Trader Trader { get; init; }
 
         public DateTimeOffset RegistrationTime { get; init; }
 
-        public ProtoOAAsset DepositAsset { get; init; }
+        public ProtoOA.Model.Asset DepositAsset { get; init; }
 
         public string Currency => DepositAsset.Name;
 
-        public IReadOnlyCollection<ProtoOAAsset> Assets { get; init; }
+        public IReadOnlyCollection<ProtoOA.Model.Asset> Assets { get; init; }
 
         public double Balance { get; set; }
 

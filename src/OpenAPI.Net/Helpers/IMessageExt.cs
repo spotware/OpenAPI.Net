@@ -1,13 +1,17 @@
 ﻿using Google.Protobuf;
 using OpenAPI.Net.Helpers;
+using ProtoOA.Enums;
 
 namespace OpenAPI.Net.Helpers
 {
-    public interface IMessageExt : IMessage
+    internal interface IMessageExt : IMessage
     {
-        public global::ProtoPayloadType PayloadType { get; set; }
+        public ProtoPayloadType PayloadType { get; set; }
         public bool HasPayloadType { get; }
     }
 }
-public sealed partial class ProtoHeartbeatEvent : IMessageExt { }
-public sealed partial class ProtoErrorRes : IMessageExt { }
+namespace ProtoOA.CommonMessages
+{
+    public sealed partial class ProtoHeartbeatEvent : IMessageExt { }
+    public sealed partial class ProtoErrorRes : IMessageExt { }
+}

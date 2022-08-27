@@ -20,16 +20,113 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Messages\OpenApiCommonMessages.cs" />
+    <Compile Remove="Messages\OpenApiCommonModelMessages.cs" />
+    <Compile Remove="Messages\OpenApiMessages.cs" />
+    <Compile Remove="Messages\OpenApiModelMessages.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="Messages\OpenApiCommonMessages.cs" />
+    <None Include="Messages\OpenApiCommonModelMessages.cs" />
+    <None Include="Messages\OpenApiMessages.cs" />
+    <None Include="Messages\OpenApiModelMessages.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.20.1" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
     <PackageReference Include="Websocket.Client" Version="4.4.43" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="OpenClientObservableEvents.tt">
+      <LastGenOutput>OpenClientObservableEvents.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="OpenClientEvents.tt">
+      <LastGenOutput>OpenClientEvents.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="ProtoOA\CommonModelMessages.tt">
+      <LastGenOutput>CommonModelMessages.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="ProtoOA\Request.tt">
+      <LastGenOutput>Request.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="ProtoOA\Event.tt">
+      <LastGenOutput>Event.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="ProtoOA\Response.tt">
+      <LastGenOutput>Response.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="ProtoOA\Model.tt">
+      <LastGenOutput>Model.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="ProtoOA\CommonMessages.tt">
+      <LastGenOutput>CommonMessages.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="OpenClientEvents.g.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OpenClientEvents.tt</DependentUpon>
+    </Compile>
+    <Compile Update="OpenClientObservableEvents.g.cs">
+      <DependentUpon>OpenClientObservableEvents.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ProtoOA\CommonModelMessages.g.cs">
+      <DependentUpon>CommonModelMessages.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ProtoOA\Model.g.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ProtoOA\CommonMessages.g.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommonMessages.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ProtoOA\Request.g.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Request.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ProtoOA\Event.g.cs">
+      <DependentUpon>Event.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ProtoOA\Response.g.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Response.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

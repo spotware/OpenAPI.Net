@@ -23,7 +23,7 @@ namespace OpenAPI.Net.Models
             }
         }
 
-        public ProtoOATradeSide TradeSide { get; set; }
+        public ProtoOA.Enums.TradeSide TradeSide { get; set; }
 
         public long Volume { get; set; }
 
@@ -101,7 +101,7 @@ namespace OpenAPI.Net.Models
             set => _price = Symbol is not null ? Math.Round(value, Symbol.Data.Digits) : value;
         }
 
-        public ProtoOATradeData TradeData { get; set; }
+        public ProtoOA.Model.TradeData TradeData { get; set; }
 
         public DateTimeOffset OpenTime { get; set; }
 
