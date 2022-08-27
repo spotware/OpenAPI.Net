@@ -1,24 +1,29 @@
-﻿using Google.Protobuf;
-using OpenAPI.Net;
+﻿using OpenAPI.Net;
 using OpenAPI.Net.Auth;
 using OpenAPI.Net.Helpers;
+using ProtoOA.Enums;
+using ProtoOA.Event;
+using ProtoOA.Model;
+using ProtoOA.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleDemo
 {
     internal class Program
     {
-        private static App _app;
+        private static App app;
 
-        private static Token _token;
+        private static Token token;
 
-        private static OpenClient _client;
+        private static OpenClient client;
 
-        private static readonly List<IDisposable> _disposables = new();
+        private static readonly List<IDisposable> disposables = new();
 
         private static async Task Main()
         {
@@ -58,12 +63,12 @@ namespace ConsoleDemo
 
                 var accessToken = Console.ReadLine();
 
-                _token = new Token
+                token = new Token
                 {
                     AccessToken = accessToken
                 };
 
-                _app = new App(appId, appSecret, string.Empty);
+                app = new App(appId, appSecret, string.Empty);
             }
             else
             {
@@ -71,7 +76,7 @@ namespace ConsoleDemo
 
                 var redirectUrl = Console.ReadLine();
 
-                _app = new App(appId, appSecret, redirectUrl);
+                app = new App(appId, appSecret, redirectUrl);
 
                 Console.Write("Enter Scope (Trading or Accounts): ");
 
@@ -79,7 +84,7 @@ namespace ConsoleDemo
 
                 var scope = (Scope)Enum.Parse(typeof(Scope), scopeString, true);
 
-                var authUri = _app.GetAuthUri();
+                var authUri = app.GetAuthUri();
 
                 ShowDashLine();
 
@@ -98,23 +103,31 @@ namespace ConsoleDemo
 
                 var authCode = Console.ReadLine();
 
-                _token = await TokenFactory.GetToken(authCode, _app);
+                token = await TokenFactory.GetToken(authCode, app);
 
                 ShowDashLine();
 
-                Console.WriteLine($"Access token generated: {_token.AccessToken}");
+                Console.WriteLine($"Access token generated: {token.AccessToken}");
             }
 
             var host = ApiInfo.GetHost(mode);
 
-            _client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebSocket: useWebScoket);
+            client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebSocket: useWebScoket);
 
-            _disposables.Add(_client.Where(iMessage => iMessage is not ProtoHeartbeatEvent).Subscribe(OnMessageReceived, OnException));
-            _disposables.Add(_client.OfType<ProtoOARefreshTokenRes>().Subscribe(OnRefreshTokenResponse));
+            //Explicit IObservable's event hadling
+            disposables.Add(client.SpotObservable.Subscribe(OnSpotEvent, OnSpotError));
+            disposables.Add(client.ExecutionObservable.Subscribe(OnExecutionEvent, OnExecutionError));
+            //Event handlers also work
+            client.SpotEvent += client_SpotEvent;
+            client.ExecutionEvent += client_ExecutionEvent;
 
             Console.WriteLine("Connecting Client...");
 
-            await _client.Connect();
+            if (!client.Connect().Wait(10000))
+            {
+                Console.WriteLine("Connection timeout...");
+                System.Environment.Exit(1);
+            }
 
             ShowDashLine();
 
@@ -128,17 +141,9 @@ namespace ConsoleDemo
 
             ShowDashLine();
 
-            var applicationAuthReq = new ProtoOAApplicationAuthReq
-            {
-                ClientId = _app.ClientId,
-                ClientSecret = _app.Secret,
-            };
-
-            await _client.SendMessage(applicationAuthReq);
-
-            await Task.Delay(5000);
-
-            Console.WriteLine("You should see the application auth response message before entering any command");
+            var applicationAuthRes = await client.ApplicationAuthorize(app.ClientId, app.Secret);
+            //var applicationAuthRes = await client.ApplicationAuthorize(app);
+            Console.WriteLine(applicationAuthRes.ToString());
 
             Console.WriteLine("For commands list and description use 'help' command");
 
@@ -147,33 +152,36 @@ namespace ConsoleDemo
             GetCommand();
         }
 
-        private static void OnMessageReceived(IMessage message)
+        private static async Task client_ExecutionEvent(object sender, OAEventArgs<ExecutionEvent> eventArgs)
         {
-            Console.WriteLine($"\nMessage Received:\n{message}");
-
-            Console.WriteLine();
+            Console.WriteLine("client_ExecutionEvent");
         }
 
-        private static void OnException(Exception ex)
+        private static async Task client_SpotEvent(object sender, OAEventArgs<SpotEvent> eventArgs)
+        {
+            Console.WriteLine("client_SpotEvent");
+        }
+
+        private static void OnExecutionError(Exception ex)
         {
             Console.WriteLine($"\nException\n: {ex}");
 
             ShowDashLine();
         }
 
-        private static void OnRefreshTokenResponse(ProtoOARefreshTokenRes response)
+        private static void OnExecutionEvent(ExecutionEvent obj)
         {
-            _token = new Token
-            {
-                AccessToken = response.AccessToken,
-                RefreshToken = response.RefreshToken,
-                ExpiresIn = DateTimeOffset.FromUnixTimeMilliseconds(response.ExpiresIn),
-                TokenType = response.TokenType,
-            };
+            Console.WriteLine("Client_ExecutionEvent: " + obj.ToString());
+        }
+        private static void OnSpotError(Exception ex)
+        {
+            Console.WriteLine($"\nException\n: {ex}");
+            ShowDashLine();
+        }
 
-            Console.WriteLine($"New token received: {_token.AccessToken}");
-            Console.WriteLine($"As you refreshed your access token, now you have to re-authorize all previously authorized" +
-                $" trading accounts");
+        private static void OnSpotEvent(SpotEvent spot)
+        {
+            Console.WriteLine($"SpotEvent {spot.Timestamp} SymbolId={spot.SymbolId} Ask={spot.Ask} Bid={spot.Bid}");
         }
 
         private static void ProcessCommand(string command)
@@ -194,7 +202,7 @@ namespace ConsoleDemo
                         Console.WriteLine("For getting trend bar data: trendbar {Period} {Account ID} {Symbol ID} {numberOfDays}\n");
                         Console.WriteLine("For trend bar period parameter, you can use these values:\n");
 
-                        var trendbars = Enum.GetValues(typeof(ProtoOATrendbarPeriod)).Cast<ProtoOATrendbarPeriod>();
+                        var trendbars = Enum.GetValues(typeof(ProtoOA.Enums.TrendbarPeriod)).Cast<ProtoOA.Enums.TrendbarPeriod>();
 
                         var isFirst = true;
 
@@ -233,6 +241,10 @@ namespace ConsoleDemo
 
                     case "symbolslist":
                         SymbolListRequest(commandSplit);
+                        break;
+
+                    case "symbol":
+                        SymbolByIdRequest(commandSplit);
                         break;
 
                     case "subscribe":
@@ -302,49 +314,43 @@ namespace ConsoleDemo
 
         private static async void RefreshToken()
         {
-            if (string.IsNullOrWhiteSpace(_token.RefreshToken))
+            if (string.IsNullOrWhiteSpace(Program.token.RefreshToken))
             {
                 Console.Write("Refresh Token: ");
 
-                _token.RefreshToken = Console.ReadLine();
+                Program.token.RefreshToken = Console.ReadLine();
             }
 
             Console.WriteLine("Sending ProtoOARefreshTokenReq...");
 
-            var request = new ProtoOARefreshTokenReq
+            Token token2 = await client.RefreshToken(token);
+            if (token2 != null)
             {
-                RefreshToken = _token.RefreshToken
-            };
-
-            await _client.SendMessage(request);
+                token.AccessToken = token2.AccessToken;
+                Console.WriteLine($"New token: {token2.AccessToken}");
+            }
+            Console.WriteLine(token2.ToString());
         }
 
         private static async void SubscribeToSymbolTrendBar(string[] commandSplit)
         {
             Console.WriteLine("Sending ProtoOASubscribeLiveTrendbarReq...");
 
-            var request = new ProtoOASubscribeLiveTrendbarReq()
-            {
-                Period = (ProtoOATrendbarPeriod)Enum.Parse(typeof(ProtoOATrendbarPeriod), commandSplit[2], true),
-                CtidTraderAccountId = long.Parse(commandSplit[3]),
-                SymbolId = long.Parse(commandSplit[4]),
-            };
+            TrendbarPeriod Period = (TrendbarPeriod)Enum.Parse(typeof(TrendbarPeriod), commandSplit[2], true);
+            long CtidTraderAccountId = long.Parse(commandSplit[3]);
+            long SymbolId = long.Parse(commandSplit[4]);
 
-            await _client.SendMessage(request);
+            await client.SubscribeToLiveTrendbar(CtidTraderAccountId, SymbolId, Period);
         }
 
         private static async void SubscribeToSymbolSpot(string[] commandSplit)
         {
             Console.WriteLine("Sending ProtoOASubscribeSpotsReq...");
+            long CtidTraderAccountId = long.Parse(commandSplit[2]);
+            long[] SymbolIds = commandSplit.Skip(3).Select(iSymbolId => long.Parse(iSymbolId)).ToArray();
 
-            var request = new ProtoOASubscribeSpotsReq()
-            {
-                CtidTraderAccountId = long.Parse(commandSplit[2]),
-            };
-
-            request.SymbolId.AddRange(commandSplit.Skip(3).Select(iSymbolId => long.Parse(iSymbolId)));
-
-            await _client.SendMessage(request);
+            ProtoOA.Response.SubscribeSpotsRes subscribeSpotsRes = await client.SubscribeToSpots(CtidTraderAccountId, SymbolIds);
+            Console.WriteLine(subscribeSpotsRes.ToString());
         }
 
         private static async void SymbolListRequest(string[] commandSplit)
@@ -353,12 +359,11 @@ namespace ConsoleDemo
 
             Console.WriteLine("Sending ProtoOASymbolsListReq...");
 
-            var request = new ProtoOASymbolsListReq
+            ProtoOA.Response.SymbolsListRes symbolsListRes = await client.GetSymbolList(accountId);
+            foreach (LightSymbol s in symbolsListRes.Symbol)
             {
-                CtidTraderAccountId = accountId,
-            };
-
-            await _client.SendMessage(request);
+                Console.WriteLine(s.ToString());
+            }
         }
 
         private static async void ReconcileRequest(string[] commandSplit)
@@ -367,24 +372,18 @@ namespace ConsoleDemo
 
             Console.WriteLine("Sending ProtoOAReconcileReq...");
 
-            var request = new ProtoOAReconcileReq
-            {
-                CtidTraderAccountId = accountId,
-            };
-
-            await _client.SendMessage(request);
+            ProtoOA.Response.ReconcileRes reconcileRes = await client.GetOpenPositionsOrders(accountId);
+            Console.WriteLine(reconcileRes.ToString());
         }
 
         private static async void AccountListRequest()
         {
             Console.WriteLine("Sending ProtoOAGetAccountListByAccessTokenReq...");
-
-            var request = new ProtoOAGetAccountListByAccessTokenReq
+            CtidTraderAccount[] ctidTraderAccounts = await client.GetAccountList(token);
+            foreach (var account in ctidTraderAccounts)
             {
-                AccessToken = _token.AccessToken,
-            };
-
-            await _client.SendMessage(request);
+                Console.WriteLine(account.ToString());
+            }
         }
 
         private static async void AccountAuthRequest(string[] commandSplit)
@@ -393,13 +392,8 @@ namespace ConsoleDemo
 
             Console.WriteLine("Sending ProtoOAAccountAuthReq...");
 
-            var request = new ProtoOAAccountAuthReq
-            {
-                CtidTraderAccountId = accountId,
-                AccessToken = _token.AccessToken
-            };
-
-            await _client.SendMessage(request);
+            ProtoOA.Response.AccountAuthRes accountAuthRes = await client.AccountAuthorize(accountId, token);
+            Console.WriteLine(accountAuthRes.ToString());
         }
 
         private static async void TickDataRequest(string[] commandSplit)
@@ -408,29 +402,26 @@ namespace ConsoleDemo
             var symbolId = long.Parse(commandSplit[2]);
             var type = commandSplit[3].ToLowerInvariant() switch
             {
-                "bid" => ProtoOAQuoteType.Bid,
-                _ => ProtoOAQuoteType.Ask
+                "bid" => QuoteType.Bid,
+                _ => QuoteType.Ask
             };
 
             var hours = long.Parse(commandSplit[4]);
 
             Console.WriteLine("Sending ProtoOAGetTickDataReq...");
+            DateTimeOffset FromTimestamp = DateTimeOffset.UtcNow.AddHours(-hours);
+            DateTimeOffset ToTimestamp = DateTimeOffset.UtcNow;
 
-            var request = new ProtoOAGetTickDataReq
+            TickData[] tickDatas = await client.GetTickData(accountId, symbolId, FromTimestamp, ToTimestamp, type);
+            foreach (var tickData in tickDatas)
             {
-                CtidTraderAccountId = accountId,
-                SymbolId = symbolId,
-                FromTimestamp = DateTimeOffset.UtcNow.AddHours(-hours).ToUnixTimeMilliseconds(),
-                ToTimestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
-                Type = type
-            };
-
-            await _client.SendMessage(request);
+                Console.WriteLine(tickData.ToString());
+            }
         }
 
         private static async void TrendbarRequest(string[] commandSplit)
         {
-            var period = (ProtoOATrendbarPeriod)Enum.Parse(typeof(ProtoOATrendbarPeriod), commandSplit[1], true);
+            var period = (TrendbarPeriod)Enum.Parse(typeof(TrendbarPeriod), commandSplit[1], true);
             var accountId = long.Parse(commandSplit[2]);
             var symbolId = long.Parse(commandSplit[3]);
 
@@ -438,30 +429,35 @@ namespace ConsoleDemo
 
             Console.WriteLine("Sending ProtoOAGetTrendbarsReq...");
 
-            var request = new ProtoOAGetTrendbarsReq
+            DateTimeOffset FromTimestamp = DateTimeOffset.UtcNow.AddDays(-days);
+            DateTimeOffset ToTimestamp = DateTimeOffset.UtcNow;
+
+            Console.WriteLine($"FromTimestamp: {FromTimestamp} | ToTimestamp: {ToTimestamp}");
+
+            ProtoOA.Response.GetTrendbarsRes getTrendbarsRes = await client.GetTrendbars(accountId, symbolId, period, FromTimestamp, ToTimestamp);
+            foreach (var tb in getTrendbarsRes.Trendbar)
             {
-                CtidTraderAccountId = accountId,
-                SymbolId = symbolId,
-                Period = period,
-                FromTimestamp = DateTimeOffset.UtcNow.AddDays(-days).ToUnixTimeMilliseconds(),
-                ToTimestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
-            };
-
-            Console.WriteLine($"FromTimestamp: {request.FromTimestamp} | ToTimestamp: {request.ToTimestamp}");
-
-            await _client.SendMessage(request);
+                Console.WriteLine(tb.ToString());
+            }
+        }
+        private static async void SymbolByIdRequest(string[] commandSplit)
+        {
+            var accountId = long.Parse(commandSplit[1]);
+            var symbolIds = commandSplit.Skip(1).Select(s => long.Parse(s)).ToList();
+            Console.WriteLine("Sending ProtoOASymbolByIdReq...");
+            ProtoOA.Response.SymbolByIdRes symbolByIdRes = await client.GetSymbolsFull(accountId, symbolIds);
+            foreach (var symbol in symbolByIdRes.Symbol)
+            {
+                Console.WriteLine(symbol.ToString());
+            }
         }
 
         private static async void ProfileRequest()
         {
             Console.WriteLine("Sending ProtoOAGetCtidProfileByTokenReq...");
 
-            var request = new ProtoOAGetCtidProfileByTokenReq
-            {
-                AccessToken = _token.AccessToken
-            };
-
-            await _client.SendMessage(request);
+            CtidProfile ctidProfile = await client.GetProfile(token);
+            Console.WriteLine(ctidProfile.ToString());
         }
 
         private static void GetCommand()
@@ -479,9 +475,9 @@ namespace ConsoleDemo
         {
             Console.WriteLine("Disconnecting...");
 
-            _disposables.ForEach(iDisposable => iDisposable.Dispose());
+            disposables.ForEach(iDisposable => iDisposable.Dispose());
 
-            _client.Dispose();
+            client.Dispose();
 
             Console.WriteLine("Disconnected, exiting...");
 
