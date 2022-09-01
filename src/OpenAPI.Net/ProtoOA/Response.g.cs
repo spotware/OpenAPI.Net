@@ -7,6 +7,7 @@ namespace ProtoOA.Response
 {
   using Enums;
   using Model;
+  using OpenAPI.Net.Helpers;
   #pragma warning disable 1591, 0612, 3021
   #region Designer generated code
   
@@ -446,7 +447,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the ApplicationAuthReq request. 
   /// </summary>
-  public sealed partial class ApplicationAuthRes : pb::IMessage<ApplicationAuthRes>
+  public sealed partial class ApplicationAuthRes : pb::IMessage<ApplicationAuthRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -656,7 +657,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the ApplicationAuthRes request. 
   /// </summary>
-  public sealed partial class AccountAuthRes : pb::IMessage<AccountAuthRes>
+  public sealed partial class AccountAuthRes : pb::IMessage<AccountAuthRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -921,7 +922,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Generic response when an ERROR occurred. 
   /// </summary>
-  public sealed partial class ErrorRes : pb::IMessage<ErrorRes>
+  public sealed partial class ErrorRes : pb::IMessage<ErrorRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -1349,7 +1350,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the VersionReq request. 
   /// </summary>
-  public sealed partial class VersionRes : pb::IMessage<VersionRes>
+  public sealed partial class VersionRes : pb::IMessage<VersionRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -1613,7 +1614,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the AssetListReq request. 
   /// </summary>
-  public sealed partial class AssetListRes : pb::IMessage<AssetListRes>
+  public sealed partial class AssetListRes : pb::IMessage<AssetListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -1907,7 +1908,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SymbolsListReq request. 
   /// </summary>
-  public sealed partial class SymbolsListRes : pb::IMessage<SymbolsListRes>
+  public sealed partial class SymbolsListRes : pb::IMessage<SymbolsListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -2230,7 +2231,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SymbolByIdReq request. 
   /// </summary>
-  public sealed partial class SymbolByIdRes : pb::IMessage<SymbolByIdRes>
+  public sealed partial class SymbolByIdRes : pb::IMessage<SymbolByIdRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -2553,7 +2554,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SymbolsForConversionReq request. 
   /// </summary>
-  public sealed partial class SymbolsForConversionRes : pb::IMessage<SymbolsForConversionRes>
+  public sealed partial class SymbolsForConversionRes : pb::IMessage<SymbolsForConversionRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -2847,7 +2848,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the AssetListReq request. 
   /// </summary>
-  public sealed partial class AssetClassListRes : pb::IMessage<AssetClassListRes>
+  public sealed partial class AssetClassListRes : pb::IMessage<AssetClassListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -3141,7 +3142,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the TraderReq request. 
   /// </summary>
-  public sealed partial class TraderRes : pb::IMessage<TraderRes>
+  public sealed partial class TraderRes : pb::IMessage<TraderRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -3455,7 +3456,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* The response to the ReconcileReq request. 
   /// </summary>
-  public sealed partial class ReconcileRes : pb::IMessage<ReconcileRes>
+  public sealed partial class ReconcileRes : pb::IMessage<ReconcileRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -3778,7 +3779,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* The response to the DealListRes request. 
   /// </summary>
-  public sealed partial class DealListRes : pb::IMessage<DealListRes>
+  public sealed partial class DealListRes : pb::IMessage<DealListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4127,7 +4128,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* The response to the OrderListReq request. 
   /// </summary>
-  public sealed partial class OrderListRes : pb::IMessage<OrderListRes>
+  public sealed partial class OrderListRes : pb::IMessage<OrderListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4476,7 +4477,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* The response to the ExpectedMarginReq request. 
   /// </summary>
-  public sealed partial class ExpectedMarginRes : pb::IMessage<ExpectedMarginRes>
+  public sealed partial class ExpectedMarginRes : pb::IMessage<ExpectedMarginRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4825,7 +4826,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the CashFlowHistoryListReq request. 
   /// </summary>
-  public sealed partial class CashFlowHistoryListRes : pb::IMessage<CashFlowHistoryListRes>
+  public sealed partial class CashFlowHistoryListRes : pb::IMessage<CashFlowHistoryListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5119,7 +5120,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the GetAccountListByAccessTokenReq request. 
   /// </summary>
-  public sealed partial class GetAccountListByAccessTokenRes : pb::IMessage<GetAccountListByAccessTokenRes>
+  public sealed partial class GetAccountListByAccessTokenRes : pb::IMessage<GetAccountListByAccessTokenRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5467,7 +5468,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the RefreshTokenReq request. 
   /// </summary>
-  public sealed partial class RefreshTokenRes : pb::IMessage<RefreshTokenRes>
+  public sealed partial class RefreshTokenRes : pb::IMessage<RefreshTokenRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5894,7 +5895,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SubscribeSpotsReq request. 
   /// </summary>
-  public sealed partial class SubscribeSpotsRes : pb::IMessage<SubscribeSpotsRes>
+  public sealed partial class SubscribeSpotsRes : pb::IMessage<SubscribeSpotsRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6159,7 +6160,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SubscribeSpotsRes request. 
   /// </summary>
-  public sealed partial class UnsubscribeSpotsRes : pb::IMessage<UnsubscribeSpotsRes>
+  public sealed partial class UnsubscribeSpotsRes : pb::IMessage<UnsubscribeSpotsRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6424,7 +6425,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SubscribeLiveTrendbarReq request. 
   /// </summary>
-  public sealed partial class SubscribeLiveTrendbarRes : pb::IMessage<SubscribeLiveTrendbarRes>
+  public sealed partial class SubscribeLiveTrendbarRes : pb::IMessage<SubscribeLiveTrendbarRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6689,7 +6690,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SubscribeLiveTrendbarReq request. 
   /// </summary>
-  public sealed partial class UnsubscribeLiveTrendbarRes : pb::IMessage<UnsubscribeLiveTrendbarRes>
+  public sealed partial class UnsubscribeLiveTrendbarRes : pb::IMessage<UnsubscribeLiveTrendbarRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6954,7 +6955,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the GetTrendbarsReq request. 
   /// </summary>
-  public sealed partial class GetTrendbarsRes : pb::IMessage<GetTrendbarsRes>
+  public sealed partial class GetTrendbarsRes : pb::IMessage<GetTrendbarsRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7413,7 +7414,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the GetTickDataReq request. 
   /// </summary>
-  public sealed partial class GetTickDataRes : pb::IMessage<GetTickDataRes>
+  public sealed partial class GetTickDataRes : pb::IMessage<GetTickDataRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7762,7 +7763,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the GetCtidProfileByTokenReq request. 
   /// </summary>
-  public sealed partial class GetCtidProfileByTokenRes : pb::IMessage<GetCtidProfileByTokenRes>
+  public sealed partial class GetCtidProfileByTokenRes : pb::IMessage<GetCtidProfileByTokenRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8021,7 +8022,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the SubscribeDepthQuotesReq request. 
   /// </summary>
-  public sealed partial class SubscribeDepthQuotesRes : pb::IMessage<SubscribeDepthQuotesRes>
+  public sealed partial class SubscribeDepthQuotesRes : pb::IMessage<SubscribeDepthQuotesRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8286,7 +8287,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the UnsubscribeDepthQuotesReq request. 
   /// </summary>
-  public sealed partial class UnsubscribeDepthQuotesRes : pb::IMessage<UnsubscribeDepthQuotesRes>
+  public sealed partial class UnsubscribeDepthQuotesRes : pb::IMessage<UnsubscribeDepthQuotesRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8551,7 +8552,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the ProtoSymbolCategoryListReq request. 
   /// </summary>
-  public sealed partial class SymbolCategoryListRes : pb::IMessage<SymbolCategoryListRes>
+  public sealed partial class SymbolCategoryListRes : pb::IMessage<SymbolCategoryListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8845,7 +8846,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the TraderLogoutReq request. 
   /// </summary>
-  public sealed partial class AccountLogoutRes : pb::IMessage<AccountLogoutRes>
+  public sealed partial class AccountLogoutRes : pb::IMessage<AccountLogoutRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9110,7 +9111,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response with a list of existing user Margin Calls, usually contains 3 items. 
   /// </summary>
-  public sealed partial class MarginCallListRes : pb::IMessage<MarginCallListRes>
+  public sealed partial class MarginCallListRes : pb::IMessage<MarginCallListRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9346,7 +9347,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* If this response received, it means that margin call was successfully updated. 
   /// </summary>
-  public sealed partial class MarginCallUpdateRes : pb::IMessage<MarginCallUpdateRes>
+  public sealed partial class MarginCallUpdateRes : pb::IMessage<MarginCallUpdateRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9556,7 +9557,7 @@ namespace ProtoOA.Response
   /// <summary>
   ///* Response to the GetDynamicLeverageByIDReq request. 
   /// </summary>
-  public sealed partial class GetDynamicLeverageByIDRes : pb::IMessage<GetDynamicLeverageByIDRes>
+  public sealed partial class GetDynamicLeverageByIDRes : pb::IMessage<GetDynamicLeverageByIDRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9867,7 +9868,7 @@ namespace ProtoOA.Response
       /// <summary>
   ///* Response to the DealListByPositionIdReq request. 
   /// </summary>
-  public sealed partial class DealListByPositionIdRes : pb::IMessage<DealListByPositionIdRes>
+  public sealed partial class DealListByPositionIdRes : pb::IMessage<DealListByPositionIdRes>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif

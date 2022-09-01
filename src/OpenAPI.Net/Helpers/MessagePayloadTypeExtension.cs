@@ -19,7 +19,7 @@ namespace OpenAPI.Net.Helpers
             {
                 case IOAMessage m1:
                     return (uint)m1.PayloadType;
-                case IMessageExt m2:
+                case ICommonMessage m2:
                     return (uint)m2.PayloadType;
                 case IProtoMessage m3:
                     return m3.PayloadType;

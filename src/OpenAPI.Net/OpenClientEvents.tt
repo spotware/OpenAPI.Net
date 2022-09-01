@@ -60,7 +60,7 @@ namespace ProtoOA.Event
 <#
 foreach(string eventName in eventNames)
 { #>
-    public sealed partial class <#= eventName #> : IEventMessage<<#= eventName #>> { }
+    public sealed partial class <#= eventName #> : IEventMessage<<#= eventName #>>, IOAMessage { }
 <#
 } #>
 }   

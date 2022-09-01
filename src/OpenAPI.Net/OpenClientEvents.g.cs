@@ -78,17 +78,17 @@ namespace OpenAPI.Net
 
 namespace ProtoOA.Event
 {
-    public sealed partial class ClientDisconnectEvent : IEventMessage<ClientDisconnectEvent> { }
-    public sealed partial class AccountsTokenInvalidatedEvent : IEventMessage<AccountsTokenInvalidatedEvent> { }
-    public sealed partial class ExecutionEvent : IEventMessage<ExecutionEvent> { }
-    public sealed partial class TrailingSLChangedEvent : IEventMessage<TrailingSLChangedEvent> { }
-    public sealed partial class SymbolChangedEvent : IEventMessage<SymbolChangedEvent> { }
-    public sealed partial class TraderUpdatedEvent : IEventMessage<TraderUpdatedEvent> { }
-    public sealed partial class OrderErrorEvent : IEventMessage<OrderErrorEvent> { }
-    public sealed partial class MarginChangedEvent : IEventMessage<MarginChangedEvent> { }
-    public sealed partial class SpotEvent : IEventMessage<SpotEvent> { }
-    public sealed partial class DepthEvent : IEventMessage<DepthEvent> { }
-    public sealed partial class AccountDisconnectEvent : IEventMessage<AccountDisconnectEvent> { }
-    public sealed partial class MarginCallUpdateEvent : IEventMessage<MarginCallUpdateEvent> { }
-    public sealed partial class MarginCallTriggerEvent : IEventMessage<MarginCallTriggerEvent> { }
+    public sealed partial class ClientDisconnectEvent : IEventMessage<ClientDisconnectEvent>, IOAMessage { }
+    public sealed partial class AccountsTokenInvalidatedEvent : IEventMessage<AccountsTokenInvalidatedEvent>, IOAMessage { }
+    public sealed partial class ExecutionEvent : IEventMessage<ExecutionEvent>, IOAMessage { }
+    public sealed partial class TrailingSLChangedEvent : IEventMessage<TrailingSLChangedEvent>, IOAMessage { }
+    public sealed partial class SymbolChangedEvent : IEventMessage<SymbolChangedEvent>, IOAMessage { }
+    public sealed partial class TraderUpdatedEvent : IEventMessage<TraderUpdatedEvent>, IOAMessage { }
+    public sealed partial class OrderErrorEvent : IEventMessage<OrderErrorEvent>, IOAMessage { }
+    public sealed partial class MarginChangedEvent : IEventMessage<MarginChangedEvent>, IOAMessage { }
+    public sealed partial class SpotEvent : IEventMessage<SpotEvent>, IOAMessage { }
+    public sealed partial class DepthEvent : IEventMessage<DepthEvent>, IOAMessage { }
+    public sealed partial class AccountDisconnectEvent : IEventMessage<AccountDisconnectEvent>, IOAMessage { }
+    public sealed partial class MarginCallUpdateEvent : IEventMessage<MarginCallUpdateEvent>, IOAMessage { }
+    public sealed partial class MarginCallTriggerEvent : IEventMessage<MarginCallTriggerEvent>, IOAMessage { }
 }   

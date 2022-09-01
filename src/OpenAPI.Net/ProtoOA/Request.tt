@@ -27,6 +27,7 @@ namespace ProtoOA.Request
 {
   using Enums;
   using Model;
+  using OpenAPI.Net.Helpers;
 <#		}
 
 	}
@@ -76,6 +77,7 @@ namespace ProtoOA.Request
 				if(row.StartsWith("public sealed partial class") & row.EndsWith("Req>"))
 				{
 					skip = false;
+					rowMod += ", IOAMessage";
 				}
 			}
 			rowMod = rowMod.Replace("global::OpenApiMessagesReflection", "OpenApiMessagesReflection");

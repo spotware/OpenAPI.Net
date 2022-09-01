@@ -7,6 +7,7 @@ namespace ProtoOA.Request
 {
   using Enums;
   using Model;
+  using OpenAPI.Net.Helpers;
   #pragma warning disable 1591, 0612, 3021
   #region Designer generated code
   
@@ -446,7 +447,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for the authorizing an application to work with the cTrader platform Proxies. 
   /// </summary>
-  public sealed partial class ApplicationAuthReq : pb::IMessage<ApplicationAuthReq>
+  public sealed partial class ApplicationAuthReq : pb::IMessage<ApplicationAuthReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -764,7 +765,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for the authorizing trading account session. Requires established authorized connection with the client application using ApplicationAuthReq. 
   /// </summary>
-  public sealed partial class AccountAuthReq : pb::IMessage<AccountAuthReq>
+  public sealed partial class AccountAuthReq : pb::IMessage<AccountAuthReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -1083,7 +1084,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting the proxy version. Can be used to check the current version of the Open API scheme. 
   /// </summary>
-  public sealed partial class VersionReq : pb::IMessage<VersionReq>
+  public sealed partial class VersionReq : pb::IMessage<VersionReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -1293,7 +1294,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for sending a new trading order. Allowed only if the accessToken has the "trade" permissions for the trading account. 
   /// </summary>
-  public sealed partial class NewOrderReq : pb::IMessage<NewOrderReq>
+  public sealed partial class NewOrderReq : pb::IMessage<NewOrderReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -2710,7 +2711,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for cancelling existing pending order. Allowed only if the accessToken has "trade" permissions for the trading account. 
   /// </summary>
-  public sealed partial class CancelOrderReq : pb::IMessage<CancelOrderReq>
+  public sealed partial class CancelOrderReq : pb::IMessage<CancelOrderReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -3030,7 +3031,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for amending the existing pending order. Allowed only if the Access Token has "trade" permissions for the trading account. 
   /// </summary>
-  public sealed partial class AmendOrderReq : pb::IMessage<AmendOrderReq>
+  public sealed partial class AmendOrderReq : pb::IMessage<AmendOrderReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4010,7 +4011,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for amending StopLoss and TakeProfit of existing position. Allowed only if the accessToken has "trade" permissions for the trading account. 
   /// </summary>
-  public sealed partial class AmendPositionSLTPReq : pb::IMessage<AmendPositionSLTPReq>
+  public sealed partial class AmendPositionSLTPReq : pb::IMessage<AmendPositionSLTPReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4605,7 +4606,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for closing or partially closing of an existing position. Allowed only if the accessToken has "trade" permissions for the trading account. 
   /// </summary>
-  public sealed partial class ClosePositionReq : pb::IMessage<ClosePositionReq>
+  public sealed partial class ClosePositionReq : pb::IMessage<ClosePositionReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4980,7 +4981,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for the list of assets available for a trader's account. 
   /// </summary>
-  public sealed partial class AssetListReq : pb::IMessage<AssetListReq>
+  public sealed partial class AssetListReq : pb::IMessage<AssetListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5245,7 +5246,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for a list of symbols available for a trading account. Symbol entries are returned with the limited set of fields. 
   /// </summary>
-  public sealed partial class SymbolsListReq : pb::IMessage<SymbolsListReq>
+  public sealed partial class SymbolsListReq : pb::IMessage<SymbolsListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5565,7 +5566,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting a full symbol entity. 
   /// </summary>
-  public sealed partial class SymbolByIdReq : pb::IMessage<SymbolByIdReq>
+  public sealed partial class SymbolByIdReq : pb::IMessage<SymbolByIdReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5861,7 +5862,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting a conversion chain between two assets that consists of several symbols. Use when no direct quote is available 
   /// </summary>
-  public sealed partial class SymbolsForConversionReq : pb::IMessage<SymbolsForConversionReq>
+  public sealed partial class SymbolsForConversionReq : pb::IMessage<SymbolsForConversionReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6236,7 +6237,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for a list of asset classes available for the trader's account. 
   /// </summary>
-  public sealed partial class AssetClassListReq : pb::IMessage<AssetClassListReq>
+  public sealed partial class AssetClassListReq : pb::IMessage<AssetClassListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6501,7 +6502,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting data of Trader's Account. 
   /// </summary>
-  public sealed partial class TraderReq : pb::IMessage<TraderReq>
+  public sealed partial class TraderReq : pb::IMessage<TraderReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6766,7 +6767,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting Trader's current open positions and pending orders data. 
   /// </summary>
-  public sealed partial class ReconcileReq : pb::IMessage<ReconcileReq>
+  public sealed partial class ReconcileReq : pb::IMessage<ReconcileReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7031,7 +7032,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting Trader's deals historical data (execution details). 
   /// </summary>
-  public sealed partial class DealListReq : pb::IMessage<DealListReq>
+  public sealed partial class DealListReq : pb::IMessage<DealListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7461,7 +7462,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting Trader's closed orders filtered by timestamp 
   /// </summary>
-  public sealed partial class OrderListReq : pb::IMessage<OrderListReq>
+  public sealed partial class OrderListReq : pb::IMessage<OrderListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7836,7 +7837,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting the margin estimate. Can be used before sending a new order request. 
   /// </summary>
-  public sealed partial class ExpectedMarginReq : pb::IMessage<ExpectedMarginReq>
+  public sealed partial class ExpectedMarginReq : pb::IMessage<ExpectedMarginReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8187,7 +8188,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting Trader's historical data of deposits and withdrawals. 
   /// </summary>
-  public sealed partial class CashFlowHistoryListReq : pb::IMessage<CashFlowHistoryListReq>
+  public sealed partial class CashFlowHistoryListReq : pb::IMessage<CashFlowHistoryListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8562,7 +8563,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting the list of granted trader's account for the access token. 
   /// </summary>
-  public sealed partial class GetAccountListByAccessTokenReq : pb::IMessage<GetAccountListByAccessTokenReq>
+  public sealed partial class GetAccountListByAccessTokenReq : pb::IMessage<GetAccountListByAccessTokenReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8826,7 +8827,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request to refresh the access token using refresh token of granted trader's account. 
   /// </summary>
-  public sealed partial class RefreshTokenReq : pb::IMessage<RefreshTokenReq>
+  public sealed partial class RefreshTokenReq : pb::IMessage<RefreshTokenReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9090,7 +9091,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for subscribing on spot events of the specified symbol. 
   /// </summary>
-  public sealed partial class SubscribeSpotsReq : pb::IMessage<SubscribeSpotsReq>
+  public sealed partial class SubscribeSpotsReq : pb::IMessage<SubscribeSpotsReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9441,7 +9442,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for unsubscribing from the spot events of the specified symbol. 
   /// </summary>
-  public sealed partial class UnsubscribeSpotsReq : pb::IMessage<UnsubscribeSpotsReq>
+  public sealed partial class UnsubscribeSpotsReq : pb::IMessage<UnsubscribeSpotsReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9737,7 +9738,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for subscribing for live trend bars. Requires subscription on the spot events, see SubscribeSpotsReq. 
   /// </summary>
-  public sealed partial class SubscribeLiveTrendbarReq : pb::IMessage<SubscribeLiveTrendbarReq>
+  public sealed partial class SubscribeLiveTrendbarReq : pb::IMessage<SubscribeLiveTrendbarReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -10112,7 +10113,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for unsubscribing from the live trend bars. 
   /// </summary>
-  public sealed partial class UnsubscribeLiveTrendbarReq : pb::IMessage<UnsubscribeLiveTrendbarReq>
+  public sealed partial class UnsubscribeLiveTrendbarReq : pb::IMessage<UnsubscribeLiveTrendbarReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -10487,7 +10488,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting historical trend bars for the symbol. 
   /// </summary>
-  public sealed partial class GetTrendbarsReq : pb::IMessage<GetTrendbarsReq>
+  public sealed partial class GetTrendbarsReq : pb::IMessage<GetTrendbarsReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -11027,7 +11028,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting historical tick data for the symbol. 
   /// </summary>
-  public sealed partial class GetTickDataReq : pb::IMessage<GetTickDataReq>
+  public sealed partial class GetTickDataReq : pb::IMessage<GetTickDataReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -11512,7 +11513,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting details of Trader's profile. Limited due to GDRP requirements. 
   /// </summary>
-  public sealed partial class GetCtidProfileByTokenReq : pb::IMessage<GetCtidProfileByTokenReq>
+  public sealed partial class GetCtidProfileByTokenReq : pb::IMessage<GetCtidProfileByTokenReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -11776,7 +11777,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for subscribing on depth of market of the specified symbol. 
   /// </summary>
-  public sealed partial class SubscribeDepthQuotesReq : pb::IMessage<SubscribeDepthQuotesReq>
+  public sealed partial class SubscribeDepthQuotesReq : pb::IMessage<SubscribeDepthQuotesReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -12072,7 +12073,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for unsubscribing from the depth of market of the specified symbol. 
   /// </summary>
-  public sealed partial class UnsubscribeDepthQuotesReq : pb::IMessage<UnsubscribeDepthQuotesReq>
+  public sealed partial class UnsubscribeDepthQuotesReq : pb::IMessage<UnsubscribeDepthQuotesReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -12368,7 +12369,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for a list of symbol categories available for a trading account. 
   /// </summary>
-  public sealed partial class SymbolCategoryListReq : pb::IMessage<SymbolCategoryListReq>
+  public sealed partial class SymbolCategoryListReq : pb::IMessage<SymbolCategoryListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -12633,7 +12634,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for logout of  trading account session.
   /// </summary>
-  public sealed partial class AccountLogoutReq : pb::IMessage<AccountLogoutReq>
+  public sealed partial class AccountLogoutReq : pb::IMessage<AccountLogoutReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -12898,7 +12899,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for a list of existing margin call thresholds configured for a user. 
   /// </summary>
-  public sealed partial class MarginCallListReq : pb::IMessage<MarginCallListReq>
+  public sealed partial class MarginCallListReq : pb::IMessage<MarginCallListReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -13160,7 +13161,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request to modify marginLevelThreshold of specified marginCallType for ctidTraderAccountId. 
   /// </summary>
-  public sealed partial class MarginCallUpdateReq : pb::IMessage<MarginCallUpdateReq>
+  public sealed partial class MarginCallUpdateReq : pb::IMessage<MarginCallUpdateReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -13468,7 +13469,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for getting a dynamic leverage entity referenced in Symbol.leverageId. 
   /// </summary>
-  public sealed partial class GetDynamicLeverageByIDReq : pb::IMessage<GetDynamicLeverageByIDReq>
+  public sealed partial class GetDynamicLeverageByIDReq : pb::IMessage<GetDynamicLeverageByIDReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -13785,7 +13786,7 @@ namespace ProtoOA.Request
       /// <summary>
   ///* Request for retrieving the deals related to a position. 
   /// </summary>
-  public sealed partial class DealListByPositionIdReq : pb::IMessage<DealListByPositionIdReq>
+  public sealed partial class DealListByPositionIdReq : pb::IMessage<DealListByPositionIdReq>, IOAMessage
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
