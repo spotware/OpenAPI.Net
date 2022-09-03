@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.WebSocket.Sample", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{310067F1-0853-4067-B457-C4F66453F0BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleNETFramework.Sample", "samples\ConsoleNETFramework.Sample\ConsoleNETFramework.Sample.csproj", "{9C66CF99-DC06-43FB-9EC9-F4661142011E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,14 @@ Global
 		{B9193566-628A-4572-B87E-0DDCD30EA409}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9193566-628A-4572-B87E-0DDCD30EA409}.Release|x86.ActiveCfg = Release|Any CPU
 		{B9193566-628A-4572-B87E-0DDCD30EA409}.Release|x86.Build.0 = Release|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Debug|x86.Build.0 = Debug|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Release|x86.ActiveCfg = Release|Any CPU
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +129,7 @@ Global
 		{1EC058DD-6106-42E4-B665-2074A89E3C2D} = {310067F1-0853-4067-B457-C4F66453F0BE}
 		{D107FA10-F1AF-4B66-BB1B-5ECE4F8DB685} = {310067F1-0853-4067-B457-C4F66453F0BE}
 		{B9193566-628A-4572-B87E-0DDCD30EA409} = {310067F1-0853-4067-B457-C4F66453F0BE}
+		{9C66CF99-DC06-43FB-9EC9-F4661142011E} = {310067F1-0853-4067-B457-C4F66453F0BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E05B0FF6-48DB-46F1-BD20-0D3980D5D6E4}
