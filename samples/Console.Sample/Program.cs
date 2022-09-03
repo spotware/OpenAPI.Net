@@ -115,8 +115,12 @@ namespace ConsoleDemo
             client = new OpenClient(host, ApiInfo.Port, TimeSpan.FromSeconds(10), useWebSocket: useWebScoket);
 
             //Explicit IObservable's event hadling
-            disposables.Add(client.SpotObservable.Subscribe(OnSpotEvent, OnSpotError));
             disposables.Add(client.ExecutionObservable.Subscribe(OnExecutionEvent, OnExecutionError));
+            //Reactive filtering
+            //Let the even SymbolIDs appear with red color and odd SymbolIDs with blue color
+            disposables.Add(client.SpotObservable.Where(so => so.SymbolId % 2 == 0).Subscribe(OnSpotEvent_Red, OnSpotError));
+            disposables.Add(client.SpotObservable.Where(so => so.SymbolId % 2 != 0).Subscribe(OnSpotEvent_Blue, OnSpotError));
+
             //Event handlers also work
             client.SpotEvent += client_SpotEvent;
             client.ExecutionEvent += client_ExecutionEvent;
@@ -179,9 +183,19 @@ namespace ConsoleDemo
             ShowDashLine();
         }
 
-        private static void OnSpotEvent(SpotEvent spot)
+        private static void OnSpotEvent_Red(SpotEvent spot)
         {
+            ConsoleColor c = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"SpotEvent {spot.Timestamp} SymbolId={spot.SymbolId} Ask={spot.Ask} Bid={spot.Bid}");
+            Console.ForegroundColor = c;
+        }
+        private static void OnSpotEvent_Blue(SpotEvent spot)
+        {
+            ConsoleColor c = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"SpotEvent {spot.Timestamp} SymbolId={spot.SymbolId} Ask={spot.Ask} Bid={spot.Bid}");
+            Console.ForegroundColor = c;
         }
 
         private static void ProcessCommand(string command)
@@ -288,8 +302,6 @@ namespace ConsoleDemo
                     throw;
                 }
             }
-
-            Task.Delay(3000).Wait();
 
             GetCommand();
         }
