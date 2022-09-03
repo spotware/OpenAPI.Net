@@ -30,16 +30,16 @@ namespace OpenAPI.Net
         /// lastTimeStamp for NewMessageUniqueID generator
         /// lastTimeStamp is expressed in milliseconds
         /// </summary>
-        private static ulong lastTimeStamp = (ulong)(DateTime.UtcNow.Ticks / 10000);
-        private static ulong NewMessageUniqueID
+        private static long lastTimeStamp = DateTime.UtcNow.Ticks / 10000;
+        private static long NewMessageUniqueID
         {
             get
             {
-                ulong original, newValue;
+                long original, newValue;
                 do
                 {
                     original = lastTimeStamp;
-                    ulong now = (ulong)(DateTime.UtcNow.Ticks / 10000);
+                    long now = (DateTime.UtcNow.Ticks / 10000);
                     newValue = Math.Max(now, original + 1);
                 } while (Interlocked.CompareExchange
                              (ref lastTimeStamp, newValue, original) != original);
@@ -47,11 +47,11 @@ namespace OpenAPI.Net
                 return newValue;
             }
         }
-        private ConcurrentDictionary<ulong, ResultPointer> resultPointers = new ConcurrentDictionary<ulong, ResultPointer>();
+        private ConcurrentDictionary<long, ResultPointer> resultPointers = new ConcurrentDictionary<long, ResultPointer>();
 
         private async Task<IOAMessage> SendMessageWaitResponse(IOAMessage message, uint retryCount = 0)
         {
-            ulong id = NewMessageUniqueID;
+            long id = NewMessageUniqueID;
             string clientMsgId = id.ToString("X");
             IOAMessage resultMessage = null;
             ResultPointer rp = new ResultPointer();
@@ -100,7 +100,7 @@ namespace OpenAPI.Net
         }
         private void MessageForwardByClientMsgId(IMessage message, string clientMsgId)
         {
-            if (ulong.TryParse(clientMsgId, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out ulong id))
+            if (long.TryParse(clientMsgId, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out long id))
             {
                 if (resultPointers.TryRemove(id, out ResultPointer rp))
                 {

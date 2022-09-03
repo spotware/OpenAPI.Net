@@ -48,7 +48,7 @@ namespace OpenAPI.Net.Helpers
         {
             if (message == null)
                 return;
-            foreach (var (_, observer) in observers)
+            foreach (var observer in observers.Values)
             {
                 try
                 {
@@ -80,7 +80,7 @@ namespace OpenAPI.Net.Helpers
 
             Dispose();
 
-            foreach (var (_, observer) in observers)
+            foreach (var observer in observers.Values)
             {
                 try
                 {
@@ -100,7 +100,7 @@ namespace OpenAPI.Net.Helpers
         {
             IsCompleted = true;
 
-            foreach (var (_, observer) in observers)
+            foreach (var observer in observers.Values)
             {
                 observer.OnCompleted();
             }

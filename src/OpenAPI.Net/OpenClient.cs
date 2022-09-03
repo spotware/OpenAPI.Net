@@ -474,7 +474,7 @@ namespace OpenAPI.Net
 
             lengthSpan.Reverse();
 
-            return BitConverter.ToInt32(lengthSpan);
+            return BitConverter.ToInt32(lengthSpan.ToArray(), 0);
         }
 
         /// <summary>
