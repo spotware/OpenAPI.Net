@@ -1,4 +1,4 @@
-﻿using Google.Protobuf;
+using Google.Protobuf;
 using OpenAPI.Net;
 using OpenAPI.Net.Auth;
 using OpenAPI.Net.Helpers;
@@ -85,7 +85,7 @@ namespace ConsoleDemo
 
                 Console.WriteLine($"Authentication URI: {authUri}");
 
-                System.Diagnostics.Process.Start("explorer.exe", $"\"{authUri}\"");
+                OpenBrowser(authUri);
 
                 Console.WriteLine("Follow the authentication steps on your browser, then copy the authentication code from redirect" +
                     " URL and paste it here.");
@@ -488,6 +488,33 @@ namespace ConsoleDemo
             Task.Delay(3000).Wait();
 
             Environment.Exit(0);
+        }
+
+        public static void OpenBrowser(Uri url)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(url.AbsoluteUri);
+            }
+            catch
+            {
+                if (System.OperatingSystem.IsWindows())
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("cmd", $"/c start {url.AbsoluteUri}") { CreateNoWindow = true });
+                }
+                else if (System.OperatingSystem.IsLinux())
+                {
+                    System.Diagnostics.Process.Start("xdg-open", url.AbsoluteUri);
+                }
+                else if (System.OperatingSystem.IsMacOS())
+                {
+                    System.Diagnostics.Process.Start("open", url.AbsoluteUri);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 }
