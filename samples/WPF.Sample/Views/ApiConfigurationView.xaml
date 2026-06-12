@@ -14,8 +14,8 @@
     mc:Ignorable="d">
     <prism:Dialog.WindowStyle>
         <Style BasedOn="{StaticResource DialogStyle}" TargetType="mah:MetroWindow">
-            <Setter Property="Height" Value="250" />
-            <Setter Property="Width" Value="400" />
+            <Setter Property="Height" Value="320" />
+            <Setter Property="Width" Value="460" />
         </Style>
     </prism:Dialog.WindowStyle>
     <i:Interaction.Triggers>
@@ -27,50 +27,60 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid>
+    <Grid Margin="16,12,16,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-
         </Grid.RowDefinitions>
 
         <mah:MetroHeader
             Grid.Row="0"
-            Margin="5"
+            Margin="0,8"
             Header="Client ID">
-            <TextBox Text="{Binding Path=Model.ClientId, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox
+                mah:TextBoxHelper.ClearTextButton="True"
+                mah:TextBoxHelper.Watermark="Your application Client ID"
+                Text="{Binding Path=Model.ClientId, UpdateSourceTrigger=PropertyChanged}" />
         </mah:MetroHeader>
 
         <mah:MetroHeader
             Grid.Row="1"
-            Margin="5"
+            Margin="0,8"
             Header="Secret">
-            <TextBox Text="{Binding Path=Model.Secret, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox
+                mah:TextBoxHelper.ClearTextButton="True"
+                mah:TextBoxHelper.Watermark="Your application Secret"
+                Text="{Binding Path=Model.Secret, UpdateSourceTrigger=PropertyChanged}" />
         </mah:MetroHeader>
 
         <mah:MetroHeader
             Grid.Row="2"
-            Margin="5"
+            Margin="0,8"
             Header="Redirect URI">
-            <TextBox Text="{Binding Path=Model.RedirectUri, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox
+                mah:TextBoxHelper.ClearTextButton="True"
+                mah:TextBoxHelper.Watermark="https://example.com/"
+                Text="{Binding Path=Model.RedirectUri, UpdateSourceTrigger=PropertyChanged}" />
         </mah:MetroHeader>
 
         <StackPanel
             Grid.Row="3"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Orientation="Horizontal">
             <Button
-                Margin="5"
-                Command="{Binding Path=DoneCommand}"
-                Content="Done"
-                Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}" />
-            <Button
-                Margin="5"
+                MinWidth="110"
+                Margin="8,0,0,0"
                 Command="{Binding Path=LoadFromFileCommand}"
                 Content="Load From File"
+                Style="{DynamicResource MahApps.Styles.Button.Dialogs}" />
+            <Button
+                MinWidth="110"
+                Margin="8,0,0,0"
+                Command="{Binding Path=DoneCommand}"
+                Content="Done"
                 Style="{DynamicResource MahApps.Styles.Button.Dialogs.Accent}" />
         </StackPanel>
     </Grid>
