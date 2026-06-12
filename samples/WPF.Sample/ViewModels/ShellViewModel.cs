@@ -7,6 +7,7 @@ using Prism.Events;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
@@ -407,20 +408,31 @@ namespace Trading.UI.Sample.ViewModels
 
         private async Task FillConversionSymbols(AccountModel account)
         {
+            // The conversion chain only depends on the symbol's quote asset (the deposit asset is
+            // constant for the account), so request each distinct quote asset once and reuse the
+            // result for every symbol that shares it. This turns hundreds of sequential network
+            // round-trips into a handful, which is the main driver of the account-load time.
+            var conversionSymbolsCache = new Dictionary<long, IReadOnlyList<SymbolModel>>();
+
             foreach (var symbol in account.Symbols)
             {
-                if (symbol.QuoteAsset.AssetId != account.DepositAsset.AssetId)
+                if (symbol.QuoteAsset.AssetId == account.DepositAsset.AssetId)
+                {
+                    symbol.ConversionSymbols.Add(symbol);
+
+                    continue;
+                }
+
+                if (conversionSymbolsCache.TryGetValue(symbol.QuoteAsset.AssetId, out var conversionSymbolModels) is false)
                 {
                     var conversionLightSymbols = await _apiService.GetConversionSymbols(account.Id, account.IsLive, symbol.QuoteAsset.AssetId, account.DepositAsset.AssetId);
 
-                    var conversionSymbolModels = conversionLightSymbols.Select(iLightSymbol => account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == iLightSymbol.SymbolId)).Where(iSymbol => iSymbol is not null);
+                    conversionSymbolModels = conversionLightSymbols.Select(iLightSymbol => account.Symbols.FirstOrDefault(iSymbol => iSymbol.Id == iLightSymbol.SymbolId)).Where(iSymbol => iSymbol is not null).ToArray();
 
-                    symbol.ConversionSymbols.AddRange(conversionSymbolModels);
+                    conversionSymbolsCache[symbol.QuoteAsset.AssetId] = conversionSymbolModels;
                 }
-                else
-                {
-                    symbol.ConversionSymbols.Add(symbol);
-                }
+
+                symbol.ConversionSymbols.AddRange(conversionSymbolModels);
             }
         }
 

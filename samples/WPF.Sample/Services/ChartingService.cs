@@ -35,7 +35,11 @@ namespace Trading.UI.Sample.Services
 
         private void Browser_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            (sender as ChromiumWebBrowser).Address = Path.Combine(Environment.CurrentDirectory, "Chart.js", "chart.html");
+            // Resolve relative to the app directory (not the current working directory, which can
+            // differ depending on how the app was launched) and hand CefSharp a proper file:// URI.
+            var chartHtmlPath = Path.Combine(AppContext.BaseDirectory, "Chart.js", "chart.html");
+
+            (sender as ChromiumWebBrowser).Address = new Uri(chartHtmlPath).AbsoluteUri;
         }
     }
 }
