@@ -1,4 +1,5 @@
-﻿using ControlzEx.Theming;
+﻿using CefSharp;
+using ControlzEx.Theming;
 using MahApps.Metro.Controls.Dialogs;
 using OpenAPI.Net;
 using OpenAPI.Net.Helpers;
@@ -18,6 +19,26 @@ namespace Trading.UI.Sample
     /// </summary>
     public partial class App
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            // Initialize CefSharp before any browser is created and force software rendering.
+            // CefSharp 90 (Chromium ~2021) is unstable with hardware acceleration on modern
+            // Windows/GPU drivers (intermittent blank renders / startup crashes); disabling the
+            // GPU makes the embedded browser behave reliably.
+            if (Cef.IsInitialized == false)
+            {
+                var settings = new CefSharp.Wpf.CefSettings();
+
+                settings.CefCommandLineArgs["disable-gpu"] = "1";
+                settings.CefCommandLineArgs["disable-gpu-compositing"] = "1";
+                settings.CefCommandLineArgs["disable-gpu-vsync"] = "1";
+
+                Cef.Initialize(settings);
+            }
+
+            base.OnStartup(e);
+        }
+
         protected override Window CreateShell() => Container.Resolve<ShellView>();
 
         protected override void InitializeShell(Window window)
@@ -35,7 +56,7 @@ namespace Trading.UI.Sample
 
             string newTheme = string.Equals(currentTheme, "Dark", StringComparison.OrdinalIgnoreCase) ? "Light" : "Dark";
 
-            ThemeManager.Current.ChangeTheme(this, $"{newTheme}.Steel");
+            ThemeManager.Current.ChangeTheme(this, $"{newTheme}.Cobalt");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
