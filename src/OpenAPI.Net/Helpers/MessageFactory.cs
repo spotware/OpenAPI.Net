@@ -43,6 +43,7 @@ namespace OpenAPI.Net.Helpers
             
             return protoMessage.PayloadType switch
             {
+                (int)ProtoPayloadType.ErrorRes => ProtoErrorRes.Parser.ParseFrom(payload),
                 (int)ProtoPayloadType.HeartbeatEvent => ProtoHeartbeatEvent.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaApplicationAuthReq => ProtoOAApplicationAuthReq.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaApplicationAuthRes => ProtoOAApplicationAuthRes.Parser.ParseFrom(payload),
@@ -83,7 +84,7 @@ namespace OpenAPI.Net.Helpers
                 (int)ProtoOAPayloadType.ProtoOaUnsubscribeLiveTrendbarReq => ProtoOAUnsubscribeLiveTrendbarReq.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaGetTrendbarsReq => ProtoOAGetTrendbarsReq.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaGetTrendbarsRes => ProtoOAGetTrendbarsRes.Parser.ParseFrom(payload),
-                (int)ProtoOAPayloadType.ProtoOaExpectedMarginReq => ProtoOAGetTrendbarsReq.Parser.ParseFrom(payload),
+                (int)ProtoOAPayloadType.ProtoOaExpectedMarginReq => ProtoOAExpectedMarginReq.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaExpectedMarginRes => ProtoOAExpectedMarginRes.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaMarginChangedEvent => ProtoOAMarginChangedEvent.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaErrorRes => ProtoOAErrorRes.Parser.ParseFrom(payload),
@@ -117,7 +118,7 @@ namespace OpenAPI.Net.Helpers
                 (int)ProtoOAPayloadType.ProtoOaMarginCallUpdateRes => ProtoOAMarginCallUpdateRes.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaMarginCallUpdateEvent => ProtoOAMarginCallUpdateEvent.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaMarginCallTriggerEvent => ProtoOAMarginCallTriggerEvent.Parser.ParseFrom(payload),
-                (int)ProtoOAPayloadType.ProtoOaRefreshTokenReq => ProtoOARefreshTokenRes.Parser.ParseFrom(payload),
+                (int)ProtoOAPayloadType.ProtoOaRefreshTokenReq => ProtoOARefreshTokenReq.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaRefreshTokenRes => ProtoOARefreshTokenRes.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaOrderListReq => ProtoOAOrderListReq.Parser.ParseFrom(payload),
                 (int)ProtoOAPayloadType.ProtoOaOrderListRes => ProtoOAOrderListRes.Parser.ParseFrom(payload),
